@@ -33,7 +33,7 @@ Rectangle {
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
-            text: temperature + "°C, " + description
+            text: "29" + "°C, " + description
             color: "#000000"
             font.pixelSize: 16
         }
