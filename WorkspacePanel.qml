@@ -207,18 +207,7 @@ Process {
             } 
         }
         
-        // Hiệu ứng xoay nhẹ khi di chuyển
-        rotation: {
-            const targetX = activeIndicator.x
-            if (typeof activeIndicator.previousX === 'undefined') {
-                activeIndicator.previousX = targetX
-                return 0
-            }
-            const diff = targetX - activeIndicator.previousX
-            activeIndicator.previousX = targetX
-            return Math.max(-15, Math.min(15, diff * 0.5))
-        }
-        Behavior on rotation { NumberAnimation { duration: 200 } }
+
     }
 
     Row {

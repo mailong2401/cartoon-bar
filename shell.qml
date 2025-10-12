@@ -1,13 +1,14 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
-import "."   // 👈 thêm dòng này để nhận diện Timespace.qml
+import "."
 
 ShellRoot {
     id: root
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
-
+    
     PanelWindow {
         id: panel
         implicitHeight: 50
@@ -23,7 +24,7 @@ ShellRoot {
             spacing: 10
 
             AppIcons {
-                width: 200
+                width: 110
                 height: parent.height
             }
 
@@ -32,26 +33,24 @@ ShellRoot {
                 height: parent.height
                 hyprInstance: root.hyprInstance
             }
-
             // ⏰ Đồng hồ
             Timespace {
-                width: 400
+                width: 320
+                height: parent.height
+            }
+            
+            CpuPanel {
+                width: 240
                 height: parent.height
             }
 
-            Rectangle {
-                width: parent.width
+            // 🎵 Music Player
+            MusicPlayer {
+                width: 360
                 height: parent.height
-                color: "#8be9fd"
-                radius: 6
-                Text {
-                    anchors.centerIn: parent
-                    text: "Ô 4"
-                    color: "black"
-                    font.pixelSize: 14
-                }
-            }
+              }
+
+            StatusArea { width: 390; height: parent.height }
         }
     }
 }
-

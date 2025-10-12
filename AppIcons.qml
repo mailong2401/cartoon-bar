@@ -14,7 +14,6 @@ Rectangle {
             model: [
                 "./assets/search.svg",
                 "./assets/dashboard.png",
-                "./assets/dashboard.png"
             ]
 
             Image {

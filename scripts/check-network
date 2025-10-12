@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Script: check-network
+# Improved version with better error handling
+
+get_network_status() {
+  local interface_id=""
+  local ssid=""
+  local status="Offline"
+
+  # Lấy interface đang UP (ưu tiên wifi trước)
+  interface_id=$(ip link | awk '/state UP/ {print $2}' | sed 's/://' | head -1)
+
+  # Kiểm tra nếu có kết nối mạng
+  if [[ -n "$interface_id" ]]; then
+    # Thử ping để kiểm tra kết nối internet
+    if ping -c 1 -W 2 8.8.8.8 &>/dev/null || ping -c 1 -W 2 1.1.1.1 &>/dev/null; then
+      # Kiểm tra nếu là WiFi
+      if [[ "$interface_id" == wl* ]] || [[ "$interface_id" == wlan* ]]; then
+        # Lấy SSID từ nmcli hoặc iwconfig
+        if command -v nmcli &>/dev/null; then
+          ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2}' | head -1)
+        elif command -v iwconfig &>/dev/null; then
+          ssid=$(iwconfig "$interface_id" 2>/dev/null | awk -F'"' '/ESSID/ {print $2}')
+        fi
+
+        if [[ -n "$ssid" ]]; then
+          status="$ssid"
+        else
+          status="Wi-Fi"
+        fi
+      else
+        # Ethernet
+        status="Ethernet"
+      fi
+    else
+      # Có interface UP nhưng không có internet
+      if [[ "$interface_id" == wl* ]] || [[ "$interface_id" == wlan* ]]; then
+        status="Wi-Fi (No Internet)"
+      else
+        status="Ethernet (No Internet)"
+      fi
+    fi
+  else
+    status="Offline"
+  fi
+
+  echo "$status"
+}
+
+# Xử lý argument
+case "${1:-}" in
+"--stat")
+  get_network_status
+  ;;
+"--icon")
+  # Có thể thêm logic cho icon ở đây
+  get_network_status
+  ;;
+*)
+  echo "Usage: $0 [--stat|--icon]"
+  echo "  --stat: Get network status"
+  echo "  --icon: Get icon name (to be implemented)"
+  exit 1
+  ;;
+esac
