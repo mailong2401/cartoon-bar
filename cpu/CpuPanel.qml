@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import './widgets/'
+import '../modules/ram/'
 
 Rectangle {
     id: root
@@ -15,6 +16,7 @@ Rectangle {
     property string memoryUsage: "0%"
     property string temperature: "0°C"
     property bool panelVisible: false
+    property bool ramPanelVisible: false
 
     // Process lấy CPU usage
     Process {
@@ -207,6 +209,9 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    root.ramPanelVisible = !root.ramPanelVisible
+                }
                 
                 // Hiệu ứng hover
                 onEntered: {
@@ -299,6 +304,18 @@ Rectangle {
         onCloseRequested: {
             root.panelVisible = false
         }
+    }
+    RamDetailPanel {
+        id: ramDetailPanel
+        visible: root.ramPanelVisible
+        anchors {
+            top: parent.bottom
+            left: parent.left
+        }
+        margins {
+            top: 10
+        }
+        
     }
 
     Component.onCompleted: {

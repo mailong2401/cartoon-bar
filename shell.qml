@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Io
 import "./components"
 import "./cpu"
+import "./modules/ram"
 
 ShellRoot {
     id: root
