@@ -146,7 +146,7 @@ Rectangle {
                     }
                     verticalAlignment: Text.AlignVCenter
                 }
-            }
+              }
 
             MouseArea {
                 anchors.fill: parent
@@ -168,8 +168,6 @@ Rectangle {
                 
                 onClicked: {
                     console.log("📡 Network clicked - Opening network manager")
-                    // Có thể mở network manager ở đây
-                    Qt.createQmlObject('import Quickshell; Process { command: ["nm-connection-editor"]; running: true }', root)
                 }
             }
             

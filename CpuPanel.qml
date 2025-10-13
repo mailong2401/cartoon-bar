@@ -180,7 +180,7 @@ Rectangle {
                     }
                     Text {
                         id: memoryLabel
-                        text: "Bộ nhớ"
+                        text: "Ram"
                         color: "#666"
                         font.pixelSize: 10
                         anchors.horizontalCenter: parent.horizontalCenter
