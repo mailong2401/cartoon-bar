@@ -12,6 +12,16 @@ Rectangle {
     property string currentSong: "No song playing"
     property string currentArtist: ""
     property bool isPlaying: false
+    property string truncatedSong: ""
+
+    // Cập nhật truncatedSong khi currentSong thay đổi
+    onCurrentSongChanged: {
+        if (currentSong.length > 30) {
+            truncatedSong = currentSong.substring(0, 30) + "..."
+        } else {
+            truncatedSong = currentSong
+        }
+    }
 
     // Process lấy thông tin bài hát
     Process {
@@ -60,62 +70,165 @@ Rectangle {
         }
     }
 
-RowLayout {
-    anchors.fill: parent
-    anchors.margins: 8
-    Layout.alignment: Qt.AlignVCenter  // thay verticalAlignment
+    RowLayout {
+        anchors.fill: parent
+        anchors.margins: 8
+        Layout.alignment: Qt.AlignVCenter
 
-    // Song info
-    ColumnLayout {
-        spacing: 2
-        Layout.fillWidth: true
+        // Song info với hiệu ứng marquee
+        ColumnLayout {
+            spacing: 2
+            Layout.fillWidth: true
+            Layout.maximumWidth: parent.width * 0.7 // Giới hạn chiều rộng
 
-        Text {
-            text: currentSong
-            color: "#000"
-            font.pixelSize: 16
-            elide: Text.ElideRight
+            // Container cho song title với marquee effect
+            Rectangle {
+                id: songContainer
+                Layout.fillWidth: true
+                height: 20
+                color: "transparent"
+                clip: true
+
+                Text {
+                    id: songText
+                    text: truncatedSong
+                    color: "#000"
+                    font.pixelSize: 16
+                    elide: Text.ElideRight
+                    
+                    // Hiệu ứng marquee khi text quá dài
+                    property bool needsMarquee: currentSong.length > 30
+                    
+                    x: needsMarquee && marqueeTimer.running ? -marqueeAnimation.value : 0
+                    
+                    Behavior on x {
+                        NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
+                    }
+                }
+
+                // Animation cho marquee effect
+                PropertyAnimation {
+                    id: marqueeAnimation
+                    target: songText
+                    property: "x"
+                    from: 0
+                    to: -songText.width + songContainer.width
+                    duration: 3000
+                    running: false
+                }
+
+                // Timer để kích hoạt marquee
+                Timer {
+                    id: marqueeTimer
+                    interval: 2000
+                    running: songText.needsMarquee
+                    repeat: true
+                    onTriggered: {
+                        if (songText.needsMarquee) {
+                            marqueeAnimation.start()
+                        }
+                    }
+                }
+            }
+
+            // Artist name
+            Text {
+                text: currentArtist
+                color: "#6272a4"
+                font.pixelSize: 10
+                elide: Text.ElideRight
+                Layout.fillWidth: true
+            }
         }
 
-        Text {
-            text: currentArtist
-            color: "#6272a4"
-            font.pixelSize: 10
-            elide: Text.ElideRight
-        }
-      }
-      Item { Layout.fillWidth: true }  // spacer
+        Item { Layout.fillWidth: true }  // spacer
 
-    // Controls
-    Row {
-        spacing: 12
-        Layout.alignment: Qt.AlignVCenter  // căn giữa theo hàng
+        // Controls
+        Row {
+            spacing: 12
+            Layout.alignment: Qt.AlignVCenter
 
-        Image {
-        id: nextBtn
-        source: "./assets/music/pre.png"
-        width: 30
-        height: 30
-        fillMode: Image.PreserveAspectFit
-        }
+            // Previous button
+            Image {
+                id: preBtn
+                source: "./assets/music/pre.png"
+                width: 30
+                height: 30
+                fillMode: Image.PreserveAspectFit
+                smooth: true
 
-        Image {
-        id: playPauseBtn
-        source: isPlaying ? "./assets/music/pause-button.png" : "./assets/music/play.png";
-        width: 30
-        height: 30
-        fillMode: Image.PreserveAspectFit
-        smooth: true
-        }
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        // Thêm command để chuyển bài trước
+                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "previous"]; running: true }', musicPlayer)
+                    }
+                    
+                    // Hiệu ứng hover
+                    onEntered: parent.scale = 1.2
+                    onExited: parent.scale = 1.0
+                }
+                
+                Behavior on scale { NumberAnimation { duration: 100 } }
+            }
 
-        Image {
-        id: preBtn
-        source: "./assets/music/next.png"
-        width: 30
-        height: 30
-        fillMode: Image.PreserveAspectFit
+            // Play/Pause button
+            Image {
+                id: playPauseBtn
+                source: isPlaying ? "./assets/music/pause.png" : "./assets/music/play.png"
+                width: 30
+                height: 30
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        // Command play/pause
+                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "play-pause"]; running: true }', musicPlayer)
+                    }
+                    
+                    // Hiệu ứng hover
+                    onEntered: parent.scale = 1.2
+                    onExited: parent.scale = 1.0
+                }
+                
+                Behavior on scale { NumberAnimation { duration: 100 } }
+            }
+
+            // Next button
+            Image {
+                id: nextBtn
+                source: "./assets/music/next.png"
+                width: 30
+                height: 30
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        // Thêm command để chuyển bài tiếp theo
+                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "next"]; running: true }', musicPlayer)
+                    }
+                    
+                    // Hiệu ứng hover
+                    onEntered: parent.scale = 1.2
+                    onExited: parent.scale = 1.0
+                }
+                
+                Behavior on scale { NumberAnimation { duration: 100 } }
+            }
         }
     }
-}
-}
 
+
+    Component.onCompleted: {
+        console.log("🎵 Music Player Started")
+        // Khởi tạo truncatedSong
+        truncatedSong = currentSong.length > 30 ? currentSong.substring(0, 30) + "..." : currentSong
+    }
+}

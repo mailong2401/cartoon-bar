@@ -12,6 +12,7 @@ Rectangle {
     property var workspaces: []
     property string activeWorkspace: "1"
     property var existingWorkspaces: ([])
+    property string currentWorkspaceId: ""
 
     // Socket theo dõi Hyprland
     Socket {
@@ -79,40 +80,43 @@ Rectangle {
         connected: !!root.hyprInstance
     }
 
-Process {
-    id: hyprctlProcess
-    command: ["hyprctl", "workspaces", "-j"]
-    running: false
+    Process {
+        id: hyprctlProcess
+        command: ["hyprctl", "workspaces", "-j"]
+        running: false
 
-    stdout: StdioCollector {
-        onStreamFinished: {
-            if (this.text) {
-                try {
-                    const wsList = JSON.parse(this.text)
-                    const existingIds = wsList.map(ws => ws.id.toString())
-                    root.existingWorkspaces = existingIds
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (this.text) {
+                    try {
+                        const wsList = JSON.parse(this.text)
+                        const existingIds = wsList.map(ws => ws.id.toString())
+                        root.existingWorkspaces = existingIds
 
-                    for (let i = 0; i < root.workspaces.length; i++) {
-                        const ws = root.workspaces[i]
-                        const shouldExist = existingIds.includes(ws.id) || ws.id === root.activeWorkspace
-                        if (ws.exists !== shouldExist) {
-                            root.workspaces[i].exists = shouldExist
+                        for (let i = 0; i < root.workspaces.length; i++) {
+                            const ws = root.workspaces[i]
+                            const shouldExist = existingIds.includes(ws.id) || ws.id === root.activeWorkspace
+                            if (ws.exists !== shouldExist) {
+                                root.workspaces[i].exists = shouldExist
+                            }
                         }
+                        root.workspaces = root.workspaces.slice()
+                    } catch(e) {
+                        console.warn("❌ Failed to parse hyprctl JSON:", e)
                     }
-                    root.workspaces = root.workspaces.slice()
-                } catch(e) {
-                    console.warn("❌ Failed to parse hyprctl JSON:", e)
                 }
             }
         }
     }
 
-    // Không dùng onFinished, onError
-}
+    Process {
+        id: workspaceSwitcher
+        // Remove the onFinished handler - Process doesn't have this signal
+    }
 
     function initializeWorkspaces() {
         root.workspaces = []
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 8; i++) {
             root.workspaces.push({
                 id: i.toString(),
                 name: i.toString(),
@@ -165,10 +169,12 @@ Process {
     }
 
     function switchWorkspace(workspaceId) {
-        console.log("🔄 Switching to workspace:", workspaceId)
-        if (hyprControl.connected) {
-            hyprControl.write(`dispatch workspace ${workspaceId}`)
-        }
+        console.log("🔄 Switching to workspace via hyprctl:", workspaceId)
+        currentWorkspaceId = workspaceId
+        workspaceSwitcher.command = ["hyprctl", "dispatch", "workspace", workspaceId]
+        workspaceSwitcher.running = true
+        
+        // Update active workspace immediately since we can't use onFinished
         root.activeWorkspace = workspaceId
         markWorkspaceExists(workspaceId)
     }
@@ -206,8 +212,6 @@ Process {
                 easing.type: Easing.OutCubic 
             } 
         }
-        
-
     }
 
     Row {

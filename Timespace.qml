@@ -164,12 +164,6 @@ Rectangle {
                         bold: true 
                     }
                 }
-                
-                Text {
-                    text: root.condition || "Thời tiết"
-                    color: "#666"
-                    font.pixelSize: 10
-                }
             }
 
 

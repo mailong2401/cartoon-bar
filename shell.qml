@@ -17,7 +17,11 @@ ShellRoot {
             left: true
             right: true
             top: true
-        }
+          }
+          margins {
+            top: 10
+            left: 10
+          }
 
         RowLayout {
             anchors.fill: parent
@@ -29,7 +33,7 @@ ShellRoot {
             }
 
             WorkspacePanel {
-                width: 430
+                width: 350
                 height: parent.height
                 hyprInstance: root.hyprInstance
             }
@@ -40,18 +44,18 @@ ShellRoot {
             }
             
             CpuPanel {
-                width: 240
+                width: 300
                 height: parent.height
             }
 
             // 🎵 Music Player
             MusicPlayer {
-                width: 360
+                width: 340
                 height: parent.height
               }
 
             StatusArea {
-                width:  405    // ví dụ trừ một phần khác
+                width:  410    // ví dụ trừ một phần khác
                 height: parent.height
             }
 

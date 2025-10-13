@@ -85,120 +85,208 @@ Rectangle {
         spacing: 15
 
         // CPU
-        Row {
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 0
-            Column {
-              anchors.verticalCenter: parent.verticalCenter
-              spacing: 0
-              Text {
-                text: root.cpuUsage
-                color: "#000"
-                font { 
-                    pixelSize: 15
-                    bold: true 
-                }
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
-              Text {
-                text: "Cpu"
-                color: "#666"
-                font.pixelSize: 10
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
-            }
-            Image {
-                source: "./assets/cpu.png"   // đường dẫn tới ảnh icon CPU
-                width: 36
-                height: 36
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-                anchors.verticalCenter: parent.verticalCenter
-            }
-        }
+        Rectangle {
+            id: cpuContainer
+            width: cpuContent.width + 20
+            height: cpuContent.height + 10
+            color: "transparent"
+            radius: 6
 
-        Row {
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 0
-            Column {
-              anchors.verticalCenter: parent.verticalCenter
-              spacing: 0
-              Text {
-                text: root.memoryUsage
-                color: "#000"
-                font { 
-                    pixelSize: 15
-                    bold: true 
+            Row {
+                id: cpuContent
+                anchors.centerIn: parent
+                spacing: 0
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 0
+                    Text {
+                        id: cpuText
+                        text: root.cpuUsage
+                        color: "#000"
+                        font { 
+                            pixelSize: 15
+                            bold: true 
+                        }
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                    Text {
+                        id: cpuLabel
+                        text: "Cpu"
+                        color: "#666"
+                        font.pixelSize: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
                 }
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
-              Text {
-                text: "Bộ nhớ"
-                color: "#666"
-                font.pixelSize: 10
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
+                Image {
+                    id: cpuIcon
+                    source: "./assets/cpu.png"
+                    width: 36
+                    height: 36
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                
+                // Hiệu ứng hover
+                onEntered: {
+                    cpuContainer.scale = 1.1
+                    cpuText.color = "#1a73e8"
+                    cpuLabel.color = "#1a73e8"
+                }
+                onExited: {
+                    cpuContainer.scale = 1.0
+                    cpuText.color = "#000"
+                    cpuLabel.color = "#666"
+                }
             }
             
-            Image {
-                source: "./assets/memory.png"   // đường dẫn tới ảnh icon CPU
-                width: 30
-                height: 30
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-                anchors.verticalCenter: parent.verticalCenter
-            }
+            Behavior on scale { NumberAnimation { duration: 100 } }
         }
 
-        Row {
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 0
-            Column {
-              anchors.verticalCenter: parent.verticalCenter
-              spacing: 0
-              Text {
-                text: root.temperature
-                color: "#000"
-                font { 
-                    pixelSize: 15
-                    bold: true 
+        // Memory
+        Rectangle {
+            id: memoryContainer
+            width: memoryContent.width + 20
+            height: memoryContent.height + 10
+            color: "transparent"
+            radius: 6
+
+            Row {
+                id: memoryContent
+                anchors.centerIn: parent
+                spacing: 0
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 0
+                    Text {
+                        id: memoryText
+                        text: root.memoryUsage
+                        color: "#000"
+                        font { 
+                            pixelSize: 15
+                            bold: true 
+                        }
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                    Text {
+                        id: memoryLabel
+                        text: "Bộ nhớ"
+                        color: "#666"
+                        font.pixelSize: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
                 }
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
-              Text {
-                text: "Nhiệt độ"
-                color: "#666"
-                font.pixelSize: 10
-                anchors.horizontalCenter: parent.horizontalCenter
-              }
+                
+                Image {
+                    id: memoryIcon
+                    source: "./assets/memory.png"
+                    width: 30
+                    height: 30
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
-            Image {
-                source: "./assets/temperature.png"   // đường dẫn tới ảnh icon CPU
-                width: 36
-                height: 36
-                fillMode: Image.PreserveAspectFit
-                smooth: true
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                
+                // Hiệu ứng hover
+                onEntered: {
+                    memoryContainer.scale = 1.1
+                    memoryText.color = "#1a73e8"
+                    memoryLabel.color = "#1a73e8"
+                }
+                onExited: {
+                    memoryContainer.scale = 1.0
+                    memoryText.color = "#000"
+                    memoryLabel.color = "#666"
+                }
+            }
+            
+            Behavior on scale { NumberAnimation { duration: 100 } }
+        }
+
+        // Temperature
+        Rectangle {
+            id: tempContainer
+            width: tempContent.width + 20
+            height: tempContent.height + 10
+            color: "transparent"
+            radius: 6
+
+            Row {
+                id: tempContent
+                anchors.centerIn: parent
+                spacing: 0
                 anchors.verticalCenter: parent.verticalCenter
+                
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 0
+                    Text {
+                        id: tempText
+                        text: root.temperature
+                        color: "#000"
+                        font { 
+                            pixelSize: 15
+                            bold: true 
+                        }
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                    Text {
+                        id: tempLabel
+                        text: "Nhiệt độ"
+                        color: "#666"
+                        font.pixelSize: 10
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                }
+                Image {
+                    id: tempIcon
+                    source: "./assets/temperature.png"
+                    width: 36
+                    height: 36
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                
+                // Hiệu ứng hover
+                onEntered: {
+                    tempContainer.scale = 1.1
+                    tempText.color = "#1a73e8"
+                    tempLabel.color = "#1a73e8"
+                }
+                onExited: {
+                    tempContainer.scale = 1.0
+                    tempText.color = "#000"
+                    tempLabel.color = "#666"
+                }
+            }
+            
+            Behavior on scale { NumberAnimation { duration: 100 } }
         }
     }
 
-    // MouseArea để refresh manual
-    MouseArea {
-        anchors.fill: parent
-        onClicked: updateAll()
-        
-        onPressed: {
-            parent.scale = 0.95
-        }
-        onReleased: {
-            parent.scale = 1.0
-        }
-    }
-
-    Behavior on scale {
-        NumberAnimation { duration: 100 }
-    }
 
     Component.onCompleted: {
         console.log("🖥️ CPU Panel Started")
