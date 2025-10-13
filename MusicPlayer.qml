@@ -93,25 +93,26 @@ RowLayout {
 
         Image {
         id: nextBtn
-        source: "./assets/music/previous-button.png"
-        width: 35
-        height: 35
+        source: "./assets/music/pre.png"
+        width: 30
+        height: 30
         fillMode: Image.PreserveAspectFit
         }
 
         Image {
         id: playPauseBtn
-        source: isPlaying ? "./assets/music/pause-button.png" : "./assets/music/play-button.png";
-        width: 35
-        height: 35
+        source: isPlaying ? "./assets/music/pause-button.png" : "./assets/music/play.png";
+        width: 30
+        height: 30
         fillMode: Image.PreserveAspectFit
+        smooth: true
         }
 
         Image {
         id: preBtn
-        source: "./assets/music/next-button.png"
-        width: 35
-        height: 35
+        source: "./assets/music/next.png"
+        width: 30
+        height: 30
         fillMode: Image.PreserveAspectFit
         }
     }

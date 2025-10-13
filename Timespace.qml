@@ -126,12 +126,12 @@ Rectangle {
 
     Row {
         anchors.centerIn: parent
-        spacing: 20
+        spacing: 24
 
         // Phần datetime
         Column {
             anchors.verticalCenter: parent.verticalCenter
-            spacing: 2
+            spacing: 0
             
             Text { 
                 text: root.currentTime 
@@ -139,27 +139,19 @@ Rectangle {
                 font { 
                     pixelSize: 16 
                     bold: true 
-                    family: "Monospace"
+                    family: "ComicShannsMono Nerd Font"
                 }
             }
             
             Text { 
                 text: root.currentDate 
                 color: "#666" 
-                font.pixelSize: 11 
+                font.pixelSize: 13
+                font.family: "ComicShannsMono Nerd Font"
             }
         }
 
         // Phần weather
-        Row {
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 8
-            
-            Text {
-                text: root.icon
-                font.pixelSize: 20
-            }
-            
             Column {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 1
@@ -179,12 +171,11 @@ Rectangle {
                     font.pixelSize: 10
                 }
             }
-        }
 
 
         // Cờ Vietnam
         Image {
-            source: "./assets/vietnam.svg"
+            source: "./assets/vietnam.png"
             width: 40
             height: 40
             fillMode: Image.PreserveAspectFit

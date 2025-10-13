@@ -19,12 +19,12 @@ ShellRoot {
             top: true
         }
 
-        Row {
+        RowLayout {
             anchors.fill: parent
             spacing: 10
 
             AppIcons {
-                width: 110
+                width: 60
                 height: parent.height
             }
 
@@ -35,7 +35,7 @@ ShellRoot {
             }
             // ⏰ Đồng hồ
             Timespace {
-                width: 320
+                width: 350
                 height: parent.height
             }
             
@@ -50,7 +50,11 @@ ShellRoot {
                 height: parent.height
               }
 
-            StatusArea { width: 390; height: parent.height }
+            StatusArea {
+                width:  405    // ví dụ trừ một phần khác
+                height: parent.height
+            }
+
         }
     }
 }

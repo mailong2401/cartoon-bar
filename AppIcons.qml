@@ -12,7 +12,6 @@ Rectangle {
         spacing: 15
         Repeater {
             model: [
-                "./assets/search.svg",
                 "./assets/dashboard.png",
             ]
 
