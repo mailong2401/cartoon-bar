@@ -3,7 +3,8 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
-import "."
+import "./components"
+import "./cpu"
 
 ShellRoot {
     id: root
@@ -17,48 +18,52 @@ ShellRoot {
             left: true
             right: true
             top: true
-          }
-          margins {
+        }
+        margins {
             top: 10
             left: 10
-          }
+        }
 
         RowLayout {
             anchors.fill: parent
             spacing: 10
 
+            // 🎯 App Icons
             AppIcons {
-                width: 60
-                height: parent.height
+                Layout.preferredWidth: 60
+                Layout.fillHeight: true
             }
 
+            // 🖥️ Workspace
             WorkspacePanel {
-                width: 350
-                height: parent.height
+                Layout.preferredWidth: 350
+                Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
             }
-            // ⏰ Đồng hồ
+
+            // ⏰ Time & Date
             Timespace {
-                width: 350
-                height: parent.height
+                Layout.preferredWidth: 350
+                Layout.fillHeight: true
             }
             
+            // 🔥 CPU Monitor
             CpuPanel {
-                width: 300
-                height: parent.height
+                Layout.preferredWidth: 300
+                Layout.fillHeight: true
             }
 
             // 🎵 Music Player
             MusicPlayer {
-                width: 340
-                height: parent.height
-              }
-
-            StatusArea {
-                width:  410    // ví dụ trừ một phần khác
-                height: parent.height
+                Layout.preferredWidth: 340
+                Layout.fillHeight: true
             }
 
+            // 📊 System Status
+            StatusArea {
+                Layout.preferredWidth: 410
+                Layout.fillHeight: true
+            }
         }
     }
 }
