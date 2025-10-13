@@ -93,7 +93,7 @@ Rectangle {
             id: cpuContainer
             width: cpuContent.width + 20
             height: cpuContent.height + 10
-            color: mouseArea.containsMouse ? "#E8D8C9" : "transparent"
+            color: "transparent"
             radius: 6
 
             Row {
@@ -108,7 +108,7 @@ Rectangle {
                     Text {
                         id: cpuText
                         text: root.cpuUsage
-                        color: mouseArea.containsMouse ? "#1a73e8" : "#000"
+                        color: "#000"
                         font { 
                             pixelSize: 15
                             bold: true 
@@ -118,7 +118,7 @@ Rectangle {
                     Text {
                         id: cpuLabel
                         text: "Cpu"
-                        color: mouseArea.containsMouse ? "#1a73e8" : "#666"
+                        color: "#666"
                         font.pixelSize: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
@@ -211,13 +211,9 @@ Rectangle {
                 // Hiệu ứng hover
                 onEntered: {
                     memoryContainer.scale = 1.1
-                    memoryText.color = "#1a73e8"
-                    memoryLabel.color = "#1a73e8"
                 }
                 onExited: {
                     memoryContainer.scale = 1.0
-                    memoryText.color = "#000"
-                    memoryLabel.color = "#666"
                 }
             }
             
@@ -278,13 +274,9 @@ Rectangle {
                 // Hiệu ứng hover
                 onEntered: {
                     tempContainer.scale = 1.1
-                    tempText.color = "#1a73e8"
-                    tempLabel.color = "#1a73e8"
                 }
                 onExited: {
                     tempContainer.scale = 1.0
-                    tempText.color = "#000"
-                    tempLabel.color = "#666"
                 }
             }
             

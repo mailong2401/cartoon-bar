@@ -6,8 +6,14 @@ import Quickshell.Io
 
 PanelWindow {
     id: detailPanel
+
+    // Sử dụng WlrLayershell để căn giữa
     implicitWidth: 1030
     implicitHeight: 850
+    margins {
+        top: 10
+        left: (Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2
+    }
     color: "transparent"
     
     signal closeRequested()
