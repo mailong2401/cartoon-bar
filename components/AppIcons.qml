@@ -5,7 +5,9 @@ Rectangle {
     width: 200
     height: 50
     color: "#F5EEE6"
-    radius: 8
+    radius: 10
+    border.color: "#4f4f5b"
+    border.width: 3
 
     Row {
         anchors.centerIn: parent

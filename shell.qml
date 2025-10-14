@@ -6,6 +6,7 @@ import Quickshell.Io
 import "./components"
 import "./cpu"
 import "./modules/ram"
+import "./modules/weather_time"
 
 ShellRoot {
     id: root

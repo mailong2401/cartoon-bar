@@ -7,7 +7,9 @@ import Quickshell.Io
 Rectangle {
     id: musicPlayer
     color: "#F5EEE6"
-    radius: 8
+    border.color: "#4f4f5b"
+    border.width: 3
+    radius: 10
 
     property string currentSong: "No song playing"
     property string currentArtist: ""

@@ -4,11 +4,14 @@ import Quickshell
 import Quickshell.Io
 import './widgets/'
 import '../modules/ram/'
+import '../cpu/'
 
 Rectangle {
     id: root
     color: "#F5EEE6"
-    radius: 8
+    border.color: "#4f4f5b"
+    border.width: 3
+    radius: 10
     width: 300  // Chiều rộng phù hợp với panel hệ thống
     height: 50  // Chiều cao phù hợp với panel hệ thống
 

@@ -5,7 +5,9 @@ import Quickshell.Io
 
 Rectangle {
     id: root
-    radius: 8
+    border.color: "#4f4f5b"
+    border.width: 3
+    radius: 10
     color: "#F5EEE6"
 
     property string net_stat: "Checking..."
@@ -22,7 +24,6 @@ Rectangle {
         onRunningChanged: {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
-                console.log("Network status result:", result)
                 root.net_stat = result
                 updateWifiIcon(result)
             }
@@ -37,7 +38,6 @@ Rectangle {
         onRunningChanged: {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
-                console.log("Network status result:", result)
                 root.capacity_battery = result
                 updateWifiIcon(result)
             }
@@ -345,7 +345,6 @@ Rectangle {
                 onReleased: powerContainer.scale = 1.2
                 
                 onClicked: {
-                    console.log("⏻ Power clicked - Opening shutdown menu")
                     // Mở menu tắt máy
                     Qt.createQmlObject('import Quickshell; Process { command: ["gnome-session-quit", "--power-off"]; running: true }', root)
                 }
@@ -383,9 +382,5 @@ Rectangle {
         running: true
         repeat: true
         onTriggered: updateVolumeCurrentProcess()
-    }
-
-    onNet_statChanged: {
-        console.log("Network status changed to:", net_stat)
     }
 }

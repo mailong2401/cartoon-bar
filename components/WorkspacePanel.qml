@@ -5,7 +5,9 @@ import Quickshell.Io
 
 Rectangle {
     id: root
-    radius: 8
+    radius: 10
+    border.color: "#4f4f5b"
+    border.width: 3
     color: "#F5EEE6"
 
     property string hyprInstance: ""
@@ -22,7 +24,6 @@ Rectangle {
 
         onConnectedChanged: {
             if (connected) {
-                console.log("✅ Connected to Hyprland")
                 initializeWorkspaces()
                 updateWorkspaceStatus()
             }
@@ -30,34 +31,29 @@ Rectangle {
 
         parser: SplitParser {
             onRead: msg => {
-                console.log("Hyprland event:", msg)
                 
                 if (msg.startsWith("workspace>>")) {
                     const parts = msg.split(">>")[1].split(",")
                     if (parts.length > 0) {
                         root.activeWorkspace = parts[0]
-                        console.log("📌 Active workspace:", root.activeWorkspace)
                         markWorkspaceExists(root.activeWorkspace)
                     }
                 } else if (msg.startsWith("focusedmon>>")) {
                     const parts = msg.split(">>")[1].split(",")
                     if (parts.length > 1) {
                         root.activeWorkspace = parts[1]
-                        console.log("📌 Active workspace from monitor:", root.activeWorkspace)
                         markWorkspaceExists(root.activeWorkspace)
                     }
                 } else if (msg.startsWith("createworkspace>>")) {
                     const parts = msg.split(">>")[1].split(",")
                     if (parts.length > 0) {
                         const newWorkspace = parts[0]
-                        console.log("➕ Created workspace:", newWorkspace)
                         markWorkspaceExists(newWorkspace)
                     }
                 } else if (msg.startsWith("destroyworkspace>>")) {
                     const parts = msg.split(">>")[1].split(",")
                     if (parts.length > 0) {
                         const destroyedWorkspace = parts[0]
-                        console.log("➖ Destroyed workspace:", destroyedWorkspace)
                         // Vẫn giữ workspace trong UI nhưng đánh dấu không tồn tại
                         unmarkWorkspaceExists(destroyedWorkspace)
                     }
@@ -68,10 +64,6 @@ Rectangle {
             }
         }
 
-        onError: {
-            console.error("Hyprland events error")
-            initializeWorkspaces()
-        }
     }
 
     Socket {
@@ -125,7 +117,6 @@ Rectangle {
                 exists: false
             })
         }
-        console.log("📊 Initialized 10 workspaces")
     }
 
     function markWorkspaceExists(workspaceId) {
@@ -134,7 +125,6 @@ Rectangle {
             if (root.workspaces[i].id === workspaceId) {
                 if (!root.workspaces[i].exists) {
                     root.workspaces[i].exists = true
-                    console.log("🎯 Marked workspace as existing:", workspaceId)
                 }
                 found = true
                 break
@@ -151,7 +141,6 @@ Rectangle {
                 exists: true
             })
             root.workspaces.sort((a, b) => parseInt(a.id) - parseInt(b.id))
-            console.log("🆕 Added new workspace:", workspaceId)
         }
         
         root.workspaces = root.workspaces.slice()
@@ -161,7 +150,6 @@ Rectangle {
         for (let i = 0; i < root.workspaces.length; i++) {
             if (root.workspaces[i].id === workspaceId) {
                 root.workspaces[i].exists = false
-                console.log("🎯 Marked workspace as non-existing:", workspaceId)
                 break
             }
         }
@@ -169,7 +157,6 @@ Rectangle {
     }
 
     function switchWorkspace(workspaceId) {
-        console.log("🔄 Switching to workspace via hyprctl:", workspaceId)
         currentWorkspaceId = workspaceId
         workspaceSwitcher.command = ["hyprctl", "dispatch", "workspace", workspaceId]
         workspaceSwitcher.running = true
@@ -266,7 +253,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        console.log("🎯 Workspace Panel Started")
         if (root.hyprInstance) {
             console.log("📝 Hyprland Instance:", root.hyprInstance)
         } else {

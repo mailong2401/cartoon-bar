@@ -2,11 +2,14 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import '../modules/weather_time'
 
 Rectangle {
     id: root
     color: "#F5EEE6"
-    radius: 8
+    border.color: "#4f4f5b"
+    border.width: 3
+    radius: 10
 
     property string currentDate: ""
     property string currentTime: ""
@@ -15,6 +18,7 @@ Rectangle {
     property string icon: "⛅"
     property string humidity: ""
     property string feelsLike: ""
+    property bool panelVisible: false
 
 
     // Process lấy weather
@@ -122,6 +126,20 @@ Rectangle {
         
         root.currentDate = `${weekdays[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
         root.currentTime = Qt.formatTime(now, "HH:mm:ss")
+      }
+
+      // Panel chi tiết Time - Hiển thị khi click vào timeContainer
+    WtDetailPanel {
+        id: wtDetailPanel
+        visible: root.panelVisible
+        anchors {
+            top: parent.bottom
+            left: parent.left
+        }
+        margins {
+            top: 10
+        }
+        
     }
 
     Row {
@@ -129,7 +147,13 @@ Rectangle {
         spacing: 24
 
         // Phần datetime
-        Column {
+        Rectangle {
+          id: timeContainer
+          width: 190
+          height: parent.height
+          color: "transparent"
+
+          Column {
             anchors.verticalCenter: parent.verticalCenter
             spacing: 0
             
@@ -141,6 +165,7 @@ Rectangle {
                     bold: true 
                     family: "ComicShannsMono Nerd Font"
                 }
+
             }
             
             Text { 
@@ -150,6 +175,26 @@ Rectangle {
                 font.family: "ComicShannsMono Nerd Font"
             }
         }
+        MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    root.panelVisible = !root.panelVisible
+                }
+                
+                // Hiệu ứng hover
+                onEntered: {
+                    memoryContainer.scale = 1.1
+                }
+                onExited: {
+                    memoryContainer.scale = 1.0
+                }
+            }
+            
+            Behavior on scale { NumberAnimation { duration: 100 } }
+        }
+        
 
         // Phần weather
             Column {
