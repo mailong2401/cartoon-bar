@@ -170,8 +170,8 @@ Rectangle {
         // Cờ Vietnam
         Image {
             source: "../assets/vietnam.png"
-            width: 40
-            height: 40
+            width: 50
+            height: 50
             fillMode: Image.PreserveAspectFit
             smooth: true
             anchors.verticalCenter: parent.verticalCenter
