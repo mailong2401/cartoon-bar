@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Io
 import './widgets/'
 import '../modules/ram/'
-import '../cpu/'
+import './Cpu/'
 
 Rectangle {
     id: root

@@ -12,18 +12,21 @@ Rectangle {
     color: "#F5EEE6"
 
     property string net_stat: "Checking..."
-    property string wifi_icon: "../assets/wifi/wifi-0.png"
-    property string status_battery: "1"
-    property string capacity_battery: "check..."
-    property string volumeCurrent: ""
+    property string wifi_icon: "../assets/wifi/wifi_4.png"
+    property string status_battery: "Unknown"
+    property string capacity_battery: "..."
+    property int signal_current: 0
+    property string volumeCurrent: "..."
+    
     // Global state để toggle panel
     property bool wifiPanelVisible: false
     
     // WifiManager component - chứa tất cả logic WiFi
     ComponentWifi.WifiManager {
         id: wifiManager
-      }
-      // WiFi Panel - chỉ hiện khi được toggle
+    }
+    
+    // WiFi Panel - chỉ hiện khi được toggle
     ComponentWifi.WifiPanel {
         id: wifiPanel
         wifiManager: wifiManager
@@ -39,6 +42,10 @@ Rectangle {
         }
     }
 
+    // =============================
+    //   PROCESSES
+    // =============================
+    
     Process {
         id: wifiProcess
         command: ["/home/long/quickshell-examples/focus_following_panel/scripts/check-network", "--stat"]
@@ -48,7 +55,32 @@ Rectangle {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
                 root.net_stat = result
-                updateWifiIcon(result)
+                updateWifiIcon()
+            }
+        }
+    }
+
+    Process {
+        id: wifiSignalProcess
+        command: ["bash", "-c", "nmcli -t -f ACTIVE,SIGNAL dev wifi | grep '^yes' | cut -d: -f2"]
+        stdout: StdioCollector { }
+        running: false
+        onRunningChanged: {
+            if (!running && stdout.text) {
+                var resultText = stdout.text.trim()
+                if (resultText) {
+                    var result = parseInt(resultText)
+                    if (!isNaN(result)) {
+                        root.signal_current = result
+                        updateWifiIcon()
+                    } else {
+                        console.log("⚠️ Invalid signal value:", resultText)
+                        root.signal_current = 0
+                    }
+                } else {
+                    root.signal_current = 0
+                    updateWifiIcon()
+                }
             }
         }
     }
@@ -62,7 +94,7 @@ Rectangle {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
                 root.capacity_battery = result
-                updateWifiIcon(result)
+                updateBatteryIcon()
             }
         }
     }
@@ -76,6 +108,7 @@ Rectangle {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
                 root.status_battery = result
+                updateBatteryIcon()
             }
         }
     }
@@ -89,35 +122,24 @@ Rectangle {
             if (!running && stdout.text) {
                 var result = stdout.text.trim()
                 root.volumeCurrent = result
+                updateVolumeIcon()
             }
         }
     }
 
-    Process {
-        id: volumeMonitorProcess
-        command: ["bash", "-c", "pactl subscribe | grep --line-buffered 'sink'"]
-        running: false
-        stdout: StdioCollector {}
-        onRunningChanged: {
-            if (!running) {
-                running = true
-            }
-        }
-    }
-    // Xử lý khi panel được mở/đóng
-    onWifiPanelVisibleChanged: {
-        if (wifiPanelVisible) {
-            console.log("📱 WiFi Panel opened - Starting manager")
-            wifiManager.start() // Bật manager khi panel mở
-        } else {
-            console.log("📱 WiFi Panel closed - Stopping manager") 
-            wifiManager.stop() // Tắt manager khi panel đóng
-        }
-    }
-
+    // =============================
+    //   FUNCTIONS
+    // =============================
+    
     function updateBatteryCappacityProcess() {
         if (!batteryCapacityProcess.running) {
             batteryCapacityProcess.running = true
+        }
+    }
+
+    function updateSignalWifiProcess() {
+        if (!wifiSignalProcess.running) {
+            wifiSignalProcess.running = true
         }
     }
 
@@ -127,25 +149,80 @@ Rectangle {
         }
     }
 
-    function updateWifiIcon(status) {
-        if (status === "Offline") {
-            wifi_icon = "../assets/no-wifi.png"
-        } else if (status === "Online") {
-            wifi_icon = "../assets/wifi.png"
-        } else {
-            wifi_icon = "../assets/wifi.png"
-        }
-    }
-
     function updateWifi() {
         if (!wifiProcess.running) {
             wifiProcess.running = true
         }
     }
 
+    function updateWifiIcon() {
+        if (root.net_stat === "Offline") {
+            wifi_icon = "../assets/wifi/no_wifi.png"
+        } else if (root.net_stat === "Online") {
+            wifi_icon = "../assets/wifi/wifi_4.png"
+        } else {
+            var signal = root.signal_current || 0
+            if (signal <= 25) {
+                wifi_icon = "../assets/wifi/wifi_1.png"
+            } else if (signal <= 50) {
+                wifi_icon = "../assets/wifi/wifi_2.png"
+            } else if (signal <= 75) {
+                wifi_icon = "../assets/wifi/wifi_3.png"
+            } else {
+                wifi_icon = "../assets/wifi/wifi_4.png"
+            }
+        }
+    }
+
+    function updateBatteryIcon() {
+        var capacity = parseInt(root.capacity_battery) || 0
+        var status = root.status_battery
+        
+        if (status === "Charging") {
+            batteryIcon.source = '../assets/battery/charging.png'
+        } else if (capacity <= 20) {
+            batteryIcon.source = '../assets/battery/battery-low.png'
+        } else if (capacity <= 50) {
+            batteryIcon.source = '../assets/battery/battery-medium.png'
+        } else if (capacity <= 80) {
+            batteryIcon.source = '../assets/battery/battery-high.png'
+        } else {
+            batteryIcon.source = '../assets/battery/battery-full.png'
+        }
+    }
+
+    function updateVolumeIcon() {
+        var volume = parseInt(root.volumeCurrent) || 0
+        if (volume === 0) {
+            volumeIcon.source = '../assets/volume/mute.png'
+            console.log("tat mic")
+        } else if (volume <= 30) {
+            volumeIcon.source = '../assets/volume/volume-low.png'
+        } else if (volume <= 70) {
+            volumeIcon.source = '../assets/volume/volume-medium.png'
+        } else {
+            volumeIcon.source = '../assets/volume/volume-high.png'
+        }
+    }
+
+    // Xử lý khi panel được mở/đóng
+    onWifiPanelVisibleChanged: {
+        if (wifiPanelVisible) {
+            console.log("📱 WiFi Panel opened - Starting manager")
+            wifiManager.start()
+        } else {
+            console.log("📱 WiFi Panel closed - Stopping manager") 
+            wifiManager.stop()
+        }
+    }
+
+    // =============================
+    //   UI LAYOUT
+    // =============================
+    
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.margins: 0
 
         // Network Status
         Rectangle {
@@ -163,42 +240,33 @@ Rectangle {
                 Image {
                     id: wifiImage
                     source: root.wifi_icon
-                    width: 30
-                    height: 30
-                    sourceSize: Qt.size(24, 24)
+                    width: 42
+                    height: 42
+                    sourceSize: Qt.size(42, 42)
                 }
                 
                 Text {
                     text: root.net_stat
                     color: "#000"
                     font { 
+                        pixelSize: 16
                         bold: true 
                     }
                     verticalAlignment: Text.AlignVCenter
                 }
-              }
+            }
 
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 
-                // Hiệu ứng hover
-                onEntered: {
-                    networkContainer.scale = 1.1
-                }
-                onExited: {
-                    networkContainer.scale = 1.0
-                    updateWifiIcon(root.net_stat) // Trở về icon ban đầu
-                }
-                
-                // Hiệu ứng click
+                onEntered: networkContainer.scale = 1.1
+                onExited: networkContainer.scale = 1.0
                 onPressed: networkContainer.scale = 0.95
                 onReleased: networkContainer.scale = 1.1
                 
-                onClicked: {
-                    root.wifiPanelVisible = !root.wifiPanelVisible
-                }
+                onClicked: root.wifiPanelVisible = !root.wifiPanelVisible
             }
             
             Behavior on scale { NumberAnimation { duration: 100 } }
@@ -221,13 +289,13 @@ Rectangle {
 
                 Image {
                     id: volumeIcon
-                    source: '../assets/volume/volume.png'
-                    width: 30
-                    height: 30
-                    sourceSize: Qt.size(30, 30)
+                    source: '../assets/volume/volume-medium.png'
+                    width: 40
+                    height: 40
+                    sourceSize: Qt.size(40, 40)
                 }
                 Text {
-                    text: volumeCurrent 
+                    text: root.volumeCurrent
                     color: "#000"
                     font { 
                         pixelSize: 16
@@ -242,31 +310,20 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 
-                // Hiệu ứng hover
-                onEntered: {
-                    volumeContainer.scale = 1.1
-                }
-                onExited: {
-                    volumeContainer.scale = 1.0
-                }
-                
-                // Hiệu ứng click
+                onEntered: volumeContainer.scale = 1.1
+                onExited: volumeContainer.scale = 1.0
                 onPressed: volumeContainer.scale = 0.95
                 onReleased: volumeContainer.scale = 1.1
                 
                 onClicked: {
-                    // Có thể mở pavucontrol hoặc volume control
                     Qt.createQmlObject('import Quickshell; Process { command: ["pavucontrol"]; running: true }', root)
                 }
                 
-                // Scroll để điều chỉnh volume
                 onWheel: {
                     var delta = wheel.angleDelta.y / 120
                     if (delta > 0) {
-                        // Tăng volume
                         Qt.createQmlObject('import Quickshell; Process { command: ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%"]; running: true }', root)
                     } else {
-                        // Giảm volume
                         Qt.createQmlObject('import Quickshell; Process { command: ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%"]; running: true }', root)
                     }
                     updateVolumeCurrentProcess()
@@ -293,7 +350,7 @@ Rectangle {
 
                 Image {
                     id: batteryIcon
-                    source: '../assets/battery/battery-1.png'
+                    source: '../assets/battery/battery-full.png'
                     width: 30
                     height: 30
                     sourceSize: Qt.size(30, 30)
@@ -314,20 +371,12 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 
-                // Hiệu ứng hover
-                onEntered: {
-                    batteryContainer.scale = 1.1
-                }
-                onExited: {
-                    batteryContainer.scale = 1.0
-                }
-                
-                // Hiệu ứng click
+                onEntered: batteryContainer.scale = 1.1
+                onExited: batteryContainer.scale = 1.0
                 onPressed: batteryContainer.scale = 0.95
                 onReleased: batteryContainer.scale = 1.1
                 
                 onClicked: {
-                    // Mở công cụ xem thông tin pin
                     Qt.createQmlObject('import Quickshell; Process { command: ["gnome-power-statistics"]; running: true }', root)
                 }
             }
@@ -359,21 +408,12 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 
-                // Hiệu ứng hover
-                onEntered: {
-                    powerContainer.scale = 1.2
-                }
-                onExited: {
-                    powerContainer.scale = 1.0
-                    powerIcon.source = './assets/system/poweroff.png'
-                }
-                
-                // Hiệu ứng click
+                onEntered: powerContainer.scale = 1.2
+                onExited: powerContainer.scale = 1.0
                 onPressed: powerContainer.scale = 0.9
                 onReleased: powerContainer.scale = 1.2
                 
                 onClicked: {
-                    // Mở menu tắt máy
                     Qt.createQmlObject('import Quickshell; Process { command: ["gnome-session-quit", "--power-off"]; running: true }', root)
                 }
             }
@@ -382,31 +422,60 @@ Rectangle {
         }
     }
 
+    // =============================
+    //   INITIALIZATION & TIMERS
+    // =============================
+    
     Component.onCompleted: {
+        console.log("🚀 Panel initialized")
+        
+        // Khởi chạy ban đầu
         updateWifi()
+        updateSignalWifiProcess()
         updateBatteryCappacityProcess()
         updateVolumeCurrentProcess()
-        if (!volumeCurrentProcess.running) {
-            volumeCurrentProcess.running = true
+        
+        // Chạy battery status ngay lập tức
+        if (!batteryStatusProcess.running) {
+            batteryStatusProcess.running = true
         }
     }
 
+    // Timers
     Timer {
         interval: 5000
         running: true
         repeat: true
         onTriggered: updateWifi()
     }
+    
+    Timer {
+        interval: 5000
+        running: true
+        repeat: true
+        onTriggered: updateSignalWifiProcess()
+    }
 
     Timer {
-        interval: 20000
+        interval: 30000
         running: true
         repeat: true
         onTriggered: updateBatteryCappacityProcess()
     }
 
     Timer {
-        interval: 500
+        interval: 10000
+        running: true
+        repeat: true
+        onTriggered: {
+            if (!batteryStatusProcess.running) {
+                batteryStatusProcess.running = true
+            }
+        }
+    }
+
+    Timer {
+        interval: 1000
         running: true
         repeat: true
         onTriggered: updateVolumeCurrentProcess()

@@ -7,6 +7,7 @@ import "./components"
 import "./cpu"
 import "./modules/ram"
 import "./modules/weather_time"
+import "./components/Cpu/"
 
 ShellRoot {
     id: root
