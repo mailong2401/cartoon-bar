@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import "./WifiPanel/" as ComponentWifi
 
 Rectangle {
     id: root
@@ -15,6 +16,28 @@ Rectangle {
     property string status_battery: "1"
     property string capacity_battery: "check..."
     property string volumeCurrent: ""
+    // Global state để toggle panel
+    property bool wifiPanelVisible: false
+    
+    // WifiManager component - chứa tất cả logic WiFi
+    ComponentWifi.WifiManager {
+        id: wifiManager
+      }
+      // WiFi Panel - chỉ hiện khi được toggle
+    ComponentWifi.WifiPanel {
+        id: wifiPanel
+        wifiManager: wifiManager
+        visible: root.wifiPanelVisible
+        
+        anchors {
+            top: true
+            right: true
+        }
+        margins {
+            top: 10
+            right: 10
+        }
+    }
 
     Process {
         id: wifiProcess
@@ -77,9 +100,18 @@ Rectangle {
         stdout: StdioCollector {}
         onRunningChanged: {
             if (!running) {
-                console.log(stdout.text)
                 running = true
             }
+        }
+    }
+    // Xử lý khi panel được mở/đóng
+    onWifiPanelVisibleChanged: {
+        if (wifiPanelVisible) {
+            console.log("📱 WiFi Panel opened - Starting manager")
+            wifiManager.start() // Bật manager khi panel mở
+        } else {
+            console.log("📱 WiFi Panel closed - Stopping manager") 
+            wifiManager.stop() // Tắt manager khi panel đóng
         }
     }
 
@@ -106,7 +138,6 @@ Rectangle {
     }
 
     function updateWifi() {
-        console.log("Updating wifi status...")
         if (!wifiProcess.running) {
             wifiProcess.running = true
         }
@@ -141,7 +172,6 @@ Rectangle {
                     text: root.net_stat
                     color: "#000"
                     font { 
-                        pixelSize: 16
                         bold: true 
                     }
                     verticalAlignment: Text.AlignVCenter
@@ -167,7 +197,7 @@ Rectangle {
                 onReleased: networkContainer.scale = 1.1
                 
                 onClicked: {
-                    console.log("📡 Network clicked - Opening network manager")
+                    root.wifiPanelVisible = !root.wifiPanelVisible
                 }
             }
             
@@ -225,7 +255,6 @@ Rectangle {
                 onReleased: volumeContainer.scale = 1.1
                 
                 onClicked: {
-                    console.log("🔊 Volume clicked - Opening volume control")
                     // Có thể mở pavucontrol hoặc volume control
                     Qt.createQmlObject('import Quickshell; Process { command: ["pavucontrol"]; running: true }', root)
                 }
@@ -298,7 +327,6 @@ Rectangle {
                 onReleased: batteryContainer.scale = 1.1
                 
                 onClicked: {
-                    console.log("🔋 Battery clicked - Opening power statistics")
                     // Mở công cụ xem thông tin pin
                     Qt.createQmlObject('import Quickshell; Process { command: ["gnome-power-statistics"]; running: true }', root)
                 }

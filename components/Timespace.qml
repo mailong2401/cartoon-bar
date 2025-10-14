@@ -185,10 +185,10 @@ Rectangle {
                 
                 // Hiệu ứng hover
                 onEntered: {
-                    memoryContainer.scale = 1.1
+                    timeContainer.scale = 1.1
                 }
                 onExited: {
-                    memoryContainer.scale = 1.0
+                    timeContainer.scale = 1.0
                 }
             }
             
