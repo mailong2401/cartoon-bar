@@ -29,10 +29,11 @@ Rectangle {
                 }
 
                 MouseArea {
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onEntered: parent.scale = 1.2
-                    onExited: parent.scale = 1.0
+                  anchors.fill: parent
+                  cursorShape: Qt.PointingHandCursor
+                  hoverEnabled: true
+                  onEntered: parent.scale = 1.2
+                  onExited: parent.scale = 1.0
                 }
             }
         }

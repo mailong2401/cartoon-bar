@@ -159,9 +159,12 @@ PanelWindow {
                                         font.family: "ComicShannsMono Nerd Font"
                                     }
                                 }
-                                Text { 
-                                    text: modelData.isConnected ? "✅" : "🔗"; 
-                                    visible: !modelData.isConnected || mouseArea.containsMouse 
+                                Image { 
+                                  source: modelData.isConnected ? "../../assets/wifi/check-mark.png" : "../../assets/wifi/padlock.png";
+                                  Layout.preferredWidth: 40
+                                  Layout.preferredHeight: 40
+                                  fillMode: Image.PreserveAspectFit
+                                  visible: true
                                 }
                             }
                             }

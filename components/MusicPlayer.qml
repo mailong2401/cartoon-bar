@@ -93,35 +93,41 @@ Rectangle {
 
                 Text {
                     id: songText
-                    text: musicPlayer.truncatedSong
+                    text: truncatedSong
                     color: "#000"
                     font.pixelSize: 16
+                    elide: Text.ElideRight
                     
                     // Hiệu ứng marquee khi text quá dài
-                    property bool needsMarquee: musicPlayer.currentSong.length > 30
-                    property int textWidth: contentWidth
+                    property bool needsMarquee: currentSong.length > 30
                     
-                    // Marquee animation
-                    SequentialAnimation on x {
-                        id: marqueeAnimation
-                        running: songText.needsMarquee && musicPlayer.isPlaying
-                        loops: Animation.Infinite
-                        
-                        // Dừng ở vị trí ban đầu
-                        PauseAnimation { duration: 2000 }
-                        // Di chuyển sang trái
-                        NumberAnimation {
-                            from: 0
-                            to: -songText.textWidth + songContainer.width
-                            duration: 5000
-                            easing.type: Easing.Linear
-                        }
-                        // Dừng ở cuối
-                        PauseAnimation { duration: 1000 }
-                        // Reset về vị trí ban đầu
-                        NumberAnimation {
-                            to: 0
-                            duration: 0
+                    x: needsMarquee && marqueeTimer.running ? -marqueeAnimation.value : 0
+                    
+                    Behavior on x {
+                        NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
+                    }
+                }
+
+                // Animation cho marquee effect
+                PropertyAnimation {
+                    id: marqueeAnimation
+                    target: songText
+                    property: "x"
+                    from: 0
+                    to: -songText.width + songContainer.width
+                    duration: 3000
+                    running: false
+                }
+
+                // Timer để kích hoạt marquee
+                Timer {
+                    id: marqueeTimer
+                    interval: 2000
+                    running: songText.needsMarquee
+                    repeat: true
+                    onTriggered: {
+                        if (songText.needsMarquee) {
+                            marqueeAnimation.start()
                         }
                     }
                 }
@@ -157,11 +163,15 @@ Rectangle {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
+                        // Thêm command để chuyển bài trước
                         Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "previous"]; running: true }', musicPlayer)
                     }
+                    
+                    // Hiệu ứng hover
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
+                
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
 
@@ -178,11 +188,15 @@ Rectangle {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
+                        // Command play/pause
                         Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "play-pause"]; running: true }', musicPlayer)
                     }
+                    
+                    // Hiệu ứng hover
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
+                
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
 
@@ -199,18 +213,24 @@ Rectangle {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
+                        // Thêm command để chuyển bài tiếp theo
                         Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "next"]; running: true }', musicPlayer)
                     }
+                    
+                    // Hiệu ứng hover
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
+                
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
         }
     }
 
+
     Component.onCompleted: {
         console.log("🎵 Music Player Started")
+        // Khởi tạo truncatedSong
         truncatedSong = currentSong.length > 30 ? currentSong.substring(0, 30) + "..." : currentSong
     }
 }
