@@ -7,9 +7,10 @@ import '../modules/weather_time'
 Rectangle {
     id: root
     color: "#F5EEE6"
+    radius: 10
     border.color: "#4f4f5b"
     border.width: 3
-    radius: 10
+
 
     property string currentDate: ""
     property string currentTime: ""
@@ -185,10 +186,10 @@ Rectangle {
                 
                 // Hiệu ứng hover
                 onEntered: {
-                    timeContainer.scale = 1.1
+                    memoryContainer.scale = 1.1
                 }
                 onExited: {
-                    timeContainer.scale = 1.0
+                    memoryContainer.scale = 1.0
                 }
             }
             

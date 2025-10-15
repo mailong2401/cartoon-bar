@@ -5,8 +5,8 @@ import Quickshell
 
 PanelWindow {
     id: wifiPanel
-    width: 410
-    height: 600
+    width: 510
+    height: 800
     color: "transparent"
     focusable: true
     aboveWindows: true
@@ -19,8 +19,9 @@ PanelWindow {
         radius: 20
         anchors.fill: parent
         color: "#F5EEE6"
-        border.color: "#D4C4B7"
-        border.width: 2
+        border.width: 3
+        border.color: "#4f4f5b"
+
 
         ColumnLayout {
             anchors.fill: parent
@@ -30,12 +31,33 @@ PanelWindow {
             // HEADER
             RowLayout {
                 Layout.fillWidth: true
-                Text { text: "📶 WiFi"; font.pixelSize: 24; font.bold: true; color: "#333" }
+                spacing: 20
+                Image {
+                  source: "../../assets/wifi/wifi_4.png"
+                  fillMode: Image.PreserveAspectFit
+                  smooth: true
+                  Layout.preferredWidth: 70
+                  Layout.preferredHeight: 70
+
+                }
+                Text {
+                  text: "WiFi"
+                  font.pixelSize: 50
+                  font.family: "ComicShannsMono Nerd Font"
+                  font.bold: true
+                  color: "#333"
+                }
                 Item { Layout.fillWidth: true }
                 Rectangle {
-                    width: 40; height: 40; radius: 8
+                    width: 80; height: 80; radius: 8
                     color: refreshMouseArea.containsMouse ? "#E8D8C9" : "transparent"
-                    Text { text: "🔄"; anchors.centerIn: parent; font.pixelSize: 20 }
+                    Image {
+                      source: '../../assets/wifi/refresh.png'
+                      fillMode: Image.PreserveAspectFit
+                      width: parent.width
+                      height: parent.height
+                      scale: 0.7 // thu nhỏ 80%
+                    }
                     MouseArea {
                         id: refreshMouseArea
                         anchors.fill: parent
@@ -48,18 +70,25 @@ PanelWindow {
 
             // WIFI STATUS
             Rectangle {
-                Layout.fillWidth: true; height: 60; radius: 12; color: "#E8D8C9"
+              Layout.fillWidth: true; height: 80; radius: 12; color: "#E8D8C9"
+              border.width: 3
+              border.color: "#4f4f5b"
+
                 RowLayout {
                     anchors.fill: parent; anchors.margins: 12
                     Column {
                         Layout.fillWidth: true
                         Text {
-                            text: wifiManager.wifiEnabled ? "WiFi Enabled" : "WiFi Disabled"
-                            font.pixelSize: 16; font.bold: true; color: "#333"
+                            text: wifiManager.wifiEnabled ? "WiFi đang bật" : "WiFi đang tắt"
+                            font.pixelSize: 20; font.bold: true; color: "#333"
+                            font.family: "ComicShannsMono Nerd Font"
+
                         }
                         Text { 
                             text: wifiManager.connectedWifi; 
                             font.pixelSize: 12; color: "#666"; elide: Text.ElideRight 
+                            font.family: "ComicShannsMono Nerd Font"
+
                         }
                     }
                     Switch {
@@ -69,26 +98,29 @@ PanelWindow {
                 }
             }
 
-            // SCANNING
             Rectangle {
-                Layout.fillWidth: true; height: 40; visible: wifiManager.isScanning
-                Row { 
-                    anchors.centerIn: parent; spacing: 8
-                    Text { text: "🔍 Scanning..."; font.pixelSize: 14; color: "#666" }
+              height: 20
+              Layout.fillWidth: true
+              color: "transparent"
+
+              Text {
+                anchors {
+                    fill: parent     // 🔥 gọn hơn, thay vì top/bottom/left riêng lẻ
+                    leftMargin: 10   // (tùy chọn) cách mép trái một chút cho đẹp
                 }
+                  text: "Mạng có sẵn (" + wifiManager.wifiList.length + ")"
+                  visible: wifiManager.wifiEnabled
+                  font.pixelSize: 17; color: "#666"
+                  font.family: "ComicShannsMono Nerd Font"
+
+              }
             }
 
             // WIFI LIST
-            Text {
-                text: "Available Networks (" + wifiManager.wifiList.length + ")"
-                visible: wifiManager.wifiEnabled && !wifiManager.isScanning
-                font.pixelSize: 14; color: "#666"
-            }
-
             ScrollView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                visible: wifiManager.wifiEnabled && !wifiManager.isScanning
+                visible: wifiManager.wifiEnabled
 
                 ListView {
                     id: wifiListView
@@ -102,24 +134,29 @@ PanelWindow {
                         Rectangle {
                             id: wifiItem
                             width: parent.width
-                            height: 60
+                            height: 70
                             radius: 8
                             color: mouseArea.containsMouse ? "#E8D8C9" : (modelData.isConnected ? "#D4EDDA" : "transparent")
-                            border.color: modelData.isConnected ? "#C3E6CB" : "transparent"
-                            border.width: 2
+                            border.width: 3
+                            border.color: "#4f4f5b"
 
-                            RowLayout {
+                            ColumnLayout {
                                 anchors.fill: parent
                                 anchors.margins: 8
+                                RowLayout {
+                                anchors.fill: parent
                                 Column { 
                                     Layout.fillWidth: true
                                     Text { 
                                         text: modelData.ssid; 
-                                        font.pixelSize: 14; font.bold: true; color: "#333" 
+                                        font.pixelSize: 20; font.bold: true; color: "#333" 
+                                        font.family: "ComicShannsMono Nerd Font"
+
                                     }
                                     Text { 
                                         text: modelData.security + " • " + modelData.signal; 
-                                        font.pixelSize: 11; color: "#666" 
+                                        font.pixelSize: 15; color: "#666" 
+                                        font.family: "ComicShannsMono Nerd Font"
                                     }
                                 }
                                 Text { 
@@ -127,6 +164,9 @@ PanelWindow {
                                     visible: !modelData.isConnected || mouseArea.containsMouse 
                                 }
                             }
+                            }
+
+                            
 
                             MouseArea {
                                 id: mouseArea
