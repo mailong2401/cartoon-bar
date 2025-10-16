@@ -40,7 +40,7 @@ quickshell --path ~/.config/quickshell/cartoon-bar
 
 ## Contributing
 
-Chúng tôi hoan nghênh mọi đóng góp! Vui lòng:
+Tôi hoan nghênh mọi đóng góp! Vui lòng:
 1. Fork repository
 2. Tạo feature branch
 3. Commit changes
