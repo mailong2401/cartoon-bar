@@ -1,5 +1,8 @@
 # Cartoon Bar với QuickShell
 
+
+## Giới thiệu
+
 ### Bar
 ![Bar](docs/images/bar.png)
 
@@ -8,10 +11,6 @@
 
 ### Widget Cpu
 ![Widget Cpu](docs/images/cpu.png)
-
-
-## Giới thiệu
-
 
 ## Tính năng chính
 
