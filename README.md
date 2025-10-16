@@ -1,7 +1,12 @@
 # Cartoon Bar với QuickShell
 
+### Thanh Bar
 ![Bar](docs/images/bar.png)
+
+### Widget Launcher and wifi manager
 ![Widget Launcher Wifi](docs/images/application-wifi.png)
+
+### Widget Cpu
 ![Widget Cpu](docs/images/cpu.png)
 
 
