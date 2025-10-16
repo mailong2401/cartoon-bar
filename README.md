@@ -1,5 +1,10 @@
 # Cartoon Bar với QuickShell
 
+![Bar](docs/images/bar.png)
+![Widget Launcher Wifi](docs/images/application-wifi.png)
+![Widget Cpu](docs/images/cpu.png)
+
+
 ## Giới thiệu
 
 
