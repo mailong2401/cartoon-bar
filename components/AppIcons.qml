@@ -1,7 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 
 Rectangle {
+    id: appIconsRoot
     width: 200
     height: 50
     color: "#F5EEE6"
@@ -9,9 +11,23 @@ Rectangle {
     border.color: "#4f4f5b"
     border.width: 3
 
+    property bool launcherPanelVisible: false
+
+    // Sử dụng Loader để load LauncherPanel
+    Loader {
+        id: launcherPanelLoader
+        source: "./Launcher/LauncherPanel.qml"
+        active: launcherPanelVisible
+        
+        onLoaded: {
+            item.visible = Qt.binding(function() { return launcherPanelVisible })
+        }
+    }
+
     Row {
         anchors.centerIn: parent
         spacing: 15
+        
         Repeater {
             model: [
                 "../assets/dashboard.png",
@@ -29,11 +45,18 @@ Rectangle {
                 }
 
                 MouseArea {
-                  anchors.fill: parent
-                  cursorShape: Qt.PointingHandCursor
-                  hoverEnabled: true
-                  onEntered: parent.scale = 1.2
-                  onExited: parent.scale = 1.0
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    onClicked: {
+                        console.log("Dashboard clicked!")
+                        launcherPanelVisible = !launcherPanelVisible
+                        
+                        // Focus vào search box khi mở panel
+                        if (launcherPanelVisible && launcherPanelLoader.item) {
+                            launcherPanelLoader.item.forceActiveFocus()
+                        }
+                    }
                 }
             }
         }

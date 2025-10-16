@@ -8,11 +8,14 @@ import "./cpu"
 import "./modules/ram"
 import "./modules/weather_time"
 import "./components/Cpu/"
+import "./components/Launcher/"
 
 ShellRoot {
     id: root
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
-    
+
+              VolumeOsd{}
+
     PanelWindow {
         id: panel
         implicitHeight: 50
@@ -25,28 +28,30 @@ ShellRoot {
         margins {
             top: 10
             left: 10
+            right: 10
         }
 
         RowLayout {
             anchors.fill: parent
             spacing: 10
 
-            // 🎯 App Icons
+            // 🎯 App Icons (Dashboard Button)
             AppIcons {
+                id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
-            }
+              }
 
             // 🖥️ Workspace
             WorkspacePanel {
-                Layout.preferredWidth: 350
+                Layout.preferredWidth: 430
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
             }
 
             // ⏰ Time & Date
             Timespace {
-                Layout.preferredWidth: 350
+                Layout.preferredWidth: 380
                 Layout.fillHeight: true
             }
             
@@ -64,7 +69,7 @@ ShellRoot {
 
             // 📊 System Status
             StatusArea {
-                Layout.preferredWidth: 410
+                Layout.fillWidth: true
                 Layout.fillHeight: true
             }
         }

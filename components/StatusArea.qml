@@ -179,15 +179,15 @@ Rectangle {
         var status = root.status_battery
         
         if (status === "Charging") {
-            batteryIcon.source = '../assets/battery/charging.png'
+            batteryIcon.source = '../assets/battery/battery-1.png'
         } else if (capacity <= 20) {
-            batteryIcon.source = '../assets/battery/battery-low.png'
+            batteryIcon.source = '../assets/battery/battery-2.png'
         } else if (capacity <= 50) {
-            batteryIcon.source = '../assets/battery/battery-medium.png'
+            batteryIcon.source = '../assets/battery/battery-2.png'
         } else if (capacity <= 80) {
-            batteryIcon.source = '../assets/battery/battery-high.png'
+            batteryIcon.source = '../assets/battery/battery-3.png'
         } else {
-            batteryIcon.source = '../assets/battery/battery-full.png'
+            batteryIcon.source = '../assets/battery/full.png'
         }
     }
 
@@ -197,11 +197,11 @@ Rectangle {
             volumeIcon.source = '../assets/volume/mute.png'
             console.log("tat mic")
         } else if (volume <= 30) {
-            volumeIcon.source = '../assets/volume/volume-low.png'
+            volumeIcon.source = '../assets/volume/volume.png'
         } else if (volume <= 70) {
-            volumeIcon.source = '../assets/volume/volume-medium.png'
+            volumeIcon.source = '../assets/volume/volume.png'
         } else {
-            volumeIcon.source = '../assets/volume/volume-high.png'
+            volumeIcon.source = '../assets/volume/volume.png'
         }
     }
 
@@ -350,7 +350,7 @@ Rectangle {
 
                 Image {
                     id: batteryIcon
-                    source: '../assets/battery/battery-full.png'
+                    source: '../assets/battery/full.png'
                     width: 30
                     height: 30
                     sourceSize: Qt.size(30, 30)

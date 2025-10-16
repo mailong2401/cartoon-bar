@@ -108,7 +108,7 @@ Rectangle {
 
     function initializeWorkspaces() {
         root.workspaces = []
-        for (let i = 1; i <= 8; i++) {
+        for (let i = 1; i <= 10; i++) {
             root.workspaces.push({
                 id: i.toString(),
                 name: i.toString(),
