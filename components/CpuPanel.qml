@@ -308,18 +308,6 @@ Rectangle {
             root.panelVisible = false
         }
     }
-    RamDetailPanel {
-        id: ramDetailPanel
-        visible: root.ramPanelVisible
-        anchors {
-            top: parent.bottom
-            left: parent.left
-        }
-        margins {
-            top: 10
-        }
-        
-    }
 
     Component.onCompleted: {
         console.log("🖥️ CPU Panel Started")

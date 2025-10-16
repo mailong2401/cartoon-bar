@@ -48,7 +48,7 @@ Rectangle {
     
     Process {
         id: wifiProcess
-        command: ["/home/long/quickshell-examples/focus_following_panel/scripts/check-network", "--stat"]
+        command: ["scripts/check-network", "--stat"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {

@@ -5,8 +5,6 @@ import Quickshell
 import Quickshell.Io
 import "./components"
 import "./cpu"
-import "./modules/ram"
-import "./modules/weather_time"
 import "./components/Cpu/"
 import "./components/Launcher/"
 

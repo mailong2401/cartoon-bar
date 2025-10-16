@@ -129,20 +129,6 @@ Rectangle {
         root.currentTime = Qt.formatTime(now, "HH:mm:ss")
       }
 
-      // Panel chi tiết Time - Hiển thị khi click vào timeContainer
-    WtDetailPanel {
-        id: wtDetailPanel
-        visible: root.panelVisible
-        anchors {
-            top: parent.bottom
-            left: parent.left
-        }
-        margins {
-            top: 10
-        }
-        
-    }
-
     Row {
         anchors.centerIn: parent
         spacing: 24

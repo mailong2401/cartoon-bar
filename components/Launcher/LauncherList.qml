@@ -145,7 +145,7 @@ Rectangle {
         }
         container.lastQuery = query
 
-        var script = "/home/long/quickshell-examples/launcher/scripts/listapps.py"
+        var script = "scripts/listapps.py"
         if (query.length > 0) {
             listApps.command = ["python3", script, query]
         } else {
