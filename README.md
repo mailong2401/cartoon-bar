@@ -2,7 +2,6 @@
 
 ## Giới thiệu
 
-Cartoon Bar là một ứng dụng xem hoạt hình được xây dựng bằng **QuickShell QML** - một framework hiện đại để phát triển ứng dụng desktop với QML.
 
 ## Tính năng chính
 
@@ -38,14 +37,6 @@ cd cartoon-bar
 ### 3. Chạy ứng dụng
 ```bash
 quickshell --path ~/.config/quickshell/cartoon-bar
-
-```
-
-Hoặc chạy trực tiếp với qml:
-```bash
-qml6 scene.qml
-```
-.md
 ```
 
 ## Contributing
