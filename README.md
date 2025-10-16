@@ -1,7 +1,64 @@
-# Focus following panel
+# Cartoon Bar - Ứng dụng xem hoạt hình với QuickShell QML
 
-This is a hyprland specific panel that follows monitor focus using the hyprland
-unix socket for events. To run it you will need to be using hyprland.
+## Giới thiệu
 
-You can run the panel with `quickshell -p shell.qml`.
-# cartoon-bar
+Cartoon Bar là một ứng dụng xem hoạt hình được xây dựng bằng **QuickShell QML** - một framework hiện đại để phát triển ứng dụng desktop với QML.
+
+## Tính năng chính
+
+- 🎬 Xem hoạt hình chất lượng cao
+- 📱 Giao diện người dùng hiện đại
+- 🔍 Tìm kiếm và lọc nội dung
+- 🎨 Giao diện tùy chỉnh
+
+## Yêu cầu hệ thống
+
+- **Hệ điều hành**: Arch Linux
+- **Window manager**: Hyprland
+
+
+## Cài đặt các package cần thiết
+
+### 1. Cài đặt quickshell va các dependencies
+
+#### Trên Arch Linux:
+```bash
+yay -S quickshell otf-comicshanns-nerd bc lm-sensors sysstat
+```
+
+
+
+### 2. Clone repository
+```bash
+git clone https://github.com/mailong2401/cartoon-bar.git
+cd cartoon-bar
+```
+
+
+### 3. Chạy ứng dụng
+```bash
+quickshell --path ~/.config/quickshell/cartoon-bar
+
+```
+
+Hoặc chạy trực tiếp với qml:
+```bash
+qml6 scene.qml
+```
+.md
+```
+
+## Contributing
+
+Chúng tôi hoan nghênh mọi đóng góp! Vui lòng:
+1. Fork repository
+2. Tạo feature branch
+3. Commit changes
+4. Push và tạo Pull Request
+
+## License
+
+Dự án được phân phối dưới giấy phép MIT. Xem file LICENSE để biết thêm chi tiết.
+
+---
+**Enjoy watching cartoons!** 🎉
