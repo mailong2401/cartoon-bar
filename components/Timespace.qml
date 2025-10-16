@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import '../modules/weather_time'
+import "./WeatherTime/"
 
 Rectangle {
     id: root
@@ -128,6 +128,20 @@ Rectangle {
         root.currentDate = `${weekdays[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
         root.currentTime = Qt.formatTime(now, "HH:mm:ss")
       }
+
+      // Panel chi tiết Time - Hiển thị khi click vào timeContainer
+    WtDetailPanel {
+        id: wtDetailPanel
+        visible: root.panelVisible
+        anchors {
+            top: parent.bottom
+            left: parent.left
+        }
+        margins {
+            top: 10
+        }
+        
+    }
 
     Row {
         anchors.centerIn: parent
