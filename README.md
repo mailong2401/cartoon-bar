@@ -5,7 +5,6 @@
 
 ## Tính năng chính
 
-- 🎬 Xem hoạt hình chất lượng cao
 - 📱 Giao diện người dùng hiện đại
 - 🔍 Tìm kiếm và lọc nội dung
 - 🎨 Giao diện tùy chỉnh
