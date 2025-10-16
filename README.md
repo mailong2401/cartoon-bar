@@ -1,4 +1,4 @@
-# Cartoon Bar - Ứng dụng xem hoạt hình với QuickShell QML
+# Cartoon Bar với QuickShell
 
 ## Giới thiệu
 
