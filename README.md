@@ -28,7 +28,7 @@ yay -S quickshell otf-comicshanns-nerd bc lm-sensors sysstat
 
 ### 2. Clone repository
 ```bash
-git clone https://github.com/mailong2401/cartoon-bar.git
+git clone https://github.com/mailong2401/cartoon-bar.git ~/.config/quickshell/cartoon-bar
 cd cartoon-bar
 ```
 
