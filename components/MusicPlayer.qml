@@ -59,8 +59,43 @@ Rectangle {
                 isPlaying = (this.text.trim() === "Playing")
             }
         }
+      }
+
+      Process {
+        id: nextMusic
+        running: false
+        command: ["scripts/music-controller","next"]
+      }
+      Process {
+        id: preMusic
+        running: false
+        command: ["scripts/music-controller","pre"]
+      }
+      Process {
+        id: playMusic
+        running: false
+        command: ["scripts/music-controller","play"]
+      }
+      Process {
+        id: pauseMusic
+        running: false
+        command: ["scripts/music-controller","pause"]
+      }
+
+    function runProcess(proc) {
+        if (!proc.running) {
+            proc.running = true
+        }
     }
 
+    function musicController(action) {
+      switch (action) {
+      case "next": runProcess(nextMusic); break;
+      case "pre": runProcess(preMusic); break; 
+      case "pause": runProcess(pauseMusic); isPlaying = false; break;
+      case "play": runProcess(playMusic);isPlaying = true; break;
+      }
+    }
     // Timer refresh metadata và trạng thái phát
     Timer {
         interval: 1000
@@ -164,7 +199,7 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         // Thêm command để chuyển bài trước
-                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "previous"]; running: true }', musicPlayer)
+                        musicPlayer.musicController("pre")
                     }
                     
                     // Hiệu ứng hover
@@ -178,7 +213,7 @@ Rectangle {
             // Play/Pause button
             Image {
                 id: playPauseBtn
-                source: isPlaying ? "../assets/music/pause.png" : "../assets/music/play.png"
+                source: isPlaying ? "../assets/music/play.png" : "../assets/music/pause.png"
                 width: 30
                 height: 30
                 fillMode: Image.PreserveAspectFit
@@ -189,7 +224,8 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         // Command play/pause
-                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "play-pause"]; running: true }', musicPlayer)
+                        isPlaying ? musicPlayer.musicController("pause") : musicPlayer.musicController("play")
+
                     }
                     
                     // Hiệu ứng hover
@@ -213,8 +249,7 @@ Rectangle {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        // Thêm command để chuyển bài tiếp theo
-                        Qt.createQmlObject('import Quickshell; Process { command: ["playerctl", "next"]; running: true }', musicPlayer)
+                        musicPlayer.musicController("next")
                     }
                     
                     // Hiệu ứng hover

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Script: ram_usage.sh
+# Mục đích: In ra phần trăm RAM đang sử dụng (%)
+
+# Kiểm tra lệnh free có tồn tại không
+if ! command -v free &>/dev/null; then
+  echo "❌ Lỗi: không tìm thấy lệnh 'free'."
+  exit 1
+fi
+
+# Tính phần trăm RAM đang dùng
+free | awk '/Mem/ {printf "%.0f\n", $3/$2 * 100.0}'

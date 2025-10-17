@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Lấy dòng CPU
+cpu_line=$(top -bn1 | grep "Cpu(s)")
+
+# Chuyển dấu phẩy sang dấu chấm
+cpu_line=$(echo "$cpu_line" | sed 's/,/./g')
+
+# Trích xuất số us, sy, ni bằng awk
+cpu_user=$(echo "$cpu_line" | awk '{for(i=1;i<=NF;i++){if($i~/us/){gsub(",",".",$i); print $(i-1)}}}')
+cpu_system=$(echo "$cpu_line" | awk '{for(i=1;i<=NF;i++){if($i~/sy/){gsub(",",".",$i); print $(i-1)}}}')
+cpu_nice=$(echo "$cpu_line" | awk '{for(i=1;i<=NF;i++){if($i~/ni/){gsub(",",".",$i); print $(i-1)}}}')
+
+# Tính tổng CPU dùng
+cpu_total=$(awk "BEGIN {print $cpu_user+$cpu_system+$cpu_nice}")
+
+echo "$cpu_total%"

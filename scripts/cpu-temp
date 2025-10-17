@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Script: cpu_temp.sh
+# Mục đích: đọc nhiệt độ CPU thực tế (zone x86_pkg_temp)
+
+for zone in /sys/class/thermal/thermal_zone*/type; do
+  name=$(cat "$zone")
+  path=$(dirname "$zone")
+  if echo "$name" | grep -qiE "x86_pkg_temp|cpu|soc"; then
+    temp=$(cat "$path/temp" 2>/dev/null)
+    awk -v t="$temp" 'BEGIN { printf "%.1f\n", t/1000 }'
+    exit 0
+  fi
+done
+
+# fallback nếu không tìm thấy CPU zone
+echo "0"

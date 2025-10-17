@@ -1,0 +1,8 @@
+mpstat -P ALL 1 1 | tail -n 13 | while read line; do
+    cpu_num=$(echo $line | awk '{print $2}')
+    usage=$(echo $line | awk '{printf "%.1f", 100-$12}')
+    if [ "$cpu_num" != "all" ]; then
+        echo "${usage}%"
+    fi
+done
+

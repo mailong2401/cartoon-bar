@@ -24,7 +24,7 @@ Rectangle {
     // Process lấy CPU usage
     Process {
         id: cpuProcess
-        command: ["bash", "-c", "top -bn1 | grep 'Cpu(s)' | awk '{print $2}' | cut -d'u' -f1"]
+        command: ["scripts/cpu"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
@@ -40,7 +40,7 @@ Rectangle {
     // Process lấy Memory usage
     Process {
         id: memoryProcess
-        command: ["bash", "-c", "free | grep Mem | awk '{printf \"%.1f\", $3/$2 * 100.0}'"]
+        command: ["scripts/ram-usage"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
@@ -56,7 +56,7 @@ Rectangle {
     // Process lấy CPU temperature (nếu có)
     Process {
         id: tempProcess
-        command: ["bash", "-c", "cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | head -1 | awk '{print $1/1000}' || echo '0'"]
+        command: ["scripts/cpu-temp"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
