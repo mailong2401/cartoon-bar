@@ -6,6 +6,7 @@ import Quickshell.Io
 import "./components"
 import "./components/Cpu/"
 import "./components/Launcher/"
+import "./components/Settings/"
 
 ShellRoot {
     id: root
@@ -38,13 +39,14 @@ ShellRoot {
             top: 10
             left: 10
             right: 10
-        }
+          }
+
 
         RowLayout {
             anchors.fill: parent
             spacing: 10
 
-            // 🎯 App Icons (Dashboard Button)
+            // App Icons (Dashboard Button)
             AppIcons {
                 id: appIcons
                 Layout.preferredWidth: 60
@@ -52,7 +54,7 @@ ShellRoot {
                 theme : currentTheme
               }
 
-            // 🖥️ Workspace
+            // Workspace
             WorkspacePanel {
                 Layout.preferredWidth: 430
                 Layout.fillHeight: true
@@ -60,27 +62,27 @@ ShellRoot {
                 theme : currentTheme
             }
 
-            // ⏰ Time & Date
+            // Time & Date
             Timespace {
                 Layout.preferredWidth: 360
                 Layout.fillHeight: true
                 theme : currentTheme
             }
-            // 🔥 CPU Monitor
+            // CPU Monitor
             CpuPanel {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
                 theme : currentTheme
             }
 
-            // 🎵 Music Player
+            // Music Player
             MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
                 theme : currentTheme
             }
 
-            // 📊 System Status
+            // System Status
             StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true

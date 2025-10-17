@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
+    id: root
     Layout.preferredWidth: 210
     Layout.fillHeight: true
     radius: 12
@@ -12,6 +13,10 @@ Rectangle {
 
     property var theme
 
+    signal appLaunched()
+    signal appSettings()
+
+
 
     ColumnLayout {
         anchors.fill: parent
@@ -20,21 +25,60 @@ Rectangle {
 
         // Tiêu đề Menu
         Rectangle {
+            id: launcherButton
             Layout.fillWidth: true
             Layout.preferredHeight: 60
-            border.color: theme.button.border
-            border.width: 3
             radius: 8
-            color: theme.button.background
+            color: mouseAreaLauncher.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaLauncher.containsPress ? theme.button.border_select : theme.button.border
+            border.width: 3
             
-            Text {
-                anchors.centerIn: parent
-                text: "Menu"
-                color: theme.primary.foreground
-                font.pixelSize: 18
-                font.family: "ComicShannsMono Nerd Font"
+            scale: mouseAreaLauncher.containsPress ? 0.98 : 1.0
+            Behavior on scale { NumberAnimation { duration: 100 } }
+            Behavior on color { ColorAnimation { duration: 200 } }
+            Behavior on border.color { ColorAnimation { duration: 100 } }
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: 8
+                
+                Image {
+                    source: "../../assets/dashboard.png"
+                    Layout.preferredHeight: 28
+                    Layout.preferredWidth: 28
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    
+                    rotation: mouseAreaLauncher.containsMouse ? 0 : 90
+                    Behavior on rotation { NumberAnimation { duration: 500; easing.type: Easing.OutCubic } }
+                }
+
+                Text {
+                    text: "Ứng dụng"
+                    color: mouseAreaLauncher.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
+                    font.pixelSize: 16
+                    font.family: "ComicShannsMono Nerd Font"
+                    
+                    scale: mouseAreaLauncher.containsMouse ? 1.05 : 1.0
+                    Behavior on scale { NumberAnimation { duration: 200 } }
+                    Behavior on color { ColorAnimation { duration: 200 } }
+                }
+
+                Item { Layout.fillWidth: true }
             }
-          }
+
+            MouseArea {
+                id: mouseAreaLauncher
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    console.log("Launcher được nhấn")
+                    root.appLaunched()
+                    // Thêm code để mở cài đặt ở đây
+                }
+            }
+        }
           // Cài đặt
         Rectangle {
             id: settingsButton
@@ -86,6 +130,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     console.log("Cài đặt được nhấn")
+                    root.appSettings()
                     // Thêm code để mở cài đặt ở đây
                 }
             }

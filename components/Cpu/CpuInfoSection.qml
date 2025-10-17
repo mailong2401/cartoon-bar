@@ -8,7 +8,7 @@ Column {
 
     Text {
         width: parent.width
-        color: "#4f4f5b"
+        color: theme.primary.foreground
         text: "Tên: 12th Gen Intel(R) Core(TM) i5-12450HX"
         font.pixelSize: 18
         font.family: "ComicShannsMono Nerd Font"
@@ -16,7 +16,7 @@ Column {
     
     Text {
         width: parent.width
-        color: "#4f4f5b"
+        color: theme.primary.foreground
         text: "Nhà cung cấp: GenuineIntel"
         font.pixelSize: 18
         font.family: "ComicShannsMono Nerd Font"
@@ -24,7 +24,7 @@ Column {
     
     Text {
         width: parent.width
-        color: "#4f4f5b"
+        color: theme.primary.foreground
         text: "Kiến trúc: x86_64"
         font.pixelSize: 18
         font.family: "ComicShannsMono Nerd Font"
@@ -32,7 +32,7 @@ Column {
     
     Text {
         width: parent.width
-        color: "#4f4f5b"
+        color: theme.primary.foreground
         text: "Số socket: 1"
         font.pixelSize: 18
         font.family: "ComicShannsMono Nerd Font"

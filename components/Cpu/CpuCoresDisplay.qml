@@ -1,8 +1,8 @@
 import QtQuick
 
 Rectangle {
-    color: "transparent"
-    border.color: "#4f4f5b"
+    color: theme.primary.dim_background
+    border.color: theme.normal.black
     border.width: 2
     radius: 4
 
@@ -34,7 +34,7 @@ Rectangle {
                         width: parent.width
                         horizontalAlignment: Text.AlignHCenter
                         text: "Core " + (index + 1)
-                        color: "#4f4f5b"
+                        color: theme.primary.foreground
                         font.pixelSize: 14
                         font.bold: true
                         font.family: "ComicShannsMono Nerd Font"

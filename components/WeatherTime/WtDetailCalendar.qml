@@ -14,6 +14,8 @@ Rectangle {
     property int currentYear: currentDate.getFullYear()
     property date selectedDate: new Date()
     
+    property var theme
+
     signal dateSelected(date selectedDate)
     
     ColumnLayout {

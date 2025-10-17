@@ -214,6 +214,21 @@ Rectangle {
         }
     }
 
+
+    WtDetailPanel {
+      id: wtDetailPanel
+      visible: root.panelVisible
+      theme : root.theme
+      anchors {
+            top: parent.bottom
+            left: parent.left
+      }
+      margins {
+          top: 10
+          left: 480
+      }
+    }
+
     // Timers
     Timer { 
         interval: 1000 

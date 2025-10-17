@@ -298,6 +298,7 @@ Rectangle {
     CpuDetailPanel {
         id: detailPanel
         visible: root.panelVisible
+        theme : root.theme
         anchors {
             top: parent.bottom
             left: parent.left

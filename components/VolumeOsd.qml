@@ -51,8 +51,8 @@ Scope {
                 anchors.fill: parent
                 radius: 15
                 color: theme.primary.background
-                border.color: theme.primary.black
-                border.width: 2
+                border.color: theme.normal.black
+                border.width: 3
 
                 ColumnLayout {
                     anchors {

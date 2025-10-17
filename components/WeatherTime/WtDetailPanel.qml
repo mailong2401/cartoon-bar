@@ -10,6 +10,9 @@ PanelWindow {
     // Sử dụng WlrLayershell để căn giữa
     implicitWidth: 400
     implicitHeight: 500
+
+    property var theme
+
     margins {
         top: 10
         left: 430

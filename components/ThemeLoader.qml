@@ -7,6 +7,7 @@ QtObject {
     property string currentTheme: "light"
     property var themes: {
         "light": {
+            "type" : "light",
             "primary": {
                 "background": "#f5eee6",
                 "dim_background" : "#E8D8C9",
@@ -34,6 +35,7 @@ QtObject {
             }
         },
         "dark" : {
+            "type" : "dark",
             "primary": {
                 "background": "#24273a",
                 "dim_background" : "#8087a2",
