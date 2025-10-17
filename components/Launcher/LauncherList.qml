@@ -7,13 +7,14 @@ import Quickshell.Io
 Rectangle {
     id: container
     radius: 12
-    color: "#E8D8C9"
-    border.color: "#4f4f5b"
+    color: theme.primary.background
+    border.color: theme.normal.black
     border.width: 2
 
     // apps được giữ trên root để parent/instance có thể truy cập nếu cần
     property var apps: []
     property string lastQuery: ""
+    property var theme
 
     signal appLaunched()
 
@@ -85,7 +86,7 @@ Rectangle {
 
                         Text {
                             text: container.apps[index].name
-                            color: "black"
+                            color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 20
                             elide: Text.ElideRight
@@ -93,7 +94,7 @@ Rectangle {
 
                         Text {
                             text: container.apps[index].comment || ""
-                            color: "#555"
+                            color: theme.primary.dim_foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 13
                             elide: Text.ElideRight

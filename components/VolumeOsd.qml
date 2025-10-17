@@ -23,6 +23,7 @@ Scope {
     property bool shouldShowOsd: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
+    property var theme
 
     Timer {
         id: hideTimer
@@ -49,8 +50,8 @@ Scope {
             Rectangle {
                 anchors.fill: parent
                 radius: 15
-                color: "#F5EEE6"
-                border.color: "#4f4f5b"
+                color: theme.primary.background
+                border.color: theme.primary.black
                 border.width: 2
 
                 ColumnLayout {
@@ -72,7 +73,7 @@ Scope {
                         }
                     Text {
                           text: isMuted ? "Muted" : Math.round(currentVolume * 100) + "%"
-                          color: "#4f4f5b"
+                          color: theme.primary.foreground
                           font.family: "ComicShannsMono Nerd Font"
                           font.pixelSize: 30
                           font.bold: true
@@ -87,7 +88,7 @@ Scope {
                           anchors.margins: 10
                           anchors.top: parent.top
                             anchors.right: parent.right
-                          color: "#4f4f5b"
+                          color: theme.primary.foreground
                           font.family: "ComicShannsMono Nerd Font"
                           font.pixelSize: 20
                           font.bold: true

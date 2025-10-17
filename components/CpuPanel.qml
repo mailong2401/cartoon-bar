@@ -8,8 +8,8 @@ import './Cpu/'
 
 Rectangle {
     id: root
-    color: "#F5EEE6"
-    border.color: "#4f4f5b"
+    color: theme.primary.background
+    border.color: theme.normal.black
     border.width: 3
     radius: 10
     width: 300  // Chiều rộng phù hợp với panel hệ thống
@@ -20,6 +20,7 @@ Rectangle {
     property string temperature: "0°C"
     property bool panelVisible: false
     property bool ramPanelVisible: false
+    property var theme
 
 
     // Process lấy CPU usage
@@ -114,7 +115,7 @@ Rectangle {
                     Text {
                         id: cpuText
                         text: root.cpuUsage
-                        color: "#000"
+                        color: theme.primary.foreground
                         font { 
                             pixelSize: 15
                             bold: true 
@@ -124,7 +125,7 @@ Rectangle {
                     Text {
                         id: cpuLabel
                         text: "Cpu"
-                        color: "#666"
+                        color: theme.primary.dim_foreground
                         font.pixelSize: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
@@ -182,7 +183,7 @@ Rectangle {
                     Text {
                         id: memoryText
                         text: root.memoryUsage
-                        color: "#000"
+                        color: theme.primary.foreground
                         font { 
                             pixelSize: 15
                             bold: true 
@@ -192,7 +193,7 @@ Rectangle {
                     Text {
                         id: memoryLabel
                         text: "Ram"
-                        color: "#666"
+                        color: theme.primary.dim_foreground
                         font.pixelSize: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
@@ -249,7 +250,7 @@ Rectangle {
                     Text {
                         id: tempText
                         text: root.temperature
-                        color: "#000"
+                        color: theme.primary.foreground
                         font { 
                             pixelSize: 15
                             bold: true 
@@ -259,7 +260,7 @@ Rectangle {
                     Text {
                         id: tempLabel
                         text: "Nhiệt độ"
-                        color: "#666"
+                        color: theme.primary.dim_foreground
                         font.pixelSize: 10
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
@@ -311,7 +312,6 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        console.log("🖥️ CPU Panel Started")
         updateAll()
     }
 

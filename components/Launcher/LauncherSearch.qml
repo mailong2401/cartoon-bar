@@ -7,12 +7,15 @@ Rectangle {
     Layout.fillWidth: true
     Layout.preferredHeight: 45
     radius: 12
-    color: "#E8D8C9"
-    border.color: "#4f4f5b"
+    color: theme.primary.background
+    border.color: theme.normal.black
     border.width: 2
 
     signal searchChanged(string text) // phát ra khi cần tìm (sau debounce)
     signal accepted(string text)      // khi nhấn Enter
+
+
+    property var theme
 
     RowLayout {
         anchors.fill: parent
@@ -31,6 +34,8 @@ Rectangle {
             id: searchField
             Layout.fillWidth: true
             placeholderText: "Tìm kiếm ứng dụng..."
+            palette.text: theme.primary.foreground       // màu chữ chính
+            palette.placeholderText: "#888888"  // màu placeholder
             font.pixelSize: 14
             font.family: "ComicShannsMono Nerd Font"
             background: Rectangle { color: "transparent" }

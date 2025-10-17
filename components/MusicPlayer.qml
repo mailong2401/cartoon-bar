@@ -6,8 +6,8 @@ import Quickshell.Io
 
 Rectangle {
     id: musicPlayer
-    color: "#F5EEE6"
-    border.color: "#4f4f5b"
+    color: theme.primary.background
+    border.color: theme.normal.black
     border.width: 3
     radius: 10
 
@@ -15,6 +15,7 @@ Rectangle {
     property string currentArtist: ""
     property bool isPlaying: false
     property string truncatedSong: ""
+    property var theme
 
     // Cập nhật truncatedSong khi currentSong thay đổi
     onCurrentSongChanged: {
@@ -129,7 +130,7 @@ Rectangle {
                 Text {
                     id: songText
                     text: truncatedSong
-                    color: "#000"
+                    color: theme.primary.foreground
                     font.pixelSize: 16
                     elide: Text.ElideRight
                     
@@ -171,7 +172,7 @@ Rectangle {
             // Artist name
             Text {
                 text: currentArtist
-                color: "#6272a4"
+                color: theme.primary.dim_foreground
                 font.pixelSize: 10
                 elide: Text.ElideRight
                 Layout.fillWidth: true

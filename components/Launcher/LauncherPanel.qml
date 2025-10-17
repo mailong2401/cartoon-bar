@@ -13,6 +13,9 @@ PanelWindow {
     visible: false
     focusable: true
 
+    property var theme
+
+
     anchors {
         top: true
         left: true
@@ -38,8 +41,8 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         radius: 20
-        color: "#F5EEE6"
-        border.color: "#4f4f5b"
+        color: theme.primary.background
+        border.color: theme.normal.black
         border.width: 3
 
         RowLayout {
@@ -56,7 +59,7 @@ PanelWindow {
 
                 Text {
                     text: "Ứng dụng"
-                    color: "#4f4f5b"
+                    color: theme.primary.foreground
                     font.pixelSize: 40
                     font.bold: true
                     font.family: "ComicShannsMono Nerd Font"
@@ -65,6 +68,7 @@ PanelWindow {
                 
                 LauncherSearch{
                     id: searchBox
+                    theme : launcherPanel.theme
                     onSearchChanged: {
                         launcherList.runSearch(text)
                     }
@@ -80,6 +84,7 @@ PanelWindow {
                     onAppLaunched: {
                         launcherPanel.visible = false     // 🔥 Ẩn panel
                     }
+                    theme : launcherPanel.theme
                 }
             }
         }

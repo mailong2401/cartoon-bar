@@ -12,15 +12,17 @@ ShellRoot {
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
     property var currentTheme: appTheme.getCurrentTheme()
 
-    VolumeOsd{}
+    VolumeOsd{
+      theme: currentTheme
+    }
 
     ThemeLoader {
       id: appTheme
     }
 
+    // Change Theme
     Component.onCompleted: {
-        // Có thể load theme từ settings.json ở đây
-        appTheme.loadTheme("dark")
+        appTheme.loadTheme("light")
     }
 
     PanelWindow {
@@ -47,6 +49,7 @@ ShellRoot {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
+                theme : currentTheme
               }
 
             // 🖥️ Workspace
@@ -54,6 +57,7 @@ ShellRoot {
                 Layout.preferredWidth: 430
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
+                theme : currentTheme
             }
 
             // ⏰ Time & Date
@@ -62,17 +66,18 @@ ShellRoot {
                 Layout.fillHeight: true
                 theme : currentTheme
             }
-            
             // 🔥 CPU Monitor
             CpuPanel {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
+                theme : currentTheme
             }
 
             // 🎵 Music Player
             MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
+                theme : currentTheme
             }
 
             // 📊 System Status

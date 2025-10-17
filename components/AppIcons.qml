@@ -6,20 +6,22 @@ Rectangle {
     id: appIconsRoot
     width: 200
     height: 50
-    color: "#F5EEE6"
+    color: theme.primary.background
     radius: 10
-    border.color: "#4f4f5b"
+    border.color: theme.normal.black
     border.width: 3
 
     property bool launcherPanelVisible: false
+    property var theme : null
 
     // Sử dụng Loader để load LauncherPanel
     Loader {
         id: launcherPanelLoader
         source: "./Launcher/LauncherPanel.qml"
         active: launcherPanelVisible
-        
+
         onLoaded: {
+            item.theme = theme
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }
     }

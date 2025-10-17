@@ -6,15 +6,16 @@ import Quickshell.Io
 Rectangle {
     id: root
     radius: 10
-    border.color: "#4f4f5b"
+    border.color: theme.normal.black
     border.width: 3
-    color: "#F5EEE6"
+    color: theme.primary.background
 
     property string hyprInstance: ""
     property var workspaces: []
     property string activeWorkspace: "1"
     property var existingWorkspaces: ([])
     property string currentWorkspaceId: ""
+    property var theme
 
     // Socket theo dõi Hyprland
     Socket {
