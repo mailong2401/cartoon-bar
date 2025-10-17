@@ -45,7 +45,6 @@ Rectangle {
                 { name: "Âm thanh", icon: "🔊", category: "audio" },
                 { name: "Hiệu suất", icon: "📊", category: "performance" },
                 { name: "Phím tắt", icon: "⌨️", category: "shortcuts" },
-                { name: "Ứng dụng", icon: "📱", category: "applications" },
                 { name: "Hệ thống", icon: "💻", category: "system" }
             ]
             

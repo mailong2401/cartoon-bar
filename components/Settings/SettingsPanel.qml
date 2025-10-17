@@ -71,10 +71,6 @@ Rectangle {
                     theme: settingsPanel.theme
                 }
                 
-                // Applications Settings
-                ApplicationsSettings {
-                    theme: settingsPanel.theme
-                }
                 
                 // System Settings
                 SystemSettings {

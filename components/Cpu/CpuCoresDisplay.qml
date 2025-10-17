@@ -4,7 +4,7 @@ Rectangle {
     color: theme.primary.dim_background
     border.color: theme.normal.black
     border.width: 2
-    radius: 4
+    radius: 8
 
     property int cpuCores: 12
     property var cpuUsageList: []

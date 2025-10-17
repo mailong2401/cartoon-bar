@@ -18,8 +18,11 @@ Item {
             Text {
                 text: "Giao diện"
                 color: theme.primary.foreground
-                font.pixelSize: 24
-                font.bold: true
+                font {
+                  family: "ComicShannsMono Nerd Font"
+                  pixelSize: 24
+                  bold: true
+                }
                 Layout.topMargin: 10
             }
             
@@ -36,7 +39,10 @@ Item {
                 Text {
                     text: "Chủ đề:"
                     color: theme.primary.foreground
-                    font.pixelSize: 14
+                    font {
+                  family: "ComicShannsMono Nerd Font"
+                  pixelSize: 16
+                }
                     Layout.preferredWidth: 150
                 }
                 
@@ -141,6 +147,7 @@ Item {
                     text: "Độ trong suốt:"
                     color: theme.primary.foreground
                     font.pixelSize: 14
+
                     Layout.preferredWidth: 150
                 }
                 

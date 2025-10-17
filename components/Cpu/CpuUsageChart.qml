@@ -48,7 +48,7 @@ Rectangle {
                 var chartWidth = width - padding * 2;
                 var chartHeight = height - padding * 2;
 
-                ctx.fillStyle = "#F5EEE6";
+                ctx.fillStyle = "transparent";
                 ctx.fillRect(0, 0, width, height);
 
                 ctx.strokeStyle = "#D4C4B7";

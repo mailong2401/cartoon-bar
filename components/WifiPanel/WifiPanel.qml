@@ -12,15 +12,17 @@ PanelWindow {
     aboveWindows: true
     objectName: "WiFiPanel"
 
+
     // Nhận wifiManager từ bên ngoài
     required property var wifiManager
+    property var theme
 
     Rectangle {
         radius: 20
         anchors.fill: parent
-        color: "#F5EEE6"
+        color: theme.primary.background
         border.width: 3
-        border.color: "#4f4f5b"
+        border.color: theme.normal.black
 
 
         ColumnLayout {
@@ -45,7 +47,7 @@ PanelWindow {
                   font.pixelSize: 50
                   font.family: "ComicShannsMono Nerd Font"
                   font.bold: true
-                  color: "#333"
+                  color: theme.primary.foreground
                 }
                 Item { Layout.fillWidth: true }
                 Rectangle {
@@ -70,7 +72,7 @@ PanelWindow {
 
             // WIFI STATUS
             Rectangle {
-              Layout.fillWidth: true; height: 80; radius: 12; color: "#E8D8C9"
+              Layout.fillWidth: true; height: 80; radius: 12; color: theme.primary.dim_background
               border.width: 3
               border.color: "#4f4f5b"
 
@@ -80,13 +82,13 @@ PanelWindow {
                         Layout.fillWidth: true
                         Text {
                             text: wifiManager.wifiEnabled ? "WiFi đang bật" : "WiFi đang tắt"
-                            font.pixelSize: 20; font.bold: true; color: "#333"
+                            font.pixelSize: 20; font.bold: true; color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
 
                         }
                         Text { 
                             text: wifiManager.connectedWifi; 
-                            font.pixelSize: 12; color: "#666"; elide: Text.ElideRight 
+                            font.pixelSize: 12; color: theme.primary.dim_foreground; elide: Text.ElideRight 
                             font.family: "ComicShannsMono Nerd Font"
 
                         }
@@ -110,7 +112,7 @@ PanelWindow {
                 }
                   text: "Mạng có sẵn (" + wifiManager.wifiList.length + ")"
                   visible: wifiManager.wifiEnabled
-                  font.pixelSize: 17; color: "#666"
+                  font.pixelSize: 17; color: theme.primary.dim_foreground
                   font.family: "ComicShannsMono Nerd Font"
 
               }
@@ -135,8 +137,8 @@ PanelWindow {
                             id: wifiItem
                             width: parent.width
                             height: 70
-                            radius: 8
-                            color: mouseArea.containsMouse ? "#E8D8C9" : (modelData.isConnected ? "#D4EDDA" : "transparent")
+                            radius: 12
+                            color: mouseArea.containsMouse ? theme.button.background_select : (modelData.isConnected ? theme.normal.green : theme.primary.dim_background)
                             border.width: 3
                             border.color: "#4f4f5b"
 
@@ -149,13 +151,13 @@ PanelWindow {
                                     Layout.fillWidth: true
                                     Text { 
                                         text: modelData.ssid; 
-                                        font.pixelSize: 20; font.bold: true; color: "#333" 
+                                        font.pixelSize: 20; font.bold: true; color: modelData.isConnected ? theme.normal.black : theme.primary.foreground
                                         font.family: "ComicShannsMono Nerd Font"
 
                                     }
                                     Text { 
                                         text: modelData.security + " • " + modelData.signal; 
-                                        font.pixelSize: 15; color: "#666" 
+                                        font.pixelSize: 15; color: theme.primary.dim_foreground
                                         font.family: "ComicShannsMono Nerd Font"
                                     }
                                 }

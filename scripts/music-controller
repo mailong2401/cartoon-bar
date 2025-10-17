@@ -6,33 +6,32 @@
 playerctl_bin=$(command -v playerctl 2>/dev/null)
 
 if [ -z "$playerctl_bin" ]; then
-    echo "⚠️  Cần cài playerctl trước: sudo apt install playerctl"
-    exit 1
+  echo "⚠️  Cần cài playerctl trước: sudo apt install playerctl"
+  exit 1
 fi
 
 action="$1"
 
 case "$action" in
-    play)
-        playerctl play
-        ;;
-    pause)
-        playerctl pause
-        ;;
-    next)
-        playerctl next
-        ;;
-    pre|previous)
-        playerctl previous
-        ;;
-    getArtist)
-        playerctl metadata artist 2>/dev/null || echo "Unknown Artist"
-        ;;
-    getTitle)
-        playerctl metadata title 2>/dev/null || echo "Unknown Title"
-        ;;
-    *)
-        echo "Cách dùng: $0 {play|pause|next|pre|getArtist|getTitle}"
-        ;;
+play)
+  playerctl play
+  ;;
+pause)
+  playerctl pause
+  ;;
+next)
+  playerctl next
+  ;;
+pre | previous)
+  playerctl previous
+  ;;
+getArtist)
+  playerctl metadata artist 2>/dev/null || echo "Unknown Artist"
+  ;;
+getTitle)
+  playerctl metadata title 2>/dev/null || echo "Unknown Title"
+  ;;
+*)
+  echo "Cách dùng: $0 {play|pause|next|pre|getArtist|getTitle}"
+  ;;
 esac
-

@@ -53,6 +53,8 @@ Rectangle {
         id: wifiPanel
         wifiManager: wifiManager
         visible: root.wifiPanelVisible
+
+        theme : root.theme
         
         anchors {
             top: true

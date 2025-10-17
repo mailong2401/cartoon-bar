@@ -1,7 +1,7 @@
 import QtQuick
 
 Rectangle {
-    color: "transparent"
+    color: theme.primary.dim_background
     border.color: "#4f4f5b"
     border.width: 2
     radius: 4
