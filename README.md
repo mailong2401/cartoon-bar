@@ -30,7 +30,7 @@
 
 #### Trên Arch Linux:
 ```bash
-yay -S quickshell otf-comicshanns-nerd bc sysstat
+yay -S quickshell-git otf-comicshanns-nerd bc sysstat
 ```
 
 
