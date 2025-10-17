@@ -2,7 +2,8 @@
 
 
 ## Giới thiệu
-https://github.com/mailong2401/cartoon-bar/issues/1#issue-3527091018
+
+https://github.com/user-attachments/assets/e4d91777-621e-43a6-8fd7-8aa22759b7d2
 
 
 ## Tính năng chính
