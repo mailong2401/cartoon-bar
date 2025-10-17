@@ -64,7 +64,7 @@ Rectangle {
             top: 10
             right: 10
         }
-    }
+      }
 
     // =============================
     //   PROCESSES

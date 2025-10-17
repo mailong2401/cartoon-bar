@@ -5,38 +5,36 @@ import QtQuick.Layouts
 Rectangle {
     id: sidebarSettings
     property var theme
+    property int currentIndex: 0
     signal categoryChanged(int index)
     signal backRequested()
-    
+
     Layout.preferredWidth: 200
     Layout.fillHeight: true
     color: theme.primary.dim_background
     radius: 8
+    border.color: theme.normal.black
+    border.width: 2
 
-    border {
-              color : theme.normal.black
-              width: 2
-            }
-    
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 10
         spacing: 5
-        
+
         Text {
             text: "Cài đặt"
             color: theme.primary.foreground
             font {
-              family: "ComicShannsMono Nerd Font"
-              pixelSize: 20
-              bold : true
+                family: "ComicShannsMono Nerd Font"
+                pixelSize: 20
+                bold: true
             }
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 10
             Layout.bottomMargin: 20
         }
-        
-        // Settings Categories
+
+        // Danh mục cài đặt
         Repeater {
             model: [
                 { name: "Chung", icon: "⚙️", category: "general" },
@@ -47,102 +45,66 @@ Rectangle {
                 { name: "Phím tắt", icon: "⌨️", category: "shortcuts" },
                 { name: "Hệ thống", icon: "💻", category: "system" }
             ]
-            
+
             delegate: Rectangle {
                 id: categoryDelegate
                 Layout.fillWidth: true
                 height: 45
                 radius: 8
-                color: settingsListView.currentIndex === index ? 
-                       theme.button.background_select : "transparent"
-                border.color: settingsListView.currentIndex === index ? 
-                             theme.button.border_select : "transparent"
+
+                property bool hovered: false
+                property bool selected: sidebarSettings.currentIndex === index
+
+                color: selected ? theme.button.background_select
+                      : hovered ? theme.button.background + "80"
+                      : "transparent"
+
+                border.color: selected ? theme.button.border_select : "transparent"
                 border.width: 2
-                
+
                 Row {
                     spacing: 12
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.left: parent.left
                     anchors.leftMargin: 15
-                    
+
                     Text {
                         text: modelData.icon
                         color: theme.primary.foreground
                         font {
-                          family: "ComicShannsMono Nerd Font"
-                          pixelSize: 18
+                            family: "ComicShannsMono Nerd Font"
+                            pixelSize: 18
                         }
-
-                        anchors.verticalCenter: parent.verticalCenter
                     }
-                    
+
                     Text {
                         text: modelData.name
                         color: theme.primary.foreground
                         font {
-                          family: "ComicShannsMono Nerd Font"
-                          pixelSize: 18
+                            family: "ComicShannsMono Nerd Font"
+                            pixelSize: 18
+                            bold: selected
                         }
-                        font.bold: settingsListView.currentIndex === index
-                        anchors.verticalCenter: parent.verticalCenter
                     }
                 }
-                
+
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
+
                     onClicked: {
-                        settingsListView.currentIndex = index
+                        sidebarSettings.currentIndex = index
                         sidebarSettings.categoryChanged(index)
                     }
-                    onEntered: {
-                        if (settingsListView.currentIndex !== index) {
-                            categoryDelegate.color = theme.button.background + "80"
-                        }
-                    }
-                    onExited: {
-                        if (settingsListView.currentIndex !== index) {
-                            categoryDelegate.color = "transparent"
-                        }
-                    }
+
+                    onEntered: categoryDelegate.hovered = true
+                    onExited: categoryDelegate.hovered = false
                 }
             }
         }
-        
+
         Item { Layout.fillHeight: true } // Spacer
-        
-        // Back Button
-        Rectangle {
-            Layout.fillWidth: true
-            height: 45
-            radius: 8
-            color: theme.normal.blue + "40"
-            border.color: theme.normal.blue
-            border.width: 1
-            
-            Text {
-                text: "Quay lại ↩"
-                color: theme.normal.blue
-                font.pixelSize: 14
-                font.bold: true
-                anchors.centerIn: parent
-            }
-            
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: sidebarSettings.backRequested()
-                onEntered: parent.color = theme.normal.blue + "60"
-                onExited: parent.color = theme.normal.blue + "40"
-            }
-        }
-    }
-    
-    property ListView settingsListView: ListView {
-        id: settingsListView
-        model: 8
-        currentIndex: 0
     }
 }
+

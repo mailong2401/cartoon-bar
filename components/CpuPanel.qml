@@ -4,7 +4,6 @@ import Quickshell
 import Quickshell.Io
 import './widgets/'
 import '../modules/ram/'
-import './Cpu/'
 
 Rectangle {
     id: root
@@ -18,9 +17,21 @@ Rectangle {
     property string cpuUsage: "0%"
     property string memoryUsage: "0%"
     property string temperature: "0°C"
-    property bool panelVisible: false
+    property bool cpuPanelVisible: false
     property bool ramPanelVisible: false
     property var theme
+
+    Loader {
+        id: cpuPanelLoader
+        source: "./Cpu/CpuDetailPanel.qml"
+        active: cpuPanelVisible
+        onLoaded: {
+            item.anchors.top = parent.bottom
+            item.anchors.left = parent.left
+            item.theme = root.theme
+            item.visible = Qt.binding(function() { return launcherPanelVisible })
+        }
+    }
 
 
     // Process lấy CPU usage
@@ -148,7 +159,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    root.panelVisible = !root.panelVisible
+                    root.cpuPanelVisible = !root.cpuPanelVisible
                 }
                 
                 // Hiệu ứng hover
@@ -294,23 +305,6 @@ Rectangle {
         }
     }
 
-    // Panel chi tiết CPU - Hiển thị khi click vào cpuContainer
-    CpuDetailPanel {
-        id: detailPanel
-        visible: root.panelVisible
-        theme : root.theme
-        anchors {
-            top: parent.bottom
-            left: parent.left
-        }
-        margins {
-            top: 10
-        }
-        
-        onCloseRequested: {
-            root.panelVisible = false
-        }
-    }
 
     Component.onCompleted: {
         updateAll()

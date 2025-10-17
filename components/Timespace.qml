@@ -23,6 +23,20 @@ Rectangle {
 
     property var theme
 
+    Loader {
+        id: launcherPanelLoader
+        source: "./WeatherTime/WtDetailPanel.qml"
+        active: panelVisible
+        onLoaded: {
+            item.anchors.top = parent.bottom
+            item.anchors.left = parent.left
+            item.margins.left = 500
+
+            item.theme = root.theme
+            item.visible = Qt.binding(function() { return launcherPanelVisible })
+        }
+    }
+
 
     // Process lấy weather
     Process {
@@ -214,20 +228,6 @@ Rectangle {
         }
     }
 
-
-    WtDetailPanel {
-      id: wtDetailPanel
-      visible: root.panelVisible
-      theme : root.theme
-      anchors {
-            top: parent.bottom
-            left: parent.left
-      }
-      margins {
-          top: 10
-          left: 480
-      }
-    }
 
     // Timers
     Timer { 
