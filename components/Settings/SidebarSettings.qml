@@ -4,11 +4,13 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
+
             id: sidebar
             Layout.preferredWidth: 200
             Layout.fillHeight: true
             color: theme.primary.dim_background
             radius: 12
+
             
             ColumnLayout {
                 anchors.fill: parent

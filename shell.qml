@@ -11,19 +11,18 @@ import "./components/Settings/"
 ShellRoot {
     id: root
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
-    property var currentTheme: appTheme.getCurrentTheme()
 
-    VolumeOsd{
-      theme: currentTheme
+    ThemeLoader { id: themeLoader }
+
+    property var currentTheme: themeLoader.theme
+
+    Connections {
+        target: themeLoader
+        onThemeReloaded: currentTheme = themeLoader.theme
     }
 
-    ThemeLoader {
-      id: appTheme
-    }
-
-    // Change Theme
-    Component.onCompleted: {
-        appTheme.loadTheme("dark")
+    VolumeOsd {
+        theme: currentTheme
     }
 
     PanelWindow {
@@ -39,8 +38,7 @@ ShellRoot {
             top: 10
             left: 10
             right: 10
-          }
-
+        }
 
         RowLayout {
             anchors.fill: parent
@@ -51,43 +49,45 @@ ShellRoot {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
-                theme : currentTheme
-              }
+                theme: currentTheme
+            }
 
             // Workspace
             WorkspacePanel {
                 Layout.preferredWidth: 430
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
-                theme : currentTheme
+                theme: currentTheme
             }
 
             // Time & Date
             Timespace {
                 Layout.preferredWidth: 360
                 Layout.fillHeight: true
-                theme : currentTheme
+                theme: currentTheme
             }
+
             // CPU Monitor
             CpuPanel {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
-                theme : currentTheme
+                theme: currentTheme
             }
 
             // Music Player
             MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
-                theme : currentTheme
+                theme: currentTheme
             }
 
             // System Status
             StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                theme : currentTheme
+                theme: currentTheme
             }
         }
     }
 }
+

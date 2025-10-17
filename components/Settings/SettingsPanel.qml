@@ -200,7 +200,7 @@ Rectangle {
                                     MouseArea {
                                         anchors.fill: parent
                                         cursorShape: Qt.PointingHandCursor
-                                        onClicked: themeLoader.loadTheme("light")
+                                        onClicked: themeLoader.changeTheme("light")
                                     }
                                     Text {
                                         text: "Sáng"
@@ -242,7 +242,7 @@ Rectangle {
                                     MouseArea {
                                         anchors.fill: parent
                                         cursorShape: Qt.PointingHandCursor
-                                        onClicked: themeLoader.loadTheme("dark")
+                                        onClicked: themeLoader.changeTheme("dark")
                                     }
                                     
                                     Text {
