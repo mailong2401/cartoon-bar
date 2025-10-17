@@ -3,7 +3,7 @@
 
 ## Giới thiệu
 
-![Bar](docs/videos/out.mp4)
+[![Bar](docs/videos/out.mp4)](https://github.com/mailong2401/cartoon-bar/issues/1#issue-3527091018)
 
 
 ## Tính năng chính
