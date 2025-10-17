@@ -10,8 +10,18 @@ import "./components/Launcher/"
 ShellRoot {
     id: root
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
+    property var currentTheme: appTheme.getCurrentTheme()
 
-              VolumeOsd{}
+    VolumeOsd{}
+
+    ThemeLoader {
+      id: appTheme
+    }
+
+    Component.onCompleted: {
+        // Có thể load theme từ settings.json ở đây
+        appTheme.loadTheme("dark")
+    }
 
     PanelWindow {
         id: panel
@@ -48,13 +58,14 @@ ShellRoot {
 
             // ⏰ Time & Date
             Timespace {
-                Layout.preferredWidth: 380
+                Layout.preferredWidth: 360
                 Layout.fillHeight: true
+                theme : currentTheme
             }
             
             // 🔥 CPU Monitor
             CpuPanel {
-                Layout.preferredWidth: 300
+                Layout.preferredWidth: 280
                 Layout.fillHeight: true
             }
 
@@ -68,6 +79,7 @@ ShellRoot {
             StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                theme : currentTheme
             }
         }
     }

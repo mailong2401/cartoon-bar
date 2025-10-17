@@ -7,10 +7,10 @@ import "./WifiPanel/" as ComponentWifi
 
 Rectangle {
     id: root
-    border.color: "#4f4f5b"
+    border.color: theme.normal.black
     border.width: 3
     radius: 10
-    color: "#F5EEE6"
+    color: theme.primary.background
 
     property string net_stat: "Checking..."
     property string wifi_icon: "../assets/wifi/wifi_4.png"
@@ -20,9 +20,7 @@ Rectangle {
     property bool shouldShowOsd: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
-
-
-
+    property var theme
 
     PwObjectTracker {
         objects: [ Pipewire.defaultAudioSink ]
@@ -254,7 +252,7 @@ Rectangle {
                 
                 Text {
                     text: root.net_stat
-                    color: "#000"
+                    color: theme.primary.foreground
                     font { 
                         pixelSize: 16
                         bold: true 
@@ -292,19 +290,18 @@ Rectangle {
             RowLayout {
                 id: volumeContent
                 anchors.centerIn: parent
-                spacing: 8
 
                 Image {
                     id: volumeIcon
                     source: isMuted || currentVolume === 0 ? "../assets/volume/mute.png" : "../assets/volume/volume.png"
-                    width: 40
-                    height: 40
-                    sourceSize: Qt.size(40, 40)
+                    width: 34
+                    height: 34
+                    sourceSize: Qt.size(34, 34)
                 }
                 Text {
                     text: isMuted ? "Muted" : Math.round(currentVolume * 100) + "%"
 
-                    color: "#000"
+                    color: theme.primary.foreground
                     font { 
                         pixelSize: 16
                         bold: true 
@@ -365,7 +362,7 @@ Rectangle {
                 }
                 Text {
                     text: root.capacity_battery + "%"
-                    color: "#000"
+                    color: theme.primary.foreground
                     font { 
                         pixelSize: 16
                         bold: true 

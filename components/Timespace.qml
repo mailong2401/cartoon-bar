@@ -6,9 +6,9 @@ import "./WeatherTime/"
 
 Rectangle {
     id: root
-    color: "#F5EEE6"
+    color: theme.primary.background
     radius: 10
-    border.color: "#4f4f5b"
+    border.color: theme.normal.black
     border.width: 3
 
 
@@ -20,6 +20,8 @@ Rectangle {
     property string humidity: ""
     property string feelsLike: ""
     property bool panelVisible: false
+
+    property var theme
 
 
     // Process lấy weather
@@ -148,7 +150,7 @@ Rectangle {
             
             Text { 
                 text: root.currentTime 
-                color: "#000" 
+                color: root.theme.primary.foreground
                 font { 
                     pixelSize: 16 
                     bold: true 
@@ -158,8 +160,8 @@ Rectangle {
             }
             
             Text { 
-                text: root.currentDate 
-                color: "#666" 
+                text: root.currentDate
+                color: root.theme.primary.dim_foreground
                 font.pixelSize: 13
                 font.family: "ComicShannsMono Nerd Font"
             }
@@ -192,7 +194,7 @@ Rectangle {
                 
                 Text {
                     text: root.temperature || "Đang tải..."
-                    color: "#000"
+                    color: root.theme.primary.foreground
                     font { 
                         pixelSize: 14 
                         bold: true 

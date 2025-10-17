@@ -21,6 +21,7 @@ Rectangle {
     property bool panelVisible: false
     property bool ramPanelVisible: false
 
+
     // Process lấy CPU usage
     Process {
         id: cpuProcess
@@ -89,9 +90,9 @@ Rectangle {
         updateTemperature()
     }
 
-    Row {
+    RowLayout {
         anchors.centerIn: parent
-        spacing: 15
+        spacing: 5
 
         // CPU Container - Click để mở panel chi tiết
         Rectangle {
