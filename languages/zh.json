@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "title": "设置",
+    "general": "常规",
+    "appearance": "外观",
+    "network": "网络",
+    "audio": "音频",
+    "performance": "性能",
+    "shortcuts": "快捷键",
+    "system": "系统",
+    "language": "语言"
+  },
+  "system": {
+    "application": "应用程序",
+    "sleep": "睡眠模式",
+    "logout": "注销",
+    "shutdown": "关机",
+    "restart": "重启",
+    "lock": "锁屏"
+  },
+  "music": {
+    "nowPlaying": "正在播放",
+    "paused": "已暂停"
+  }
+}
+

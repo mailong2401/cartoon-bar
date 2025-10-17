@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "title": "설정",
+    "general": "일반",
+    "appearance": "모양",
+    "network": "네트워크",
+    "audio": "오디오",
+    "performance": "성능",
+    "shortcuts": "바로가기",
+    "system": "시스템",
+    "language": "언어"
+  },
+  "system": {
+    "application": "응용 프로그램",
+    "sleep": "절전 모드",
+    "logout": "로그아웃",
+    "shutdown": "시스템 종료",
+    "restart": "재시작",
+    "lock": "화면 잠금"
+  },
+  "music": {
+    "nowPlaying": "재생 중",
+    "paused": "일시 정지"
+  }
+}
+

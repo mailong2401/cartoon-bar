@@ -11,6 +11,9 @@
     "language": "Language"
   },
   "system": {
+    "application": "Applications",
+    "sleep": "Sleep Mode",
+    "logout": "Log Out",
     "shutdown": "Shut Down",
     "restart": "Restart",
     "lock": "Lock Screen"

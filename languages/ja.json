@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "title": "設定",
+    "general": "一般",
+    "appearance": "外観",
+    "network": "ネットワーク",
+    "audio": "オーディオ",
+    "performance": "パフォーマンス",
+    "shortcuts": "ショートカット",
+    "system": "システム",
+    "language": "言語"
+  },
+  "system": {
+    "application": "アプリケーション",
+    "sleep": "スリープモード",
+    "logout": "ログアウト",
+    "shutdown": "シャットダウン",
+    "restart": "再起動",
+    "lock": "画面ロック"
+  },
+  "music": {
+    "nowPlaying": "再生中",
+    "paused": "一時停止中"
+  }
+}
+

@@ -30,7 +30,9 @@ QtObject {
             translations = getFallbackLanguage()
         }
 
-        languageChanged(currentLanguage)
+        // 🧠 Phát tín hiệu sau khi load thành công
+        languageChanged.emit(currentLanguage)
+
         return translations
     }
 

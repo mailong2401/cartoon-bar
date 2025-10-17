@@ -5,6 +5,7 @@ import QtQuick.Layouts
 Rectangle {
     id: sidebarSettings
     property var theme : currentTheme
+    property var lang : currentLanguage
     property int currentIndex: 0
     signal categoryChanged(int index)
     signal backRequested()
@@ -26,7 +27,7 @@ Rectangle {
             color: theme.primary.foreground
             font {
                 family: "ComicShannsMono Nerd Font"
-                pixelSize: 20
+                pixelSize: 30
                 bold: true
             }
             Layout.alignment: Qt.AlignHCenter
@@ -37,13 +38,13 @@ Rectangle {
         // Danh mục cài đặt
         Repeater {
             model: [
-                { name: "Chung", icon: "⚙️", category: "general" },
-                { name: "Giao diện", icon: "🎨", category: "appearance" },
-                { name: "Mạng", icon: "🌐", category: "network" },
-                { name: "Âm thanh", icon: "🔊", category: "audio" },
-                { name: "Hiệu suất", icon: "📊", category: "performance" },
-                { name: "Phím tắt", icon: "⌨️", category: "shortcuts" },
-                { name: "Hệ thống", icon: "💻", category: "system" }
+                { name: lang.settings.general, icon: "⚙️", category: "general" },
+                { name: lang.settings.appearance, icon: "🎨", category: "appearance" },
+                { name: lang.settings.network, icon: "🌐", category: "network" },
+                { name: lang.settings.audio, icon: "🔊", category: "audio" },
+                { name: lang.settings.performance, icon: "📊", category: "performance" },
+                { name: lang.settings.shortcuts, icon: "⌨️", category: "shortcuts" },
+                { name: lang.settings.system, icon: "💻", category: "system" }
             ]
 
             delegate: Rectangle {
