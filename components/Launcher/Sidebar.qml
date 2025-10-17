@@ -12,6 +12,7 @@ Rectangle {
     border.width: 2
 
     property var theme : currentTheme
+    property var lang : currentLanguage
 
     signal appLaunched()
     signal appSettings()
@@ -54,7 +55,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Ứng dụng"
+                    text: lang.system.application
                     color: mouseAreaLauncher.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -110,7 +111,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: currentLanguage.settings.title
+                    text: lang.settings.title
                     color: mouseAreaSettings.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -171,7 +172,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: currentLanguage.system.sleep
+                    text: lang.system.sleep
                     color: mouseAreaSleep.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -229,7 +230,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: currentLanguage.system.lock
+                    text: lang.system.lock
                     color: mouseAreaLock.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -288,7 +289,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: currentLanguage.system.logout
+                    text: lang.system.logout
                     color: mouseAreaLogout.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -345,7 +346,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: currentLanguage.system.restart
+                    text: lang.system.restart
                     color: mouseAreaRestart.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -402,7 +403,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Tắt máy"
+                    text: lang.system.shutdown
                     color: mouseAreaShutdown.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"

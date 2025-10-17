@@ -11,8 +11,9 @@
     "language": "Ngôn ngữ"
   },
   "system": {
-    "sleep" : "Chế độ ngủ",
-    "logout" : "Đăng xuất",
+    "application": "Ứng dụng",
+    "sleep": "Chế độ ngủ",
+    "logout": "Đăng xuất",
     "shutdown": "Tắt máy",
     "restart": "Khởi động lại",
     "lock": "Khóa màn hình"
@@ -20,6 +21,6 @@
   "music": {
     "nowPlaying": "Đang phát",
     "paused": "Tạm dừng"
-  },
+  }
 }
 

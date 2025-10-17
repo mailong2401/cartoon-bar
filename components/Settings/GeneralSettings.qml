@@ -47,30 +47,53 @@ Item {
                 }
                 
                 ComboBox {
-                    id: languageCombo
-                    Layout.preferredWidth: 200
-                    Layout.preferredHeight: 40
-                    Layout.fillWidth: true
-                    model: ["Tiếng Việt", "English", "中文", "日本語"]
-                    background: Rectangle {
-                        color: theme.button.background
-                        border.color: theme.button.border
-                        radius: 6
-                      }
-                    contentItem: Text {
-                        text: languageCombo.displayText
-                        color: theme.primary.foreground   // <-- màu text
-                        font.pixelSize: 18
-                        font.family: "ComicShannsMono Nerd Font"
-                        verticalAlignment: Text.AlignVCenter    // căn giữa dọc
-                        horizontalAlignment: Text.AlignHCenter  // căn giữa ngang
-                        elide: Text.ElideRight
-                    }
-                    popup.background: Rectangle {
-                        color: theme.primary.background
-                        border.color: theme.button.border
-                    }
-                }
+                  id: languageCombo
+                  Layout.preferredWidth: 200
+                  Layout.preferredHeight: 40
+                  Layout.fillWidth: true
+                  model: ["Tiếng Việt", "English", "中文", "日本語"]
+
+                  background: Rectangle {
+                      color: theme.button.background
+                      border.color: theme.button.border
+                      radius: 6
+                  }
+
+                  contentItem: Text {
+                      text: languageCombo.displayText
+                      color: theme.primary.foreground
+                      font.pixelSize: 18
+                      font.family: "ComicShannsMono Nerd Font"
+                      verticalAlignment: Text.AlignVCenter
+                      horizontalAlignment: Text.AlignHCenter
+                      elide: Text.ElideRight
+                  }
+
+                  popup.background: Rectangle {
+                      color: theme.primary.background
+                      border.color: theme.button.border
+                  }
+
+                  // ---- Sự kiện chọn ngôn ngữ ----
+                  onActivated: (index) => {
+    switch (index) {
+    case 0:
+        currentLanguage.changeLanguage("vi")
+        break
+    case 1:
+        currentLanguage.changeLanguage("en")
+        break
+    case 2:
+        currentLanguage.changeLanguage("kr")
+        break
+    case 3:
+        currentLanguage.changeLanguage("ja")
+        break
+    }
+}
+
+              }
+
             }
             
             // Auto-start

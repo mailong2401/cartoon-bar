@@ -36,7 +36,7 @@ Rectangle {
     // Process lấy CPU usage
     Process {
         id: cpuProcess
-        command: ["scripts/cpu"]
+        command: [Qt.resolvedUrl("../scripts/cpu")]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
@@ -52,7 +52,7 @@ Rectangle {
     // Process lấy Memory usage
     Process {
         id: memoryProcess
-        command: ["scripts/ram-usage"]
+        command: [Qt.resolvedUrl("../scripts/ram-usage")]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
@@ -68,7 +68,7 @@ Rectangle {
     // Process lấy CPU temperature (nếu có)
     Process {
         id: tempProcess
-        command: ["scripts/cpu-temp"]
+        command: [Qt.resolvedUrl("../scripts/cpu-temp")]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {

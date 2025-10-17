@@ -127,23 +127,46 @@ Rectangle {
         }
     }
 
-    function runSearch(query) {
-        if (query === undefined || query === null) query = ""
-        if (query === container.lastQuery && container.apps.length > 0) {
-            return
-        }
-        container.lastQuery = query
+function runSearch(query) {
+    // --- Nếu query rỗng hoặc null ---
+    if (!query)
+        query = ""
 
-        var script = "scripts/listapps.py"
-        if (query.length > 0) {
-            listApps.command = ["python3", script, query]
-        } else {
-            listApps.command = ["python3", script]
-        }
+    // --- Nếu giống truy vấn trước và đã có kết quả, bỏ qua ---
+    if (query === container.lastQuery && container.apps.length > 0)
+        return
 
-        try { listApps.running = false } catch(e) {}
-        listApps.running = true
+    container.lastQuery = query
+
+    // --- Lấy đường dẫn script tuyệt đối ---
+    var scriptPath = Qt.resolvedUrl("../../scripts/listapps.py")
+
+    // --- Kiểm tra xem script có tồn tại không ---
+    if (!Qt.resolvedUrl) {
+        console.warn("Không thể xác định đường dẫn script listapps.py")
+        return
     }
+
+    // --- Gán lệnh chạy ---
+    if (query.length > 0)
+        listApps.command = ["python3", scriptPath, query]
+    else
+        listApps.command = ["python3", scriptPath]
+
+    // --- Dừng tiến trình cũ nếu đang chạy ---
+    if (listApps.running) {
+        try { listApps.running = false } catch(e) {}
+    }
+
+    // --- Chạy lại tiến trình ---
+    try {
+        listApps.running = true
+        console.debug("Đang chạy script:", listApps.command.join(" "))
+    } catch (e) {
+        console.error("Không thể chạy script:", e)
+    }
+}
+
 
     function _splitArgs(cmd) {
         var parts = []

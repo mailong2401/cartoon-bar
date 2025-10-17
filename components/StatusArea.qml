@@ -70,7 +70,7 @@ Rectangle {
     
     Process {
         id: wifiProcess
-        command: ["scripts/check-network", "--stat"]
+        command: [Qt.resolvedUrl("../scripts/check-network"), "--stat"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {

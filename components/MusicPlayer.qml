@@ -53,7 +53,7 @@ Rectangle {
     Process {
         id: statusCheck
         running: false
-        command: ["scripts/check-playing"]
+        command: [Qt.resolvedUrl("../scripts/check-playing")]
 
         stdout: StdioCollector {
             onStreamFinished: {
