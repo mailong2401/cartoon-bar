@@ -43,6 +43,7 @@ git clone https://github.com/mailong2401/cartoon-bar.git ~/.config/quickshell/ca
 
 ### 3. Chạy ứng dụng
 ```bash
+export QML_XHR_ALLOW_FILE_READ=1
 quickshell --path ~/.config/quickshell/cartoon-bar
 ```
 
