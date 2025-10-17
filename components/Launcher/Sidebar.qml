@@ -6,9 +6,12 @@ Rectangle {
     Layout.preferredWidth: 210
     Layout.fillHeight: true
     radius: 12
-    color: "#E8D8C9"
-    border.color: "#4f4f5b"
+    color: theme.primary.dim_background
+    border.color: theme.normal.black
     border.width: 2
+
+    property var theme
+
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,15 +22,15 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
-            border.color: "#4f4f5b"
+            border.color: theme.button.border
             border.width: 3
             radius: 8
-            color: "#4f4f5b"
+            color: theme.button.background
             
             Text {
                 anchors.centerIn: parent
                 text: "Menu"
-                color: "#fff"
+                color: theme.primary.foreground
                 font.pixelSize: 18
                 font.family: "ComicShannsMono Nerd Font"
             }
@@ -38,8 +41,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaSettings.containsMouse ? "#9c8f83" : "#b0a89e"
-            border.color: mouseAreaSettings.containsPress ? "#333" : "#4f4f5b"
+            color: mouseAreaSettings.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaSettings.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             scale: mouseAreaSettings.containsPress ? 0.98 : 1.0
@@ -64,7 +67,7 @@ Rectangle {
 
                 Text {
                     text: "Cài đặt"
-                    color: mouseAreaSettings.containsMouse ? "#111" : "#333"
+                    color: mouseAreaSettings.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     
@@ -94,8 +97,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaSleep.containsMouse ? "#9c8f83" : "#b0a89e"
-            border.color: mouseAreaSleep.containsPress ? "#333" : "#4f4f5b"
+            color: mouseAreaSleep.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaSleep.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             // Hiệu ứng scale khi hover
@@ -124,7 +127,7 @@ Rectangle {
 
                 Text {
                     text: "Chế độ ngủ"
-                    color: mouseAreaSleep.containsMouse ? "#111" : "#333"
+                    color: mouseAreaSleep.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     
@@ -156,8 +159,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaLock.containsMouse ? "#9c8f83" : "#b0a89e"
-            border.color: mouseAreaLock.containsPress ? "#333" : "#4f4f5b"
+            color: mouseAreaLock.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaLock.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             scale: mouseAreaLock.containsPress ? 0.98 : 1.0
@@ -182,7 +185,7 @@ Rectangle {
 
                 Text {
                     text: "Khóa màn hình"
-                    color: mouseAreaLock.containsMouse ? "#111" : "#333"
+                    color: mouseAreaLock.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     
@@ -215,8 +218,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaLogout.containsMouse ? "#9c8f83" : "#b0a89e"
-            border.color: mouseAreaLogout.containsPress ? "#333" : "#4f4f5b"
+            color: mouseAreaLogout.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaLogout.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             scale: mouseAreaLogout.containsPress ? 0.98 : 1.0
@@ -241,7 +244,7 @@ Rectangle {
 
                 Text {
                     text: "Đăng xuất"
-                    color: mouseAreaLogout.containsMouse ? "#111" : "#333"
+                    color: mouseAreaLogout.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     
@@ -272,8 +275,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaRestart.containsMouse ? "#9c8f83" : "#b0a89e"
-            border.color: mouseAreaRestart.containsPress ? "#333" : "#4f4f5b"
+            color: mouseAreaRestart.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaRestart.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             scale: mouseAreaRestart.containsPress ? 0.98 : 1.0
@@ -298,7 +301,7 @@ Rectangle {
 
                 Text {
                     text: "Khởi động lại"
-                    color: mouseAreaRestart.containsMouse ? "#111" : "#333"
+                    color: mouseAreaRestart.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     
@@ -329,8 +332,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 60
             radius: 8
-            color: mouseAreaShutdown.containsMouse ? "#ff6b6b" : "#b0a89e"
-            border.color: mouseAreaShutdown.containsPress ? "#cc0000" : "#4f4f5b"
+            color: mouseAreaShutdown.containsMouse ? theme.button.background_select : theme.button.background
+            border.color: mouseAreaShutdown.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
             scale: mouseAreaShutdown.containsPress ? 0.98 : 1.0
@@ -355,7 +358,7 @@ Rectangle {
 
                 Text {
                     text: "Tắt máy"
-                    color: mouseAreaShutdown.containsMouse ? "#fff" : "#333"
+                    color: mouseAreaShutdown.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaShutdown.containsMouse

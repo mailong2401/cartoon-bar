@@ -4,6 +4,8 @@ Item {
     id: header
     signal closeClicked()
 
+    property var theme
+
     Row {
         anchors.centerIn: parent
         spacing: 20

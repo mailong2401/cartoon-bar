@@ -6,6 +6,7 @@ Rectangle {
     border.width: 2
     radius: 6
 
+    property var theme
     property var cpuHistory: []
     property var getUsageColor: function(usageStr) { return "#3498db" }
 

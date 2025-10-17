@@ -9,9 +9,17 @@ QtObject {
         "light": {
             "primary": {
                 "background": "#f5eee6",
+                "dim_background" : "#E8D8C9",
                 "foreground": "#2b2530",
                 "dim_foreground": "#8c8680",       // thêm
                 "bright_foreground": "#2b2530"     // thêm
+              },
+            "button" : {
+              "background" : "#b0a89e",
+              "text" : "#2b2530",
+              "background_select" : "#9c8f83",
+              "border" : "#4f4f5b",
+              "border_select" : "#333",
             },
             "cursor" : {"cursor" : "#2b2530","text": "#f5eee6"},
             "normal": {
@@ -28,32 +36,18 @@ QtObject {
         "dark" : {
             "primary": {
                 "background": "#24273a",
+                "dim_background" : "#8087a2",
                 "foreground": "#cad3f5",
                 "dim_foreground": "#8087a2",
                 "bright_foreground": "#cad3f5"
-            },
-            "cursor": {
-                "text": "#24273a",
-                "cursor": "#f4dbd6"
-            },
-            "footer_bar": {
-                "foreground": "#24273a",
-                "background": "#a5adcb"
-            },
-            "hints": {
-                "start": {
-                    "foreground": "#24273a",
-                    "background": "#eed49f"
-                },
-                "end": {
-                    "foreground": "#24273a",
-                    "background": "#a5adcb"
-                }
-            },
-            "selection": {
-                "text": "#24273a",
-                "background": "#f4dbd6"
-            },
+              },
+              "button": {
+                "background": "#494d64", // normal.black
+                "text": "#cad3f5", // primary.foreground
+                "background_select": "#5b6078", // bright.black (vì nó sáng hơn normal.black)
+                "border": "#b8c0e0", // normal.white
+                "border_select": "#a5adcb" // bright.white
+              },
             "normal": {
                 "black": "#494d64",
                 "red": "#ed8796",
@@ -74,10 +68,6 @@ QtObject {
                 "cyan": "#8bd5ca",
                 "white": "#a5adcb"
             },
-            "indexed_colors": [
-                { "index": 16, "color": "#f5a97f" },
-                { "index": 17, "color": "#f4dbd6" }
-            ]
         }
     }
     

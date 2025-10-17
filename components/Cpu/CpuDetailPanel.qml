@@ -22,6 +22,7 @@ PanelWindow {
     property var cpuUsageList: Array(cpuCores).fill("0%")
     property var cpuHistory: []
     property int maxHistoryLength: 50
+    property var theme
 
     // Process để lấy CPU usage chi tiết
     Process {

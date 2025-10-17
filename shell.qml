@@ -22,7 +22,7 @@ ShellRoot {
 
     // Change Theme
     Component.onCompleted: {
-        appTheme.loadTheme("light")
+        appTheme.loadTheme("dark")
     }
 
     PanelWindow {

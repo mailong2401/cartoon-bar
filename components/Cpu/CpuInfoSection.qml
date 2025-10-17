@@ -3,6 +3,9 @@ import QtQuick
 Column {
     spacing: 6
 
+    property var theme
+
+
     Text {
         width: parent.width
         color: "#4f4f5b"

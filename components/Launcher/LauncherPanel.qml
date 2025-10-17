@@ -50,7 +50,9 @@ PanelWindow {
             anchors.margins: 16
             spacing: 12
 
-            Sidebar{}
+            Sidebar{
+              theme : launcherPanel.theme
+            }
 
             ColumnLayout {
                 Layout.fillWidth: true

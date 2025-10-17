@@ -7,7 +7,7 @@ import Quickshell.Io
 Rectangle {
     id: container
     radius: 12
-    color: theme.primary.background
+    color: theme.primary.dim_background
     border.color: theme.normal.black
     border.width: 2
 
@@ -64,8 +64,8 @@ Rectangle {
                 width: ListView.view.width
                 height: 56
                 radius: 8
-                color: mouseArea.containsMouse ? "#d6ccc2" : "transparent"
-                border.color: mouseArea.containsMouse ? "#4f4f5b" : "transparent"
+                color: mouseArea.containsMouse ? theme.button.background_select : "transparent"
+                border.color: mouseArea.containsMouse ? theme.button.border_select : "transparent"
                 border.width: 1
 
                 RowLayout {
@@ -94,7 +94,7 @@ Rectangle {
 
                         Text {
                             text: container.apps[index].comment || ""
-                            color: theme.primary.dim_foreground
+                            color: theme.primary.bright_foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 13
                             elide: Text.ElideRight

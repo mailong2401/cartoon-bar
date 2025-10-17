@@ -7,7 +7,7 @@ Rectangle {
     Layout.fillWidth: true
     Layout.preferredHeight: 45
     radius: 12
-    color: theme.primary.background
+    color: theme.primary.dim_background
     border.color: theme.normal.black
     border.width: 2
 
@@ -35,7 +35,7 @@ Rectangle {
             Layout.fillWidth: true
             placeholderText: "Tìm kiếm ứng dụng..."
             palette.text: theme.primary.foreground       // màu chữ chính
-            palette.placeholderText: "#888888"  // màu placeholder
+            palette.placeholderText: theme.primary.bright_foreground  // màu placeholder
             font.pixelSize: 14
             font.family: "ComicShannsMono Nerd Font"
             background: Rectangle { color: "transparent" }
