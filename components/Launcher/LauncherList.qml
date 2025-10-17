@@ -13,7 +13,7 @@ Rectangle {
 
     property var apps: []
     property string lastQuery: ""
-    property var theme
+    property var theme : currentTheme
 
     signal appLaunched()
 

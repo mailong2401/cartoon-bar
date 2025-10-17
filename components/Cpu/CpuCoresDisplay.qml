@@ -9,7 +9,7 @@ Rectangle {
     property int cpuCores: 12
     property var cpuUsageList: []
     property var getUsageColor: function(usageStr) { return "#3498db" }
-    property var theme
+    property var theme : currentTheme
 
     Flickable {
         anchors.fill: parent

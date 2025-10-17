@@ -4,7 +4,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Item {
-    property var theme
+    property var theme : currentTheme
     
     ScrollView {
         anchors.fill: parent

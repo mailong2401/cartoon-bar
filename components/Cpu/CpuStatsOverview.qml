@@ -10,7 +10,7 @@ Rectangle {
     property var getMaxUsage: function() { return "0.0" }
     property var getUsageColor: function(usageStr) { return "#3498db" }
     property var cpuHistory: []
-    property var theme
+    property var theme : currentTheme
 
     Row {
         anchors.centerIn: parent

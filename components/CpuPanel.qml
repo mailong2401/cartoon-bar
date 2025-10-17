@@ -19,7 +19,7 @@ Rectangle {
     property string temperature: "0°C"
     property bool cpuPanelVisible: false
     property bool ramPanelVisible: false
-    property var theme
+    property var theme : currentTheme
 
     Loader {
         id: cpuPanelLoader
@@ -28,7 +28,6 @@ Rectangle {
         onLoaded: {
             item.anchors.top = parent.bottom
             item.anchors.left = parent.left
-            item.theme = root.theme
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }
     }

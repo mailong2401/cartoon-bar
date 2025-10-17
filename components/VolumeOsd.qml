@@ -23,7 +23,7 @@ Scope {
     property bool shouldShowOsd: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
-    property var theme
+    property var theme : currentTheme
 
     Timer {
         id: hideTimer

@@ -13,8 +13,15 @@ ShellRoot {
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
 
     ThemeLoader { id: themeLoader }
+    LanguageLoader {id: languageLoader}
 
     property var currentTheme: themeLoader.theme
+    property var currentLanguage: languageLoader.translations
+
+    Connections {
+        target: languageLoader
+        onLanguageChanged: currentLanguage = languageLoader.translations
+    }
 
     Connections {
         target: themeLoader
@@ -22,7 +29,6 @@ ShellRoot {
     }
 
     VolumeOsd {
-        theme: currentTheme
     }
 
     PanelWindow {
@@ -43,13 +49,13 @@ ShellRoot {
         RowLayout {
             anchors.fill: parent
             spacing: 10
+            
 
             // App Icons (Dashboard Button)
             AppIcons {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
-                theme: currentTheme
             }
 
             // Workspace
@@ -57,35 +63,30 @@ ShellRoot {
                 Layout.preferredWidth: 430
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
-                theme: currentTheme
             }
 
             // Time & Date
             Timespace {
                 Layout.preferredWidth: 360
                 Layout.fillHeight: true
-                theme: currentTheme
             }
 
             // CPU Monitor
             CpuPanel {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
-                theme: currentTheme
             }
 
             // Music Player
             MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
-                theme: currentTheme
             }
 
             // System Status
             StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                theme: currentTheme
             }
         }
     }

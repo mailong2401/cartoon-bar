@@ -3,7 +3,7 @@ import QtQuick
 Column {
     spacing: 6
 
-    property var theme
+    property var theme : currentTheme
 
 
     Text {

@@ -20,7 +20,7 @@ Rectangle {
     property bool shouldShowOsd: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
-    property var theme
+    property var theme : currentTheme
 
     PwObjectTracker {
         objects: [ Pipewire.defaultAudioSink ]
@@ -54,8 +54,6 @@ Rectangle {
         wifiManager: wifiManager
         visible: root.wifiPanelVisible
 
-        theme : root.theme
-        
         anchors {
             top: true
             right: true

@@ -13,7 +13,7 @@ Rectangle {
     border.width: 3
 
     property bool launcherPanelVisible: false
-    property var theme
+    property var theme : currentTheme
 
     // Sử dụng Loader để load LauncherPanel
     Loader {
@@ -22,7 +22,6 @@ Rectangle {
         active: launcherPanelVisible
         
         onLoaded: {
-            item.theme = appIconsRoot.theme
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }
     }

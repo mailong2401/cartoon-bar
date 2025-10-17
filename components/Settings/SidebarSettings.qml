@@ -4,7 +4,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: sidebarSettings
-    property var theme
+    property var theme : currentTheme
     property int currentIndex: 0
     signal categoryChanged(int index)
     signal backRequested()

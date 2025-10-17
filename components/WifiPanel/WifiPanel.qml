@@ -15,7 +15,7 @@ PanelWindow {
 
     // Nhận wifiManager từ bên ngoài
     required property var wifiManager
-    property var theme
+    property var theme : currentTheme
 
     Rectangle {
         radius: 20

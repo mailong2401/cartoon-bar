@@ -6,7 +6,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: settingsPanel
-    property var theme
+    property var theme : currentTheme
     signal backRequested()
     radius: 12
     color: theme.primary.background
@@ -43,38 +43,31 @@ Rectangle {
                 
                 // General Settings
                 GeneralSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 // Appearance Settings
                 AppearanceSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 // Network Settings
                 NetworkSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 // Audio Settings
                 AudioSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 // Performance Settings
                 PerformanceSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 // Shortcuts Settings
                 ShortcutsSettings {
-                    theme: settingsPanel.theme
                 }
                 
                 
                 // System Settings
                 SystemSettings {
-                    theme: settingsPanel.theme
                 }
             }
         }

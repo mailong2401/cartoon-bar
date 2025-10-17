@@ -15,7 +15,7 @@ Rectangle {
     signal accepted(string text)      // khi nhấn Enter
 
 
-    property var theme
+    property var theme : currentTheme
 
     RowLayout {
         anchors.fill: parent

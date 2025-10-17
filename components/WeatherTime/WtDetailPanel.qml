@@ -11,7 +11,7 @@ PanelWindow {
     implicitWidth: 400
     implicitHeight: 500
 
-    property var theme
+    property var theme : currentTheme
 
     margins {
         top: 10
@@ -33,11 +33,9 @@ PanelWindow {
             WtDetailHeader{
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
-                theme: wtDetailPanel.theme
               }
             WtDetailCalendar{
               anchors.horizontalCenter: parent.horizontalCenter
-              theme: wtDetailPanel.theme
 
             }
         }

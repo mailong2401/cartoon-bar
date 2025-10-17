@@ -22,7 +22,7 @@ PanelWindow {
     property var cpuUsageList: Array(cpuCores).fill("0%")
     property var cpuHistory: []
     property int maxHistoryLength: 50
-    property var theme
+    property var theme : currentTheme
 
     // Process để lấy CPU usage chi tiết
     Process {
@@ -122,14 +122,12 @@ PanelWindow {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
                 onCloseClicked: detailPanel.closeRequested()
-                theme : detailPanel.theme
             }
 
             // Thông tin CPU
             CpuInfoSection {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
-                theme : detailPanel.theme
             }
 
             // Hiển thị hình ảnh lõi CPU
@@ -139,7 +137,6 @@ PanelWindow {
                 cpuCores: detailPanel.cpuCores
                 cpuUsageList: detailPanel.cpuUsageList
                 getUsageColor: detailPanel.getUsageColor
-                theme : detailPanel.theme
             }
 
             // Thông tin tổng quan
@@ -150,7 +147,6 @@ PanelWindow {
                 getMaxUsage: detailPanel.getMaxUsage
                 getUsageColor: detailPanel.getUsageColor
                 cpuHistory: detailPanel.cpuHistory
-                theme : detailPanel.theme
             }
 
             // BIỂU ĐỒ CPU USAGE
@@ -159,7 +155,6 @@ PanelWindow {
                 Layout.fillHeight: true
                 cpuHistory: detailPanel.cpuHistory
                 getUsageColor: detailPanel.getUsageColor
-                theme : detailPanel.theme
             }
         }
     }

@@ -15,7 +15,7 @@ Rectangle {
     property string activeWorkspace: "1"
     property var existingWorkspaces: ([])
     property string currentWorkspaceId: ""
-    property var theme
+    property var theme : currentTheme
 
     // Socket theo dõi Hyprland
     Socket {

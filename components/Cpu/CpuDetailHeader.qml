@@ -4,7 +4,7 @@ Item {
     id: header
     signal closeClicked()
 
-    property var theme
+    property var theme: currentTheme
 
     Row {
         anchors.centerIn: parent

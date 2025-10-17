@@ -21,7 +21,7 @@ Rectangle {
     property string feelsLike: ""
     property bool panelVisible: false
 
-    property var theme
+    property var theme : currentTheme
 
     Loader {
         id: launcherPanelLoader
@@ -31,7 +31,6 @@ Rectangle {
             item.anchors.top = parent.bottom
             item.anchors.left = parent.left
             item.margins.left = 500
-
             item.theme = root.theme
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }

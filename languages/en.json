@@ -1,0 +1,23 @@
+{
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "appearance": "Appearance",
+    "network": "Network",
+    "audio": "Audio",
+    "performance": "Performance",
+    "shortcuts": "Shortcuts",
+    "system": "System",
+    "language": "Language"
+  },
+  "system": {
+    "shutdown": "Shut Down",
+    "restart": "Restart",
+    "lock": "Lock Screen"
+  },
+  "music": {
+    "nowPlaying": "Now Playing",
+    "paused": "Paused"
+  }
+}
+

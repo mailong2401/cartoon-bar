@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "title": "Cài đặt",
+    "general": "Chung",
+    "appearance": "Giao diện",
+    "network": "Mạng",
+    "audio": "Âm thanh",
+    "performance": "Hiệu suất",
+    "shortcuts": "Phím tắt",
+    "system": "Hệ thống",
+    "language": "Ngôn ngữ"
+  },
+  "system": {
+    "sleep" : "Chế độ ngủ",
+    "logout" : "Đăng xuất",
+    "shutdown": "Tắt máy",
+    "restart": "Khởi động lại",
+    "lock": "Khóa màn hình"
+  },
+  "music": {
+    "nowPlaying": "Đang phát",
+    "paused": "Tạm dừng"
+  },
+}
+

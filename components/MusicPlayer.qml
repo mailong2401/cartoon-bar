@@ -15,7 +15,7 @@ Rectangle {
     property string currentArtist: ""
     property bool isPlaying: false
     property string truncatedSong: ""
-    property var theme
+    property var theme : currentTheme
 
     // Cập nhật truncatedSong khi currentSong thay đổi
     onCurrentSongChanged: {

@@ -17,9 +17,10 @@ PanelWindow {
     color: "transparent"
     focusable: true
 
-    property var theme
+    property var theme : currentTheme
     property bool settingsPanelVisible: false
     property bool launcherPanelVisible: true
+
 
     function openSettings() {
         launcherPanel.settingsPanelVisible = true
@@ -69,7 +70,6 @@ PanelWindow {
             spacing: 12
 
             Sidebar{
-                theme: launcherPanel.theme
                 onAppLaunched: {
                     launcherPanel.openLauncher()
                 }
@@ -82,7 +82,6 @@ PanelWindow {
                 id: settingsPanel
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                theme: launcherPanel.theme
                 visible: launcherPanel.settingsPanelVisible
                 Behavior on Layout.preferredWidth {
                     NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
@@ -106,7 +105,6 @@ PanelWindow {
                 
                 LauncherSearch{
                     id: searchBox
-                    theme: launcherPanel.theme
                     onSearchChanged: (text) => {
                         launcherList.runSearch(text)
                     }
@@ -122,7 +120,6 @@ PanelWindow {
                     onAppLaunched: {
                         closePanel()
                     }
-                    theme: launcherPanel.theme
                 }
             }
         }

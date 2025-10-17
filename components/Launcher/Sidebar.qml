@@ -11,7 +11,7 @@ Rectangle {
     border.color: theme.normal.black
     border.width: 2
 
-    property var theme
+    property var theme : currentTheme
 
     signal appLaunched()
     signal appSettings()
@@ -110,7 +110,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Cài đặt"
+                    text: currentLanguage.settings.title
                     color: mouseAreaSettings.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -171,7 +171,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Chế độ ngủ"
+                    text: currentLanguage.system.sleep
                     color: mouseAreaSleep.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -229,7 +229,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Khóa màn hình"
+                    text: currentLanguage.system.lock
                     color: mouseAreaLock.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -288,7 +288,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Đăng xuất"
+                    text: currentLanguage.system.logout
                     color: mouseAreaLogout.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -345,7 +345,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Khởi động lại"
+                    text: currentLanguage.system.restart
                     color: mouseAreaRestart.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
