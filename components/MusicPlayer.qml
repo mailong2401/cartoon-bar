@@ -49,39 +49,24 @@ Rectangle {
         }
     }
 
-    // Process kiểm tra trạng thái phát
+    // 🧠 Kiểm tra trạng thái phát nhạc
     Process {
         id: statusCheck
-        running: false
         command: [Qt.resolvedUrl("../scripts/check-playing")]
 
         stdout: StdioCollector {
             onStreamFinished: {
-                isPlaying = (this.text.trim() === "true")
+                musicPlayer.isPlaying = (this.text.trim() === "true")
             }
         }
-      }
+    }
 
-      Process {
-        id: nextMusic
-        running: false
-        command: ["scripts/music-controller","next"]
-      }
-      Process {
-        id: preMusic
-        running: false
-        command: ["scripts/music-controller","pre"]
-      }
-      Process {
-        id: playMusic
-        running: false
-        command: ["scripts/music-controller","play"]
-      }
-      Process {
-        id: pauseMusic
-        running: false
-        command: ["scripts/music-controller","pause"]
-      }
+    // 🧠 Các lệnh điều khiển
+    Process { id: nextMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "next"] }
+    Process { id: preMusic;  command: [Qt.resolvedUrl("../scripts/music-controller"), "pre"] }
+    Process { id: playMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "play"] }
+    Process { id: pauseMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "pause"] }
+
 
     function runProcess(proc) {
         if (!proc.running) {
