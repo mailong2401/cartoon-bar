@@ -4,7 +4,6 @@ import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
 import "./components"
-import "./cpu"
 import "./components/Cpu/"
 import "./components/Launcher/"
 
