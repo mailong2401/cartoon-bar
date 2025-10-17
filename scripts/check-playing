@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Lấy danh sách tất cả player hiện có
+players=$(playerctl -l 2>/dev/null)
+
+# Nếu không có player nào thì trả về false
+if [ -z "$players" ]; then
+  echo "false"
+  exit 0
+fi
+
+# Kiểm tra từng player
+for p in $players; do
+  status=$(playerctl -p "$p" status 2>/dev/null)
+  if [ "$status" = "Playing" ]; then
+    echo "true"
+    exit 0
+  fi
+done
+
+# Nếu không player nào đang Playing thì trả về false
+echo "false"

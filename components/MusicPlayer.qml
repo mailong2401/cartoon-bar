@@ -52,11 +52,11 @@ Rectangle {
     Process {
         id: statusCheck
         running: false
-        command: ["playerctl", "status"]
+        command: ["scripts/check-playing"]
 
         stdout: StdioCollector {
             onStreamFinished: {
-                isPlaying = (this.text.trim() === "Playing")
+                isPlaying = (this.text.trim() === "true")
             }
         }
       }
@@ -92,8 +92,8 @@ Rectangle {
       switch (action) {
       case "next": runProcess(nextMusic); break;
       case "pre": runProcess(preMusic); break; 
-      case "pause": runProcess(pauseMusic); isPlaying = false; break;
-      case "play": runProcess(playMusic);isPlaying = true; break;
+      case "pause": runProcess(pauseMusic); break;
+      case "play": runProcess(playMusic); break;
       }
     }
     // Timer refresh metadata và trạng thái phát
@@ -213,7 +213,7 @@ Rectangle {
             // Play/Pause button
             Image {
                 id: playPauseBtn
-                source: isPlaying ? "../assets/music/play.png" : "../assets/music/pause.png"
+                source: isPlaying ? "../assets/music/pause.png" : "../assets/music/play.png"
                 width: 30
                 height: 30
                 fillMode: Image.PreserveAspectFit
