@@ -5,59 +5,56 @@ import Quickshell
 import Quickshell.Widgets
 import "../Settings/"
 
-// Chỉ định nghĩa PanelWindow, không có ShellRoot
 PanelWindow {
     id: launcherPanel
     width: launcherPanel.settingsPanelVisible ? 1000 : 600
     height: launcherPanel.settingsPanelVisible ? 700 : 640
+    visible : true
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
 
     color: "transparent"
-    visible: false
     focusable: true
 
     property var theme
-    property bool settingsPanelVisible : false
-    property bool launcherPanelVisible : true
+    property bool settingsPanelVisible: false
+    property bool launcherPanelVisible: true
 
     function openSettings() {
-      launcherPanel.settingsPanelVisible = true
-      launcherPanel.launcherPanelVisible = false
+        launcherPanel.settingsPanelVisible = true
+        launcherPanel.launcherPanelVisible = false
     }
 
     function openLauncher() {
-      launcherPanel.settingsPanelVisible = false
-      launcherPanel.launcherPanelVisible = true
-    }
+        launcherPanel.settingsPanelVisible = false
+        launcherPanel.launcherPanelVisible = true
+      }
+      function closePanel() {
+        launcherPanel.visible = !launcherPanel.visible
+      }
 
     anchors {
         top: true
         left: true
-      }
+    }
 
-      // Thêm SettingsPanel
-    
     margins {
         top: 10
         left: 10
-      }
-
-    
+    }
 
     // Close khi click outside
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
-        onPressed: {
+        onPressed: (mouse) => {
             if (mouseY < 0 || mouseY > height || mouseX < 0 || mouseX > width) {
                 launcherPanel.visible = false
             }
             mouse.accepted = false
         }
-      }
-
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -72,27 +69,28 @@ PanelWindow {
             spacing: 12
 
             Sidebar{
-              theme : launcherPanel.theme
-              onAppLaunched: {
-                launcherPanel.openLauncher()
-              }
-              onAppSettings: {
-                launcherPanel.openSettings()
-              }
+                theme: launcherPanel.theme
+                onAppLaunched: {
+                    launcherPanel.openLauncher()
+                }
+                onAppSettings: {
+                    launcherPanel.openSettings()
+                }
             }
+
             SettingsPanel {
-              id: settingsPanel
-              Layout.fillWidth: true
-              Layout.fillHeight: true
-              theme: currentTheme
-              visible: launcherPanel.settingsPanelVisible
-              Behavior on Layout.preferredWidth {
-                  NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
-              }
+                id: settingsPanel
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                theme: launcherPanel.theme
+                visible: launcherPanel.settingsPanelVisible
+                Behavior on Layout.preferredWidth {
+                    NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
+                }
             }
 
             ColumnLayout {
-              visible: launcherPanel.launcherPanelVisible
+                visible: launcherPanel.launcherPanelVisible
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 spacing: 10
@@ -108,11 +106,11 @@ PanelWindow {
                 
                 LauncherSearch{
                     id: searchBox
-                    theme : launcherPanel.theme
-                    onSearchChanged: {
+                    theme: launcherPanel.theme
+                    onSearchChanged: (text) => {
                         launcherList.runSearch(text)
                     }
-                    onAccepted: {
+                    onAccepted: (text) => {
                         launcherList.runSearch(text)
                     }
                 }
@@ -122,10 +120,9 @@ PanelWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     onAppLaunched: {
-
-                        launcherPanel.visible = false     // 🔥 Ẩn panel
+                        closePanel()
                     }
-                    theme : launcherPanel.theme
+                    theme: launcherPanel.theme
                 }
             }
         }
@@ -133,15 +130,7 @@ PanelWindow {
 
     Shortcut {
         sequence: "Escape"
-        onActivated: launcherPanel.visible = false
+        onActivated: closePanel()
     }
 
-    onVisibleChanged: {
-        if (visible) {
-            forceActiveFocus()
-            if (searchBox) {
-                searchBox.forceActiveFocus()
-            }
-        }
-    }
 }

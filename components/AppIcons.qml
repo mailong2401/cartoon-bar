@@ -15,21 +15,23 @@ Rectangle {
     property bool launcherPanelVisible: false
     property var theme
 
-LauncherPanel {
-    id: launcherPanel
-    visible: appIconsRoot.launcherPanelVisible
-    theme: appIconsRoot.theme
-}
-
+    // Sử dụng Loader để load LauncherPanel
+    Loader {
+        id: launcherPanelLoader
+        source: "./Launcher/LauncherPanel.qml"
+        active: launcherPanelVisible
+        
+        onLoaded: {
+            item.theme = appIconsRoot.theme
+            item.visible = Qt.binding(function() { return launcherPanelVisible })
+        }
+    }
 
     Row {
         anchors.centerIn: parent
         spacing: 15
-        
         Repeater {
-            model: [
-                "../assets/dashboard.png",
-            ]
+            model: ["../assets/dashboard.png"]
 
             Image {
                 source: modelData
@@ -47,12 +49,23 @@ LauncherPanel {
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onClicked: {
-    console.log("Dashboard clicked!")
-    appIconsRoot.launcherPanelVisible = !appIconsRoot.launcherPanelVisible
-}
-
+                        console.log("Dashboard clicked!")
+                        launcherPanelVisible = !launcherPanelVisible
+                        
+                        // Focus vào search box khi mở panel
+                        if (launcherPanelVisible && launcherPanelLoader.item) {
+                            launcherPanelLoader.item.forceActiveFocus()
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    // Xử lý khi theme thay đổi
+    onThemeChanged: {
+        if (launcherPanelLoader.item) {
+            launcherPanelLoader.item.theme = theme
         }
     }
 }

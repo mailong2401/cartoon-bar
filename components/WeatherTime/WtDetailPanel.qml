@@ -21,9 +21,9 @@ PanelWindow {
 
     Rectangle {
         anchors.fill: parent
-        color: "#F5EEE6"
+        color: theme.primary.background
         radius: 8
-        border.color: "#4f4f5b"
+        border.color: theme.normal.black
         border.width: 3
 
         ColumnLayout {
@@ -33,9 +33,11 @@ PanelWindow {
             WtDetailHeader{
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
+                theme: wtDetailPanel.theme
               }
             WtDetailCalendar{
               anchors.horizontalCenter: parent.horizontalCenter
+              theme: wtDetailPanel.theme
 
             }
         }

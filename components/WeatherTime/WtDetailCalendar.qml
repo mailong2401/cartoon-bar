@@ -33,7 +33,7 @@ Rectangle {
                 flat: true
                 contentItem: Text {
                     text: parent.text
-                    color: "#4f4f5b"
+                    color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
                     font.pixelSize: 20
                     horizontalAlignment: Text.AlignHCenter
@@ -50,7 +50,7 @@ Rectangle {
                 font.pixelSize: 24
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
-                color: "#4f4f5b"
+                color: theme.primary.foreground
                 font.family: "ComicShannsMono Nerd Font"
             }
             
@@ -60,7 +60,7 @@ Rectangle {
                 flat: true
                 contentItem: Text {
                     text: parent.text
-                    color: "#4f4f5b"
+                    color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
                     font.pixelSize: 20
                     horizontalAlignment: Text.AlignHCenter
@@ -94,7 +94,7 @@ Rectangle {
                     Label {
                         text: modelData
                         font.bold: true
-                        color: "#4f4f5b"
+                        color: theme.primary.foreground
                         horizontalAlignment: Text.AlignHCenter
                         Layout.fillWidth: true
                         Layout.preferredHeight: 30
@@ -114,25 +114,25 @@ Rectangle {
                         Layout.preferredHeight: 40
                         color: {
                             if (modelData.isToday && modelData.isCurrentMonth) 
-                                return "#4f4f5b"
+                                return theme.button.background
                             else if (modelData.fullDate.toDateString() === selectedDate.toDateString())
-                                return "#B6AE9F"
+                                return theme.button.background_select
                             else
                                 return "transparent"
                         }
                         radius: 20
-                        border.color: modelData.isCurrentMonth ? "#444444" : "transparent"
+                        border.color: modelData.isCurrentMonth ? theme.button.border : "transparent"
                         
                         Label {
                             text: modelData.day
                             anchors.centerIn: parent
                             color: {
                                 if (!modelData.isCurrentMonth) 
-                                    return "#666666"
+                                    return theme.primary.dim_foreground
                                 else if (modelData.isToday)
                                     return "white"
                                 else
-                                    return "#4f4f5b"
+                                    return theme.primary.foreground
                             }
                             font {
                               bold: modelData.isToday

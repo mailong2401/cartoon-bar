@@ -12,7 +12,7 @@ Item {
         
         Text {
             text: "Lịch"
-            color: "#4f4f5b"
+            color: theme.primary.foreground
             font.pixelSize: 40
             font.bold: true
             font.family: "ComicShannsMono Nerd Font"
