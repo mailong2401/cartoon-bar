@@ -3,14 +3,8 @@
 
 ## Giới thiệu
 
-### Bar
-![Bar](docs/images/bar.png)
+![Bar](docs/videos/out.mp4)
 
-### Widget Launcher and wifi manager
-![Widget Launcher Wifi](docs/images/application-wifi.png)
-
-### Widget Cpu
-![Widget Cpu](docs/images/cpu.png)
 
 ## Tính năng chính
 
