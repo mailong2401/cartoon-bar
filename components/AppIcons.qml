@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import "./Launcher/"
 
 Rectangle {
     id: appIconsRoot
@@ -12,19 +13,14 @@ Rectangle {
     border.width: 3
 
     property bool launcherPanelVisible: false
-    property var theme : null
+    property var theme
 
-    // Sử dụng Loader để load LauncherPanel
-    Loader {
-        id: launcherPanelLoader
-        source: "./Launcher/LauncherPanel.qml"
-        active: launcherPanelVisible
+LauncherPanel {
+    id: launcherPanel
+    visible: appIconsRoot.launcherPanelVisible
+    theme: appIconsRoot.theme
+}
 
-        onLoaded: {
-            item.theme = theme
-            item.visible = Qt.binding(function() { return launcherPanelVisible })
-        }
-    }
 
     Row {
         anchors.centerIn: parent
@@ -51,14 +47,10 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onClicked: {
-                        console.log("Dashboard clicked!")
-                        launcherPanelVisible = !launcherPanelVisible
-                        
-                        // Focus vào search box khi mở panel
-                        if (launcherPanelVisible && launcherPanelLoader.item) {
-                            launcherPanelLoader.item.forceActiveFocus()
-                        }
-                    }
+    console.log("Dashboard clicked!")
+    appIconsRoot.launcherPanelVisible = !appIconsRoot.launcherPanelVisible
+}
+
                 }
             }
         }
