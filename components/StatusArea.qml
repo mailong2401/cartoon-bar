@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.Pipewire
 import "./WifiPanel/" as ComponentWifi
 
 Rectangle {
@@ -16,7 +17,30 @@ Rectangle {
     property string status_battery: "Unknown"
     property string capacity_battery: "..."
     property int signal_current: 0
-    property string volumeCurrent: "..."
+    property bool shouldShowOsd: false
+    property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
+    property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
+
+
+
+
+    PwObjectTracker {
+        objects: [ Pipewire.defaultAudioSink ]
+    }
+
+    Connections {
+        target: Pipewire.defaultAudioSink?.audio
+
+        function onVolumeChanged() {
+            root.shouldShowOsd = true;
+            hideTimer.restart();
+        }
+      }
+          Timer {
+        id: hideTimer
+        interval: 1000
+        onTriggered: root.shouldShowOsd = false
+    }
     
     // Global state để toggle panel
     property bool wifiPanelVisible: false
@@ -143,11 +167,7 @@ Rectangle {
         }
     }
 
-    function updateVolumeCurrentProcess() {
-        if (!volumeCurrentProcess.running) {
-            volumeCurrentProcess.running = true
-        }
-    }
+
 
     function updateWifi() {
         if (!wifiProcess.running) {
@@ -191,19 +211,6 @@ Rectangle {
         }
     }
 
-    function updateVolumeIcon() {
-        var volume = parseInt(root.volumeCurrent) || 0
-        if (volume === 0) {
-            volumeIcon.source = '../assets/volume/mute.png'
-            console.log("tat mic")
-        } else if (volume <= 30) {
-            volumeIcon.source = '../assets/volume/volume.png'
-        } else if (volume <= 70) {
-            volumeIcon.source = '../assets/volume/volume.png'
-        } else {
-            volumeIcon.source = '../assets/volume/volume.png'
-        }
-    }
 
     // Xử lý khi panel được mở/đóng
     onWifiPanelVisibleChanged: {
@@ -289,13 +296,14 @@ Rectangle {
 
                 Image {
                     id: volumeIcon
-                    source: '../assets/volume/volume-medium.png'
+                    source: isMuted || currentVolume === 0 ? "../assets/volume/mute.png" : "../assets/volume/volume.png"
                     width: 40
                     height: 40
                     sourceSize: Qt.size(40, 40)
                 }
                 Text {
-                    text: root.volumeCurrent
+                    text: isMuted ? "Muted" : Math.round(currentVolume * 100) + "%"
+
                     color: "#000"
                     font { 
                         pixelSize: 16
@@ -433,7 +441,6 @@ Rectangle {
         updateWifi()
         updateSignalWifiProcess()
         updateBatteryCappacityProcess()
-        updateVolumeCurrentProcess()
         
         // Chạy battery status ngay lập tức
         if (!batteryStatusProcess.running) {
@@ -474,10 +481,5 @@ Rectangle {
         }
     }
 
-    Timer {
-        interval: 1000
-        running: true
-        repeat: true
-        onTriggered: updateVolumeCurrentProcess()
-    }
+
 }
