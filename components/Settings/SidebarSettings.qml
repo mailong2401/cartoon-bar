@@ -23,7 +23,7 @@ Rectangle {
         spacing: 5
 
         Text {
-            text: "Cài đặt"
+            text: lang.settings.title
             color: theme.primary.foreground
             font {
                 family: "ComicShannsMono Nerd Font"

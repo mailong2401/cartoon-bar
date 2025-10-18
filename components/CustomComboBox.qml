@@ -4,7 +4,8 @@ import QtQuick.Layouts
 
 ComboBox {
     id: customCombo
-    property var theme : currentTheme
+    property var theme: (typeof currentTheme !== "undefined") ? currentTheme : {}
+
     property int popupWidth: width
     property int popupMaxHeight: 400
     property color popupBackground: theme.primary.background
@@ -114,13 +115,11 @@ ComboBox {
         id: delegateItem
         width: customCombo.popup.width
         height: 45
-        
         background: Rectangle {
             color: delegateItem.highlighted ? customCombo.itemSelectedColor : 
                    delegateItem.hovered ? customCombo.itemHoverColor : "transparent"
             radius: 6
         }
-        
         contentItem: Text {
             text: modelData
             color: theme.primary.foreground
