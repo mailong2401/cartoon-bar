@@ -33,7 +33,7 @@ chmod +x setup.sh
 
 # 🪟 Hyprland Keybindings
 
-Tổng hợp các **phím tắt (shortcuts)** được định nghĩa trong cấu hình Hyprland của bạn.
+Tổng hợp các **phím tắt (shortcuts)**
 
 ---
 
