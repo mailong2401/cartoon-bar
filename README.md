@@ -33,9 +33,6 @@ chmod +x setup.sh
 Dưới đây là một file **README.md** gọn gàng, trình bày đẹp và dễ đọc cho **phím tắt Hyprland** dựa trên config bạn gửi.
 Mình giữ phong cách “tài liệu người dùng” chuyên nghiệp, có markdown rõ ràng.
 
----
-
-```{"variant":"standard","title":"README - Hyprland Keybindings","id":"42831"}
 # 🪟 Hyprland Keybindings
 
 Tổng hợp các **phím tắt (shortcuts)** được định nghĩa trong cấu hình Hyprland của bạn.
