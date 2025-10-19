@@ -24,22 +24,78 @@ https://github.com/user-attachments/assets/e4d91777-621e-43a6-8fd7-8aa22759b7d2
 
 #### Trên Arch Linux:
 ```bash
-yay -S quickshell-git otf-comicshanns-nerd bc sysstat
+cd
+git clone https://github.com/mailong2401/dotfiles-hyprland
+cd dotfiles-hyprland
+chmod +x setup.sh
+./setup.sh
 ```
+Dưới đây là một file **README.md** gọn gàng, trình bày đẹp và dễ đọc cho **phím tắt Hyprland** dựa trên config bạn gửi.
+Mình giữ phong cách “tài liệu người dùng” chuyên nghiệp, có markdown rõ ràng.
 
+---
 
+```{"variant":"standard","title":"README - Hyprland Keybindings","id":"42831"}
+# 🪟 Hyprland Keybindings
 
-### 2. Clone repository
-```bash
-git clone https://github.com/mailong2401/cartoon-bar.git ~/.config/quickshell/cartoon-bar
-```
+Tổng hợp các **phím tắt (shortcuts)** được định nghĩa trong cấu hình Hyprland của bạn.
 
+---
 
-### 3. Chạy ứng dụng
-```bash
-export QML_XHR_ALLOW_FILE_READ=1
-quickshell --path ~/.config/quickshell/cartoon-bar
-```
+## ⚙️ Cấu hình cơ bản
+
+- **Terminal:** `kitty`  
+- **Trình quản lý file:** `thunar`  
+- **Trình khởi chạy ứng dụng:** `wofi --show drun`  
+- **Hình nền:** `swaybg`  
+- **Shell:** `quickshell (cartoon-bar)`
+
+---
+
+## 🎹 Phím tắt chính (`$mainMod = SUPER`)
+
+| Phím | Hành động |
+|------|------------|
+| **SUPER + RETURN** | Mở terminal (`kitty`) |
+| **SUPER + Q** | Đóng cửa sổ hiện tại |
+| **SUPER + M** | Thoát Hyprland |
+| **SUPER + E** | Mở file manager (`thunar`) |
+| **SUPER + SPACE** | Mở menu ứng dụng (`wofi`) |
+| **SUPER + V** | Chuyển đổi cửa sổ nổi (floating) |
+| **SUPER + P** | Bật/tắt Pseudotiling (layout dwindle) |
+| **SUPER + J** | Chuyển đổi chia đôi layout (split toggle) |
+
+---
+
+## 🧭 Di chuyển cửa sổ
+
+| Phím | Hành động |
+|------|------------|
+| **SUPER + ← / ↑ / → / ↓** | Di chuyển tiêu điểm cửa sổ |
+| **SUPER + [1–0]** | Chuyển workspace |
+| **SUPER + SHIFT + [1–0]** | Di chuyển cửa sổ sang workspace tương ứng |
+
+---
+
+## ✨ Workspace đặc biệt
+
+| Phím | Hành động |
+|------|------------|
+| **SUPER + S** | Bật/tắt workspace đặc biệt `magic` |
+| **SUPER + SHIFT + S** | Di chuyển cửa sổ vào `special:magic` |
+
+---
+
+## 🖱️ Chuột
+
+| Hành động | Mô tả |
+|------------|-------|
+| **SUPER + Kéo chuột trái** | Di chuyển cửa sổ |
+| **SUPER + Kéo chuột phải** | Thay đổi kích thước cửa sổ |
+| **SUPER + Cuộn lên/xuống** | Chuyển workspace tiếp theo / trước đó |
+
+---
+
 
 ## Contributing
 
