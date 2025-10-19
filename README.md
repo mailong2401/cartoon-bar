@@ -30,8 +30,6 @@ cd dotfiles-hyprland
 chmod +x setup.sh
 ./setup.sh
 ```
-Dưới đây là một file **README.md** gọn gàng, trình bày đẹp và dễ đọc cho **phím tắt Hyprland** dựa trên config bạn gửi.
-Mình giữ phong cách “tài liệu người dùng” chuyên nghiệp, có markdown rõ ràng.
 
 # 🪟 Hyprland Keybindings
 
