@@ -15,14 +15,11 @@ https://github.com/user-attachments/assets/e4d91777-621e-43a6-8fd7-8aa22759b7d2
 ## Yêu cầu hệ thống
 
 - **Hệ điều hành**: Arch Linux
-- **Window manager**: Hyprland
 
 
 ## Cài đặt các package cần thiết
 
-### 1. Cài đặt quickshell va các dependencies
-
-#### Trên Arch Linux:
+### Trên Arch Linux:
 ```bash
 cd
 git clone https://github.com/mailong2401/dotfiles-hyprland
