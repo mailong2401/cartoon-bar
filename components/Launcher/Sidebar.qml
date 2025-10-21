@@ -17,8 +17,6 @@ Rectangle {
     signal appLaunched()
     signal appSettings()
 
-
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
@@ -59,6 +57,7 @@ Rectangle {
                     color: mouseAreaLauncher.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaLauncher.containsMouse
                     
                     scale: mouseAreaLauncher.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
@@ -66,6 +65,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaLauncher.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -76,11 +94,11 @@ Rectangle {
                 onClicked: {
                     console.log("Launcher được nhấn")
                     root.appLaunched()
-                    // Thêm code để mở cài đặt ở đây
                 }
             }
         }
-          // Cài đặt
+
+        // Cài đặt
         Rectangle {
             id: settingsButton
             Layout.fillWidth: true
@@ -115,6 +133,7 @@ Rectangle {
                     color: mouseAreaSettings.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaSettings.containsMouse
                     
                     scale: mouseAreaSettings.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
@@ -122,6 +141,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaSettings.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -132,7 +170,6 @@ Rectangle {
                 onClicked: {
                     console.log("Cài đặt được nhấn")
                     root.appSettings()
-                    // Thêm code để mở cài đặt ở đây
                 }
             }
         }
@@ -147,11 +184,8 @@ Rectangle {
             border.color: mouseAreaSleep.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
             
-            // Hiệu ứng scale khi hover
             scale: mouseAreaSleep.containsPress ? 0.98 : 1.0
             Behavior on scale { NumberAnimation { duration: 100 } }
-            
-            // Hiệu ứng màu khi hover
             Behavior on color { ColorAnimation { duration: 200 } }
             Behavior on border.color { ColorAnimation { duration: 100 } }
 
@@ -166,7 +200,6 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
-                    // Hiệu ứng icon khi hover
                     rotation: mouseAreaSleep.containsMouse ? 5 : 0
                     Behavior on rotation { NumberAnimation { duration: 200 } }
                 }
@@ -176,14 +209,33 @@ Rectangle {
                     color: mouseAreaSleep.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaSleep.containsMouse
                     
-                    // Hiệu ứng text khi hover
                     scale: mouseAreaSleep.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
                     Behavior on color { ColorAnimation { duration: 200 } }
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaSleep.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -194,7 +246,6 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Chế độ ngủ được nhấn")
-                    // Thêm code để thực hiện chế độ ngủ ở đây
                 }
             }
         }
@@ -234,6 +285,7 @@ Rectangle {
                     color: mouseAreaLock.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaLock.containsMouse
                     
                     scale: mouseAreaLock.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
@@ -241,6 +293,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaLock.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -251,12 +322,9 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Khóa màn hình được nhấn")
-                    // Thêm code để khóa màn hình ở đây
                 }
             }
         }
-
-        
 
         // Đăng xuất
         Rectangle {
@@ -293,6 +361,7 @@ Rectangle {
                     color: mouseAreaLogout.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaLogout.containsMouse
                     
                     scale: mouseAreaLogout.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
@@ -300,6 +369,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaLogout.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -310,7 +398,6 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Đăng xuất được nhấn")
-                    // Thêm code để đăng xuất ở đây
                 }
             }
         }
@@ -350,6 +437,7 @@ Rectangle {
                     color: mouseAreaRestart.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                     font.pixelSize: 16
                     font.family: "ComicShannsMono Nerd Font"
+                    font.bold: mouseAreaRestart.containsMouse
                     
                     scale: mouseAreaRestart.containsMouse ? 1.05 : 1.0
                     Behavior on scale { NumberAnimation { duration: 200 } }
@@ -357,6 +445,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaRestart.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -367,7 +474,6 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Khởi động lại được nhấn")
-                    // Thêm code để khởi động lại ở đây
                 }
             }
         }
@@ -415,6 +521,25 @@ Rectangle {
                 }
 
                 Item { Layout.fillWidth: true }
+
+                // Indicator khi selected
+                Rectangle {
+                    Layout.preferredWidth: 4
+                    Layout.preferredHeight: 20
+                    radius: 2
+                    color: theme.accent.color
+                    visible: false // Sẽ được điều khiển bởi trạng thái selected
+                    opacity: mouseAreaShutdown.containsMouse ? 1.0 : 0.8
+                    
+                    scale: false ? 1.0 : 0.0 // Thay false bằng điều kiện selected thực tế
+                    Behavior on scale { 
+                        NumberAnimation { 
+                            duration: 300; 
+                            easing.type: Easing.OutBack 
+                        } 
+                    }
+                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                }
             }
 
             MouseArea {
@@ -425,7 +550,6 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Tắt máy được nhấn")
-                    // Thêm code để tắt máy ở đây
                 }
             }
         }

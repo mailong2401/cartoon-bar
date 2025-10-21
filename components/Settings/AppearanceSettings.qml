@@ -10,11 +10,9 @@ Item {
         anchors.fill: parent
         anchors.margins: 20
         clip: true
-        
         ColumnLayout {
             width: parent.width
             spacing: 20
-            
             Text {
                 text: "Giao diện"
                 color: theme.primary.foreground
