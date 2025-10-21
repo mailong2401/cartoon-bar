@@ -13,83 +13,143 @@ Rectangle {
     Layout.preferredWidth: 200
     Layout.fillHeight: true
     color: theme.primary.dim_background
-    radius: 8
+    radius: 12
     border.color: theme.normal.black
     border.width: 2
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 10
-        spacing: 5
+        anchors.margins: 12
+        spacing: 10
 
         Text {
             text: lang.settings.title
             color: theme.primary.foreground
             font {
                 family: "ComicShannsMono Nerd Font"
-                pixelSize: 30
+                pixelSize: 26
                 bold: true
             }
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 10
-            Layout.bottomMargin: 20
+            Layout.topMargin: 15
+            Layout.bottomMargin: 25
         }
 
         // Danh mục cài đặt
         Repeater {
             model: [
-                { name: lang.settings.general, icon: "⚙️", category: "general" },
-                { name: lang.settings.appearance, icon: "🎨", category: "appearance" },
-                { name: lang.settings.network, icon: "🌐", category: "network" },
-                { name: lang.settings.audio, icon: "🔊", category: "audio" },
-                { name: lang.settings.performance, icon: "📊", category: "performance" },
-                { name: lang.settings.shortcuts, icon: "⌨️", category: "shortcuts" },
-                { name: lang.settings.system, icon: "💻", category: "system" }
+                { name: lang.settings.general, icon: "../../assets/settings/home.png", category: "general" },
+                { name: lang.settings.appearance, icon: "../../assets/settings/paint-brush.png", category: "appearance" },
+                { name: lang.settings.network, icon: "../../assets/settings/network.png", category: "network" },
+                { name: lang.settings.audio, icon: "../../assets/settings/volume.png", category: "audio" },
+                { name: lang.settings.performance, icon: "../../assets/settings/speedometer.png", category: "performance" },
+                { name: lang.settings.shortcuts, icon: "../../assets/settings/keyboard.png", category: "shortcuts" },
+                { name: lang.settings.system, icon: "../../assets/settings/mark.png", category: "system" }
             ]
 
             delegate: Rectangle {
                 id: categoryDelegate
                 Layout.fillWidth: true
-                height: 45
+                Layout.preferredHeight: 50
                 radius: 8
-
+                
                 property bool hovered: false
                 property bool selected: sidebarSettings.currentIndex === index
 
-                color: selected ? theme.button.background_select
-                      : hovered ? theme.button.background + "80"
-                      : "transparent"
-
-                border.color: selected ? theme.button.border_select : "transparent"
+                color: mouseArea.containsPress ? theme.button.background_select : 
+                       hovered ? theme.button.background_select + "80" : 
+                       selected ? theme.button.background_select : theme.button.background
+                
+                border.color: mouseArea.containsPress ? theme.button.border_select : 
+                             hovered ? theme.button.border_select + "80" : 
+                             selected ? theme.button.border_select : theme.button.border
                 border.width: 2
+                
+                // Hiệu ứng scale
+                scale: mouseArea.containsPress ? 0.98 : 1.0
+                Behavior on scale { NumberAnimation { duration: 100 } }
+                
+                // Hiệu ứng màu
+                Behavior on color { ColorAnimation { duration: 200 } }
+                Behavior on border.color { ColorAnimation { duration: 100 } }
 
-                Row {
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 8
                     spacing: 12
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 15
-
-                    Text {
-                        text: modelData.icon
-                        color: theme.primary.foreground
-                        font {
-                            family: "ComicShannsMono Nerd Font"
-                            pixelSize: 18
+                    
+                    Image {
+                        source: modelData.icon
+                        Layout.preferredHeight: 28
+                        Layout.preferredWidth: 28
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        
+                        // Hiệu ứng xoay icon khi hover
+                        rotation: hovered ? (index % 2 === 0 ? 10 : -10) : 0
+                        Behavior on rotation { 
+                            NumberAnimation { 
+                                duration: 300; 
+                                easing.type: Easing.OutBack 
+                            } 
+                        }
+                        
+                        // Hiệu ứng scale icon khi hover
+                        scale: hovered ? 1.1 : 1.0
+                        Behavior on scale { 
+                            NumberAnimation { 
+                                duration: 200; 
+                                easing.type: Easing.OutCubic 
+                            } 
                         }
                     }
 
                     Text {
                         text: modelData.name
-                        color: theme.primary.foreground
+                        color: hovered ? theme.primary.bright_foreground : 
+                               selected ? theme.primary.bright_foreground : theme.primary.foreground
                         font {
                             family: "ComicShannsMono Nerd Font"
-                            pixelSize: 18
-                            bold: selected
+                            pixelSize: 16
+                            bold: selected || hovered
                         }
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+                        
+                        // Hiệu ứng scale text khi hover
+                        scale: hovered ? 1.05 : 1.0
+                        Behavior on scale { 
+                            NumberAnimation { 
+                                duration: 200; 
+                                easing.type: Easing.OutCubic 
+                            } 
+                        }
+                        Behavior on color { ColorAnimation { duration: 200 } }
+                    }
+                    
+                    // Indicator khi selected
+                    Rectangle {
+                        Layout.preferredWidth: 4
+                        Layout.preferredHeight: 20
+                        radius: 2
+                        color: theme.accent.color
+                        visible: selected
+                        opacity: hovered ? 1.0 : 0.8
+                        
+                        // Hiệu ứng xuất hiện
+                        scale: selected ? 1.0 : 0.0
+                        Behavior on scale { 
+                            NumberAnimation { 
+                                duration: 300; 
+                                easing.type: Easing.OutBack 
+                            } 
+                        }
+                        Behavior on opacity { NumberAnimation { duration: 200 } }
                     }
                 }
 
                 MouseArea {
+                    id: mouseArea
                     anchors.fill: parent
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
@@ -108,4 +168,3 @@ Rectangle {
         Item { Layout.fillHeight: true } // Spacer
     }
 }
-
