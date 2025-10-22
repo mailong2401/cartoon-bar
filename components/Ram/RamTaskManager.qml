@@ -46,7 +46,7 @@ Item {
     // Cập nhật thời gian hiển thị
     Timer {
         id: clockTimer
-        interval: 1000
+        interval: 2000
         running: true
         repeat: true
         onTriggered: {

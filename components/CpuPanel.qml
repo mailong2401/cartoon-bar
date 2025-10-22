@@ -361,7 +361,7 @@ function togglePanel(panelName) {
     }
 
     Timer {
-        interval: 5000 // Cập nhật Memory mỗi 5 giây
+        interval: 2000 // Cập nhật Memory mỗi 5 giây
         running: true
         repeat: true
         onTriggered: updateMemory()
