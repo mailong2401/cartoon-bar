@@ -7,6 +7,7 @@ import "./components"
 import "./components/Cpu/"
 import "./components/Launcher/"
 import "./components/Settings/"
+import "./components/Ram/"
 
 ShellRoot {
     id: root

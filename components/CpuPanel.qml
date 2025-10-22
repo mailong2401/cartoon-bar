@@ -28,9 +28,20 @@ Rectangle {
         onLoaded: {
             item.anchors.top = parent.bottom
             item.anchors.left = parent.left
-            item.visible = Qt.binding(function() { return launcherPanelVisible })
+            item.visible = Qt.binding(function() { return cpuPanelVisible })
         }
-    }
+      }
+      Loader {
+        id: ramPanelLoader
+        source: "./Ram/RamDetailPanel.qml"
+        active: ramPanelVisible
+        onLoaded : {
+            item.anchors.top = parent.bottom
+            item.anchors.left = parent.left
+            item.visible = Qt.binding(function() { return ramPanelVisible })
+
+        }
+      }
 
 
     // Process lấy CPU usage

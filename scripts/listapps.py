@@ -33,15 +33,7 @@ DESKTOP_DIRS = [
 
 # Expanded icon directories with better search order
 ICON_DIRS = [
-    "/usr/share/icons/Adwaita",
-    "/usr/share/icons/breeze",
     "/usr/share/icons/Papirus",
-    "/usr/share/icons/oxygen",
-    "/usr/share/icons/gnome",
-    "/usr/share/icons/elementary",
-    "/usr/share/icons/ubuntu-mono-dark",
-    "/usr/share/icons/ubuntu-mono-light",
-    "/usr/share/pixmaps",
     os.path.expanduser("~/.local/share/icons"),
     os.path.expanduser("~/.icons")
 ]

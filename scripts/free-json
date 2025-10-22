@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# Script đọc RAM & SWAP từ /proc/meminfo và in ra JSON (đơn vị MB)
+# Tương thích với mọi hệ thống Linux, kể cả không có swap
+
+get_value() {
+  grep -m1 "^$1:" /proc/meminfo | awk '{print $2}'
+}
+
+# RAM
+mem_total=$(get_value MemTotal)
+mem_free=$(get_value MemFree)
+mem_avail=$(get_value MemAvailable)
+mem_buffers=$(get_value Buffers)
+mem_cached=$(get_value "^Cached")
+mem_shared=$(get_value Shmem)
+
+# Nếu biến nào rỗng thì gán = 0
+for v in mem_total mem_free mem_avail mem_buffers mem_cached mem_shared; do
+  eval "[ -z \$$v ] && $v=0"
+done
+
+# Tính toán RAM (KB)
+mem_used=$((mem_total - mem_free - mem_buffers - mem_cached))
+if [ "$mem_total" -gt 0 ]; then
+  mem_percent=$((mem_used * 100 / mem_total))
+else
+  mem_percent=0
+fi
+
+# SWAP (KB)
+swap_total=$(get_value SwapTotal)
+swap_free=$(get_value SwapFree)
+if [ -z "$swap_total" ] || [ "$swap_total" -eq 0 ]; then
+  swap_total=0
+  swap_free=0
+  swap_used=0
+  swap_percent=0
+else
+  swap_used=$((swap_total - swap_free))
+  swap_percent=$((swap_used * 100 / swap_total))
+fi
+
+# Chuyển KB → MB (làm tròn)
+to_mb() {
+  echo $((($1 + 512) / 1024))
+}
+
+mem_total=$(to_mb "$mem_total")
+mem_used=$(to_mb "$mem_used")
+mem_free=$(to_mb "$mem_free")
+mem_avail=$(to_mb "$mem_avail")
+mem_buffers=$(to_mb "$mem_buffers")
+mem_cached=$(to_mb "$mem_cached")
+mem_shared=$(to_mb "$mem_shared")
+swap_total=$(to_mb "$swap_total")
+swap_used=$(to_mb "$swap_used")
+swap_free=$(to_mb "$swap_free")
+
+# In ra JSON
+printf '{
+  "memory": {
+    "total_mb": %d,
+    "used_mb": %d,
+    "free_mb": %d,
+    "available_mb": %d,
+    "buffers_mb": %d,
+    "cached_mb": %d,
+    "shared_mb": %d,
+    "used_percent": %d
+  },
+  "swap": {
+    "total_mb": %d,
+    "used_mb": %d,
+    "free_mb": %d,
+    "used_percent": %d
+  }
+}\n' \
+  "$mem_total" "$mem_used" "$mem_free" "$mem_avail" "$mem_buffers" "$mem_cached" "$mem_shared" "$mem_percent" \
+  "$swap_total" "$swap_used" "$swap_free" "$swap_percent"
