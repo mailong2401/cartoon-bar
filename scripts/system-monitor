@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# System Monitor - Combined RAM usage and process list
+
+{
+    # Lấy thông tin RAM từ free
+    RAM_INFO=$(free -m | awk '
+    NR==2 {
+        total=$2
+        used=$3
+        free=$4
+        available=$7
+        used_percent=($3/$2)*100
+        printf "\"memory\": {\"total_mb\": %d, \"used_mb\": %d, \"free_mb\": %d, \"available_mb\": %d, \"used_percent\": %.1f}", total, used, free, available, used_percent
+    }
+    NR==3 {
+        total=$2
+        used=$3
+        free=$4
+        used_percent=($2>0 ? ($3/$2)*100 : 0)
+        printf ", \"swap\": {\"total_mb\": %d, \"used_mb\": %d, \"free_mb\": %d, \"used_percent\": %.1f}", total, used, free, used_percent
+    }')
+
+    # Lấy top processes
+    PROCESS_LIST=$(ps -eo pid,comm,%mem,rss --sort=-rss --no-headers | head -n 10 | awk '
+    BEGIN {
+        printf "\"processes\": ["
+        count = 0
+    }
+    {
+        gsub(/"/, "\\\"", $2)
+        if (count > 0) printf ","
+        printf "{\"pid\": %d, \"name\": \"%s\", \"percent\": %.1f, \"rss_mb\": %.1f}", $1, $2, $3, $4/1024
+        count++
+    }
+    END {
+        printf "]"
+    }')
+
+    echo "{ $RAM_INFO, $PROCESS_LIST }"
+}

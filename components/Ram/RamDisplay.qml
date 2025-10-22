@@ -39,7 +39,7 @@ Item {
         running: false
         stdout: StdioCollector { id: outputCollector }
 
-        command: [Qt.resolvedUrl("../../scripts/free-json")]
+        command: [Qt.resolvedUrl("../../scripts/memory-info.py")]
 
         onExited: {
             try {

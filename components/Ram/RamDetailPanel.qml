@@ -25,13 +25,18 @@ PanelWindow {
         border.color: theme.normal.black
         border.width: 3
 
-        ColumnLayout {
+        RowLayout {
             anchors.fill: parent
             anchors.margins: 16
             spacing: 16
 
             RamDisplay {
 
+            }
+
+            RamTaskManager {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
             }
 
         }
