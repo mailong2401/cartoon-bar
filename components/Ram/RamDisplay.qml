@@ -8,12 +8,18 @@ import Quickshell
 Item {
     id: ramDisplay
     width: 320
-    height: 140
+    height: 160  // Tăng chiều cao để chứa thêm thông tin
 
-    property color usedRamColor: "#4CAF50"       // xanh lá
-    property color freeRamColor: "#444"          // xám
-    property color usedSwapColor: "#2196F3"      // xanh dương
-    property color freeSwapColor: "#444"         // xám
+    // Catppuccin Mocha color scheme
+    property color usedRamColor: theme.normal.green       // "#a6da95"
+    property color freeRamColor: theme.normal.black       // "#494d64" 
+    property color usedSwapColor: theme.normal.blue       // "#8aadf4"
+    property color freeSwapColor: theme.normal.black      // "#494d64"
+    property color textColor: theme.primary.foreground    // "#cad3f5"
+    property color dimTextColor: theme.primary.dim_foreground // "#8087a2"
+    property color borderColor: theme.bright.black        // "#5b6078"
+    property color separatorColor: theme.normal.black     // "#494d64"
+    
     property int ramPercent: 0
     property int swapPercent: 0
     property int updateInterval: 2000
@@ -26,6 +32,9 @@ Item {
     property int swapTotal: 0
     property int swapUsed: 0
     property int swapFree: 0
+
+    // Biến cho animation
+    property bool dataLoaded: false
 
     Timer {
         interval: updateInterval
@@ -57,6 +66,8 @@ Item {
                     ramDisplay.swapTotal = data.swap.total_mb
                     ramDisplay.swapUsed = data.swap.used_mb
                     ramDisplay.swapFree = data.swap.free_mb
+                    
+                    ramDisplay.dataLoaded = true
                 } else {
                     console.warn("RAM script returned empty output")
                 }
@@ -66,134 +77,284 @@ Item {
         }
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: theme.primary.background
+        radius: 12
+        border.color: borderColor
+        border.width: 2
+        
+        // Background pattern nhẹ
+        Rectangle {
+            anchors.fill: parent
+            color: "transparent"
+            opacity: 0.1
+            radius: 12
+            
+            Canvas {
+                anchors.fill: parent
+                onPaint: {
+                    var ctx = getContext("2d")
+                    ctx.strokeStyle = theme.primary.foreground
+                    ctx.lineWidth = 0.5
+                    
+                    // Vẽ grid pattern nhẹ
+                    for (var x = 0; x < width; x += 15) {
+                        ctx.beginPath()
+                        ctx.moveTo(x, 0)
+                        ctx.lineTo(x, height)
+                        ctx.stroke()
+                    }
+                    for (var y = 0; y < height; y += 15) {
+                        ctx.beginPath()
+                        ctx.moveTo(0, y)
+                        ctx.lineTo(width, y)
+                        ctx.stroke()
+                    }
+                }
+            }
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
-        spacing: 12
+        anchors.margins: 16
+        spacing: 16
+
+        // Header với icon
+        RowLayout {
+            Layout.fillWidth: true
+            
+            Text {
+                text: "💾"
+                font.pointSize: 16
+                color: theme.normal.blue
+            }
+            
+            Text {
+                text: "Memory Monitor"
+                color: textColor
+                font.bold: true
+                font.pointSize: 14
+            }
+            
+            Item { Layout.fillWidth: true }
+            
+            // Usage indicator
+            Rectangle {
+                width: 8
+                height: 8
+                radius: 4
+                color: ramPercent > 80 ? theme.normal.red : 
+                       ramPercent > 60 ? theme.normal.yellow : theme.normal.green
+            }
+        }
 
         // RAM Section
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 4
+            spacing: 6
 
-            // Header với phần trăm
-            RowLayout {
+            // Header với phần trăm và thanh tiến trình
+            ColumnLayout {
                 Layout.fillWidth: true
-                Text {
-                    text: "RAM"
-                    color: "white"
-                    font.bold: true
-                    font.pointSize: 11
-                }
-                Item { Layout.fillWidth: true } // Spacer
-                Text {
-                    text: ramPercent + "%"
-                    color: "white"
-                    font.bold: true
-                    font.pointSize: 11
-                }
-            }
+                spacing: 4
 
-            // Progress bar
-            Rectangle {
-                Layout.fillWidth: true
-                height: 16
-                radius: 8
-                color: freeRamColor
+                RowLayout {
+                    Layout.fillWidth: true
+                    
+                    Text {
+                        text: "RAM"
+                        color: textColor
+                        font.bold: true
+                        font.pointSize: 11
+                    }
+                    
+                    Item { Layout.fillWidth: true }
+                    
+                    Text {
+                        text: ramPercent + "%"
+                        color: getUsageColor(ramPercent)
+                        font.bold: true
+                        font.pointSize: 11
+                    }
+                }
 
+                // Progress bar với gradient
                 Rectangle {
-                    width: parent.width * (ramPercent / 100)
-                    height: parent.height
-                    radius: 8
-                    color: usedRamColor
-                    Behavior on width { NumberAnimation { duration: 500 } }
+                    Layout.fillWidth: true
+                    height: 20
+                    radius: 10
+                    color: freeRamColor
+
+                    Rectangle {
+                        width: parent.width * (ramPercent / 100)
+                        height: parent.height
+                        radius: 10
+                        gradient: Gradient {
+                            GradientStop { position: 0.0; color: Qt.lighter(usedRamColor, 1.2) }
+                            GradientStop { position: 1.0; color: usedRamColor }
+                        }
+                        Behavior on width { 
+                            NumberAnimation { 
+                                duration: 800; 
+                                easing.type: Easing.OutCubic 
+                            } 
+                        }
+                    }
+
+                    // Text overlay trên progress bar
+                    Text {
+                        anchors.centerIn: parent
+                        text: ramUsed + " / " + ramTotal + " MB"
+                        color: theme.primary.background
+                        font.bold: true
+                        font.pointSize: 9
+                        opacity: 0.8
+                    }
                 }
             }
 
-            // Chi tiết RAM
+            // Chi tiết RAM dạng grid
             GridLayout {
                 Layout.fillWidth: true
-                columns: 2
-                rowSpacing: 2
-                columnSpacing: 10
+                columns: 3
+                rowSpacing: 4
+                columnSpacing: 8
 
-                Text {
-                    text: "Đã dùng:"
-                    color: "#CCCCCC"
-                    font.pointSize: 9
-                }
-                Text {
-                    text: ramUsed + " MB / " + ramTotal + " MB"
-                    color: "white"
-                    font.pointSize: 9
-                    font.bold: true
-                }
-
-                Text {
-                    text: "Còn trống:"
-                    color: "#CCCCCC"
-                    font.pointSize: 9
-                }
-                Text {
-                    text: ramFree + " MB"
-                    color: "white"
-                    font.pointSize: 9
+                // Used
+                Column {
+                    Layout.alignment: Qt.AlignHCenter
+                    Text {
+                        text: "Used"
+                        color: dimTextColor
+                        font.pointSize: 8
+                    }
+                    Text {
+                        text: ramUsed + " MB"
+                        color: theme.normal.red
+                        font.pointSize: 10
+                        font.bold: true
+                    }
                 }
 
-                Text {
-                    text: "Khả dụng:"
-                    color: "#CCCCCC"
-                    font.pointSize: 9
+                // Free
+                Column {
+                    Layout.alignment: Qt.AlignHCenter
+                    Text {
+                        text: "Free"
+                        color: dimTextColor
+                        font.pointSize: 8
+                    }
+                    Text {
+                        text: ramFree + " MB"
+                        color: theme.normal.green
+                        font.pointSize: 10
+                        font.bold: true
+                    }
                 }
-                Text {
-                    text: ramAvailable + " MB"
-                    color: "white"
-                    font.pointSize: 9
+
+                // Available
+                Column {
+                    Layout.alignment: Qt.AlignHCenter
+                    Text {
+                        text: "Available"
+                        color: dimTextColor
+                        font.pointSize: 8
+                    }
+                    Text {
+                        text: ramAvailable + " MB"
+                        color: theme.normal.cyan
+                        font.pointSize: 10
+                        font.bold: true
+                    }
                 }
             }
         }
 
+        // Separator với pattern
         Rectangle {
             Layout.fillWidth: true
             height: 1
-            color: "#555555"
+            color: "transparent"
+            
+            Rectangle {
+                anchors.centerIn: parent
+                width: parent.width * 0.8
+                height: 1
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "transparent" }
+                    GradientStop { position: 0.2; color: separatorColor }
+                    GradientStop { position: 0.8; color: separatorColor }
+                    GradientStop { position: 1.0; color: "transparent" }
+                }
+            }
         }
 
         // SWAP Section
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 4
+            spacing: 6
 
             // Header với phần trăm
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
-                Text {
-                    text: "SWAP"
-                    color: "white"
-                    font.bold: true
-                    font.pointSize: 11
-                }
-                Item { Layout.fillWidth: true } // Spacer
-                Text {
-                    text: swapPercent + "%"
-                    color: "white"
-                    font.bold: true
-                    font.pointSize: 11
-                }
-            }
+                spacing: 4
 
-            // Progress bar
-            Rectangle {
-                Layout.fillWidth: true
-                height: 12
-                radius: 6
-                color: freeSwapColor
+                RowLayout {
+                    Layout.fillWidth: true
+                    
+                    Text {
+                        text: "SWAP"
+                        color: textColor
+                        font.bold: true
+                        font.pointSize: 11
+                    }
+                    
+                    Item { Layout.fillWidth: true }
+                    
+                    Text {
+                        text: swapPercent + "%"
+                        color: getUsageColor(swapPercent)
+                        font.bold: true
+                        font.pointSize: 11
+                        opacity: swapTotal > 0 ? 1 : 0.3
+                    }
+                }
 
+                // Progress bar
                 Rectangle {
-                    width: parent.width * (swapPercent / 100)
-                    height: parent.height
-                    radius: 6
-                    color: usedSwapColor
-                    Behavior on width { NumberAnimation { duration: 500 } }
+                    Layout.fillWidth: true
+                    height: 14
+                    radius: 7
+                    color: freeSwapColor
+                    opacity: swapTotal > 0 ? 1 : 0.3
+
+                    Rectangle {
+                        width: parent.width * (swapPercent / 100)
+                        height: parent.height
+                        radius: 7
+                        gradient: Gradient {
+                            GradientStop { position: 0.0; color: Qt.lighter(usedSwapColor, 1.2) }
+                            GradientStop { position: 1.0; color: usedSwapColor }
+                        }
+                        Behavior on width { 
+                            NumberAnimation { 
+                                duration: 800; 
+                                easing.type: Easing.OutCubic 
+                            } 
+                        }
+                    }
+
+                    // Text overlay cho SWAP
+                    Text {
+                        anchors.centerIn: parent
+                        text: swapTotal > 0 ? (swapUsed + " / " + swapTotal + " MB") : "No SWAP"
+                        color: theme.primary.background
+                        font.bold: true
+                        font.pointSize: 8
+                        opacity: 0.8
+                    }
                 }
             }
 
@@ -202,32 +363,72 @@ Item {
                 Layout.fillWidth: true
                 columns: 2
                 rowSpacing: 2
-                columnSpacing: 10
+                columnSpacing: 8
+                opacity: swapTotal > 0 ? 1 : 0.3
 
                 Text {
-                    text: "Đã dùng:"
-                    color: "#CCCCCC"
-                    font.pointSize: 9
+                    text: "Used:"
+                    color: dimTextColor
+                    font.pointSize: 8
                 }
                 Text {
-                    text: swapUsed + " MB / " + swapTotal + " MB"
-                    color: "white"
+                    text: swapUsed + " MB"
+                    color: theme.normal.blue
                     font.pointSize: 9
                     font.bold: true
                 }
 
                 Text {
-                    text: "Còn trống:"
-                    color: "#CCCCCC"
-                    font.pointSize: 9
+                    text: "Free:"
+                    color: dimTextColor
+                    font.pointSize: 8
                 }
                 Text {
                     text: swapFree + " MB"
-                    color: "white"
+                    color: theme.normal.green
                     font.pointSize: 9
+                    font.bold: true
                 }
             }
         }
+    }
+
+    // Loading animation
+    Rectangle {
+        anchors.fill: parent
+        color: theme.primary.background
+        radius: 12
+        opacity: dataLoaded ? 0 : 1
+        visible: opacity > 0
+        
+        Behavior on opacity { NumberAnimation { duration: 300 } }
+        
+        Column {
+            anchors.centerIn: parent
+            spacing: 12
+            
+            Text {
+                text: "⏳"
+                font.pointSize: 20
+                color: dimTextColor
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            
+            Text {
+                text: "Loading memory data..."
+                color: dimTextColor
+                font.pointSize: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+    }
+
+    // Helper function để lấy màu theo phần trăm sử dụng
+    function getUsageColor(percent) {
+        if (percent > 90) return theme.normal.red
+        if (percent > 70) return theme.normal.yellow
+        if (percent > 50) return theme.normal.green
+        return theme.normal.cyan
     }
 
     Component.onCompleted: ramFetcher.running = true

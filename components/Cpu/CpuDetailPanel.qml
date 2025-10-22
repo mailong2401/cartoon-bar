@@ -121,7 +121,6 @@ PanelWindow {
             CpuDetailHeader {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
-                onCloseClicked: detailPanel.closeRequested()
             }
 
             // Thông tin CPU

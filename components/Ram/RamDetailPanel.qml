@@ -8,8 +8,8 @@ PanelWindow {
     id: root
 
     // Sử dụng WlrLayershell để căn giữa
-    implicitWidth: 1030
-    implicitHeight: 850
+    implicitWidth: 930
+    implicitHeight: 930
     margins {
         top: 10
         left: (Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2
@@ -25,18 +25,24 @@ PanelWindow {
         border.color: theme.normal.black
         border.width: 3
 
-        RowLayout {
+        ColumnLayout {
             anchors.fill: parent
             anchors.margins: 16
-            spacing: 16
+            spacing: 30
+
+            RamDetailHeader {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 40
+            }
 
             RamDisplay {
-
+                Layout.fillWidth: true
+                Layout.preferredHeight: 300
             }
 
             RamTaskManager {
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 500
             }
 
         }
