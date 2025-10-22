@@ -21,6 +21,43 @@
   "music": {
     "nowPlaying": "再生中",
     "paused": "一時停止中"
+  },
+  "ram": {
+    "title": "プロセスマネージャー",
+    "loading": {
+      "title": "⏳",
+      "message": "プロセスリストを読み込み中..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "プロセス名",
+      "ram_percent": "RAM %",
+      "memory": "メモリ"
+    },
+    "footer": {
+      "process_count_label": "プロセス数",
+      "total_ram_label": "合計RAM使用量",
+      "memory_distribution_label": "メモリ分布",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "プロセスモニター",
+      "last_update": "最終更新"
+    },
+    "status_colors": {
+      "critical": "危険",
+      "warning": "警告",
+      "normal": "正常",
+      "low": "低"
+    },
+    "distribution": {
+      "na": "データなし",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "スクリプトがデータを返しませんでした",
+      "parse_error": "出力データの解析エラー"
+    }
   }
 }
-

@@ -17,6 +17,7 @@ PanelWindow {
     color: "transparent"
 
     property var theme : currentTheme
+    property var lang : currentLanguage
 
     Rectangle {
         anchors.fill: parent

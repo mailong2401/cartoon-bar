@@ -9,6 +9,7 @@ Item {
     width: 600
     height: 400
 
+
     // Catppuccin Mocha color scheme
     property color headerColor: theme.normal.blue        // "#8aadf4"
     property color rowEvenColor: theme.primary.background // "#24273a"
@@ -103,13 +104,9 @@ Item {
 
                     Row {
                         spacing: 8
+ 
                         Text {
-                            text: "📊"
-                            font.pointSize: 16
-                            color: theme.primary.foreground
-                        }
-                        Text {
-                            text: "Process Monitor"
+                            text: lang.ram.title
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.primary.foreground
                             font.bold: true
@@ -122,13 +119,15 @@ Item {
                     Column {
                         spacing: 2
                         Text {
-                            text: "Last Update"
-                            color: theme.primary.dim_foreground
+                            text: lang.ram.header_bar.last_update
+                            color: theme.primary.foreground
+                            font.family: "ComicShannsMono Nerd Font"
                             font.pointSize: 9
                         }
                         Text {
                             text: lastUpdateTime
                             color: theme.primary.foreground
+                            font.family: "ComicShannsMono Nerd Font"
                             font.pointSize: 11
                             font.bold: true
                         }
@@ -149,7 +148,7 @@ Item {
                     spacing: 8
 
                     Text { 
-                        text: "PID"
+                        text: lang.ram.headers.pid
                         color: theme.primary.dim_foreground
                         font.family: "ComicShannsMono Nerd Font"
                         font.bold: true 
@@ -158,7 +157,7 @@ Item {
                     }
                     
                     Text { 
-                        text: "Process Name"
+                        text: lang.ram.headers.name
                         font.family: "ComicShannsMono Nerd Font"
                         color: theme.primary.dim_foreground
                         font.bold: true 
@@ -167,7 +166,7 @@ Item {
                     }
                     
                     Text { 
-                        text: "RAM %"
+                        text: lang.ram.headers.ram_percent
                         color: theme.primary.dim_foreground
                         font.bold: true 
                         font.pointSize: 11
@@ -176,8 +175,9 @@ Item {
                     }
                     
                     Text { 
-                        text: "Memory"
+                        text: lang.ram.headers.memory
                         color: theme.primary.dim_foreground
+                        font.family: "ComicShannsMono Nerd Font"
                         font.bold: true 
                         font.pointSize: 11
                         Layout.preferredWidth: 100 
@@ -231,7 +231,7 @@ Item {
                         Text {
                             text: modelData.percent.toFixed(1) + "%"
                             color: getPercentageColor(modelData.percent)
-                            font.family: "Monospace"
+                            font.family: "ComicShannsMono Nerd Font"
                             font.pointSize: 10
                             font.bold: modelData.percent > 3
                             Layout.preferredWidth: 80
@@ -242,7 +242,7 @@ Item {
                         Text {
                             text: modelData.rss_mb.toFixed(1) + " MB"
                             color: textColor
-                            font.family: "Monospace"
+                            font.family: "ComicShannsMono Nerd Font"
                             font.pointSize: 10
                             Layout.preferredWidth: 100
                             horizontalAlignment: Text.AlignRight
@@ -288,7 +288,8 @@ Item {
                             color: dimTextColor
                         }
                         Text { 
-                            text: "Loading process list..."
+                            text: lang.ram.loading.message
+                            font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
                             font.pointSize: 12
                         }
@@ -299,7 +300,7 @@ Item {
             // Footer với thông tin tổng hợp
             Rectangle {
                 Layout.fillWidth: true
-                height: 40
+                height: 60
                 color: theme.bright.black
                 radius: 8
                 border.color: borderColor
@@ -313,14 +314,16 @@ Item {
                     Column {
                         spacing: 2
                         Text {
-                            text: "Process Count"
+                            text: lang.ram.footer.process_count_label
+                            font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 9
+                            font.pointSize: 12
                         }
                         Text {
                             text: processListView.count
+                            font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.cyan
-                            font.pointSize: 12
+                            font.pointSize: 14
                             font.bold: true
                         }
                     }
@@ -331,14 +334,16 @@ Item {
                     Column {
                         spacing: 2
                         Text {
-                            text: "Total RAM Usage"
+                            text: lang.ram.footer.total_ram_label
+                            font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 9
+                            font.pointSize: 12
                         }
                         Text {
                             text: calculateTotalRAM().toFixed(1) + " MB"
+                            font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.green
-                            font.pointSize: 12
+                            font.pointSize: 14
                             font.bold: true
                         }
                     }
@@ -349,14 +354,16 @@ Item {
                     Column {
                         spacing: 2
                         Text {
-                            text: "Memory Distribution"
+                            text: lang.ram.footer.memory_distribution_label
+                            font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 9
+                            font.pointSize: 12
                         }
                         Text {
                             text: getMemoryDistribution()
+                            font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.magenta
-                            font.pointSize: 12
+                            font.pointSize: 14
                             font.bold: true
                         }
                     }

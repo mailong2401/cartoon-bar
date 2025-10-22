@@ -21,6 +21,38 @@ Rectangle {
     property bool ramPanelVisible: false
     property var theme : currentTheme
 
+    states: [
+    State {
+        name: "cpuPanel"
+        PropertyChanges { target: root; cpuPanelVisible: true }
+        PropertyChanges { target: root; ramPanelVisible: false }
+    },
+    State {
+        name: "ramPanel" 
+        PropertyChanges { target: root; cpuPanelVisible: false }
+        PropertyChanges { target: root; ramPanelVisible: true }
+    },
+    State {
+        name: "noPanel"
+        PropertyChanges { target: root; cpuPanelVisible: false }
+        PropertyChanges { target: root; ramPanelVisible: false }
+    }
+  ]
+
+  // Sửa hàm togglePanel
+function togglePanel(panelName) {
+    switch(panelName) {
+        case "cpu":
+            state = state === "cpuPanel" ? "noPanel" : "cpuPanel"
+            break
+        case "ram":
+            state = state === "ramPanel" ? "noPanel" : "ramPanel"
+            break
+        default:
+            state = "noPanel"
+    }
+}
+
     Loader {
         id: cpuPanelLoader
         source: "./Cpu/CpuDetailPanel.qml"
@@ -169,7 +201,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    root.cpuPanelVisible = !root.cpuPanelVisible
+                  root.togglePanel("cpu")
                 }
                 
                 // Hiệu ứng hover
@@ -236,7 +268,7 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    root.ramPanelVisible = !root.ramPanelVisible
+                  root.togglePanel("ram")
                 }
                 
                 // Hiệu ứng hover

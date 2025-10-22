@@ -11,16 +11,53 @@
     "language": "Language"
   },
   "system": {
-    "application": "Applications",
+    "application": "Application",
     "sleep": "Sleep Mode",
-    "logout": "Log Out",
-    "shutdown": "Shut Down",
+    "logout": "Logout",
+    "shutdown": "Shutdown",
     "restart": "Restart",
     "lock": "Lock Screen"
   },
   "music": {
     "nowPlaying": "Now Playing",
     "paused": "Paused"
+  },
+  "ram": {
+    "title": "Process Manager",
+    "loading": {
+      "title": "⏳",
+      "message": "Loading process list..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Process Name",
+      "ram_percent": "RAM %",
+      "memory": "Memory"
+    },
+    "footer": {
+      "process_count_label": "Process Count",
+      "total_ram_label": "Total RAM Used",
+      "memory_distribution_label": "Memory Distribution",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Process Monitor",
+      "last_update": "Last Update"
+    },
+    "status_colors": {
+      "critical": "Critical",
+      "warning": "Warning",
+      "normal": "Normal",
+      "low": "Low"
+    },
+    "distribution": {
+      "na": "No data available",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Script returned no data",
+      "parse_error": "Error parsing output data"
+    }
   }
 }
-

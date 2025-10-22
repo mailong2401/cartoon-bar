@@ -21,6 +21,44 @@
   "music": {
     "nowPlaying": "Đang phát",
     "paused": "Tạm dừng"
+  },
+  "ram": {
+    "title": "Trình quản lý tiến trình",
+    "loading": {
+      "title": "⏳",
+      "message": "Đang tải danh sách tiến trình..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Tên tiến trình",
+      "ram_percent": "RAM %",
+      "memory": "Bộ nhớ"
+    },
+    "footer": {
+      "process_count_label": "Số tiến trình",
+      "total_ram_label": "Tổng RAM sử dụng",
+      "memory_distribution_label": "Phân bố bộ nhớ",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Giám sát tiến trình",
+      "last_update": "Lần cập nhật"
+    },
+    "status_colors": {
+      "critical": "Nguy cấp",
+      "warning": "Cảnh báo",
+      "normal": "Bình thường",
+      "low": "Thấp"
+    },
+    "distribution": {
+      "na": "Không có dữ liệu",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Tập lệnh không trả về dữ liệu",
+      "parse_error": "Lỗi phân tích dữ liệu đầu ra"
+    }
   }
 }
 

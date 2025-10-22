@@ -2,11 +2,11 @@
   "settings": {
     "title": "설정",
     "general": "일반",
-    "appearance": "모양",
+    "appearance": "외관",
     "network": "네트워크",
     "audio": "오디오",
     "performance": "성능",
-    "shortcuts": "바로가기",
+    "shortcuts": "단축키",
     "system": "시스템",
     "language": "언어"
   },
@@ -15,12 +15,49 @@
     "sleep": "절전 모드",
     "logout": "로그아웃",
     "shutdown": "시스템 종료",
-    "restart": "재시작",
+    "restart": "다시 시작",
     "lock": "화면 잠금"
   },
   "music": {
-    "nowPlaying": "재생 중",
-    "paused": "일시 정지"
+    "nowPlaying": "현재 재생 중",
+    "paused": "일시 중지됨"
+  },
+  "ram": {
+    "title": "프로세스 관리자",
+    "loading": {
+      "title": "⏳",
+      "message": "프로세스 목록 로드 중..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "프로세스 이름",
+      "ram_percent": "RAM %",
+      "memory": "메모리"
+    },
+    "footer": {
+      "process_count_label": "프로세스 수",
+      "total_ram_label": "총 RAM 사용량",
+      "memory_distribution_label": "메모리 분포",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "프로세스 모니터",
+      "last_update": "마지막 업데이트"
+    },
+    "status_colors": {
+      "critical": "위험",
+      "warning": "경고",
+      "normal": "정상",
+      "low": "낮음"
+    },
+    "distribution": {
+      "na": "사용 가능한 데이터 없음",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "스크립트가 데이터를 반환하지 않음",
+      "parse_error": "출력 데이터 구문 분석 오류"
+    }
   }
 }
-
