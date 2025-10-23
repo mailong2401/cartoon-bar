@@ -15,12 +15,10 @@ Rectangle {
     property bool launcherPanelVisible: false
     property var theme : currentTheme
 
-    // Sử dụng Loader để load LauncherPanel
     Loader {
         id: launcherPanelLoader
         source: "./Launcher/LauncherPanel.qml"
         active: launcherPanelVisible
-        
         onLoaded: {
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }

@@ -2,13 +2,17 @@ import QtQuick
 
 Rectangle {
     color: "transparent"
-    border.color: "#4f4f5b"
+    border.color: theme.normal.black
     border.width: 2
     radius: 6
 
     property var theme : currentTheme
     property var cpuHistory: []
-    property var getUsageColor: function(usageStr) { return "#3498db" }
+    property var getUsageColor: function(usage) {
+        if (usage < 50) return theme.normal.green
+        else if (usage < 80) return theme.normal.yellow
+        else return theme.normal.red
+    }
 
     Column {
         anchors.fill: parent
@@ -16,24 +20,27 @@ Rectangle {
         spacing: 4
 
         Row {
-            Image{
-                width: 40
-                height: 40
+            spacing: 8
+            Image {
+                width: 24
+                height: 24
                 source: '../../assets/chart.png'
+                anchors.verticalCenter: parent.verticalCenter
             }
             Text {
-                text: "Biểu Đồ CPU Usage Theo Thời Gian"
-                color: "#4f4f5b"
-                font.pixelSize: 20
+                text: "CPU Usage History"
+                color: theme.primary.foreground
+                font.pixelSize: 16
                 font.bold: true
                 font.family: "ComicShannsMono Nerd Font"
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
 
         Canvas {
             id: cpuChart
             width: parent.width
-            height: parent.height - 30
+            height: parent.height - 40
             antialiasing: true
 
             onPaint: {
@@ -48,11 +55,14 @@ Rectangle {
                 var chartWidth = width - padding * 2;
                 var chartHeight = height - padding * 2;
 
-                ctx.fillStyle = "transparent";
-                ctx.fillRect(0, 0, width, height);
+                // Draw background
+                ctx.fillStyle = theme.primary.dim_background;
+                ctx.fillRect(padding, padding, chartWidth, chartHeight);
 
-                ctx.strokeStyle = "#D4C4B7";
+                // Draw grid lines
+                ctx.strokeStyle = theme.normal.black;
                 ctx.lineWidth = 1;
+                ctx.globalAlpha = 0.3;
                 
                 for (var i = 0; i <= 5; i++) {
                     var y = padding + (chartHeight * i / 5);
@@ -61,13 +71,41 @@ Rectangle {
                     ctx.lineTo(width - padding, y);
                     ctx.stroke();
                     
-                    ctx.fillStyle = "#4f4f5b";
-                    ctx.font = "12px 'ComicShannsMono Nerd Font'";
+                    ctx.fillStyle = theme.primary.foreground;
+                    ctx.globalAlpha = 0.7;
+                    ctx.font = "10px 'ComicShannsMono Nerd Font'";
                     ctx.fillText((100 - i * 20) + "%", 5, y + 4);
+                    ctx.globalAlpha = 0.3;
                 }
 
+                ctx.globalAlpha = 1.0;
+
+                // Draw CPU usage line
                 if (cpuHistory.length > 0) {
-                    ctx.strokeStyle = "#3498db";
+                    var gradient = ctx.createLinearGradient(padding, padding, padding, height - padding);
+                    gradient.addColorStop(0, theme.normal.blue + "80");
+                    gradient.addColorStop(1, theme.normal.blue + "20");
+                    
+                    // Fill area under line
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    
+                    ctx.moveTo(padding, padding + chartHeight);
+                    
+                    for (var j = 0; j < cpuHistory.length; j++) {
+                        var x = padding + (chartWidth * j / (cpuHistory.length - 1));
+                        var usage = cpuHistory[j].usage;
+                        var y = padding + chartHeight - (chartHeight * usage / 100);
+                        
+                        ctx.lineTo(x, y);
+                    }
+                    
+                    ctx.lineTo(width - padding, padding + chartHeight);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Draw line
+                    ctx.strokeStyle = theme.normal.blue;
                     ctx.lineWidth = 3;
                     ctx.beginPath();
                     
@@ -84,49 +122,100 @@ Rectangle {
                     }
                     ctx.stroke();
 
+                    // Draw points
                     for (var k = 0; k < cpuHistory.length; k++) {
                         var pointX = padding + (chartWidth * k / (cpuHistory.length - 1));
                         var pointUsage = cpuHistory[k].usage;
                         var pointY = padding + chartHeight - (chartHeight * pointUsage / 100);
                         
-                        ctx.fillStyle = getUsageColor(pointUsage.toString());
+                        ctx.fillStyle = getUsageColor(pointUsage);
+                        ctx.strokeStyle = theme.primary.background;
+                        ctx.lineWidth = 2;
                         ctx.beginPath();
-                        ctx.arc(pointX, pointY, 4, 0, Math.PI * 2);
+                        ctx.arc(pointX, pointY, 5, 0, Math.PI * 2);
                         ctx.fill();
+                        ctx.stroke();
                     }
 
+                    // Draw current usage value
                     if (cpuHistory.length > 0) {
                         var currentUsage = cpuHistory[cpuHistory.length - 1].usage;
                         var currentX = width - padding;
                         var currentY = padding + chartHeight - (chartHeight * currentUsage / 100);
                         
-                        ctx.fillStyle = getUsageColor(currentUsage.toString());
-                        ctx.font = "14px 'ComicShannsMono Nerd Font'";
-                        ctx.fillText(currentUsage.toFixed(1) + "%", currentX + 5, currentY - 5);
+                        ctx.fillStyle = getUsageColor(currentUsage);
+                        ctx.font = "12px 'ComicShannsMono Nerd Font'";
+                        ctx.fillText(currentUsage.toFixed(1) + "%", currentX + 8, currentY - 8);
                     }
                 }
 
-                ctx.strokeStyle = "#4f4f5b";
+                // Draw chart border
+                ctx.strokeStyle = theme.normal.black;
                 ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.5;
                 ctx.strokeRect(padding, padding, chartWidth, chartHeight);
+                ctx.globalAlpha = 1.0;
             }
         }
 
+        // Legend
         Row {
             spacing: 20
             anchors.horizontalCenter: parent.horizontalCenter
+            
             Row {
-                spacing: 5
+                spacing: 6
+                anchors.verticalCenter: parent.verticalCenter
+                
                 Rectangle {
-                    width: 15
+                    width: 12
                     height: 3
-                    color: "#3498db"
+                    color: theme.normal.green
                     anchors.verticalCenter: parent.verticalCenter
+                    radius: 1
                 }
                 Text {
-                    text: "CPU Usage"
-                    color: "#4f4f5b"
-                    font.pixelSize: 12
+                    text: "Low"
+                    color: theme.primary.dim_foreground
+                    font.pixelSize: 10
+                    font.family: "ComicShannsMono Nerd Font"
+                }
+            }
+            
+            Row {
+                spacing: 6
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Rectangle {
+                    width: 12
+                    height: 3
+                    color: theme.normal.yellow
+                    anchors.verticalCenter: parent.verticalCenter
+                    radius: 1
+                }
+                Text {
+                    text: "Medium"
+                    color: theme.primary.dim_foreground
+                    font.pixelSize: 10
+                    font.family: "ComicShannsMono Nerd Font"
+                }
+            }
+            
+            Row {
+                spacing: 6
+                anchors.verticalCenter: parent.verticalCenter
+                
+                Rectangle {
+                    width: 12
+                    height: 3
+                    color: theme.normal.red
+                    anchors.verticalCenter: parent.verticalCenter
+                    radius: 1
+                }
+                Text {
+                    text: "High"
+                    color: theme.primary.dim_foreground
+                    font.pixelSize: 10
                     font.family: "ComicShannsMono Nerd Font"
                 }
             }

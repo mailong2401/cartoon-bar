@@ -3,21 +3,25 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
-import "./components"
-import "./components/Cpu/"
-import "./components/Launcher/"
-import "./components/Settings/"
-import "./components/Ram/"
+
+import "./components" as Components
 
 ShellRoot {
     id: root
-    property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
 
-    ThemeLoader { id: themeLoader }
-    LanguageLoader {id: languageLoader}
+    Components.ThemeLoader { id: themeLoader }
+    Components.LanguageLoader { id: languageLoader }
+    Components.VolumeOsd { }
 
     property var currentTheme: themeLoader.theme
     property var currentLanguage: languageLoader.translations
+
+    // Property để điều khiển LauncherPanel
+    property bool launcherPanelVisible: false
+    property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
+
+
+
 
     Connections {
         target: languageLoader
@@ -27,20 +31,20 @@ ShellRoot {
     Connections {
         target: themeLoader
         onThemeReloaded: currentTheme = themeLoader.theme
-    }
+      }
 
-    VolumeOsd {
-    }
 
     PanelWindow {
         id: panel
         implicitHeight: 50
         color: "transparent"
+
         anchors {
             left: true
             right: true
             top: true
         }
+
         margins {
             top: 10
             left: 10
@@ -50,46 +54,39 @@ ShellRoot {
         RowLayout {
             anchors.fill: parent
             spacing: 10
-            
 
-            // App Icons (Dashboard Button)
-            AppIcons {
+            Components.AppIcons {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
+
             }
 
-            // Workspace
-            WorkspacePanel {
-                Layout.preferredWidth: 430
+            Components.WorkspacePanel {
+                Layout.preferredWidth: 380
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
             }
 
-            // Time & Date
-            Timespace {
+            Components.Timespace {
                 Layout.preferredWidth: 360
                 Layout.fillHeight: true
             }
 
-            // CPU Monitor
-            CpuPanel {
+            Components.CpuPanel {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
             }
 
-            // Music Player
-            MusicPlayer {
+            Components.MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
             }
 
-            // System Status
-            StatusArea {
+            Components.StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }
         }
     }
 }
-

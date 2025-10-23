@@ -1,26 +1,28 @@
+// components/Launcher/LauncherPanel.qml
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
-import "../Settings/"
+
+// Import các thành phần phụ trong cùng thư mục
+import "../Settings" as Settings
+import "./" as LauncherComponents
 
 PanelWindow {
     id: launcherPanel
     width: launcherPanel.settingsPanelVisible ? 1000 : 600
     height: launcherPanel.settingsPanelVisible ? 700 : 640
-    visible : true
+    visible: true
+    color: "transparent"
+    focusable: true
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
 
-    color: "transparent"
-    focusable: true
-
-    property var theme : currentTheme
+    property var theme: currentTheme
     property bool settingsPanelVisible: false
     property bool launcherPanelVisible: true
-
 
     function openSettings() {
         launcherPanel.settingsPanelVisible = true
@@ -30,10 +32,11 @@ PanelWindow {
     function openLauncher() {
         launcherPanel.settingsPanelVisible = false
         launcherPanel.launcherPanelVisible = true
-      }
-      function closePanel() {
+    }
+
+    function closePanel() {
         launcherPanel.visible = !launcherPanel.visible
-      }
+    }
 
     anchors {
         top: true
@@ -45,7 +48,7 @@ PanelWindow {
         left: 10
     }
 
-    // Close khi click outside
+    // Click outside để đóng
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
@@ -69,16 +72,12 @@ PanelWindow {
             anchors.margins: 16
             spacing: 12
 
-            Sidebar{
-                onAppLaunched: {
-                    launcherPanel.openLauncher()
-                }
-                onAppSettings: {
-                    launcherPanel.openSettings()
-                }
+            LauncherComponents.Sidebar {
+                onAppLaunched: launcherPanel.openLauncher()
+                onAppSettings: launcherPanel.openSettings()
             }
 
-            SettingsPanel {
+            Settings.SettingsPanel {
                 id: settingsPanel
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -102,24 +101,18 @@ PanelWindow {
                     font.family: "ComicShannsMono Nerd Font"
                     Layout.alignment: Qt.AlignHCenter
                 }
-                
-                LauncherSearch{
+
+                LauncherComponents.LauncherSearch {
                     id: searchBox
-                    onSearchChanged: (text) => {
-                        launcherList.runSearch(text)
-                    }
-                    onAccepted: (text) => {
-                        launcherList.runSearch(text)
-                    }
+                    onSearchChanged: (text) => launcherList.runSearch(text)
+                    onAccepted: (text) => launcherList.runSearch(text)
                 }
-                
-                LauncherList {
+
+                LauncherComponents.LauncherList {
                     id: launcherList
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    onAppLaunched: {
-                        closePanel()
-                    }
+                    onAppLaunched: closePanel()
                 }
             }
         }
@@ -129,5 +122,5 @@ PanelWindow {
         sequence: "Escape"
         onActivated: closePanel()
     }
-
 }
+

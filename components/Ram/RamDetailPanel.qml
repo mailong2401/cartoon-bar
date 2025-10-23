@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import "./" as Components
 
 PanelWindow {
     id: root
@@ -31,17 +32,17 @@ PanelWindow {
             anchors.margins: 16
             spacing: 30
 
-            RamDetailHeader {
+            Components.RamDetailHeader {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40
             }
 
-            RamDisplay {
+            Components.RamDisplay {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 300
             }
 
-            RamTaskManager {
+            Components.RamTaskManager {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 500
             }

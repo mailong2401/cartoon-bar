@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import "./" as Components
 
 PanelWindow {
     id: detailPanel
@@ -118,19 +119,19 @@ PanelWindow {
             spacing: 16
 
             // Header với nút đóng
-            CpuDetailHeader {
+            Components.CpuDetailHeader {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
             }
 
             // Thông tin CPU
-            CpuInfoSection {
+            Components.CpuInfoSection {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
             }
 
             // Hiển thị hình ảnh lõi CPU
-            CpuCoresDisplay {
+            Components.CpuCoresDisplay {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 120
                 cpuCores: detailPanel.cpuCores
@@ -139,7 +140,7 @@ PanelWindow {
             }
 
             // Thông tin tổng quan
-            CpuStatsOverview {
+            Components.CpuStatsOverview {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 60
                 calculateTotalUsage: detailPanel.calculateTotalUsage
@@ -149,7 +150,7 @@ PanelWindow {
             }
 
             // BIỂU ĐỒ CPU USAGE
-            CpuUsageChart {
+            Components.CpuUsageChart {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 cpuHistory: detailPanel.cpuHistory
