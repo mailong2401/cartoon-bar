@@ -81,9 +81,6 @@ ShellRoot {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
             }
-
-            
-
             Components.StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true

@@ -5,7 +5,7 @@ import Quickshell
 
 PanelWindow {
     id: wifiPanel
-    width: 510
+    width: 430
     height: 800
     color: "transparent"
     focusable: true
@@ -17,7 +17,7 @@ PanelWindow {
     property var theme : currentTheme
 
     Rectangle {
-        radius: 20
+        radius: 10
         anchors.fill: parent
         color: theme.primary.background
         border.width: 2
@@ -34,7 +34,7 @@ PanelWindow {
                 spacing: 20
                 Rectangle {
                     width: 70; height: 70; radius: 12
-                    color: theme.normal.blue
+                    color: "transparent"
                     Image {
                         source: "../../assets/system/wifi.png"
                         fillMode: Image.PreserveAspectFit

@@ -18,6 +18,7 @@ Rectangle {
     property string capacity_battery: "..."
     property int signal_current: 0
     property bool shouldShowOsd: false
+    property bool visibleMixerPanel: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
     property var theme : currentTheme
@@ -61,6 +62,15 @@ Rectangle {
         margins {
             top: 10
             right: 10
+        }
+      }
+
+      Loader {
+        id: cpuPanelLoader
+        source: "./Mixer/MixerPanel.qml"
+        active: visibleMixerPanel
+        onLoaded: {
+            item.visible = Qt.binding(function() { return visibleMixerPanel })
         }
       }
 
@@ -317,11 +327,9 @@ Rectangle {
                 onExited: volumeContainer.scale = 1.0
                 onPressed: volumeContainer.scale = 0.95
                 onReleased: volumeContainer.scale = 1.1
-                
                 onClicked: {
-                    Qt.createQmlObject('import Quickshell; Process { command: ["pavucontrol"]; running: true }', root)
+                    root.visibleMixerPanel = !root.visibleMixerPanel
                 }
-                
                 onWheel: {
                     var delta = wheel.angleDelta.y / 120
                     if (delta > 0) {
