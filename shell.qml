@@ -66,6 +66,10 @@ ShellRoot {
                 Layout.preferredWidth: 380
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
+              }
+              Components.MusicPlayer {
+                Layout.preferredWidth: 340
+                Layout.fillHeight: true
             }
 
             Components.Timespace {
@@ -78,10 +82,7 @@ ShellRoot {
                 Layout.fillHeight: true
             }
 
-            Components.MusicPlayer {
-                Layout.preferredWidth: 340
-                Layout.fillHeight: true
-            }
+            
 
             Components.StatusArea {
                 Layout.fillWidth: true

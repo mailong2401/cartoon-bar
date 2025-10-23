@@ -37,8 +37,7 @@ PanelWindow {
                 Layout.preferredHeight: 70
               }
             Components.WtDetailCalendar{
-              anchors.horizontalCenter: parent.horizontalCenter
-
+              Layout.alignment: Qt.AlignHCenter
             }
         }
     }
