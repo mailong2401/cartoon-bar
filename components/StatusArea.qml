@@ -13,7 +13,7 @@ Rectangle {
     color: theme.primary.background
 
     property string net_stat: "Checking..."
-    property string wifi_icon: "../assets/wifi/wifi_4.png"
+    property string wifi_icon: "../assets/system/wifi.png"
     property string status_battery: "Unknown"
     property string capacity_battery: "..."
     property int signal_current: 0
@@ -175,19 +175,17 @@ Rectangle {
 
     function updateWifiIcon() {
         if (root.net_stat === "Offline") {
-            wifi_icon = "../assets/wifi/no_wifi.png"
+            wifi_icon = "../assets/system/no-wifi.png"
         } else if (root.net_stat === "Online") {
-            wifi_icon = "../assets/wifi/wifi_4.png"
+            wifi_icon = "../assets/system/wifi.png"
         } else {
             var signal = root.signal_current || 0
-            if (signal <= 25) {
-                wifi_icon = "../assets/wifi/wifi_1.png"
-            } else if (signal <= 50) {
-                wifi_icon = "../assets/wifi/wifi_2.png"
-            } else if (signal <= 75) {
-                wifi_icon = "../assets/wifi/wifi_3.png"
+            if (signal <= 40) {
+                wifi_icon = "../assets/system/wifi_1.png"
+            } else if (signal <= 70) {
+                wifi_icon = "../assets/system/wifi_2.png"
             } else {
-                wifi_icon = "../assets/wifi/wifi_4.png"
+                wifi_icon = "../assets/system/wifi.png"
             }
         }
     }
@@ -245,9 +243,9 @@ Rectangle {
                 Image {
                     id: wifiImage
                     source: root.wifi_icon
-                    width: 42
-                    height: 42
-                    sourceSize: Qt.size(42, 42)
+                    width: 35
+                    height: 35
+                    sourceSize: Qt.size(35, 35)
                 }
                 
                 Text {

@@ -40,6 +40,7 @@ Rectangle {
             model: [
                 { name: lang.settings.general, icon: "../../assets/settings/home.png", category: "general" },
                 { name: lang.settings.appearance, icon: "../../assets/settings/paint-brush.png", category: "appearance" },
+                { name: lang.settings.wallpapers, icon: "../../assets/settings/Wallpaper.png", category: "wallpaper" },
                 { name: lang.settings.network, icon: "../../assets/settings/network.png", category: "network" },
                 { name: lang.settings.audio, icon: "../../assets/settings/volume.png", category: "audio" },
                 { name: lang.settings.performance, icon: "../../assets/settings/speedometer.png", category: "performance" },

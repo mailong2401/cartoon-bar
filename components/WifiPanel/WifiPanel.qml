@@ -36,7 +36,7 @@ PanelWindow {
                     width: 70; height: 70; radius: 12
                     color: theme.normal.blue
                     Image {
-                        source: "../../assets/wifi/wifi_4.png"
+                        source: "../../assets/system/wifi.png"
                         fillMode: Image.PreserveAspectFit
                         smooth: true
                         width: parent.width - 20

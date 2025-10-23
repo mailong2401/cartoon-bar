@@ -49,6 +49,11 @@ Rectangle {
                 // Appearance Settings
                 AppearanceSettings {
                 }
+
+                // WallPapers Setetings
+                WallpapersSettings{
+
+                }
                 
                 // Network Settings
                 NetworkSettings {

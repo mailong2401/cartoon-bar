@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
-import "./" as Components
+import "./"
 
 
 PanelWindow {
@@ -32,11 +32,11 @@ PanelWindow {
             anchors.fill: parent
             anchors.margins: 16
             spacing: 16
-            Components.WtDetailHeader{
+            WtDetailHeader{
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
               }
-            Components.WtDetailCalendar{
+            WtDetailCalendar{
               Layout.alignment: Qt.AlignHCenter
             }
         }
