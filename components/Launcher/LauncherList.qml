@@ -14,6 +14,8 @@ Rectangle {
     property var apps: []
     property string lastQuery: ""
     property var theme : currentTheme
+    property int currentIndex: 0
+
 
     signal appLaunched()
 
@@ -48,73 +50,82 @@ Rectangle {
         }
 
         ListView {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            clip: true
-            spacing: 4
-            model: container.apps
+    id: appList
+    Layout.fillWidth: true
+    Layout.fillHeight: true
+    clip: true
+    spacing: 4
+    model: container.apps
+    currentIndex: container.currentIndex
+    focus: true
+    keyNavigationWraps: true
 
-            delegate: Rectangle {
-                width: ListView.view.width
-                height: 56
-                radius: 8
-                color: mouseArea.containsMouse ? theme.button.background_select : "transparent"
-                border.color: mouseArea.containsMouse ? theme.button.border_select : "transparent"
-                border.width: 1
+    delegate: Rectangle {
+        width: ListView.view.width
+        height: 56
+        radius: 8
+        color: (ListView.isCurrentItem || mouseArea.containsMouse)
+               ? theme.button.background_select
+               : "transparent"
+        border.color: (ListView.isCurrentItem || mouseArea.containsMouse)
+                      ? theme.button.border_select
+                      : "transparent"
+        border.width: 1
 
-                RowLayout {
-                    anchors.fill: parent
-                    anchors.margins: 8
-                    spacing: 10
+        RowLayout {
+            anchors.fill: parent
+            anchors.margins: 8
+            spacing: 10
 
-                    Image {
-                        Layout.preferredWidth: 36
-                        Layout.preferredHeight: 36
-                        fillMode: Image.PreserveAspectFit
-                        source: modelData.iconPath || ""
-                        asynchronous: true
-                    }
+            Image {
+                Layout.preferredWidth: 36
+                Layout.preferredHeight: 36
+                fillMode: Image.PreserveAspectFit
+                source: modelData.iconPath || ""
+                asynchronous: true
+            }
 
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 2
+            ColumnLayout {
+                Layout.fillWidth: true
+                spacing: 2
 
-                        Text {
-                            text: modelData.name || "Unknown"
-                            color: theme.primary.foreground
-                            font.family: "ComicShannsMono Nerd Font"
-                            font.pixelSize: 20
-                            elide: Text.ElideRight
-                        }
-
-                        Text {
-                            text: modelData.comment || ""
-                            color: theme.primary.bright_foreground
-                            font.family: "ComicShannsMono Nerd Font"
-                            font.pixelSize: 13
-                            elide: Text.ElideRight
-                        }
-                    }
+                Text {
+                    text: modelData.name || "Unknown"
+                    color: theme.primary.foreground
+                    font.family: "ComicShannsMono Nerd Font"
+                    font.pixelSize: 20
+                    elide: Text.ElideRight
                 }
 
-                MouseArea {
-                    id: mouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        var item = modelData
-                        if (item && item.exec) {
-                            console.log("Launching:", item.name, "->", item.exec)
-                            launchApplication(item.exec)
-                            container.appLaunched()
-                        } else {
-                            console.warn("No exec for", item ? item.name : index)
-                        }
-                    }
+                Text {
+                    text: modelData.comment || ""
+                    color: theme.primary.bright_foreground
+                    font.family: "ComicShannsMono Nerd Font"
+                    font.pixelSize: 13
+                    elide: Text.ElideRight
                 }
             }
         }
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: {
+                var item = modelData
+                if (item && item.exec) {
+                    console.log("Launching:", item.name, "->", item.exec)
+                    container.launchApplication(item.exec)
+                    container.appLaunched()
+                }
+            }
+            onEntered: ListView.view.currentIndex = index
+        }
+    }
+
+    }
+
 
         Text {
             visible: container.apps.length === 0
@@ -188,4 +199,39 @@ Rectangle {
             console.error("launchApplication error:", err)
         }
     }
+
+    Shortcut {
+        sequence: "Tab"
+        onActivated: {
+          container.currentIndex = (container.currentIndex + 1) % container.apps.length
+          appList.currentIndex = container.currentIndex
+          event.accepted = true
+        }
+      }
+      Shortcut {
+        sequence: "Up"
+        onActivated: {
+          container.currentIndex = Math.max(container.currentIndex - 1, 0)
+            appList.currentIndex = container.currentIndex
+            event.accepted = true
+        }
+      }
+      Shortcut {
+        sequence: "Down"
+        onActivated: {
+          container.currentIndex = (container.currentIndex + 1) % container.apps.length
+          appList.currentIndex = container.currentIndex
+          event.accepted = true
+        }
+      }
+      Shortcut {
+    sequence: "Return"    // hoặc "Enter" đều được
+    onActivated: {
+                var item = container.apps[container.currentIndex]
+                container.launchApplication(item.exec)
+                container.appLaunched()
+            event.accepted = true
+    }
+}
+
 }

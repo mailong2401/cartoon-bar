@@ -154,12 +154,6 @@ PanelWindow {
         onActivated: closePanel()
     }
 
-    // Phím tắt để mở launcher (ví dụ: Super)
-    Shortcut {
-        sequence: "Meta+R"
-        onActivated: togglePanel()
-    }
-
     Component.onCompleted: {
         // Đảm bảo panel không visible khi khởi động
         visible = false
