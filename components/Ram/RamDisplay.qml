@@ -125,14 +125,10 @@ Item {
         RowLayout {
             Layout.fillWidth: true
             
-            Text {
-                text: "💾"
-                font.pointSize: 16
-                color: theme.normal.blue
-            }
             
             Text {
                 text: "Memory Monitor"
+                font.family: "ComicShannsMono Nerd Font"
                 color: textColor
                 font.bold: true
                 font.pointSize: 14

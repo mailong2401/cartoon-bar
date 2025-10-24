@@ -12,6 +12,8 @@ PanelWindow {
     // Sử dụng WlrLayershell để căn giữa
     implicitWidth: 430
     implicitHeight: 600
+    property var lang : currentLanguage
+
     anchors {
       top: true
       right: true
@@ -61,15 +63,17 @@ PanelWindow {
                     spacing: 2
 
                     Label {
-                        text: "Audio Mixer"
+                        text: lang.mixer.title
+                        font.family: "ComicShannsMono Nerd Font"
                         font.bold: true
-                        font.pixelSize: 16
+                        font.pixelSize: 17
                         color: theme.primary.foreground
                     }
 
                     Label {
-                        text: "Manage audio streams and volume"
-                        font.pixelSize: 11
+                        text: lang.mixer.subtitle
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 13
                         color: theme.primary.dim_foreground
                         opacity: 0.8
                     }
@@ -83,7 +87,7 @@ PanelWindow {
                 color: theme.primary.dim_background
                 radius: 6
                 border.color: theme.normal.blue
-                border.width: 1
+                border.width: 2
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -91,7 +95,7 @@ PanelWindow {
                     spacing: 8
 
                     Label {
-                        text: "Output Device"
+                        text: lang.mixer.output_device
                         font.bold: true
                         font.pixelSize: 16
                         font.family: "ComicShannsMono Nerd Font"
@@ -117,18 +121,20 @@ PanelWindow {
                 color: theme.primary.dim_background
                 radius: 6
                 border.color: theme.normal.black
-                border.width: 1
+                border.width: 2
 
                 ColumnLayout {
                     anchors.fill: parent
                     anchors.margins: 8
-                    spacing: 0
+                    spacing: 8
 
                     // Section header
                     Label {
-                        text: "Application Streams"
+                        text: lang.mixer.application_streams
                         font.bold: true
-                        font.pixelSize: 12
+
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 16
                         color: theme.primary.foreground
                         Layout.fillWidth: true
                         Layout.leftMargin: 8
@@ -159,7 +165,7 @@ PanelWindow {
                             // Empty state
                             Label {
                                 visible: linkTracker.linkGroups.count === 0
-                                text: "No active audio streams"
+                                text: lang.mixer.no_streams
                                 color: theme.primary.dim_foreground
                                 font.italic: true
                                 horizontalAlignment: Text.AlignHCenter

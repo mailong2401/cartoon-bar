@@ -19,9 +19,23 @@
     "restart": "Khởi động lại",
     "lock": "Khóa màn hình"
   },
-  "music": {
-    "nowPlaying": "Đang phát",
-    "paused": "Tạm dừng"
+  "mixer": {
+    "title": "Trình trộn âm thanh",
+    "subtitle": "Quản lý luồng âm thanh và âm lượng",
+    "output_device": "Thiết bị đầu ra",
+    "application_streams": "Luồng âm thanh ứng dụng",
+    "no_streams": "Không có luồng âm thanh đang hoạt động",
+    "active_streams": "Luồng đang hoạt động: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Ứng dụng không xác định",
+    "unmute": "Bật tiếng",
+    "mute": "Tắt tiếng",
+    "volume_percent": "%{volume}%",
+    "media_name": "Tên phương tiện",
+    "volume_slider_tooltip": "Điều chỉnh âm lượng",
+    "muted": "Đang tắt tiếng",
+    "overdrive": "Âm lượng vượt mức"
   },
   "ram": {
     "title": "Trình quản lý tiến trình",

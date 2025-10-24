@@ -97,7 +97,7 @@ ColumnLayout {
             
             onClicked: node.audio.muted = !node.audio.muted
             
-            ToolTip.text: node.audio.muted ? "Unmute" : "Mute"
+            ToolTip.text: node.audio.muted ? lang.entry.muted : lang.entry.mute
             ToolTip.visible: hovered
         }
     }
@@ -110,7 +110,8 @@ ColumnLayout {
         Label {
             Layout.preferredWidth: 40
             text: `${Math.round(node.audio.volume * 100)}%`
-            font.pixelSize: 11
+            font.family: "ComicShannsMono Nerd Font"
+            font.pixelSize: 15
             font.bold: true
             color: node.audio.muted ? theme.normal.red : theme.normal.blue
             horizontalAlignment: Text.AlignRight

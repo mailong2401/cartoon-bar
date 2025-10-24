@@ -19,6 +19,7 @@ Rectangle {
     property int signal_current: 0
     property bool shouldShowOsd: false
     property bool visibleMixerPanel: false
+    property bool visibleBatteryPanel: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
     property var theme : currentTheme
@@ -73,6 +74,16 @@ Rectangle {
             item.visible = Qt.binding(function() { return visibleMixerPanel })
         }
       }
+      Loader {
+        id: batteryPanelLoader
+        source: "./Battery/BatteryDetailPanel.qml"
+        active: visibleBatteryPanel
+        onLoaded: {
+            item.visible = Qt.binding(function() { return visibleBatteryPanel })
+        }
+      }
+
+
 
     // =============================
     //   PROCESSES
@@ -381,17 +392,14 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                
                 onEntered: batteryContainer.scale = 1.1
                 onExited: batteryContainer.scale = 1.0
                 onPressed: batteryContainer.scale = 0.95
                 onReleased: batteryContainer.scale = 1.1
-                
                 onClicked: {
-                    Qt.createQmlObject('import Quickshell; Process { command: ["gnome-power-statistics"]; running: true }', root)
+                  root.visibleBatteryPanel = !root.visibleBatteryPanel
                 }
             }
-            
             Behavior on scale { NumberAnimation { duration: 100 } }
         }
 

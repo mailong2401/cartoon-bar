@@ -91,12 +91,9 @@ Item {
             // Header với gradient
             Rectangle {
                 Layout.fillWidth: true
+                color: theme.normal.blue
                 height: 50
                 radius: 8
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: Qt.darker(headerColor, 1.2) }
-                    GradientStop { position: 1.0; color: headerColor }
-                }
 
                 RowLayout {
                     anchors.fill: parent
