@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import QtQuick.Effects
 import Quickshell.Io
 import "./Launcher/"
 
@@ -17,22 +18,25 @@ Rectangle {
     property var theme : currentTheme
 
     Loader {
-        id: launcherPanelLoader
-        source: "./Launcher/LauncherPanel.qml"
-        active: launcherPanelVisible
-        onLoaded: {
-            item.visible = Qt.binding(function() { return launcherPanelVisible })
+    id: launcherPanelLoader
+    source: "./Launcher/LauncherPanel.qml"
+    active: launcherPanelVisible
+    onLoaded: {
+        item.visible = Qt.binding(function() { return launcherPanelVisible })
+        if (item && item.searchBox && item.searchBox.searchField) {
+            Qt.callLater(() => {
+                item.searchBox.searchField.forceActiveFocus()
+                item.searchBox.searchField.selectAll()
+            })
         }
-      }
+    }
+}
+
       IpcHandler {
       id: ipc
       target: "rect"
       function getToggle() {
         launcherPanelVisible = !launcherPanelVisible
-        // Focus vào search box khi mở panel
-        if (launcherPanelVisible && launcherPanelLoader.item) {
-            launcherPanelLoader.item.forceActiveFocus()
-        }
         return 0
     }
     }
