@@ -20,9 +20,57 @@ Rectangle {
     property bool shouldShowOsd: false
     property bool visibleMixerPanel: false
     property bool visibleBatteryPanel: false
+    property bool wifiPanelVisible: false
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
     property var theme : currentTheme
+
+
+    states: [
+    State {
+        name: "wifiPanel"
+        PropertyChanges { target: root; wifiPanelVisible: true }
+        PropertyChanges { target: root; visibleMixerPanel: false }
+        PropertyChanges { target: root; visibleBatteryPanel: false }
+    },
+    State {
+        name: "mixerPanel" 
+        PropertyChanges { target: root; wifiPanelVisible: false }
+        PropertyChanges { target: root; visibleMixerPanel: true }
+        PropertyChanges { target: root; visibleBatteryPanel: false }
+      },
+      State {
+        name: "batteryPanel" 
+        PropertyChanges { target: root; wifiPanelVisible: false }
+        PropertyChanges { target: root; visibleMixerPanel: false }
+        PropertyChanges { target: root; visibleBatteryPanel: true }
+    },
+    State {
+        name: "noPanel"
+        PropertyChanges { target: root; wifiPanelVisible: false }
+        PropertyChanges { target: root; visibleMixerPanel: false }
+        PropertyChanges { target: root; visibleBatteryPanel: false }
+    }
+  ]
+
+  function togglePanel(panelName) {
+    switch (panelName) {
+        case "wifi":
+            state = state === "wifiPanel" ? "noPanel" : "wifiPanel"
+            break
+        case "mixer":
+            state = state === "mixerPanel" ? "noPanel" : "mixerPanel"
+            break
+        case "battery":
+            state = state === "batteryPanel" ? "noPanel" : "batteryPanel"
+            break
+        default:
+            state = "noPanel"
+    }
+  }
+
+
+
 
     PwObjectTracker {
         objects: [ Pipewire.defaultAudioSink ]
@@ -42,8 +90,6 @@ Rectangle {
         onTriggered: root.shouldShowOsd = false
     }
     
-    // Global state để toggle panel
-    property bool wifiPanelVisible: false
     
     // WifiManager component - chứa tất cả logic WiFi
     ComponentWifi.WifiManager {
@@ -290,7 +336,7 @@ Rectangle {
                 onPressed: networkContainer.scale = 0.95
                 onReleased: networkContainer.scale = 1.1
                 
-                onClicked: root.wifiPanelVisible = !root.wifiPanelVisible
+                onClicked: togglePanel("wifi")
             }
             
             Behavior on scale { NumberAnimation { duration: 100 } }
@@ -339,7 +385,8 @@ Rectangle {
                 onPressed: volumeContainer.scale = 0.95
                 onReleased: volumeContainer.scale = 1.1
                 onClicked: {
-                    root.visibleMixerPanel = !root.visibleMixerPanel
+                  togglePanel("mixer")
+
                 }
                 onWheel: {
                     var delta = wheel.angleDelta.y / 120
@@ -397,7 +444,7 @@ Rectangle {
                 onPressed: batteryContainer.scale = 0.95
                 onReleased: batteryContainer.scale = 1.1
                 onClicked: {
-                  root.visibleBatteryPanel = !root.visibleBatteryPanel
+                  togglePanel("battery")
                 }
             }
             Behavior on scale { NumberAnimation { duration: 100 } }

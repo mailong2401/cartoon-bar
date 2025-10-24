@@ -3,21 +3,25 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
-import "./"
+import "./" as Components
 
 
 PanelWindow {
     id: wtDetailPanel
 
-    // Sử dụng WlrLayershell để căn giữa
-    implicitWidth: 400
+    implicitWidth: 500
     implicitHeight: 500
 
     property var theme : currentTheme
 
+    anchors {
+      top: true
+      left: true
+    }
+
     margins {
         top: 10
-        left: 430
+        left: 800
     }
     color: "transparent"
 
@@ -32,11 +36,11 @@ PanelWindow {
             anchors.fill: parent
             anchors.margins: 16
             spacing: 16
-            WtDetailHeader{
+            Components.WtDetailHeader{
                 Layout.fillWidth: true
                 Layout.preferredHeight: 70
               }
-            WtDetailCalendar{
+            Components.WtDetailCalendar{
               Layout.alignment: Qt.AlignHCenter
             }
         }

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import "./Launcher/"
 
 Rectangle {
@@ -22,6 +23,18 @@ Rectangle {
         onLoaded: {
             item.visible = Qt.binding(function() { return launcherPanelVisible })
         }
+      }
+      IpcHandler {
+      id: ipc
+      target: "rect"
+      function getToggle() {
+        launcherPanelVisible = !launcherPanelVisible
+        // Focus vào search box khi mở panel
+        if (launcherPanelVisible && launcherPanelLoader.item) {
+            launcherPanelLoader.item.forceActiveFocus()
+        }
+        return 0
+    }
     }
 
     Row {
@@ -46,7 +59,6 @@ Rectangle {
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onClicked: {
-                        console.log("Dashboard clicked!")
                         launcherPanelVisible = !launcherPanelVisible
                         
                         // Focus vào search box khi mở panel

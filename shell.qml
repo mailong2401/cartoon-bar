@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Io
+import QtQuick.Effects
 
 import "./components" as Components
 
@@ -20,9 +21,6 @@ ShellRoot {
     property bool launcherPanelVisible: false
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
 
-
-
-
     Connections {
         target: languageLoader
         onLanguageChanged: currentLanguage = languageLoader.translations
@@ -31,8 +29,9 @@ ShellRoot {
     Connections {
         target: themeLoader
         onThemeReloaded: currentTheme = themeLoader.theme
-      }
+    }
 
+    
 
     PanelWindow {
         id: panel
@@ -59,15 +58,15 @@ ShellRoot {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
-
             }
 
             Components.WorkspacePanel {
                 Layout.preferredWidth: 380
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
-              }
-              Components.MusicPlayer {
+            }
+
+            Components.MusicPlayer {
                 Layout.preferredWidth: 340
                 Layout.fillHeight: true
             }
@@ -81,6 +80,7 @@ ShellRoot {
                 Layout.preferredWidth: 280
                 Layout.fillHeight: true
             }
+            
             Components.StatusArea {
                 Layout.fillWidth: true
                 Layout.fillHeight: true

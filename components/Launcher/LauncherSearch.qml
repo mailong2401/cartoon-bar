@@ -14,8 +14,8 @@ Rectangle {
     signal searchChanged(string text) // phát ra khi cần tìm (sau debounce)
     signal accepted(string text)      // khi nhấn Enter
 
-
     property var theme : currentTheme
+    property alias searchField: searchField  // Expose searchField để có thể focus từ bên ngoài
 
     RowLayout {
         anchors.fill: parent
@@ -35,10 +35,13 @@ Rectangle {
             Layout.fillWidth: true
             placeholderText: "Tìm kiếm ứng dụng..."
             palette.text: theme.primary.foreground       // màu chữ chính
-            palette.placeholderText: theme.primary.bright_foreground  // màu placeholder
+            palette.placeholderText: theme.primary.dim_foreground  // sửa thành dim_foreground
             font.pixelSize: 14
             font.family: "ComicShannsMono Nerd Font"
-            background: Rectangle { color: "transparent" }
+            background: Rectangle { 
+                color: "transparent" 
+            }
+            selectByMouse: true
 
             onTextChanged: {
                 // restart debounce timer mỗi khi gõ
@@ -52,6 +55,26 @@ Rectangle {
                 debounce.running = false
                 root.searchChanged(text)
             }
+
+            Keys.onEscapePressed: {
+                // Khi nhấn Escape trong search field, đóng panel
+                if (typeof root.parent !== 'undefined' && root.parent.parent) {
+                    // Tìm LauncherPanel để gọi closePanel
+                    var panel = findLauncherPanel(root)
+                    if (panel && typeof panel.closePanel === 'function') {
+                        panel.closePanel()
+                    }
+                }
+            }
+
+            // Helper function để tìm LauncherPanel
+            function findLauncherPanel(item) {
+                while (item && item.objectName !== "launcherPanel") {
+                    item = item.parent
+                    if (!item) return null
+                }
+                return item
+            }
         }
 
         Timer {
@@ -62,5 +85,10 @@ Rectangle {
             onTriggered: root.searchChanged(searchField.text)
         }
     }
-}
 
+    // Function để clear search field
+    function clear() {
+        searchField.text = ""
+        searchField.focus = true
+    }
+}

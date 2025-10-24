@@ -28,11 +28,7 @@ Rectangle {
         source: "./WeatherTime/WtDetailPanel.qml"
         active: panelVisible
         onLoaded: {
-            item.anchors.top = parent.bottom
-            item.anchors.left = parent.left
-            item.margins.left = 500
-            item.theme = root.theme
-            item.visible = Qt.binding(function() { return launcherPanelVisible })
+            item.visible = Qt.binding(function() { return panelVisible })
         }
     }
 
