@@ -5,8 +5,8 @@ import Quickshell
 
 PanelWindow {
     id: wifiPanel
-    width: 430
-    height: 800
+    implicitWidth: 430
+    implicitHeight: 800
     color: "transparent"
     focusable: true
     aboveWindows: true

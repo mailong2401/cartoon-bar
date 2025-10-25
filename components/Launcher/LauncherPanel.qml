@@ -10,11 +10,12 @@ import "./" as LauncherComponents
 
 PanelWindow {
     id: launcherPanel
-    width: launcherPanel.settingsPanelVisible ? 1000 : 600
-    height: launcherPanel.settingsPanelVisible ? 700 : 640
-    visible: false  // Mặc định ẩn, sẽ mở bằng phím tắt
+    implicitWidth: launcherPanel.settingsPanelVisible ? 1000 : 600
+    implicitHeight: launcherPanel.settingsPanelVisible ? 700 : 640
     color: "transparent"
     focusable: true
+
+    signal closeRequested()
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
@@ -40,9 +41,11 @@ PanelWindow {
         })
     }
 
-    function closePanel() {
-        launcherPanel.visible = false
-    }
+    // Sửa hàm closePanel
+function closePanel() {
+    visible = false
+    closeRequested()
+}
 
     function togglePanel() {
         launcherPanel.visible = !launcherPanel.visible

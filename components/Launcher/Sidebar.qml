@@ -71,7 +71,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.green
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaLauncher.containsMouse ? 1.0 : 0.8
                     

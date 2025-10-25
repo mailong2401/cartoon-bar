@@ -18,32 +18,39 @@ Rectangle {
     property var theme : currentTheme
 
     Loader {
-    id: launcherPanelLoader
-    source: "./Launcher/LauncherPanel.qml"
-    active: launcherPanelVisible
-    onLoaded: {
-        item.visible = Qt.binding(function() { return launcherPanelVisible })
-        if (item && item.searchBox && item.searchBox.searchField) {
-            Qt.callLater(() => {
-                item.searchBox.searchField.forceActiveFocus()
-                item.searchBox.searchField.selectAll()
+        id: launcherPanelLoader
+        source: "./Launcher/LauncherPanel.qml"
+        active: launcherPanelVisible
+        
+        onLoaded: {
+            item.visible = launcherPanelVisible
+            item.closeRequested.connect(function() {
+                launcherPanelVisible = false
             })
         }
     }
-}
 
-      IpcHandler {
-      id: ipc
-      target: "rect"
-      function getToggle() {
-        launcherPanelVisible = !launcherPanelVisible
-        return 0
-    }
+    IpcHandler {
+        id: ipc
+        target: "rect"
+        function getToggle() {
+            if (launcherPanelLoader.status == Loader.Ready) {
+                launcherPanelVisible = !launcherPanelVisible
+                if (launcherPanelVisible && launcherPanelLoader.item) {
+                    launcherPanelLoader.item.forceActiveFocus()
+                    launcherPanelLoader.item.openLauncher()
+                }
+            } else {
+                launcherPanelVisible = true
+            }
+            return 0
+        }
     }
 
     Row {
         anchors.centerIn: parent
         spacing: 15
+
         Repeater {
             model: ["../assets/dashboard.png"]
 
@@ -54,31 +61,19 @@ Rectangle {
                 fillMode: Image.PreserveAspectFit
                 smooth: true
 
-                Behavior on scale {
-                    NumberAnimation { duration: 120; easing.type: Easing.OutQuad }
-                }
-
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onClicked: {
                         launcherPanelVisible = !launcherPanelVisible
-                        
-                        // Focus vào search box khi mở panel
-                        if (launcherPanelVisible && launcherPanelLoader.item) {
+                        if (launcherPanelLoader.item && launcherPanelVisible) {
                             launcherPanelLoader.item.forceActiveFocus()
+                            launcherPanelLoader.item.openLauncher()
                         }
                     }
                 }
             }
-        }
-    }
-
-    // Xử lý khi theme thay đổi
-    onThemeChanged: {
-        if (launcherPanelLoader.item) {
-            launcherPanelLoader.item.theme = theme
         }
     }
 }

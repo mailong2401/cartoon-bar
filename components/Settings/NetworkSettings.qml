@@ -931,7 +931,7 @@ Item {
                         }
                         Text {
                             text: "0.8 MB/s"
-                            color: theme.accent.color
+                            color: theme.normal.blue
                             font.pixelSize: 14
                             font.family: "ComicShannsMono Nerd Font"
                             font.bold: true
@@ -962,11 +962,11 @@ Item {
                                 width: 8
                                 height: 8
                                 radius: 4
-                                color: theme.success.color
+                                color: theme.normal.blue
                             }
                             Text {
                                 text: "3.2 ms"
-                                color: theme.success.color
+                                color: theme.normal.green
                                 font.pixelSize: 14
                                 font.family: "ComicShannsMono Nerd Font"
                                 font.bold: true

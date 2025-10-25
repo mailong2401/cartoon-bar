@@ -57,13 +57,6 @@ Item {
                     anchors.fill: parent
                     anchors.margins: 8
 
-                    Image {
-                        source: "qrc:/icons/search.svg"
-                        Layout.preferredWidth: 20
-                        Layout.preferredHeight: 20
-                        Layout.leftMargin: 10
-                    }
-
                     TextField {
                         id: searchField
                         Layout.fillWidth: true
