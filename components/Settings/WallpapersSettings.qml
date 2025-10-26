@@ -5,54 +5,73 @@ import Quickshell
 import Quickshell.Io
 import Qt.labs.folderlistmodel
 
-
 Item {
     id: systemSettings
     property var theme: currentTheme
-    property string wallpapersPath: "file:///home/long/Pictures/Wallpapers/"
+    
+    property string homePath: ""
+    property string wallpapersPath: ""
     property string wallpaperPath: ""
     property string currentWallpaper: ""
     width: 800
     height: 600
 
+    // Process để lấy home directory
+    Process {
+        id: getHomeProcess
+        command: ["bash", "-c", "echo $HOME"]
+        running: true
+        stdout: StdioCollector { 
+            id: homeOutput
+            onTextChanged: {
+                if (text) {
+                    var path = text.trim()
+                    systemSettings.homePath = path
+                    systemSettings.wallpapersPath = "file://" + path + "/Pictures/Wallpapers/"
+                    console.log("Home directory found:", path)
+                    console.log("Wallpapers path:", systemSettings.wallpapersPath)
+                }
+            }
+        }
+    }
+
     // Process để set wallpaper
     Process {
         id: wallpaperProcess
-        // Lệnh chạy khi gọi start()
         command: ["swww", "img", "", "--transition-type", "grow", "--transition-duration", "1"]
 
         stdout: StdioCollector {
-            onStreamFinished: console.log("swww output:", text)
+            onTextChanged: if (text) console.log("swww output:", text)
         }
 
         onRunningChanged: {
-        if (!running) {
-            console.log("Wallpaper set successfully")
-            currentWallpaper = wallpaperPath
-            showNotification("Đã đặt hình nền thành công!")
-            folderModel.update()
+            if (!running) {
+                console.log("Wallpaper set successfully")
+                currentWallpaper = wallpaperPath
+                showNotification("Đã đặt hình nền thành công!")
+                folderModel.update()
+            }
         }
     }
-    }
 
+    // Rest of your code remains the same...
     // Process để xóa file
     Process {
         id: deleteProcess
         command: ["rm", ""]
 
         stdout: StdioCollector {
-            onStreamFinished: console.log("rm output:", text)
+            onTextChanged: if (text) console.log("rm output:", text)
         }
 
         onRunningChanged: {
-        if (!running) {
-            console.log("Wallpaper deleted successfully")
-            showNotification("Đã xóa ảnh thành công!")
-            folderModel.update()
+            if (!running) {
+                console.log("Wallpaper deleted successfully")
+                showNotification("Đã xóa ảnh thành công!")
+                folderModel.update()
+            }
         }
     }
-    }
-
 
     ScrollView {
         anchors.fill: parent
@@ -95,7 +114,7 @@ Item {
                         spacing: 4
 
                         Text {
-                          text: "Tổng số ảnh: "
+                            text: "Tổng số ảnh: "
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.primary.dim_foreground
                             font.pixelSize: 15
@@ -108,13 +127,11 @@ Item {
                             font.pixelSize: 18
                             font.bold: true
                         }
-
-                        
                     }
                 }
 
                 Text {
-                    text: "Đường dẫn: ~/Pictures/Wallpapers/"
+                    text: homePath ? "Đường dẫn: " + homePath + "/Pictures/Wallpapers/" : "Đang tải..."
                     font.family: "ComicShannsMono Nerd Font"
                     color: theme.primary.dim_foreground
                     font.pixelSize: 16
@@ -271,8 +288,17 @@ Item {
 
             // No images message
             Text {
-                visible: folderModel.count === 0
-                text: "Không tìm thấy ảnh nào trong thư mục ~/Pictures"
+                visible: folderModel.count === 0 && homePath
+                text: "Không tìm thấy ảnh nào trong thư mục ~/Pictures/Wallpapers"
+                color: theme.primary.dim_foreground
+                font.pixelSize: 14
+                Layout.alignment: Qt.AlignCenter
+            }
+
+            // Loading message
+            Text {
+                visible: !homePath
+                text: "Đang tải thông tin..."
                 color: theme.primary.dim_foreground
                 font.pixelSize: 14
                 Layout.alignment: Qt.AlignCenter
@@ -319,9 +345,16 @@ Item {
                     color: theme.button.background
                     border.color: theme.button.border
 
-                    Text { anchors.centerIn: parent; text: "Hủy"; color: theme.primary.foreground }
+                    Text { 
+                        anchors.centerIn: parent; 
+                        text: "Hủy"; 
+                        color: theme.primary.foreground 
+                    }
 
-                    MouseArea { anchors.fill: parent; onClicked: deleteDialog.visible = false }
+                    MouseArea { 
+                        anchors.fill: parent; 
+                        onClicked: deleteDialog.visible = false 
+                    }
                 }
 
                 // Confirm delete
@@ -329,7 +362,11 @@ Item {
                     width: 100; height: 35; radius: 6
                     color: theme.normal.red
 
-                    Text { anchors.centerIn: parent; text: "Xóa"; color: theme.primary.background }
+                    Text { 
+                        anchors.centerIn: parent; 
+                        text: "Xóa"; 
+                        color: theme.primary.background 
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -355,12 +392,27 @@ Item {
         color: theme.normal.green
         z: 1001
 
-        Row { anchors.centerIn: parent; spacing: 10
-            Text { text: "✓"; color: theme.primary.background }
-            Text { id: notificationText; color: theme.primary.background; text: "" }
+        Row { 
+            anchors.centerIn: parent; 
+            spacing: 10
+            Text { 
+                text: "✓"; 
+                color: theme.primary.background;
+                font.bold: true;
+            }
+            Text { 
+                id: notificationText; 
+                color: theme.primary.background; 
+                text: "";
+                font.bold: true;
+            }
         }
 
-        Timer { id: notificationTimer; interval: 3000; onTriggered: successNotification.visible = false }
+        Timer { 
+            id: notificationTimer; 
+            interval: 3000; 
+            onTriggered: successNotification.visible = false 
+        }
     }
 
     function setWallpaper(filePath) {
@@ -383,7 +435,6 @@ Item {
         deleteProcess.running = true
     }
 
-
     function showDeleteDialog(fileName, filePath) {
         deleteDialog.fileNameToDelete = fileName
         deleteDialog.filePathToDelete = filePath
@@ -403,6 +454,6 @@ Item {
 
     Component.onCompleted: {
         console.log("SystemSettings component loaded")
+        console.log("Trying to get HOME directory...")
     }
 }
-
