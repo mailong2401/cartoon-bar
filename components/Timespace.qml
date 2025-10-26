@@ -11,7 +11,6 @@ Rectangle {
     border.color: theme.normal.black
     border.width: 3
 
-
     property string currentDate: ""
     property string currentTime: ""
     property string temperature: ""
@@ -23,6 +22,15 @@ Rectangle {
 
     property var theme : currentTheme
 
+    // SystemClock để lấy thời gian thực
+    SystemClock {
+        id: clock
+        precision: SystemClock.Seconds
+        onDateChanged: {
+            updateDateTime()
+        }
+    }
+
     Loader {
         id: launcherPanelLoader
         source: "./WeatherTime/WtDetailPanel.qml"
@@ -31,7 +39,6 @@ Rectangle {
             item.visible = Qt.binding(function() { return panelVisible })
         }
     }
-
 
     // Process lấy weather
     Process {
@@ -53,7 +60,6 @@ Rectangle {
                 }
             }
         }
-        
     }
 
     function processWeatherData(data) {
@@ -121,8 +127,6 @@ Rectangle {
         return iconMap[code.toString()] || "🌈"
     }
 
-
-
     function updateWeather() {
         console.log("🔄 Updating weather...")
         if (!weatherProcess.running) {
@@ -131,51 +135,49 @@ Rectangle {
     }
 
     function updateDateTime() {
-        const now = new Date()
-        const weekdays = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"]
+        const now = clock.date
+        const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
         const months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", 
                        "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
         
         root.currentDate = `${weekdays[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
-        root.currentTime = Qt.formatTime(now, "HH:mm:ss")
-      }
-
-
+        root.currentTime = Qt.formatTime(now, "HH:mm")
+    }
 
     Row {
         anchors.centerIn: parent
-        spacing: 24
+        spacing: 8
 
         // Phần datetime
         Rectangle {
-          id: timeContainer
-          width: 190
-          height: parent.height
-          color: "transparent"
+            id: timeContainer
+            width: 190
+            height: parent.height
+            color: "transparent"
 
-          Column {
-            anchors.verticalCenter: parent.verticalCenter
-            spacing: 0
-            
-            Text { 
-                text: root.currentTime 
-                color: root.theme.primary.foreground
-                font { 
-                    pixelSize: 16 
-                    bold: true 
-                    family: "ComicShannsMono Nerd Font"
+            Column {
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 0
+                
+                Text { 
+                    text: root.currentTime 
+                    color: root.theme.primary.foreground
+                    font { 
+                        pixelSize: 16 
+                        bold: true 
+                        family: "ComicShannsMono Nerd Font"
+                    }
                 }
+                
+                Text { 
+                    text: root.currentDate
+                    color: root.theme.primary.dim_foreground
+                    font.pixelSize: 13
+                    font.family: "ComicShannsMono Nerd Font"
+                }
+            }
 
-            }
-            
-            Text { 
-                text: root.currentDate
-                color: root.theme.primary.dim_foreground
-                font.pixelSize: 13
-                font.family: "ComicShannsMono Nerd Font"
-            }
-        }
-        MouseArea {
+            MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
@@ -194,23 +196,74 @@ Rectangle {
             
             Behavior on scale { NumberAnimation { duration: 100 } }
         }
-        
 
-        // Phần weather
-            Column {
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: 1
+        // Phần weather - ĐÃ SỬA: Thêm icon và condition
+        Rectangle {
+            id: weatherContainer
+            width: 120
+            height: parent.height
+            color: "transparent"
+
+
                 
-                Text {
-                    text: root.temperature || "Đang tải..."
-                    color: root.theme.primary.foreground
-                    font { 
-                        pixelSize: 14 
-                        bold: true 
+                
+                
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 1
+
+                    Row {
+                spacing: 8
+                      Text {
+                        text: root.temperature || "Đang tải..."
+                        color: root.theme.primary.foreground
+                    anchors.verticalCenter: parent.verticalCenter
+                        font { 
+                            pixelSize: 16
+                            bold: true 
+                            family: "ComicShannsMono Nerd Font"
+                        }
+                    }
+Text {
+                    text: root.icon
+                    font.pixelSize: 24
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+                    }
+                    
+                    
+                    
+                    Text {
+                        text: root.condition || "..."
+                        color: root.theme.primary.dim_foreground
+                        font { 
+                            pixelSize: 11
+                            family: "ComicShannsMono Nerd Font"
+                        }
+                        elide: Text.ElideRight
+                        maximumLineCount: 1
+                        width: 80
                     }
                 }
-            }
 
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    root.updateWeather() // Refresh weather khi click
+                }
+                
+                onEntered: {
+                    weatherContainer.scale = 1.04
+                }
+                onExited: {
+                    weatherContainer.scale = 1.0
+                }
+            }
+            
+            Behavior on scale { NumberAnimation { duration: 100 } }
+        }
 
         // Cờ Vietnam
         Image {
@@ -223,16 +276,7 @@ Rectangle {
         }
     }
 
-
-    // Timers
-    Timer { 
-        interval: 1000 
-        running: true 
-        repeat: true 
-        onTriggered: root.updateDateTime() 
-    }
-    
-    
+    // Timer cho weather (giữ nguyên)
     Timer {
         interval: 300000 // 5 phút
         running: true
@@ -241,7 +285,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
-        root.updateDateTime()
-        root.updateWeather()
+        root.updateDateTime() // Khởi tạo thời gian ban đầu
+        root.updateWeather()  // Khởi tạo weather ban đầu
     }
 }

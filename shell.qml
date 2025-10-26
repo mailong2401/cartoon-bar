@@ -42,12 +42,14 @@ ShellRoot {
             left: true
             right: true
             top: true
+            bottom: false
         }
 
         margins {
             top: 10
             left: 10
             right: 10
+            bottom: 0
         }
 
         RowLayout {
@@ -72,7 +74,7 @@ ShellRoot {
             }
 
             Components.Timespace {
-                Layout.preferredWidth: 360
+                Layout.preferredWidth: 400
                 Layout.fillHeight: true
             }
 
