@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Quickshell.Io
+
 
 Rectangle {
     id: root
@@ -16,6 +18,12 @@ Rectangle {
 
     signal appLaunched()
     signal appSettings()
+
+    Process { id: sleepProcess }
+    Process { id: lockProcess }
+    Process { id: logoutProcess }
+    Process { id: restartProcess }
+    Process { id: shutdownProcess }
 
     ColumnLayout {
         anchors.fill: parent
@@ -246,8 +254,12 @@ Rectangle {
                 
                 onClicked: {
                     console.log("Chế độ ngủ được nhấn")
+                    sleepProcess.command = ["systemctl", "suspend"]
+                    sleepProcess.startDetached()
                 }
-            }
+
+              }
+
         }
 
         // Khóa màn hình
@@ -397,7 +409,8 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    console.log("Đăng xuất được nhấn")
+                    logoutProcess.command = ["hyprctl", "dispatch", "exit"]
+                    logoutProcess.startDetached()
                 }
             }
         }
@@ -473,7 +486,8 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    console.log("Khởi động lại được nhấn")
+                    restartProcess.command = ["systemctl", "reboot"]
+                    restartProcess.startDetached()
                 }
             }
         }
@@ -549,7 +563,8 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    console.log("Tắt máy được nhấn")
+                    shutdownProcess.command = ["systemctl", "poweroff"]
+                    shutdownProcess.startDetached()
                 }
             }
         }
