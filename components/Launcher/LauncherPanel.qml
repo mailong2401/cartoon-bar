@@ -16,6 +16,7 @@ PanelWindow {
     focusable: true
 
     signal closeRequested()
+    signal toggleClockPanel()
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
@@ -106,6 +107,7 @@ function closePanel() {
                     Behavior on Layout.preferredWidth {
                         NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
                     }
+                    onToggleClockPanel: launcherPanel.toggleClockPanel()
                 }
 
                 ColumnLayout {

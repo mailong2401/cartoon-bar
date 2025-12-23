@@ -9,6 +9,8 @@ Rectangle {
     id: settingsPanel
     property var theme : currentTheme
     signal backRequested()
+    signal toggleClockPanel()
+
     radius: 12
     color: theme.primary.background
     // Shadow effect
@@ -48,6 +50,7 @@ Rectangle {
                 
                 // Appearance Settings
                 AppearanceSettings {
+                  onToggleClockPanel: settingsPanel.toggleClockPanel()
                 }
 
                 // WallPapers Setetings

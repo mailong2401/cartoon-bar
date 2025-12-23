@@ -13,6 +13,8 @@ Rectangle {
     radius: 10
     border.color: theme.normal.black
     border.width: 3
+    signal toggleClockPanel()
+
 
     property bool launcherPanelVisible: false
     property var theme : currentTheme
@@ -27,6 +29,7 @@ Rectangle {
             item.closeRequested.connect(function() {
                 launcherPanelVisible = false
             })
+            item.toggleClockPanel.connect(function() {toggleClockPanel()})
         }
     }
 

@@ -14,6 +14,17 @@ ShellRoot {
     Components.LanguageLoader { id: languageLoader }
     Components.VolumeOsd { }
 
+property bool clockPanelVisible: true  // trạng thái bảng đồng hồ
+
+Components.ClockPanel {
+    id: clockPanel
+    visible: clockPanelVisible
+}
+
+function toggleClockPanel() {
+    clockPanelVisible = !clockPanelVisible
+}
+
     property var currentTheme: themeLoader.theme
     property var currentLanguage: languageLoader.translations
 
@@ -60,6 +71,8 @@ ShellRoot {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
+                onToggleClockPanel: root.toggleClockPanel()
+
             }
 
             Components.WorkspacePanel {

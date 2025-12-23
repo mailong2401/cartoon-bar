@@ -2,10 +2,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "."
 
 Item {
-    property var theme: currentTheme
-    
+  property var theme: currentTheme
+
+    signal toggleClockPanel()
+
     ScrollView {
         anchors.fill: parent
         anchors.margins: 20
@@ -187,7 +190,53 @@ Item {
                         }
                     }
                 }
+              }
+
+              RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                
+                Text {
+                  text: "bảng đồng hồ: "
+                    color: theme.primary.foreground
+                    font.family: "ComicShannsMono Nerd Font"
+                    font.pixelSize: 18
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                }
+                
+                Item { Layout.fillWidth: true }  // Spacer, đẩy Switch sang phải
+                
+                Switch {
+                    id: autoStartSwitch
+                    checked: clockPanelVisible
+                    onCheckedChanged: {
+                        toggleClockPanel()
+                    }
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+
+                    background: Rectangle {
+                        implicitWidth: 48
+                        implicitHeight: 28
+                        radius: 14
+                        color: autoStartSwitch.checked ? theme.normal.green : theme.button.background
+                        border.color: autoStartSwitch.checked ? theme.normal.green : theme.button.border
+                        border.width: 2
+                    }
+                    indicator: Rectangle {
+                        x: autoStartSwitch.checked ? parent.background.width - width - 4 : 4
+                        y: (parent.background.height - height) / 2
+                        width: 20
+                        height: 20
+                        radius: 10
+                        color: theme.primary.background
+                        
+                        Behavior on x {
+                            NumberAnimation { duration: 150 }
+                        }
+                    }
+                }
             }
+
             
             // Opacity Setting
             RowLayout {
@@ -288,221 +337,9 @@ Item {
             }
             
             // Animation Settings
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: 15
-                
-                Text {
-                    text: "Hiệu ứng:"
-                    color: theme.primary.foreground
-                    font {
-                        family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                    Layout.preferredWidth: 150
-                }
-                
-                Column {
-                    Layout.fillWidth: true
-                    spacing: 12
-                    
-                    // Custom CheckBox for Motion Effects
-                    Row {
-                        spacing: 12
                         
-                        Rectangle {
-                            id: motionCheck
-                            width: 24
-                            height: 24
-                            radius: 6
-                            border.color: theme.normal.blue
-                            border.width: 2
-                            color: motionCheckArea.containsMouse ? theme.normal.blue + "20" : "transparent"
-                            
-                            Rectangle {
-                                width: 12
-                                height: 12
-                                anchors.centerIn: parent
-                                radius: 3
-                                color: theme.normal.blue
-                                visible: true
-                            }
-                            
-                            MouseArea {
-                                id: motionCheckArea
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                hoverEnabled: true
-                                onClicked: {
-                                    // Toggle logic here
-                                }
-                            }
-                        }
-                        
-                        Text {
-                            text: "Hiệu ứng chuyển động"
-                            color: theme.primary.foreground
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 16
-                            }
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                    }
-                    
-                    // Custom CheckBox for Transparency Effects
-                    Row {
-                        spacing: 12
-                        
-                        Rectangle {
-                            id: transparencyCheck
-                            width: 24
-                            height: 24
-                            radius: 6
-                            border.color: theme.button.border
-                            border.width: 2
-                            color: transparencyCheckArea.containsMouse ? theme.button.background + "80" : "transparent"
-                            
-                            Rectangle {
-                                width: 12
-                                height: 12
-                                anchors.centerIn: parent
-                                radius: 3
-                                color: theme.normal.blue
-                                visible: false
-                            }
-                            
-                            MouseArea {
-                                id: transparencyCheckArea
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                hoverEnabled: true
-                                onClicked: {
-                                    // Toggle logic here
-                                }
-                            }
-                        }
-                        
-                        Text {
-                            text: "Hiệu ứng trong suốt"
-                            color: theme.primary.foreground
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 16
-                            }
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                    }
-                    
-                    // Custom CheckBox for Blur Effects
-                    Row {
-                        spacing: 12
-                        
-                        Rectangle {
-                            id: blurCheck
-                            width: 24
-                            height: 24
-                            radius: 6
-                            border.color: theme.normal.blue
-                            border.width: 2
-                            color: blurCheckArea.containsMouse ? theme.normal.blue + "20" : "transparent"
-                            
-                            Rectangle {
-                                width: 12
-                                height: 12
-                                anchors.centerIn: parent
-                                radius: 3
-                                color: theme.normal.blue
-                                visible: true
-                            }
-                            
-                            MouseArea {
-                                id: blurCheckArea
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                hoverEnabled: true
-                                onClicked: {
-                                    // Toggle logic here
-                                }
-                            }
-                        }
-                        
-                        Text {
-                            text: "Hiệu ứng mờ"
-                            color: theme.primary.foreground
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 16
-                            }
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                    }
-                }
-            }
-            
             // Additional Appearance Settings
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: 15
-                
-                Text {
-                    text: "Font chữ:"
-                    color: theme.primary.foreground
-                    font {
-                        family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                    Layout.preferredWidth: 150
-                }
-                
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 45
-                    radius: 8
-                    color: theme.button.background
-                    border.color: theme.button.border
-                    border.width: 2
-                    
-                    Text {
-                        text: "ComicShannsMono Nerd Font"
-                        color: theme.primary.foreground
-                        font {
-                            family: "ComicShannsMono Nerd Font"
-                            pixelSize: 14
-                        }
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: 15
-                    }
-                    
-                    Rectangle {
-                        width: 30
-                        height: 30
-                        radius: 6
-                        color: theme.button.background_select
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.right: parent.right
-                        anchors.rightMargin: 10
                         
-                        Text {
-                            text: "⋯"
-                            color: theme.primary.foreground
-                            font.pixelSize: 16
-                            font.bold: true
-                            anchors.centerIn: parent
-                        }
-                        
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                // Open font picker
-                            }
-                        }
-                    }
-                }
-            }
-            
             Item { Layout.fillHeight: true } // Spacer
         }
     }
