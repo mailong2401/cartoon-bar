@@ -6,8 +6,10 @@ import "."
 
 Item {
   property var theme: currentTheme
+  id: root
 
     signal toggleClockPanel()
+    signal posClockPanel(string pos)
 
     ScrollView {
         anchors.fill: parent
@@ -211,6 +213,7 @@ Item {
                     checked: clockPanelVisible
                     onCheckedChanged: {
                         toggleClockPanel()
+                        console.log("ok")
                     }
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
@@ -235,16 +238,13 @@ Item {
                         }
                     }
                 }
-            }
+              }
 
-            
-            // Opacity Setting
-            RowLayout {
+              RowLayout {
                 Layout.fillWidth: true
-                spacing: 15
                 
                 Text {
-                    text: "Độ trong suốt:"
+                    text: "Vị trí đồng hồ:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
@@ -252,90 +252,292 @@ Item {
                     }
                     Layout.preferredWidth: 150
                 }
+                Column {
+                                      spacing: 15
+
                 
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    spacing: 5
-                    
-                    Slider {
-                        id: opacitySlider
-                        Layout.fillWidth: true
-                        value: 0.9
-                        from: 0.5
-                        to: 1.0
-                        
-                        background: Rectangle {
-                            x: opacitySlider.leftPadding
-                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
-                            implicitWidth: 200
-                            implicitHeight: 6
-                            width: opacitySlider.availableWidth
-                            height: implicitHeight
-                            radius: 3
-                            color: theme.button.background
-                            
-                            Rectangle {
-                                width: opacitySlider.visualPosition * parent.width
-                                height: parent.height
-                                color: theme.normal.blue
-                                radius: 3
-                            }
+                Row {
+                    spacing: 15
+                    // Top-Left
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaTopLeft.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaTopLeft.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.top: parent.top
+                          anchors.left: parent.left
+                          anchors.topMargin: 10
+                          anchors.leftMargin: 10
+                          color: theme.primary.background
+                          radius: 6
                         }
                         
-                        handle: Rectangle {
-                            x: opacitySlider.leftPadding + opacitySlider.visualPosition * (opacitySlider.availableWidth - width)
-                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
-                            implicitWidth: 22
-                            implicitHeight: 22
-                            radius: 11
-                            color: opacitySlider.pressed ? theme.normal.blue : theme.primary.background
-                            border.color: theme.normal.blue
-                            border.width: 3
+                        MouseArea {
+                            id: mouseAreaTopLeft
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
                             
-                            Behavior on color {
-                                ColorAnimation { duration: 150 }
+                            onClicked: {
+                              root.posClockPanel("topLeft")
                             }
                         }
                     }
+                    // Top
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaTop.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaTop.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.top: parent.top
+                          anchors.topMargin: 10
+                          anchors.horizontalCenter: parent.horizontalCenter
+                          color: theme.primary.background
+                          radius: 6
+                        }
+                        
+                        MouseArea {
+                            id: mouseAreaTop
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("top")
+                            }
+                        }
+                    }
+                    // Top - Right
+                      Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaTopRight.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaTopRight.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.top: parent.top
+                          anchors.right: parent.right
+                          anchors.topMargin: 10
+                          anchors.rightMargin: 10
+                          color: theme.primary.background
+                          radius: 6
+                        }
+                        
+                        MouseArea {
+                            id: mouseAreaTopRight
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("topRight")
+                            }
+                        }
+                    }
+                  }
+                  Row {
+                    spacing: 15
                     
-                    RowLayout {
-                        Layout.fillWidth: true
-                        
-                        Text {
-                            text: "50%"
-                            color: theme.primary.dim_foreground
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 12
-                            }
+                    // Left
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaLeft.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaLeft.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.left: parent.left
+                          anchors.leftMargin: 10
+                          anchors.verticalCenter: parent.verticalCenter
+                          color: theme.primary.background
+                          radius: 6
                         }
                         
-                        Item { Layout.fillWidth: true }
-                        
-                        Text {
-                            text: Math.round(opacitySlider.value * 100) + "%"
-                            color: theme.normal.blue
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 14
-                                bold: true
+                        MouseArea {
+                            id: mouseAreaLeft
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("left")
                             }
                         }
+                    }
+                    // Center
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaCenter.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaCenter.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.horizontalCenter: parent.horizontalCenter
+                          anchors.verticalCenter: parent.verticalCenter
+                          color: theme.primary.background
+                          radius: 6
+                        }
                         
-                        Item { Layout.fillWidth: true }
+                        MouseArea {
+                            id: mouseAreaCenter
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("center")
+                            }
+                        }
+                    }
+                    // Right
+                      Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaRight.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaRight.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.right: parent.right
+                          anchors.rightMargin: 10
+                          anchors.verticalCenter: parent.verticalCenter
+                          color: theme.primary.background
+                          radius: 6
+                        }
                         
-                        Text {
-                            text: "100%"
-                            color: theme.primary.dim_foreground
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 12
+                        MouseArea {
+                            id: mouseAreaRight
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("right")
+                            }
+                        }
+                    }
+                  }
+                  Row {
+                    spacing: 15
+                    
+                    // Left - Bottom
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaLeftBottom.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaLeftBottom.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.left: parent.left
+                          anchors.leftMargin: 10
+                          anchors.bottom: parent.bottom
+                          anchors.bottomMargin: 10
+                          color: theme.primary.background
+                          radius: 6
+                        }
+                        
+                        MouseArea {
+                            id: mouseAreaLeftBottom
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("bottomLeft")
+                            }
+                        }
+                    }
+                    // Bottom
+                    Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaBottom.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaBottom.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.bottom: parent.bottom
+                          anchors.bottomMargin: 10
+                          anchors.horizontalCenter: parent.horizontalCenter
+                          color: theme.primary.background
+                          radius: 6
+                        }
+                        
+                        MouseArea {
+                            id: mouseAreaBottom
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("bottom")
+                            }
+                        }
+                    }
+                    //bottom - right
+                      Rectangle {
+                        width: 60
+                        height: 60
+                        radius: 12
+                        color: mouseAreaRightBottom.containsMouse ? theme.button.background_select : theme.button.background
+                        border.color: mouseAreaRightBottom.containsPress ? theme.button.border_select : theme.button.border
+                        border.width: 3
+                        Rectangle {
+                          width: 25
+                          height: 15
+                          anchors.right: parent.right
+                          anchors.rightMargin: 10
+                          anchors.bottom: parent.bottom
+                          anchors.bottomMargin: 10
+                          color: theme.primary.background
+                          radius: 6
+                        }
+                        
+                        MouseArea {
+                            id: mouseAreaRightBottom
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            
+                            onClicked: {
+                              root.posClockPanel("bottomRight")
                             }
                         }
                     }
                 }
-            }
+              }
+              }
+
+
             
+            // Opacity Setting
+                        
             // Animation Settings
                         
             // Additional Appearance Settings

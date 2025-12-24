@@ -17,6 +17,7 @@ PanelWindow {
 
     signal closeRequested()
     signal toggleClockPanel()
+    signal posClockPanel(string pos)
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
@@ -108,6 +109,7 @@ function closePanel() {
                         NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
                     }
                     onToggleClockPanel: launcherPanel.toggleClockPanel()
+                    onPosClockPanel: launcherPanel.posClockPanel(pos)
                 }
 
                 ColumnLayout {

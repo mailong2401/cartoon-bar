@@ -6,37 +6,20 @@ import QtQuick.Controls
 
 PanelWindow {
     id: root
+    WlrLayershell.exclusiveZone: 0   // không chiếm không gian ứng dụng
 
-    Connections {
-        target: GlobalSettings
-        onClockPanelVisibilityChanged: {
-            visible = isVisible
-        }
-    }
-
-    property int marginTop: 0
-    property int marginBottom: 0
-    property int marginLeft: 0
-    property int marginRight: 0
-
-    property bool anchorsTop: false
-    property bool anchorsBottom: false
-    property bool anchorsRight: false
-    property bool anchorsLeft: false
-
-    
     anchors {
-        top: anchorsTop
-        bottom: anchorsBottom
-        left: anchorsLeft
-        right: anchorsRight
+        top: true
+        bottom: true 
+        left: true
+        right: true
     }
 
     margins {
-        top: marginTop
-        bottom: marginBottom
-        left: marginLeft
-        right: marginRight
+        top: 20
+        bottom: 20
+        left: 20
+        right: 20
     }
     
     property string currentHour: ""

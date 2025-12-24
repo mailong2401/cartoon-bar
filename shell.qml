@@ -14,16 +14,82 @@ ShellRoot {
     Components.LanguageLoader { id: languageLoader }
     Components.VolumeOsd { }
 
-property bool clockPanelVisible: true  // trạng thái bảng đồng hồ
+    property bool clockPanelVisible: true  // trạng thái bảng đồng hồ
 
-Components.ClockPanel {
-    id: clockPanel
-    visible: clockPanelVisible
+
+    property bool anchorsTop: true
+    property bool anchorsBottom: false
+    property bool anchorsRight: false
+    property bool anchorsLeft: false
+
+    Components.ClockPanel {
+        id: clockPanel
+        visible: clockPanelVisible
+        anchors {
+        top: anchorsTop
+        bottom: anchorsBottom 
+        left: anchorsLeft
+        right: anchorsRight
+    }
+    }
+
+    function setClockPanelPosition(position) {
+    // reset trước
+    anchorsTop = false
+    anchorsBottom = false
+    anchorsLeft = false
+    anchorsRight = false
+
+    switch (position) {
+    case "topLeft":
+        anchorsTop = true
+        anchorsLeft = true
+        break
+
+    case "top":
+        anchorsTop = true
+        break
+
+    case "topRight":
+        anchorsTop = true
+        anchorsRight = true
+        break
+
+    case "left":
+        anchorsLeft = true
+        break
+
+    case "center":
+        anchorsTop = true
+        anchorsBottom = true
+        anchorsLeft = true
+        anchorsRight = true
+        break
+
+    case "right":
+        anchorsRight = true
+        break
+
+    case "bottomLeft":
+        anchorsBottom = true
+        anchorsLeft = true
+        break
+
+    case "bottom":
+        anchorsBottom = true
+        break
+
+    case "bottomRight":
+        anchorsBottom = true
+        anchorsRight = true
+        break
+    }
 }
 
-function toggleClockPanel() {
-    clockPanelVisible = !clockPanelVisible
-}
+
+    function toggleClockPanel() {
+        clockPanelVisible = !clockPanelVisible
+    }
 
     property var currentTheme: themeLoader.theme
     property var currentLanguage: languageLoader.translations
@@ -42,6 +108,9 @@ function toggleClockPanel() {
         onThemeReloaded: currentTheme = themeLoader.theme
     }
 
+    Component.onCompleted: {
+        setClockPanelPosition("bottom")
+    }
     
 
     PanelWindow {
@@ -72,6 +141,8 @@ function toggleClockPanel() {
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
                 onToggleClockPanel: root.toggleClockPanel()
+                onPosClockPanel: root.setClockPanelPosition(pos)
+
 
             }
 
