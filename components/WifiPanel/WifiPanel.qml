@@ -236,11 +236,31 @@ PanelWindow {
                             color: theme.primary.dim_background
                             radius: 12
                             width: parent.width
-                            height: visible ? 100 : 0
+                            height: visible ? (hasError ? 150 : 100) : 0
                             border.width: 2
                             border.color: theme.normal.blue
-                            Behavior on height { 
-                                NumberAnimation { duration: 200 } 
+                            Behavior on height {
+                                NumberAnimation { duration: 200 }
+                            }
+
+                            property bool showPassword: false
+                            property bool hasError: false
+                            property string errorMessage: ""
+
+                            // Kiểm tra xem có mật khẩu đã lưu không - dựa vào isConnected
+                            property bool hasSavedPassword: modelData.isConnected
+
+                            Component.onCompleted: {
+                                // Lấy mật khẩu từ NetworkManager khi mở passwordBox
+                                if (visible && modelData.isConnected) {
+                                    wifiManager.getSavedPassword(modelData.ssid)
+                                }
+                            }
+
+                            onVisibleChanged: {
+                                if (visible && modelData.isConnected) {
+                                    wifiManager.getSavedPassword(modelData.ssid)
+                                }
                             }
 
                             ColumnLayout {
@@ -248,23 +268,113 @@ PanelWindow {
                                 anchors.margins: 12
                                 spacing: 8
 
-                                Text { 
-                                    text: "🔒 " + modelData.ssid; 
-                                    font.pixelSize: 14; 
+                                Text {
+                                    text: "🔒 " + modelData.ssid;
+                                    font.pixelSize: 14;
                                     color: theme.primary.foreground
                                     font.family: "ComicShannsMono Nerd Font"
                                 }
 
+                                // Thông báo lỗi
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    height: 30
+                                    visible: passwordBox.hasError
+                                    color: theme.normal.red
+                                    radius: 6
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: "❌ " + passwordBox.errorMessage
+                                        color: theme.primary.foreground
+                                        font.pixelSize: 12
+                                        font.family: "ComicShannsMono Nerd Font"
+                                    }
+                                }
+
+                                // Hiển thị mật khẩu đã lưu (khi đã kết nối)
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
+                                    visible: passwordBox.hasSavedPassword
+
+                                    Rectangle {
+                                        Layout.fillWidth: true
+                                        height: 40
+                                        color: theme.primary.background
+                                        radius: 8
+                                        border.color: theme.normal.green
+                                        border.width: 1
+
+                                        Text {
+                                            anchors.centerIn: parent
+                                            text: passwordBox.showPassword ? wifiManager.currentPassword : "••••••••"
+                                            font.family: "ComicShannsMono Nerd Font"
+                                            color: theme.primary.foreground
+                                            font.pixelSize: 14
+                                        }
+                                    }
+
+                                    // Nút toggle hiện/ẩn mật khẩu
+                                    Button {
+                                        width: 40
+                                        height: 40
+                                        font.family: "ComicShannsMono Nerd Font"
+                                        background: Rectangle {
+                                            color: parent.down ? theme.button.background_select :
+                                                   parent.hovered ? theme.button.background_select : theme.button.background
+                                            radius: 8
+                                        }
+                                        contentItem: Text {
+                                            text: passwordBox.showPassword ? "👁️" : "🙈"
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                            font.pixelSize: 18
+                                        }
+
+                                        onClicked: {
+                                            passwordBox.showPassword = !passwordBox.showPassword
+                                        }
+                                    }
+
+                                    // Nút quên/xóa mật khẩu
+                                    Button {
+                                        text: "Quên"
+                                        font.family: "ComicShannsMono Nerd Font"
+                                        background: Rectangle {
+                                            color: parent.down ? theme.normal.red :
+                                                   parent.hovered ? Qt.lighter(theme.normal.red, 1.2) : theme.normal.red
+                                            radius: 8
+                                        }
+                                        contentItem: Text {
+                                            text: parent.text
+                                            color: theme.primary.foreground
+                                            font: parent.font
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        onClicked: {
+                                            wifiManager.forgetPassword(modelData.ssid)
+                                            passwordBox.hasSavedPassword = false
+                                            wifiManager.openSsid = ""
+                                        }
+                                    }
+                                }
+
+                                // Form nhập mật khẩu (khi chưa có mật khẩu đã lưu)
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 8
+                                    visible: !passwordBox.hasSavedPassword
+
                                     TextField {
                                         id: wifiPassword
                                         Layout.fillWidth: true
                                         placeholderText: modelData.security === "Open" ? "Không cần mật khẩu" : "Nhập mật khẩu"
-                                        echoMode: TextInput.Password
+                                        echoMode: passwordBox.showPassword ? TextInput.Normal : TextInput.Password
                                         enabled: modelData.security !== "Open"
                                         font.family: "ComicShannsMono Nerd Font"
+                                        color: theme.primary.foreground
                                         background: Rectangle {
                                             color: theme.primary.background
                                             radius: 8
@@ -276,11 +386,35 @@ PanelWindow {
                                             wifiManager.userTyping = activeFocus
                                         }
                                     }
+
+                                    // Nút toggle hiện/ẩn mật khẩu
+                                    Button {
+                                        width: 40
+                                        height: 40
+                                        visible: modelData.security !== "Open"
+                                        font.family: "ComicShannsMono Nerd Font"
+                                        background: Rectangle {
+                                            color: parent.down ? theme.button.background_select :
+                                                   parent.hovered ? theme.button.background_select : theme.button.background
+                                            radius: 8
+                                        }
+                                        contentItem: Text {
+                                            text: passwordBox.showPassword ? "👁️" : "🙈"
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                            font.pixelSize: 18
+                                        }
+
+                                        onClicked: {
+                                            passwordBox.showPassword = !passwordBox.showPassword
+                                        }
+                                    }
+
                                     Button {
                                         text: "Kết nối"
                                         font.family: "ComicShannsMono Nerd Font"
                                         background: Rectangle {
-                                            color: parent.down ? theme.normal.blue : 
+                                            color: parent.down ? theme.normal.blue :
                                                    parent.hovered ? theme.bright.blue : theme.normal.blue
                                             radius: 8
                                         }
@@ -291,14 +425,31 @@ PanelWindow {
                                             horizontalAlignment: Text.AlignHCenter
                                             verticalAlignment: Text.AlignVCenter
                                         }
-                                        
+
                                         onClicked: {
                                             if (wifiPassword.text.trim().length === 0 && modelData.security !== "Open") {
-                                                console.log("⚠️ Cần nhập mật khẩu")
+                                                passwordBox.hasError = true
+                                                passwordBox.errorMessage = "Vui lòng nhập mật khẩu"
                                                 return
                                             }
+
+                                            // Reset lỗi trước khi kết nối
+                                            passwordBox.hasError = false
+                                            passwordBox.errorMessage = ""
+
                                             wifiManager.connectToWifi(modelData.ssid, wifiPassword.text)
-                                            wifiManager.openSsid = ""
+
+                                            // Kiểm tra lỗi kết nối
+                                            Qt.callLater(function() {
+                                                if (wifiManager.connectionError) {
+                                                    passwordBox.hasError = true
+                                                    passwordBox.errorMessage = "Mật khẩu không đúng"
+                                                } else {
+                                                    passwordBox.hasSavedPassword = true
+                                                    wifiManager.openSsid = ""
+                                                }
+                                            })
+
                                             wifiPassword.text = ""
                                         }
                                     }

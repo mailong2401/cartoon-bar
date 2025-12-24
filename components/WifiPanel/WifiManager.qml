@@ -13,10 +13,26 @@ Item {
     property string openSsid: ""     // SSID đang mở hộp mật khẩu
     property bool userTyping: false  // true khi đang nhập password
     property bool enabled: false
+    property string connectionError: ""  // Lỗi kết nối
+    property string currentPassword: ""  // Mật khẩu hiện tại đang được lấy
+    property string requestedSsid: ""    // SSID đang yêu cầu lấy password
 
     // =============================
     //   WIFI PROCESS HANDLERS
     // =============================
+    Process {
+        id: getPasswordProcess
+        stdout: StdioCollector {
+            onStreamFinished: {
+                if (this.text) {
+                    wifiManager.currentPassword = this.text.trim()
+                    console.log("🔑 Got password for:", wifiManager.requestedSsid)
+                } else {
+                    wifiManager.currentPassword = ""
+                }
+            }
+        }
+    }
     Process {
         id: wifiToggleProcess
         onRunningChanged: if (!running) {
@@ -53,9 +69,25 @@ Item {
 
     Process {
         id: wifiConnectProcess
-        onRunningChanged: if (!running) {
-            console.log("✅ WiFi connect process finished")
-            checkConnectedWifi()
+        stdout: SplitParser {
+            splitMarker: "\n"
+        }
+        stderr: StdioCollector {
+            onStreamFinished: {
+                if (this.text && this.text.includes("Error")) {
+                    wifiManager.connectionError = "Mật khẩu không đúng hoặc không thể kết nối"
+                    forgetPassword(wifiManager.requestedSsid)
+                }
+            }
+        }
+        onRunningChanged: {
+            if (!running) {
+                console.log("✅ WiFi connect process finished")
+                // Delay để stderr kịp xử lý
+                Qt.callLater(function() {
+                    checkConnectedWifi()
+                })
+            }
         }
     }
 
@@ -101,11 +133,33 @@ Item {
 
     function connectToWifi(ssid, password) {
         console.log("🔗 Connecting to:", ssid)
-        if (password)
+        wifiManager.connectionError = ""  // Reset lỗi
+        wifiManager.requestedSsid = ssid  // Lưu SSID để xóa nếu thất bại
+
+        if (password) {
             wifiConnectProcess.command = ["nmcli", "device", "wifi", "connect", ssid, "password", password]
-        else
+        } else {
             wifiConnectProcess.command = ["nmcli", "device", "wifi", "connect", ssid]
+        }
         wifiConnectProcess.running = true
+    }
+
+    function getSavedPassword(ssid) {
+        // Lấy mật khẩu từ NetworkManager
+        wifiManager.requestedSsid = ssid
+        getPasswordProcess.command = ["nmcli", "-s", "-g", "802-11-wireless-security.psk", "connection", "show", ssid]
+        getPasswordProcess.running = true
+
+        // Trả về mật khẩu hiện tại (có thể rỗng nếu đang loading)
+        return wifiManager.currentPassword
+    }
+
+    function forgetPassword(ssid) {
+        // Xóa connection profile từ NetworkManager
+        var forgetProcess = Qt.createQmlObject('import Quickshell.Io; Process {}', wifiManager)
+        forgetProcess.command = ["nmcli", "connection", "delete", ssid]
+        forgetProcess.running = true
+        console.log("🗑️ Deleting connection:", ssid)
     }
 
     function disconnectWifi() {
