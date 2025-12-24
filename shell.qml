@@ -13,6 +13,7 @@ ShellRoot {
     Components.ThemeLoader { id: themeLoader }
     Components.LanguageLoader { id: languageLoader }
     Components.VolumeOsd { }
+    Components.NotificationPopup{}
 
     property bool clockPanelVisible: true  // trạng thái bảng đồng hồ
 

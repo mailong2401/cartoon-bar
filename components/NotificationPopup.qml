@@ -1,0 +1,304 @@
+import QtQuick
+import QtQuick.Window
+import Quickshell
+import Quickshell.Services.Notifications
+
+PanelWindow {
+    id: root
+    property var theme: currentTheme
+
+    implicitWidth: 430
+    anchors {
+        top: true
+        right: true
+    }
+    margins {
+        top: 10
+        right: 10
+    }
+    visible: notificationModel.count > 0
+    color: "transparent"
+
+    // Tính toán chiều cao dựa trên số lượng thông báo
+    property int maxNotifications: 4
+    property int notificationHeight: 100
+    property int notificationSpacing: 10
+    property int containerMargin: 10
+
+    // Tính toán: margin container (10*2) + notifications
+    implicitHeight: {
+        var notifCount = Math.min(notificationModel.count, maxNotifications)
+        if (notifCount === 0) return 0
+        var listHeight = notifCount * (notificationHeight + notificationSpacing) - notificationSpacing
+        return containerMargin * 2 + listHeight
+    }
+    
+    // Container chính cho popup
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        
+        // Hiệu ứng shadow
+        layer.enabled: true
+
+        
+        // Danh sách notification
+        ListView {
+            id: notificationList
+            anchors.fill: parent
+            anchors.margins: 10
+            spacing: notificationSpacing
+            clip: true
+            model: ListModel { id: notificationModel }
+
+            delegate: Rectangle {
+                id: notificationDelegate
+                width: notificationList.width
+                height: notificationHeight
+                radius: 8
+                color: getBackgroundColor(model.urgency)
+                border.color: Qt.darker(color, 1.1)
+                border.width: 3
+
+                // Hiệu ứng mờ dần khi xóa
+                opacity: 1
+                Behavior on opacity {
+                    NumberAnimation { duration: 200 }
+                }
+
+                // Timer tự động xóa
+                Timer {
+                    id: autoDismiss
+                    interval: model.timeout > 0 ? model.timeout * 1000 : 10000
+                    onTriggered: removeNotification()
+                }
+
+                Column {
+                    id: contentColumn
+                    anchors.fill: parent
+                    anchors.margins: 12
+                    spacing: 6
+
+                    // Header với app icon và tên
+                    Row {
+                        width: parent.width
+                        spacing: 8
+                        height: 24
+
+                        Rectangle {
+                            width: 24
+                            height: 24
+                            radius: 12
+                            color: getIconColor(model.urgency)
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: model.appName ? model.appName.charAt(0).toUpperCase() : "N"
+                                font.bold: true
+                                color: theme.primary.foreground
+                                font.pixelSize: 12
+                            }
+                        }
+
+                        Text {
+                            text: model.appName || "Unknown App"
+                            font.bold: true
+                            color: getTextColor(model.urgency)
+                            elide: Text.ElideRight
+                            width: parent.width - 80
+                            font.pixelSize: 12
+                        }
+
+                        // Close button
+                        MouseArea {
+                            width: 24
+                            height: 24
+                            anchors.verticalCenter: parent.verticalCenter
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: removeNotification()
+
+                            Rectangle {
+                                anchors.fill: parent
+                                radius: 12
+                                color: parent.containsMouse ? theme.normal.red : "transparent"
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: "×"
+                                    font.pixelSize: 16
+                                    color: parent.parent.containsMouse ? theme.primary.foreground : theme.primary.dim_foreground
+                                    font.bold: true
+                                }
+                            }
+                        }
+                    }
+
+                    // Tiêu đề
+                    Text {
+                        width: parent.width
+                        text: model.summary
+                        font.bold: true
+                        font.pixelSize: 14
+                        wrapMode: Text.WordWrap
+                        color: getTextColor(model.urgency)
+                        maximumLineCount: 1
+                        elide: Text.ElideRight
+                    }
+
+                    // Nội dung
+                    Text {
+                        width: parent.width
+                        text: model.body
+                        font.pixelSize: 12
+                        wrapMode: Text.WordWrap
+                        color: getBodyColor(model.urgency)
+                        maximumLineCount: 2
+                        elide: Text.ElideRight
+                    }
+
+
+
+                    // Actions (nếu có)
+                    Flow {
+                        width: parent.width
+                        spacing: 5
+                        visible: model.actions && model.actions.length > 0
+
+                        Repeater {
+                            model: model.actions || []
+
+                            Rectangle {
+                                height: 26
+                                width: Math.min(actionText.width + 16, 120)
+                                radius: 5
+                                color: getActionColor(model.urgency)
+
+                                Text {
+                                    id: actionText
+                                    anchors.centerIn: parent
+                                    text: modelData.text || modelData.identifier
+                                    color: theme.primary.foreground
+                                    font.pixelSize: 10
+                                    font.bold: true
+                                    elide: Text.ElideRight
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: {
+                                        console.log("Invoking action:", modelData.identifier)
+                                        modelData.invoke()
+                                        removeNotification()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                function getBackgroundColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.primary.dim_background
+                        case NotificationUrgency.Normal: return theme.primary.dim_background
+                        case NotificationUrgency.Low: return theme.primary.dim_background
+                        default: return theme.button.background
+                    }
+                }
+
+                function getTextColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.normal.red
+                        case NotificationUrgency.Normal: return theme.normal.blue
+                        case NotificationUrgency.Low: return theme.normal.green
+                        default: return theme.primary.foreground
+                    }
+                }
+
+                function getBodyColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.normal.red
+                        case NotificationUrgency.Normal: return theme.normal.cyan
+                        case NotificationUrgency.Low: return theme.normal.green
+                        default: return theme.primary.dim_foreground
+                    }
+                }
+
+                function getIconColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.normal.red
+                        case NotificationUrgency.Normal: return theme.normal.blue
+                        case NotificationUrgency.Low: return theme.normal.green
+                        default: return theme.button.background
+                    }
+                }
+
+                function getActionColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.normal.red
+                        case NotificationUrgency.Normal: return theme.normal.blue
+                        case NotificationUrgency.Low: return theme.normal.green
+                        default: return theme.button.background
+                    }
+                }
+
+                function getProgressColor(urgency) {
+                    switch(urgency) {
+                        case NotificationUrgency.Critical: return theme.normal.red
+                        case NotificationUrgency.Normal: return theme.normal.blue
+                        case NotificationUrgency.Low: return theme.normal.green
+                        default: return theme.button.background
+                    }
+                }
+
+                function removeNotification() {
+                    notificationDelegate.opacity = 0
+                    notificationTimer.start()
+                }
+
+                Timer {
+                    id: notificationTimer
+                    interval: 200
+                    onTriggered: notificationModel.remove(index)
+                }
+
+                Component.onCompleted: {
+                    autoDismiss.restart()
+                }
+            }
+        }
+    }
+    
+    NotificationServer {
+        id: server
+        actionsSupported: true
+        imageSupported: true
+        inlineReplySupported: true
+        
+        onNotification: function(notification) {
+            console.log("📢 New notification:", notification.summary)
+            
+            // Thêm vào model để hiển thị
+            notificationModel.insert(0, {
+                id: notification.id,
+                appName: notification.appName || "",
+                summary: notification.summary,
+                body: notification.body,
+                urgency: notification.urgency,
+                timeout: notification.expireTimeout,
+                actions: notification.actions
+            })
+            
+            // Giữ tối đa 4 notification
+            if (notificationModel.count > maxNotifications) {
+                // Xóa notification cũ nhất
+                notificationModel.remove(maxNotifications)
+            }
+            
+            // Giữ thông báo
+            notification.tracked = true
+        }
+    }
+    
+}
