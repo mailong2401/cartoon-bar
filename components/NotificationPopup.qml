@@ -26,11 +26,10 @@ PanelWindow {
     property int containerMargin: 10
 
     // Tính toán: margin container (10*2) + notifications
-    implicitHeight: {
-        var notifCount = Math.min(notificationModel.count, maxNotifications)
-        if (notifCount === 0) return 0
-        var listHeight = notifCount * (notificationHeight + notificationSpacing) - notificationSpacing
-        return containerMargin * 2 + listHeight
+    implicitHeight: containerMargin * 2 + notificationList.contentHeight
+
+    Behavior on implicitHeight {
+        NumberAnimation { duration: 10; easing.type: Easing.OutCubic }
     }
     
     // Container chính cho popup
@@ -50,15 +49,31 @@ PanelWindow {
             spacing: notificationSpacing
             clip: true
             model: ListModel { id: notificationModel }
+            interactive: false
+
+            // Giới hạn chiều cao tối đa
+            property int maxHeight: maxNotifications * (notificationHeight + notificationSpacing)
+            height: Math.min(contentHeight, maxHeight)
+
+            Behavior on height {
+                NumberAnimation { duration: 10; easing.type: Easing.OutCubic }
+            }
 
             delegate: Rectangle {
                 id: notificationDelegate
                 width: notificationList.width
-                height: notificationHeight
+                height: isExpanded ? contentColumn.implicitHeight + 24 : notificationHeight
                 radius: 8
                 color: getBackgroundColor(model.urgency)
                 border.color: Qt.darker(color, 1.1)
                 border.width: 3
+
+                property bool isExpanded: false
+                property bool hasLongContent: false
+
+                Behavior on height {
+                    NumberAnimation { duration: 20; easing.type: Easing.OutCubic }
+                }
 
                 // Hiệu ứng mờ dần khi xóa
                 opacity: 1
@@ -105,8 +120,33 @@ PanelWindow {
                             font.bold: true
                             color: getTextColor(model.urgency)
                             elide: Text.ElideRight
-                            width: parent.width - 80
+                            width: parent.width - (hasLongContent ? 104 : 80)
                             font.pixelSize: 12
+                        }
+
+                        // Expand button (only show if content is long)
+                        MouseArea {
+                            width: 24
+                            height: 24
+                            anchors.verticalCenter: parent.verticalCenter
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            visible: hasLongContent
+                            onClicked: isExpanded = !isExpanded
+
+                            Rectangle {
+                                anchors.fill: parent
+                                radius: 12
+                                color: parent.containsMouse ? theme.button.background_select : "transparent"
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    text: isExpanded ? "▲" : "▼"
+                                    font.pixelSize: 10
+                                    color: parent.parent.containsMouse ? theme.primary.foreground : theme.primary.dim_foreground
+                                    font.bold: true
+                                }
+                            }
                         }
 
                         // Close button
@@ -136,25 +176,41 @@ PanelWindow {
 
                     // Tiêu đề
                     Text {
+                        id: summaryText
                         width: parent.width
                         text: model.summary
                         font.bold: true
                         font.pixelSize: 14
                         wrapMode: Text.WordWrap
                         color: getTextColor(model.urgency)
-                        maximumLineCount: 1
+                        maximumLineCount: isExpanded ? 2 : 1
                         elide: Text.ElideRight
                     }
 
                     // Nội dung
                     Text {
+                        id: bodyText
                         width: parent.width
                         text: model.body
                         font.pixelSize: 12
                         wrapMode: Text.WordWrap
                         color: getBodyColor(model.urgency)
-                        maximumLineCount: 2
+                        maximumLineCount: isExpanded ? 5 : 2
                         elide: Text.ElideRight
+
+                        onTruncatedChanged: {
+                            if (!isExpanded) {
+                                hasLongContent = truncated
+                            }
+                        }
+
+                        Component.onCompleted: {
+                            Qt.callLater(function() {
+                                if (!isExpanded) {
+                                    hasLongContent = truncated
+                                }
+                            })
+                        }
                     }
 
 
