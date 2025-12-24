@@ -1,6 +1,6 @@
 #!/bin/bash
 # ===== Cấu hình =====
-BAT="/sys/class/power_supply/BAT0"
+BAT="/sys/class/power_supply/BAT1"
 LOG_JSON="$HOME/battery_log.json"
 LOW_THRESHOLD=15
 HIGH_THRESHOLD=95

@@ -176,7 +176,7 @@ Rectangle {
 
     Process {
         id: batteryCapacityProcess
-        command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
+        command: ["cat", "/sys/class/power_supply/BAT1/capacity"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
@@ -190,7 +190,7 @@ Rectangle {
 
     Process {
         id: batteryStatusProcess
-        command: ["cat", "/sys/class/power_supply/BAT0/status"]
+        command: ["cat", "/sys/class/power_supply/BAT1/status"]
         running: false
         stdout: StdioCollector { }
         onRunningChanged: {
