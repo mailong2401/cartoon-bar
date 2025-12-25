@@ -86,7 +86,7 @@ PanelWindow {
                         Text {
                             text: wifiManager.wifiEnabled ? "WiFi đang bật" : "WiFi đang tắt"
                             font.pixelSize: 20; font.bold: true; 
-                            color: wifiManager.wifiEnabled ? theme.normal.green : theme.normal.red
+                            color: wifiManager.wifiEnabled ? theme.normal.blue : theme.normal.red
                             font.family: "ComicShannsMono Nerd Font"
                         }
                         Text { 
@@ -106,8 +106,8 @@ PanelWindow {
                             implicitWidth: 48
                             implicitHeight: 26
                             radius: 13
-                            color: parent.checked ? theme.normal.green : theme.normal.black
-                            border.color: parent.checked ? theme.normal.green : theme.primary.dim_foreground
+                            color: parent.checked ? theme.normal.blue : theme.normal.black
+                            border.color: parent.checked ? theme.normal.blue : theme.primary.dim_foreground
 
                             Rectangle {
                                 x: parent.checked ? parent.width - width : 0
@@ -174,9 +174,9 @@ PanelWindow {
                             radius: 12
                             color: mouseArea.containsMouse ? 
                                    theme.button.background_select : 
-                                   (modelData.isConnected ? theme.normal.green : theme.primary.dim_background)
+                                   (modelData.isConnected ? theme.normal.blue : theme.primary.dim_background)
                             border.width: 2
-                            border.color: modelData.isConnected ? theme.normal.green : theme.normal.black
+                            border.color: modelData.isConnected ? theme.normal.blue : theme.normal.black
 
                             ColumnLayout {
                                 anchors.fill: parent
@@ -302,7 +302,7 @@ PanelWindow {
                                         height: 40
                                         color: theme.primary.background
                                         radius: 8
-                                        border.color: theme.normal.green
+                                        border.color: theme.normal.blue
                                         border.width: 1
 
                                         Text {

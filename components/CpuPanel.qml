@@ -118,7 +118,6 @@ function togglePanel(panelName) {
     function updateAll() {
         updateCpu()
         updateMemory()
-        updateTemperature()
     }
 
     RowLayout {
@@ -279,12 +278,5 @@ function togglePanel(panelName) {
         running: true
         repeat: true
         onTriggered: updateMemory()
-    }
-
-    Timer {
-        interval: 10000 // Cập nhật Temperature mỗi 10 giây
-        running: true
-        repeat: true
-        onTriggered: updateTemperature()
     }
 }

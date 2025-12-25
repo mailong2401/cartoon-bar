@@ -64,7 +64,14 @@ PanelWindow {
                 width: notificationList.width
                 height: isExpanded ? contentColumn.implicitHeight + 24 : notificationHeight
                 radius: 8
-                color: getBackgroundColor(model.urgency)
+                color: {
+                    switch(model.urgency) {
+                        case NotificationUrgency.Critical: return theme.primary.dim_background
+                        case NotificationUrgency.Normal: return theme.primary.dim_background
+                        case NotificationUrgency.Low: return theme.primary.dim_background
+                        default: return theme.button.background
+                    }
+                }
                 border.color: Qt.darker(color, 1.1)
                 border.width: 3
 
@@ -104,13 +111,20 @@ PanelWindow {
                             width: 24
                             height: 24
                             radius: 12
-                            color: getIconColor(model.urgency)
+                            color: {
+                                switch(model.urgency) {
+                                    case NotificationUrgency.Critical: return theme.normal.red
+                                    case NotificationUrgency.Normal: return theme.normal.blue
+                                    case NotificationUrgency.Low: return theme.normal.green
+                                    default: return theme.button.background
+                                }
+                            }
 
                             Text {
                                 anchors.centerIn: parent
                                 text: model.appName ? model.appName.charAt(0).toUpperCase() : "N"
                                 font.bold: true
-                                color: theme.primary.foreground
+                                color: theme.primary.background
                                 font.pixelSize: 12
                             }
                         }
@@ -118,7 +132,7 @@ PanelWindow {
                         Text {
                             text: model.appName || "Unknown App"
                             font.bold: true
-                            color: getTextColor(model.urgency)
+                            color: theme.button.text
                             elide: Text.ElideRight
                             width: parent.width - (hasLongContent ? 104 : 80)
                             font.pixelSize: 12
@@ -182,7 +196,7 @@ PanelWindow {
                         font.bold: true
                         font.pixelSize: 14
                         wrapMode: Text.WordWrap
-                        color: getTextColor(model.urgency)
+                        color: theme.primary.foreground
                         maximumLineCount: isExpanded ? 2 : 1
                         elide: Text.ElideRight
                     }
@@ -194,7 +208,7 @@ PanelWindow {
                         text: model.body
                         font.pixelSize: 12
                         wrapMode: Text.WordWrap
-                        color: getBodyColor(model.urgency)
+                        color: theme.primary.foreground
                         maximumLineCount: isExpanded ? 5 : 2
                         elide: Text.ElideRight
 
@@ -228,7 +242,14 @@ PanelWindow {
                                 height: 26
                                 width: Math.min(actionText.width + 16, 120)
                                 radius: 5
-                                color: getActionColor(model.urgency)
+                                color: {
+                                    switch(parent.parent.parent.model.urgency) {
+                                        case NotificationUrgency.Critical: return theme.normal.red
+                                        case NotificationUrgency.Normal: return theme.normal.blue
+                                        case NotificationUrgency.Low: return theme.normal.green
+                                        default: return theme.button.background
+                                    }
+                                }
 
                                 Text {
                                     id: actionText
@@ -251,60 +272,6 @@ PanelWindow {
                                 }
                             }
                         }
-                    }
-                }
-
-                function getBackgroundColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.primary.dim_background
-                        case NotificationUrgency.Normal: return theme.primary.dim_background
-                        case NotificationUrgency.Low: return theme.primary.dim_background
-                        default: return theme.button.background
-                    }
-                }
-
-                function getTextColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.normal.red
-                        case NotificationUrgency.Normal: return theme.normal.blue
-                        case NotificationUrgency.Low: return theme.normal.green
-                        default: return theme.primary.foreground
-                    }
-                }
-
-                function getBodyColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.normal.red
-                        case NotificationUrgency.Normal: return theme.normal.cyan
-                        case NotificationUrgency.Low: return theme.normal.green
-                        default: return theme.primary.dim_foreground
-                    }
-                }
-
-                function getIconColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.normal.red
-                        case NotificationUrgency.Normal: return theme.normal.blue
-                        case NotificationUrgency.Low: return theme.normal.green
-                        default: return theme.button.background
-                    }
-                }
-
-                function getActionColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.normal.red
-                        case NotificationUrgency.Normal: return theme.normal.blue
-                        case NotificationUrgency.Low: return theme.normal.green
-                        default: return theme.button.background
-                    }
-                }
-
-                function getProgressColor(urgency) {
-                    switch(urgency) {
-                        case NotificationUrgency.Critical: return theme.normal.red
-                        case NotificationUrgency.Normal: return theme.normal.blue
-                        case NotificationUrgency.Low: return theme.normal.green
-                        default: return theme.button.background
                     }
                 }
 

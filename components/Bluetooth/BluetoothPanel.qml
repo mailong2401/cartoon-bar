@@ -36,7 +36,7 @@ PanelWindow {
             radius: 10
             color: deviceMouseArea.containsMouse ? theme.primary.dim_background : theme.primary.background
             border.width: modelData?.connected ? 2 : 0
-            border.color: modelData?.connected ? theme.normal.green : "transparent"
+            border.color: modelData?.connected ? theme.normal.blue : "transparent"
 
             RowLayout {
                 anchors.fill: parent
@@ -47,7 +47,7 @@ PanelWindow {
                     width: 46
                     height: 46
                     radius: 23
-                    color: modelData?.connected ? theme.normal.green : theme.button.background
+                    color: modelData?.connected ? theme.normal.blue : theme.button.background
 
                     Text {
                         anchors.centerIn: parent
@@ -101,9 +101,9 @@ PanelWindow {
 
                         Text {
                             text: {
-                                if (modelData?.connecting) return "🔄 Đang kết nối..."
-                                if (modelData?.connected) return "✓ Đã kết nối"
-                                if (modelData?.paired) return "✓ Đã ghép nối"
+                                if (modelData?.connecting) return "Đang kết nối..."
+                                if (modelData?.connected) return "Đã kết nối"
+                                if (modelData?.paired) return "Đã ghép nối"
                                 return "Không kết nối"
                             }
                             color: {
@@ -120,13 +120,6 @@ PanelWindow {
                             color: theme.primary.dim_foreground
                             font.pixelSize: 11
                         }
-                    }
-
-                    Text {
-                        text: modelData?.address || ""
-                        color: theme.primary.dim_foreground
-                        font.pixelSize: 10
-                        Layout.fillWidth: true
                     }
                 }
 
@@ -223,18 +216,18 @@ PanelWindow {
             color: theme.primary.background
             radius: 16
             border.color: theme.normal.black
-            border.width: 2
+            border.width: 3
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 16
-                spacing: 12
+                anchors.margins: 10
+                spacing: 5
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 60
+                    height: 82
                     radius: 12
-                    color: theme.primary.dim_background
+                    color: theme.primary.background
 
                     RowLayout {
                         anchors.fill: parent
@@ -242,17 +235,17 @@ PanelWindow {
                         spacing: 12
 
                         Rectangle {
-                            width: 40
-                            height: 40
+                            width: 64
+                            height: 64
                             radius: 20
-                            color: adapter?.enabled ? theme.normal.blue : theme.normal.red
+                            color: theme.primary.background
 
-                            Text {
+                            Image {
+                                source: "../../assets/settings/bluetooth.png"
+                                width: 64
+                                height: 64
+                                sourceSize: Qt.size(64, 64)
                                 anchors.centerIn: parent
-                                text: "⎋"
-                                color: theme.primary.foreground
-                                font.pixelSize: 22
-                                font.bold: true
                             }
                         }
                         
@@ -262,57 +255,22 @@ PanelWindow {
                             Layout.fillWidth: true
 
                             Text {
-                                text: "BLUETOOTH"
-                                color: theme.primary.dim_foreground
-                                font.pixelSize: 12
+                                text: "Bluetooth"
+                                color: theme.primary.foreground
+                                font.pixelSize: 40
+                                font.family: "ComicShannsMono Nerd Font"
                                 font.weight: Font.Bold
                             }
-
-                            Text {
-                                text: adapter?.enabled ?
-                                      (connectedCount > 0 ?
-                                       `${connectedCount} thiết bị đã kết nối` :
-                                       "Đã bật") :
-                                      "Đã tắt"
-                                color: adapter?.enabled ? theme.normal.green : theme.normal.red
-                                font.pixelSize: 14
-                                font.weight: Font.Medium
-                            }
                         }
+                                Item { Layout.fillWidth: true }
+
 
                         
-
-                        Rectangle {
-                            width: 56
-                            height: 32
-                            radius: 16
-                            color: adapter?.enabled ? theme.normal.blue : theme.button.background
-                            opacity: adapter ? 1 : 0.5
-
-                            Rectangle {
-                                x: adapter?.enabled ? parent.width - width - 4 : 4
-                                y: 4
-                                width: 24
-                                height: 24
-                                radius: 12
-                                color: theme.primary.foreground
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                enabled: !!adapter
-                                onClicked: {
-                                    if (adapter) {
-                                        adapter.enabled = !adapter.enabled
-                                    }
-                                }
-                            }
-                        }
                         Rectangle {
                             id: scanButton
-                            Layout.preferredWidth: 36
-                            Layout.preferredHeight: 36
-                            radius: 18
+                            Layout.preferredWidth: 55
+                            Layout.preferredHeight: 55
+                            radius: 27.5
                             visible: adapter?.enabled || false
                             color: {
                                 if (adapter?.discovering) return theme.normal.red
@@ -322,15 +280,15 @@ PanelWindow {
 
                             Image {
                                 source: "../../assets/search.png"
-                                width: 20
-                                height: 20
-                                sourceSize: Qt.size(20, 20)
+                                width: 40
+                                height: 40
+                                sourceSize: Qt.size(40, 40)
                                 anchors.centerIn: parent
                             }
 
                             Rectangle {
                                 anchors.fill: parent
-                                radius: 18
+                                radius: 27.5
                                 color: "transparent"
                                 border.width: 2
                                 border.color: theme.normal.green
@@ -371,6 +329,72 @@ PanelWindow {
                         }
                     }
                 }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 82
+                    radius: 12
+                    
+                    color: theme.primary.dim_background
+                    border.width: 3
+                    border.color: theme.normal.black
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: 14
+                        spacing: 12
+
+                        // Column bên trái: trạng thái và số thiết bị
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 4
+
+                            Text {
+                                text: adapter?.enabled ? "Bluetooth đang bật" : "Bluetooth đang tắt"
+                                color: adapter?.enabled ? theme.normal.blue : theme.primary.dim_foreground
+                                font.pixelSize: 20
+                                font.family: "ComicShannsMono Nerd Font"
+                                font.bold: true
+                            }
+
+                            Text {
+                                text: `${connectedCount} thiết bị đã kết nối`
+                                color: theme.primary.dim_foreground
+                                font.pixelSize: 16
+                                font.family: "ComicShannsMono Nerd Font"
+                                visible: adapter?.enabled || false
+                            }
+                        }
+                        Item { Layout.fillWidth: true }
+
+                        // Nút bật/tắt bluetooth
+                        Rectangle {
+                            width: 56
+                            height: 32
+                            radius: 16
+                            color: adapter?.enabled ? theme.normal.blue : theme.button.background
+                            opacity: adapter ? 1 : 0.5
+
+                            Rectangle {
+                                x: adapter?.enabled ? parent.width - width - 4 : 4
+                                y: 4
+                                width: 24
+                                height: 24
+                                radius: 12
+                                color: theme.primary.dim_background
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                enabled: !!adapter
+                                onClicked: {
+                                    if (adapter) {
+                                        adapter.enabled = !adapter.enabled
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
                 Rectangle {
                     Layout.fillWidth: true
@@ -389,25 +413,6 @@ PanelWindow {
                             color: theme.primary.background
                             radius: 12
 
-                            RowLayout {
-                                anchors.fill: parent
-                                anchors.margins: 12
-
-                                Text {
-                                    text: "THIẾT BỊ"
-                                    color: theme.primary.dim_foreground
-                                    font.pixelSize: 11
-                                    font.weight: Font.Bold
-                                }
-
-                                Item { Layout.fillWidth: true }
-
-                                Text {
-                                    text: `${Bluetooth.devices.length} thiết bị`
-                                    color: theme.primary.dim_foreground
-                                    font.pixelSize: 11
-                                }
-                            }
                         }
 
                         ScrollView {
