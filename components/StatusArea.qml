@@ -130,12 +130,17 @@ Rectangle {
         }
       }
 
-      Loader {
-        id: bluetoothPanelLoader
-        source: "./Bluetooth/BluetoothPanel.qml"
-        active: bluetoothPanelVisible
-        onLoaded: {
-            item.visible = Qt.binding(function() { return bluetoothPanelVisible })
+      ComponentBluetooth.BluetoothPanel {
+        id: bluetoothPanel
+        visible: root.bluetoothPanelVisible
+
+        anchors {
+            top: true
+            right: true
+        }
+        margins {
+            top: 10
+            right: 10
         }
       }
 
