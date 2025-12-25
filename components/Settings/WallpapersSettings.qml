@@ -21,15 +21,13 @@ Item {
         id: getHomeProcess
         command: ["bash", "-c", "echo $HOME"]
         running: true
-        stdout: StdioCollector { 
+        stdout: StdioCollector {
             id: homeOutput
             onTextChanged: {
                 if (text) {
                     var path = text.trim()
                     systemSettings.homePath = path
                     systemSettings.wallpapersPath = "file://" + path + "/Pictures/Wallpapers/"
-                    console.log("Home directory found:", path)
-                    console.log("Wallpapers path:", systemSettings.wallpapersPath)
                 }
             }
         }
@@ -41,12 +39,11 @@ Item {
         command: ["swww", "img", "", "--transition-type", "grow", "--transition-duration", "1"]
 
         stdout: StdioCollector {
-            onTextChanged: if (text) console.log("swww output:", text)
+            onTextChanged: { }
         }
 
         onRunningChanged: {
             if (!running) {
-                console.log("Wallpaper set successfully")
                 currentWallpaper = wallpaperPath
                 showNotification("Đã đặt hình nền thành công!")
                 folderModel.update()
@@ -61,12 +58,11 @@ Item {
         command: ["rm", ""]
 
         stdout: StdioCollector {
-            onTextChanged: if (text) console.log("rm output:", text)
+            onTextChanged: { }
         }
 
         onRunningChanged: {
             if (!running) {
-                console.log("Wallpaper deleted successfully")
                 showNotification("Đã xóa ảnh thành công!")
                 folderModel.update()
             }
@@ -417,7 +413,6 @@ Item {
 
     function setWallpaper(filePath) {
         wallpaperPath = filePath.toString().replace("file://", "")
-        console.log("Setting wallpaper:", wallpaperPath)
 
         wallpaperProcess.command = [
             "swww", "img", wallpaperPath,
@@ -429,7 +424,6 @@ Item {
 
     function deleteWallpaper(filePath) {
         var actualPath = filePath.toString().replace("file://", "")
-        console.log("Deleting wallpaper:", actualPath)
 
         deleteProcess.command = ["rm", actualPath]
         deleteProcess.running = true
@@ -453,7 +447,5 @@ Item {
     }
 
     Component.onCompleted: {
-        console.log("SystemSettings component loaded")
-        console.log("Trying to get HOME directory...")
     }
 }

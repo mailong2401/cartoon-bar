@@ -22,6 +22,28 @@ PanelWindow {
         }
         return count
     }
+    
+    property bool isDiscoverable: adapter ? adapter.discoverable : false
+    property bool isPairable: adapter ? adapter.pairable : true
+    
+    // Timer để tự động tắt chế độ quét sau 30 giây
+    Timer {
+        id: scanTimer
+        interval: 30000
+        onTriggered: {
+            if (adapter && adapter.discovering) {
+                adapter.discovering = false
+            }
+        }
+    }
+    
+    // Hiển thị thông báo khi có lỗi ghép nối
+    property string pairErrorMessage: ""
+    Timer {
+        id: errorMessageTimer
+        interval: 5000
+        onTriggered: pairErrorMessage = ""
+    }
 
     Component {
         id: deviceDelegate
@@ -42,11 +64,32 @@ PanelWindow {
             Behavior on scale { NumberAnimation { duration: 100 } }
             Behavior on color { ColorAnimation { duration: 200 } }
             Behavior on border.color { ColorAnimation { duration: 200 } }
+            
+            // Hiển thị trạng thái ghép nối
+            Rectangle {
+                id: pairingIndicator
+                visible: modelData?.pairing || false
+                anchors.centerIn: parent
+                width: parent.width - 20
+                height: parent.height - 20
+                radius: 8
+                color: theme.normal.yellow
+                opacity: 0.3
+
+                Text {
+                    anchors.centerIn: parent
+                    text: "Đang ghép nối..."
+                    color: theme.primary.foreground
+                    font.pixelSize: 14
+                    font.weight: Font.Bold
+                }
+            }
 
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: 12
                 spacing: 12
+                opacity: modelData?.pairing ? 0.7 : 1.0
 
                 Rectangle {
                     width: 46
@@ -156,6 +199,7 @@ PanelWindow {
                         color: modelData?.connected ? theme.normal.red :
                                modelData?.paired ? theme.normal.blue : theme.button.background
                         opacity: (modelData?.paired || modelData?.connecting) ? 1 : 0.5
+                        enabled: !modelData?.pairing
 
                         scale: connectMouseArea.containsPress ? 0.9 : (connectMouseArea.containsMouse ? 1.1 : 1.0)
                         Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutBack } }
@@ -181,14 +225,14 @@ PanelWindow {
                         MouseArea {
                             id: connectMouseArea
                             anchors.fill: parent
-                            enabled: modelData?.paired || modelData?.connecting
+                            enabled: parent.enabled
                             hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
+                            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                             onClicked: {
                                 if (modelData?.connected) {
-                                    modelData.connected = false
+                                    modelData.disconnect()
                                 } else if (modelData?.paired && !modelData?.connecting) {
-                                    modelData.connected = true
+                                    modelData.connect()
                                 }
                             }
                         }
@@ -202,6 +246,7 @@ PanelWindow {
                         color: modelData?.pairing ? theme.normal.yellow :
                                modelData?.paired ? theme.normal.red : theme.normal.blue
                         opacity: modelData?.pairing ? 0.8 : 1
+                        enabled: !modelData?.pairing
 
                         scale: pairMouseArea.containsPress ? 0.9 : (pairMouseArea.containsMouse ? 1.1 : 1.0)
                         Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutBack } }
@@ -221,14 +266,26 @@ PanelWindow {
                         MouseArea {
                             id: pairMouseArea
                             anchors.fill: parent
-                            enabled: !modelData?.pairing
+                            enabled: parent.enabled && !modelData?.connected
                             hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
+                            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                             onClicked: {
                                 if (modelData?.paired) {
                                     modelData.forget()
-                                } else if (!modelData?.pairing) {
-                                    modelData.pair()
+                                } else {
+                                    // Đảm bảo adapter ở chế độ có thể ghép nối
+                                    if (adapter) {
+                                        adapter.pairable = true
+                                        adapter.discoverable = true
+                                    }
+
+                                    // Thử ghép nối
+                                    try {
+                                        modelData.pair()
+                                    } catch (error) {
+                                        pairErrorMessage = "Không thể ghép nối với thiết bị"
+                                        errorMessageTimer.restart()
+                                    }
                                 }
                             }
                         }
@@ -242,6 +299,13 @@ PanelWindow {
                 hoverEnabled: true
                 propagateComposedEvents: true
                 onPressed: function(mouse) { mouse.accepted = false }
+            }
+            
+            // Theo dõi thay đổi trạng thái thiết bị
+            Connections {
+                target: modelData
+                function onPairingChanged() {}
+                function onPairedChanged() {}
             }
         }
     }
@@ -314,7 +378,6 @@ PanelWindow {
                         }
                                 Item { Layout.fillWidth: true }
 
-
                         
                         Rectangle {
                             id: scanButton
@@ -376,13 +439,60 @@ PanelWindow {
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
                                     if (adapter) {
-                                        adapter.discovering = !adapter.discovering
+                                        if (adapter.discovering) {
+                                            adapter.discovering = false
+                                            scanTimer.stop()
+                                        } else {
+                                            adapter.discovering = true
+                                            scanTimer.restart()
+
+                                            // Đảm bảo adapter ở chế độ có thể phát hiện
+                                            adapter.discoverable = true
+                                            adapter.pairable = true
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+                
+                // Thông báo lỗi
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: pairErrorMessage ? 40 : 0
+                    radius: 8
+                    color: theme.normal.red
+                    visible: pairErrorMessage !== ""
+                    clip: true
+                    
+                    Behavior on height {
+                        NumberAnimation { duration: 300; easing.type: Easing.OutCubic }
+                    }
+                    
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: 8
+                        
+                        Text {
+                            text: "⚠️ " + pairErrorMessage
+                            color: theme.primary.foreground
+                            font.pixelSize: 12
+                            Layout.fillWidth: true
+                        }
+                        
+                        Text {
+                            text: "✕"
+                            color: theme.primary.foreground
+                            font.pixelSize: 14
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: pairErrorMessage = ""
+                            }
+                        }
+                    }
+                }
+
                 Rectangle {
                     id: statusCard
                     Layout.fillWidth: true
@@ -454,6 +564,11 @@ PanelWindow {
                                 onClicked: {
                                     if (adapter) {
                                         adapter.enabled = !adapter.enabled
+                                        if (adapter.enabled) {
+                                            // Khi bật Bluetooth, đặt các chế độ cần thiết
+                                            adapter.pairable = true
+                                            adapter.discoverable = true
+                                        }
                                     }
                                 }
                             }
@@ -545,6 +660,35 @@ PanelWindow {
                     }
                 }
             }
+        }
+    }
+    
+    // Theo dõi thay đổi của adapter
+    Connections {
+        target: adapter
+        enabled: !!adapter
+        function onEnabledChanged() {
+            if (adapter?.enabled) {
+                // Khi bật adapter, đặt chế độ mặc định
+                adapter.pairable = true
+                adapter.discoverable = false // Mặc định không hiển thị
+            }
+        }
+        function onDiscoveringChanged() {}
+        function onDiscoverableChanged() {}
+        function onPairableChanged() {}
+    }
+
+    // Theo dõi thay đổi danh sách thiết bị
+    Connections {
+        target: Bluetooth
+        function onDevicesChanged() {}
+    }
+
+    Component.onCompleted: {
+        // Đảm bảo adapter ở chế độ có thể ghép nối khi khởi động
+        if (adapter && adapter.enabled) {
+            adapter.pairable = true
         }
     }
 }

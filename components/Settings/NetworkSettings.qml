@@ -401,7 +401,7 @@ Item {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
-                                onClicked: console.log("Selected network:", modelData.name)
+                                onClicked: { }
                             }
                         }
                     }

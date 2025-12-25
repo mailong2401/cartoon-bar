@@ -39,7 +39,6 @@ Rectangle {
                         container.apps = []
                     }
                 } catch(e) {
-                    console.error("Parse error:", e, "\nOutput was:", outputCollector.text)
                     container.apps = []
                 }
             }
@@ -178,12 +177,10 @@ Rectangle {
             } else if (typeof execStrOrItem === "string") {
                 execStr = execStrOrItem
             } else {
-                console.warn("launchApplication: invalid argument", execStrOrItem)
                 return
             }
 
             if (!execStr || execStr.trim() === "") {
-                console.warn("launchApplication: empty exec string")
                 return
             }
 
@@ -191,15 +188,11 @@ Rectangle {
             var cmdArray = _splitArgs(execStr)
 
             if (!cmdArray || cmdArray.length === 0) {
-                console.warn("launchApplication: cannot parse command:", execStr)
                 return
             }
 
-            console.log("launchApplication ->", JSON.stringify(cmdArray))
-            // SỬA LỖI: Chỉ truyền một tham số
             Quickshell.execDetached(cmdArray)
         } catch (err) {
-            console.error("launchApplication error:", err)
         }
     }
 

@@ -250,8 +250,6 @@ Rectangle {
 
 
     Component.onCompleted: {
-        console.log("🎵 Music Player Started")
-        // Khởi tạo truncatedSong
         truncatedSong = currentSong.length > 30 ? currentSong.substring(0, 30) + "..." : currentSong
     }
 }

@@ -26,7 +26,6 @@ Item {
             onStreamFinished: {
                 if (this.text) {
                     wifiManager.currentPassword = this.text.trim()
-                    console.log("🔑 Got password for:", wifiManager.requestedSsid)
                 } else {
                     wifiManager.currentPassword = ""
                 }
@@ -48,7 +47,6 @@ Item {
             onStreamFinished: {
                 if (this.text) {
                     wifiManager.wifiEnabled = (this.text.trim() === "enabled")
-                    console.log("📶 WiFi status:", this.text.trim())
                 }
             }
         }
@@ -82,8 +80,6 @@ Item {
         }
         onRunningChanged: {
             if (!running) {
-                console.log("✅ WiFi connect process finished")
-                // Delay để stderr kịp xử lý
                 Qt.callLater(function() {
                     checkConnectedWifi()
                 })
@@ -132,9 +128,8 @@ Item {
     }
 
     function connectToWifi(ssid, password) {
-        console.log("🔗 Connecting to:", ssid)
-        wifiManager.connectionError = ""  // Reset lỗi
-        wifiManager.requestedSsid = ssid  // Lưu SSID để xóa nếu thất bại
+        wifiManager.connectionError = ""
+        wifiManager.requestedSsid = ssid
 
         if (password) {
             wifiConnectProcess.command = ["nmcli", "device", "wifi", "connect", ssid, "password", password]
@@ -155,11 +150,9 @@ Item {
     }
 
     function forgetPassword(ssid) {
-        // Xóa connection profile từ NetworkManager
         var forgetProcess = Qt.createQmlObject('import Quickshell.Io; Process {}', wifiManager)
         forgetProcess.command = ["nmcli", "connection", "delete", ssid]
         forgetProcess.running = true
-        console.log("🗑️ Deleting connection:", ssid)
     }
 
     function disconnectWifi() {
@@ -200,7 +193,6 @@ Item {
 
         var networks = Object.values(networksMap).sort((a, b) => b.signal - a.signal)
         wifiManager.wifiList = networks
-        console.log("📡 Found", networks.length, "WiFi networks")
     }
 
     // =============================
@@ -211,9 +203,7 @@ Item {
         running: wifiManager.enabled
         repeat: true
         onTriggered: {
-            // Nếu user đang nhập password thì tạm hoãn scan
             if (wifiManager.userTyping) {
-                console.log("🔕 Skipping scan because user is typing for", wifiManager.openSsid)
                 return
             }
             checkWifiStatus()
@@ -224,7 +214,6 @@ Item {
 
       // Hàm khởi động manager
     function start() {
-        console.log("🚀 Starting WiFi Manager")
         enabled = true
         checkWifiStatus()
         checkConnectedWifi()
@@ -233,17 +222,14 @@ Item {
 
     // Hàm dừng manager
     function stop() {
-        console.log("🛑 Stopping WiFi Manager")
         enabled = false
-        
-        // Dừng tất cả processes đang chạy
+
         wifiStatusProcess.running = false
         wifiScanProcess.running = false
         wifiConnectProcess.running = false
         connectedWifiProcess.running = false
         wifiToggleProcess.running = false
-        
-        // Reset scanning state
+
         isScanning = false
         userTyping = false
         openSsid = ""

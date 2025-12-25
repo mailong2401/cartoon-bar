@@ -69,10 +69,8 @@ Item {
                     
                     ramDisplay.dataLoaded = true
                 } else {
-                    console.warn("RAM script returned empty output")
                 }
             } catch (e) {
-                console.error("RAM parse error:", e, "\nOutput was:", outputCollector.text)
             }
         }
     }

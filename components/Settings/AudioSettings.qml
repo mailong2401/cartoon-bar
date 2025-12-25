@@ -339,7 +339,6 @@ Item {
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
-                                    console.log("Selected:", modelData.name)
                                 }
                             }
                         }
@@ -604,7 +603,6 @@ Item {
                                     hoverEnabled: true
                                     cursorShape: Qt.PointingHandCursor
                                     onClicked: {
-                                        console.log("Selected profile:", modelData)
                                     }
                                 }
                             }

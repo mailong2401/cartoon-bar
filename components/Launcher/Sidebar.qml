@@ -100,7 +100,6 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    console.log("Launcher được nhấn")
                     root.appLaunched()
                 }
             }

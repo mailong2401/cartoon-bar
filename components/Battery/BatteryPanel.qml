@@ -67,10 +67,8 @@ Item {
                     
                     batteryDisplay.dataLoaded = true
                 } else {
-                    console.warn("Battery script returned empty output")
                 }
             } catch (e) {
-                console.error("Battery parse error:", e, "\nOutput was:", outputCollector.text)
             }
         }
     }

@@ -213,7 +213,6 @@ Item {
                     checked: clockPanelVisible
                     onCheckedChanged: {
                         toggleClockPanel()
-                        console.log("ok")
                     }
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 

@@ -22,11 +22,9 @@ QtObject {
             try {
                 translations = JSON.parse(xhr.responseText)
             } catch (e) {
-                console.warn("[LanguageLoader] JSON parse error:", e)
                 translations = getFallbackLanguage()
             }
         } else {
-            console.warn("[LanguageLoader] Failed to load:", filePath)
             translations = getFallbackLanguage()
         }
 

@@ -195,7 +195,6 @@ Rectangle {
                         root.signal_current = result
                         updateWifiIcon()
                     } else {
-                        console.log("⚠️ Invalid signal value:", resultText)
                         root.signal_current = 0
                     }
                 } else {
@@ -310,10 +309,8 @@ Rectangle {
     // Xử lý khi panel được mở/đóng
     onWifiPanelVisibleChanged: {
         if (wifiPanelVisible) {
-            console.log("📱 WiFi Panel opened - Starting manager")
             wifiManager.start()
         } else {
-            console.log("📱 WiFi Panel closed - Stopping manager") 
             wifiManager.stop()
         }
     }
@@ -584,9 +581,6 @@ Rectangle {
     // =============================
     
     Component.onCompleted: {
-        console.log("🚀 Panel initialized")
-        
-        // Khởi chạy ban đầu
         updateWifi()
         updateSignalWifiProcess()
         updateBatteryCappacityProcess()

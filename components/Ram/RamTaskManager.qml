@@ -68,10 +68,8 @@ Item {
                     const data = JSON.parse(txt)
                     ramTaskManager.processList = data
                 } else {
-                    console.warn("Process script returned empty output")
                 }
             } catch (e) {
-                console.error("Process parse error:", e, "\nOutput was:", processOutput.text)
             }
         }
     }

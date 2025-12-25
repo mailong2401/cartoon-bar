@@ -53,7 +53,6 @@ Rectangle {
                         const data = JSON.parse(text)
                         root.processWeatherData(data)
                     } catch(e) {
-                        console.error("Weather API parse error:", e)
                         root.temperature = "Lỗi"
                         root.condition = "Không thể tải"
                     }
@@ -69,7 +68,6 @@ Rectangle {
             root.humidity = `${data.current.humidity}%`
             root.feelsLike = `${Math.round(data.current.feelslike_c)}°C`
             root.icon = root.getWeatherIcon(data.current.condition.code, data.current.is_day)
-            console.log("🌤️ Weather updated:", root.temperature, root.condition)
         }
     }
 
@@ -128,7 +126,6 @@ Rectangle {
     }
 
     function updateWeather() {
-        console.log("🔄 Updating weather...")
         if (!weatherProcess.running) {
             weatherProcess.running = true
         }

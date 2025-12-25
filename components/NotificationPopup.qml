@@ -10,12 +10,11 @@ PanelWindow {
     implicitWidth: 430
     anchors {
         top: true
-        right: true
     }
     margins {
         top: 10
-        right: 10
     }
+    exclusiveZone: 0
     visible: notificationModel.count > 0
     color: "transparent"
 
@@ -265,7 +264,6 @@ PanelWindow {
                                     anchors.fill: parent
                                     cursorShape: Qt.PointingHandCursor
                                     onClicked: {
-                                        console.log("Invoking action:", modelData.identifier)
                                         modelData.invoke()
                                         removeNotification()
                                     }
@@ -300,9 +298,6 @@ PanelWindow {
         inlineReplySupported: true
         
         onNotification: function(notification) {
-            console.log("📢 New notification:", notification.summary)
-            
-            // Thêm vào model để hiển thị
             notificationModel.insert(0, {
                 id: notification.id,
                 appName: notification.appName || "",

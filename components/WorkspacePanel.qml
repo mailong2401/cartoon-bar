@@ -49,7 +49,7 @@ Rectangle {
                     const ids = list.map(ws => ws.id.toString())
                     root.workspaces.forEach(ws => ws.exists = ids.includes(ws.id))
                     root.workspaces = root.workspaces.slice()
-                } catch(e) { console.warn("❌ Parse hyprctl:", e) }
+                } catch(e) { }
             }
         }
     }
@@ -126,9 +126,7 @@ Rectangle {
         }
     }
 
-    // 🚀 Khởi động
     Component.onCompleted: {
-        if (!root.hyprInstance) console.warn("⚠️ No Hyprland instance found")
         initWorkspaces()
         updateStatus()
     }
