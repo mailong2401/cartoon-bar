@@ -31,7 +31,7 @@ QtObject {
         }
 
         // 🧠 Phát tín hiệu sau khi load thành công
-        languageChanged.emit(currentLanguage)
+        languageChanged(currentLanguage)
 
         return translations
     }

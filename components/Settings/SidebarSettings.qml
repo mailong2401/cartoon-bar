@@ -133,7 +133,7 @@ Rectangle {
                         Layout.preferredWidth: 4
                         Layout.preferredHeight: 20
                         radius: 2
-                        color: theme.accent.color
+                        color: theme.normal.blue
                         visible: selected
                         opacity: hovered ? 1.0 : 0.8
                         

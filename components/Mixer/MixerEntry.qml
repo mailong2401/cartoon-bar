@@ -29,8 +29,12 @@ ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 2
                 source: {
-                    const iconName = node.properties["application.icon-name"] ?? "audio-volume-high-symbolic"
-                    return `image://icon/${iconName}`
+                    const iconName = node.properties["application.icon-name"]
+                    if (iconName) {
+                        return `image://icon/${iconName}`
+                    } else {
+                        return "../../assets/volume/volume.png"
+                    }
                 }
                 sourceSize.width: 20
                 sourceSize.height: 20

@@ -178,10 +178,9 @@ PanelWindow {
                             border.width: 2
                             border.color: modelData.isConnected ? theme.normal.blue : theme.normal.black
 
-                            ColumnLayout {
-                                anchors.fill: parent
-                                anchors.margins: 8
+
                                 RowLayout {
+                                    anchors.margins: 8
                                     anchors.fill: parent
                                     Column { 
                                         Layout.fillWidth: true
@@ -213,7 +212,7 @@ PanelWindow {
                                         }
                                     }
                                 }
-                            }
+                            
 
                             MouseArea {
                                 id: mouseArea

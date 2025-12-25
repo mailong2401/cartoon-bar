@@ -38,6 +38,11 @@ PanelWindow {
             border.width: modelData?.connected ? 2 : 0
             border.color: modelData?.connected ? theme.normal.blue : "transparent"
 
+            scale: deviceMouseArea.containsPress ? 0.98 : 1.0
+            Behavior on scale { NumberAnimation { duration: 100 } }
+            Behavior on color { ColorAnimation { duration: 200 } }
+            Behavior on border.color { ColorAnimation { duration: 200 } }
+
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: 12
@@ -49,11 +54,18 @@ PanelWindow {
                     radius: 23
                     color: modelData?.connected ? theme.normal.blue : theme.button.background
 
+                    scale: deviceMouseArea.containsMouse ? 1.05 : 1.0
+                    Behavior on scale { NumberAnimation { duration: 200 } }
+                    Behavior on color { ColorAnimation { duration: 200 } }
+
                     Text {
                         anchors.centerIn: parent
                         text: getDeviceIcon(modelData?.icon || "")
                         color: theme.primary.foreground
                         font.pixelSize: 20
+
+                        rotation: deviceMouseArea.containsMouse ? 5 : 0
+                        Behavior on rotation { NumberAnimation { duration: 200 } }
                     }
 
                     Rectangle {
@@ -89,11 +101,15 @@ PanelWindow {
 
                     Text {
                         text: modelData?.name || modelData?.deviceName || modelData?.address || "Unknown"
-                        color: theme.primary.foreground
+                        color: deviceMouseArea.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
                         font.pixelSize: 14
-                        font.weight: Font.Medium
+                        font.weight: deviceMouseArea.containsMouse ? Font.Bold : Font.Medium
                         elide: Text.ElideRight
                         Layout.fillWidth: true
+
+                        scale: deviceMouseArea.containsMouse ? 1.02 : 1.0
+                        Behavior on scale { NumberAnimation { duration: 200 } }
+                        Behavior on color { ColorAnimation { duration: 200 } }
                     }
 
                     Row {
@@ -112,6 +128,9 @@ PanelWindow {
                                 return theme.primary.dim_foreground
                             }
                             font.pixelSize: 11
+
+                            opacity: deviceMouseArea.containsMouse ? 1.0 : 0.8
+                            Behavior on opacity { NumberAnimation { duration: 200 } }
                         }
 
                         Text {
@@ -119,6 +138,9 @@ PanelWindow {
                             text: `🔋 ${Math.round((modelData?.battery || 0) * 100)}%`
                             color: theme.primary.dim_foreground
                             font.pixelSize: 11
+
+                            opacity: deviceMouseArea.containsMouse ? 1.0 : 0.8
+                            Behavior on opacity { NumberAnimation { duration: 200 } }
                         }
                     }
                 }
@@ -127,6 +149,7 @@ PanelWindow {
                     spacing: 6
 
                     Rectangle {
+                        id: connectButton
                         width: 32
                         height: 32
                         radius: 8
@@ -134,17 +157,33 @@ PanelWindow {
                                modelData?.paired ? theme.normal.blue : theme.button.background
                         opacity: (modelData?.paired || modelData?.connecting) ? 1 : 0.5
 
+                        scale: connectMouseArea.containsPress ? 0.9 : (connectMouseArea.containsMouse ? 1.1 : 1.0)
+                        Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutBack } }
+                        Behavior on color { ColorAnimation { duration: 200 } }
+
                         Text {
                             anchors.centerIn: parent
                             text: modelData?.connecting ? "🔄" :
                                   modelData?.connected ? "🔌" : "🔗"
                             color: theme.primary.foreground
                             font.pixelSize: 14
+
+                            rotation: modelData?.connecting ? 360 : 0
+                            RotationAnimator on rotation {
+                                running: modelData?.connecting || false
+                                from: 0
+                                to: 360
+                                duration: 1000
+                                loops: Animation.Infinite
+                            }
                         }
 
                         MouseArea {
+                            id: connectMouseArea
                             anchors.fill: parent
                             enabled: modelData?.paired || modelData?.connecting
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if (modelData?.connected) {
                                     modelData.connected = false
@@ -156,6 +195,7 @@ PanelWindow {
                     }
 
                     Rectangle {
+                        id: pairButton
                         width: 32
                         height: 32
                         radius: 8
@@ -163,17 +203,27 @@ PanelWindow {
                                modelData?.paired ? theme.normal.red : theme.normal.blue
                         opacity: modelData?.pairing ? 0.8 : 1
 
+                        scale: pairMouseArea.containsPress ? 0.9 : (pairMouseArea.containsMouse ? 1.1 : 1.0)
+                        Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutBack } }
+                        Behavior on color { ColorAnimation { duration: 200 } }
+
                         Text {
                             anchors.centerIn: parent
                             text: modelData?.pairing ? "⏳" :
                                   modelData?.paired ? "🗑️" : "👥"
                             color: theme.primary.foreground
                             font.pixelSize: 14
+
+                            scale: pairMouseArea.containsMouse ? 1.2 : 1.0
+                            Behavior on scale { NumberAnimation { duration: 200 } }
                         }
 
                         MouseArea {
+                            id: pairMouseArea
                             anchors.fill: parent
                             enabled: !modelData?.pairing
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 if (modelData?.paired) {
                                     modelData.forget()
@@ -221,11 +271,11 @@ PanelWindow {
             ColumnLayout {
                 anchors.fill: parent
                 anchors.margins: 10
-                spacing: 5
+                spacing: 6
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 82
+                    height: 100
                     radius: 12
                     color: theme.primary.background
 
@@ -277,6 +327,10 @@ PanelWindow {
                                 if (scanButtonMouse.containsMouse) return theme.normal.blue
                                 return theme.primary.dim_foreground
                             }
+
+                            scale: scanButtonMouse.containsPress ? 0.95 : (scanButtonMouse.containsMouse ? 1.1 : 1.0)
+                            Behavior on scale { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
+                            Behavior on color { ColorAnimation { duration: 200 } }
 
                             Image {
                                 source: "../../assets/search.png"
@@ -330,10 +384,10 @@ PanelWindow {
                     }
                 }
                 Rectangle {
+                    id: statusCard
                     Layout.fillWidth: true
                     height: 82
                     radius: 12
-                    
                     color: theme.primary.dim_background
                     border.width: 3
                     border.color: theme.normal.black
@@ -354,6 +408,8 @@ PanelWindow {
                                 font.pixelSize: 20
                                 font.family: "ComicShannsMono Nerd Font"
                                 font.bold: true
+
+                                Behavior on color { ColorAnimation { duration: 200 } }
                             }
 
                             Text {
@@ -374,6 +430,10 @@ PanelWindow {
                             color: adapter?.enabled ? theme.normal.blue : theme.button.background
                             opacity: adapter ? 1 : 0.5
 
+                            scale: toggleMouseArea.containsPress ? 0.95 : (toggleMouseArea.containsMouse ? 1.05 : 1.0)
+                            Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutBack } }
+                            Behavior on color { ColorAnimation { duration: 300 } }
+
                             Rectangle {
                                 x: adapter?.enabled ? parent.width - width - 4 : 4
                                 y: 4
@@ -381,11 +441,16 @@ PanelWindow {
                                 height: 24
                                 radius: 12
                                 color: theme.primary.dim_background
+
+                                Behavior on x { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
                             }
 
                             MouseArea {
+                                id: toggleMouseArea
                                 anchors.fill: parent
                                 enabled: !!adapter
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
                                 onClicked: {
                                     if (adapter) {
                                         adapter.enabled = !adapter.enabled
@@ -409,7 +474,7 @@ PanelWindow {
 
                         Rectangle {
                             Layout.fillWidth: true
-                            height: 40
+                            height: 20
                             color: theme.primary.background
                             radius: 12
 

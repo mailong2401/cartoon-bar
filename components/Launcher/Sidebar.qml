@@ -155,7 +155,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaSettings.containsMouse ? 1.0 : 0.8
                     
@@ -231,7 +231,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaSleep.containsMouse ? 1.0 : 0.8
                     
@@ -311,7 +311,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaLock.containsMouse ? 1.0 : 0.8
                     
@@ -387,7 +387,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaLogout.containsMouse ? 1.0 : 0.8
                     
@@ -464,7 +464,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaRestart.containsMouse ? 1.0 : 0.8
                     
@@ -541,7 +541,7 @@ Rectangle {
                     Layout.preferredWidth: 4
                     Layout.preferredHeight: 20
                     radius: 2
-                    color: theme.accent.color
+                    color: theme.normal.blue
                     visible: false // Sẽ được điều khiển bởi trạng thái selected
                     opacity: mouseAreaShutdown.containsMouse ? 1.0 : 0.8
                     

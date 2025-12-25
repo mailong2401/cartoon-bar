@@ -101,12 +101,16 @@ ShellRoot {
 
     Connections {
         target: languageLoader
-        onLanguageChanged: currentLanguage = languageLoader.translations
+        function onLanguageChanged() {
+            currentLanguage = languageLoader.translations
+        }
     }
 
     Connections {
         target: themeLoader
-        onThemeReloaded: currentTheme = themeLoader.theme
+        function onThemeReloaded() {
+            currentTheme = themeLoader.theme
+        }
     }
 
     Component.onCompleted: {

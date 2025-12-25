@@ -25,8 +25,12 @@ Rectangle {
         // Sidebar
         SidebarSettings {
             theme: settingsPanel.theme
-            onCategoryChanged: settingsStack.currentIndex = index
-            onBackRequested: settingsPanel.backRequested()
+            onCategoryChanged: function(index) {
+                settingsStack.currentIndex = index
+            }
+            onBackRequested: function() {
+                settingsPanel.backRequested()
+            }
         }
         
         // Content Area

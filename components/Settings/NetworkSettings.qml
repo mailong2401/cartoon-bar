@@ -90,11 +90,11 @@ Item {
                                 width: 10
                                 height: 10
                                 radius: 5
-                                color: theme.success.color
+                                color: theme.normal.green
                             }
                             Text {
                                 text: "Connected"
-                                color: theme.success.color
+                                color: theme.normal.green
                                 font.pixelSize: 14
                                 font.family: "ComicShannsMono Nerd Font"
                                 font.bold: true
@@ -204,7 +204,7 @@ Item {
                                     width: parent.width * 0.85
                                     height: parent.height
                                     radius: 3
-                                    color: theme.success.color
+                                    color: theme.normal.green
                                 }
                             }
                             Text {
@@ -249,8 +249,8 @@ Item {
                         Layout.fillWidth: true
                         height: 60
                         radius: 6
-                        color: theme.accent.color + "10"
-                        border.color: theme.accent.color
+                        color: theme.normal.blue + "10"
+                        border.color: theme.normal.blue
                         border.width: 2
                         
                         RowLayout {
@@ -291,15 +291,15 @@ Item {
                                 
                                 background: Rectangle {
                                     radius: 4
-                                    color: parent.down ? theme.error.color : 
-                                           parent.hovered ? theme.error.color + "40" : theme.button.background
-                                    border.color: theme.error.color
+                                    color: parent.down ? theme.normal.red : 
+                                           parent.hovered ? theme.normal.red + "40" : theme.button.background
+                                    border.color: theme.normal.red
                                     border.width: 1
                                 }
                                 
                                 contentItem: Text {
                                     text: parent.text
-                                    color: theme.error.color
+                                    color: theme.normal.red
                                     horizontalAlignment: Text.AlignHCenter
                                     verticalAlignment: Text.AlignVCenter
                                     font: parent.font
@@ -339,7 +339,7 @@ Item {
                                             Rectangle {
                                                 Layout.preferredWidth: 3
                                                 Layout.preferredHeight: 4 + index * 3
-                                                color: index < (modelData.strength / 25) ? theme.accent.color : theme.primary.dim_foreground + "40"
+                                                color: index < (modelData.strength / 25) ? theme.normal.blue : theme.primary.dim_foreground + "40"
                                                 radius: 1
                                             }
                                         }
@@ -380,15 +380,15 @@ Item {
                                     
                                     background: Rectangle {
                                         radius: 4
-                                        color: parent.down ? theme.accent.color : 
-                                               parent.hovered ? theme.accent.color + "40" : theme.button.background
-                                        border.color: theme.accent.color
+                                        color: parent.down ? theme.normal.blue : 
+                                               parent.hovered ? theme.normal.blue + "40" : theme.button.background
+                                        border.color: theme.normal.blue
                                         border.width: 1
                                     }
                                     
                                     contentItem: Text {
                                         text: parent.text
-                                        color: theme.accent.color
+                                        color: theme.normal.blue
                                         horizontalAlignment: Text.AlignHCenter
                                         verticalAlignment: Text.AlignVCenter
                                         font: parent.font
@@ -450,7 +450,7 @@ Item {
                                     width: 10
                                     height: 10
                                     radius: 2
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     visible: autoConnect.checked
                                     anchors.centerIn: parent
                                 }
@@ -501,8 +501,8 @@ Item {
                             width: 40
                             height: 40
                             radius: 20
-                            color: theme.accent.color + "20"
-                            border.color: theme.accent.color
+                            color: theme.normal.blue + "20"
+                            border.color: theme.normal.blue
                             border.width: 2
                             
                             Text {
@@ -596,7 +596,7 @@ Item {
                             height: 50
                             radius: 6
                             color: vpnMouseArea.containsMouse ? theme.button.background + "40" : "transparent"
-                            border.color: modelData.connected ? theme.success.color : "transparent"
+                            border.color: modelData.connected ? theme.normal.green : "transparent"
                             border.width: 2
                             
                             RowLayout {
@@ -608,8 +608,8 @@ Item {
                                     width: 30
                                     height: 30
                                     radius: 15
-                                    color: theme.accent.color + "20"
-                                    border.color: theme.accent.color
+                                    color: theme.normal.blue + "20"
+                                    border.color: theme.normal.blue
                                     border.width: 1
                                     
                                     Text {
@@ -637,17 +637,17 @@ Item {
                                     background: Rectangle {
                                         radius: 4
                                         color: parent.down ? 
-                                               (modelData.connected ? theme.error.color : theme.success.color) : 
+                                               (modelData.connected ? theme.normal.red : theme.normal.green) : 
                                                parent.hovered ? 
-                                               (modelData.connected ? theme.error.color + "40" : theme.success.color + "40") : 
+                                               (modelData.connected ? theme.normal.red + "40" : theme.normal.green + "40") : 
                                                theme.button.background
-                                        border.color: modelData.connected ? theme.error.color : theme.success.color
+                                        border.color: modelData.connected ? theme.normal.red : theme.normal.green
                                         border.width: 1
                                     }
                                     
                                     contentItem: Text {
                                         text: parent.text
-                                        color: modelData.connected ? theme.error.color : theme.success.color
+                                        color: modelData.connected ? theme.normal.red : theme.normal.green
                                         horizontalAlignment: Text.AlignHCenter
                                         verticalAlignment: Text.AlignVCenter
                                         font: parent.font
@@ -672,15 +672,15 @@ Item {
                         
                         background: Rectangle {
                             radius: 4
-                            color: parent.down ? theme.accent.color : 
-                                   parent.hovered ? theme.accent.color + "40" : theme.button.background
-                            border.color: theme.accent.color
+                            color: parent.down ? theme.normal.blue : 
+                                   parent.hovered ? theme.normal.blue + "40" : theme.button.background
+                            border.color: theme.normal.blue
                             border.width: 1
                         }
                         
                         contentItem: Text {
                             text: parent.text
-                            color: theme.accent.color
+                            color: theme.normal.blue
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             font: parent.font
@@ -825,7 +825,7 @@ Item {
                                     width: 10
                                     height: 10
                                     radius: 2
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     visible: autoStartNetwork.checked
                                     anchors.centerIn: parent
                                 }
@@ -859,7 +859,7 @@ Item {
                                     width: 10
                                     height: 10
                                     radius: 2
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     visible: bandwidthMonitor.checked
                                     anchors.centerIn: parent
                                 }
@@ -917,7 +917,7 @@ Item {
                         }
                         Text {
                             text: "2.4 MB/s"
-                            color: theme.success.color
+                            color: theme.normal.green
                             font.pixelSize: 14
                             font.family: "ComicShannsMono Nerd Font"
                             font.bold: true

@@ -76,7 +76,6 @@ Rectangle {
                     onClicked: {
                         launcherPanelVisible = !launcherPanelVisible
                         if (launcherPanelLoader.item && launcherPanelVisible) {
-                            launcherPanelLoader.item.forceActiveFocus()
                             launcherPanelLoader.item.openLauncher()
                         }
                     }

@@ -89,7 +89,7 @@ Item {
                                 Rectangle {
                                     width: parent.width * (masterVolumeSlider.value / 100)
                                     height: parent.height
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     radius: 2
                                 }
                             }
@@ -100,8 +100,8 @@ Item {
                                 implicitWidth: 20
                                 implicitHeight: 20
                                 radius: 10
-                                color: parent.pressed ? theme.accent.color : theme.primary.foreground
-                                border.color: theme.accent.color
+                                color: parent.pressed ? theme.normal.blue : theme.primary.foreground
+                                border.color: theme.normal.blue
                                 border.width: 2
                                 
                                 Text {
@@ -187,7 +187,7 @@ Item {
                                     x: parent.width / 2 - width / 2
                                     width: Math.abs(parent.width * (balanceSlider.value / 200))
                                     height: parent.height
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     radius: 2
                                 }
                             }
@@ -198,8 +198,8 @@ Item {
                                 implicitWidth: 16
                                 implicitHeight: 16
                                 radius: 8
-                                color: parent.pressed ? theme.accent.color : theme.primary.foreground
-                                border.color: theme.accent.color
+                                color: parent.pressed ? theme.normal.blue : theme.primary.foreground
+                                border.color: theme.normal.blue
                                 border.width: 2
                             }
                         }
@@ -258,7 +258,7 @@ Item {
                             height: 50
                             radius: 6
                             color: mouseArea.containsMouse ? theme.button.background + "40" : "transparent"
-                            border.color: modelData.default ? theme.accent.color : "transparent"
+                            border.color: modelData.default ? theme.normal.blue : "transparent"
                             border.width: 2
                             
                             RowLayout {
@@ -270,8 +270,8 @@ Item {
                                     width: 30
                                     height: 30
                                     radius: 15
-                                    color: theme.accent.color + "20"
-                                    border.color: theme.accent.color
+                                    color: theme.normal.blue + "20"
+                                    border.color: theme.normal.blue
                                     border.width: 1
                                     
                                     Text {
@@ -317,15 +317,15 @@ Item {
                                     
                                     background: Rectangle {
                                         radius: 4
-                                        color: parent.down ? theme.accent.color : 
-                                               parent.hovered ? theme.accent.color + "40" : theme.button.background
-                                        border.color: theme.accent.color
+                                        color: parent.down ? theme.normal.blue : 
+                                               parent.hovered ? theme.normal.blue + "40" : theme.button.background
+                                        border.color: theme.normal.blue
                                         border.width: 1
                                     }
                                     
                                     contentItem: Text {
                                         text: parent.text
-                                        color: modelData.default ? theme.primary.foreground : theme.accent.color
+                                        color: modelData.default ? theme.primary.foreground : theme.normal.blue
                                         horizontalAlignment: Text.AlignHCenter
                                         verticalAlignment: Text.AlignVCenter
                                         font: parent.font
@@ -385,7 +385,7 @@ Item {
                             height: 80
                             radius: 6
                             color: mouseAreaInput.containsMouse ? theme.button.background + "40" : "transparent"
-                            border.color: modelData.default ? theme.accent.color : "transparent"
+                            border.color: modelData.default ? theme.normal.blue : "transparent"
                             border.width: 2
                             
                             ColumnLayout {
@@ -401,8 +401,8 @@ Item {
                                         width: 25
                                         height: 25
                                         radius: 12.5
-                                        color: theme.accent.color + "20"
-                                        border.color: theme.accent.color
+                                        color: theme.normal.blue + "20"
+                                        border.color: theme.normal.blue
                                         border.width: 1
                                         
                                         Text {
@@ -423,7 +423,7 @@ Item {
                                     
                                     Text {
                                         text: modelData.default ? "Default" : ""
-                                        color: theme.accent.color
+                                        color: theme.normal.blue
                                         font.pixelSize: 11
                                         font.family: "ComicShannsMono Nerd Font"
                                     }
@@ -460,15 +460,15 @@ Item {
                                         
                                         background: Rectangle {
                                             radius: 4
-                                            color: parent.down ? theme.accent.color : 
-                                                   parent.hovered ? theme.accent.color + "40" : theme.button.background
-                                            border.color: theme.accent.color
+                                            color: parent.down ? theme.normal.blue : 
+                                                   parent.hovered ? theme.normal.blue + "40" : theme.button.background
+                                            border.color: theme.normal.blue
                                             border.width: 1
                                         }
                                         
                                         contentItem: Text {
                                             text: parent.text
-                                            color: modelData.default ? theme.primary.foreground : theme.accent.color
+                                            color: modelData.default ? theme.primary.foreground : theme.normal.blue
                                             horizontalAlignment: Text.AlignHCenter
                                             verticalAlignment: Text.AlignVCenter
                                             font: parent.font
@@ -509,7 +509,7 @@ Item {
                                             Rectangle {
                                                 width: parent.width * (micVolumeSlider.value / 100)
                                                 height: parent.height
-                                                color: theme.accent.color
+                                                color: theme.normal.blue
                                                 radius: 1.5
                                             }
                                         }
@@ -520,8 +520,8 @@ Item {
                                             implicitWidth: 14
                                             implicitHeight: 14
                                             radius: 7
-                                            color: parent.pressed ? theme.accent.color : theme.primary.foreground
-                                            border.color: theme.accent.color
+                                            color: parent.pressed ? theme.normal.blue : theme.primary.foreground
+                                            border.color: theme.normal.blue
                                             border.width: 2
                                         }
                                     }
@@ -584,9 +584,9 @@ Item {
                                 width: 120
                                 height: 40
                                 radius: 6
-                                color: profileMouseArea.containsMouse ? theme.accent.color + "20" : 
-                                       index === 0 ? theme.accent.color : theme.button.background
-                                border.color: index === 0 ? theme.accent.color : theme.button.border
+                                color: profileMouseArea.containsMouse ? theme.normal.blue + "20" : 
+                                       index === 0 ? theme.normal.blue : theme.button.background
+                                border.color: index === 0 ? theme.normal.blue : theme.button.border
                                 border.width: 1
                                 
                                 Text {
@@ -733,7 +733,7 @@ Item {
                                     width: 10
                                     height: 10
                                     radius: 2
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     visible: showNotifications.checked
                                     anchors.centerIn: parent
                                 }
@@ -767,7 +767,7 @@ Item {
                                     width: 10
                                     height: 10
                                     radius: 2
-                                    color: theme.accent.color
+                                    color: theme.normal.blue
                                     visible: perAppVolume.checked
                                     anchors.centerIn: parent
                                 }
