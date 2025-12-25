@@ -115,12 +115,15 @@ Rectangle {
             onClicked: {
                 var item = modelData
                 if (item && item.exec) {
-                    console.log("Launching:", item.name, "->", item.exec)
                     container.launchApplication(item.exec)
                     container.appLaunched()
                 }
             }
-            onEntered: ListView.view.currentIndex = index
+            onEntered: {
+                if (ListView.view) {
+                    ListView.view.currentIndex = index
+                }
+            }
         }
     }
 
@@ -205,7 +208,6 @@ Rectangle {
         onActivated: {
           container.currentIndex = (container.currentIndex + 1) % container.apps.length
           appList.currentIndex = container.currentIndex
-          event.accepted = true
         }
       }
       Shortcut {
@@ -213,7 +215,6 @@ Rectangle {
         onActivated: {
           container.currentIndex = Math.max(container.currentIndex - 1, 0)
             appList.currentIndex = container.currentIndex
-            event.accepted = true
         }
       }
       Shortcut {
@@ -221,7 +222,6 @@ Rectangle {
         onActivated: {
           container.currentIndex = (container.currentIndex + 1) % container.apps.length
           appList.currentIndex = container.currentIndex
-          event.accepted = true
         }
       }
       Shortcut {
@@ -230,7 +230,6 @@ Rectangle {
                 var item = container.apps[container.currentIndex]
                 container.launchApplication(item.exec)
                 container.appLaunched()
-            event.accepted = true
     }
 }
 

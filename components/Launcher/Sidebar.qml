@@ -176,7 +176,6 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    console.log("Cài đặt được nhấn")
                     root.appSettings()
                 }
             }
@@ -253,7 +252,6 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    console.log("Chế độ ngủ được nhấn")
                     sleepProcess.command = ["systemctl", "suspend"]
                     sleepProcess.startDetached()
                 }
@@ -333,7 +331,6 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    console.log("Khóa màn hình được nhấn")
                 }
             }
         }
