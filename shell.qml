@@ -164,7 +164,7 @@ ShellRoot {
             }
 
             Components.CpuPanel {
-                Layout.preferredWidth: 280
+                Layout.preferredWidth: 200
                 Layout.fillHeight: true
             }
             

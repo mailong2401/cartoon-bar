@@ -16,7 +16,6 @@ Rectangle {
 
     property string cpuUsage: "0%"
     property string memoryUsage: "0%"
-    property string temperature: "0°C"
     property bool cpuPanelVisible: false
     property bool ramPanelVisible: false
     property var theme : currentTheme
@@ -108,23 +107,6 @@ function togglePanel(panelName) {
         }
     }
 
-    // Process lấy CPU temperature (nếu có)
-    Process {
-        id: tempProcess
-        command: [Qt.resolvedUrl("../scripts/cpu-temp")]
-        running: false
-        stdout: StdioCollector { }
-        onRunningChanged: {
-            if (!running && stdout.text) {
-                const temp = parseFloat(stdout.text)
-                if (!isNaN(temp) && temp > 0) {
-                    root.temperature = Math.round(temp) + "°C"
-                } else {
-                    root.temperature = "N/A"
-                }
-            }
-        }
-    }
 
     function updateCpu() {
         if (!cpuProcess.running) cpuProcess.running = true
@@ -133,11 +115,6 @@ function togglePanel(panelName) {
     function updateMemory() {
         if (!memoryProcess.running) memoryProcess.running = true
     }
-
-    function updateTemperature() {
-        if (!tempProcess.running) tempProcess.running = true
-    }
-
     function updateAll() {
         updateCpu()
         updateMemory()
@@ -277,69 +254,6 @@ function togglePanel(panelName) {
                 }
                 onExited: {
                     memoryContainer.scale = 1.0
-                }
-            }
-            
-            Behavior on scale { NumberAnimation { duration: 100 } }
-        }
-
-        // Temperature (giữ nguyên)
-        Rectangle {
-            id: tempContainer
-            width: tempContent.width + 20
-            height: tempContent.height + 10
-            color: "transparent"
-            radius: 6
-
-            Row {
-                id: tempContent
-                anchors.centerIn: parent
-                spacing: 0
-                anchors.verticalCenter: parent.verticalCenter
-                
-                Column {
-                    anchors.verticalCenter: parent.verticalCenter
-                    spacing: 0
-                    Text {
-                        id: tempText
-                        text: root.temperature
-                        color: theme.primary.foreground
-                        font { 
-                            pixelSize: 15
-                            bold: true 
-                        }
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-                    Text {
-                        id: tempLabel
-                        text: "Nhiệt độ"
-                        color: theme.primary.dim_foreground
-                        font.pixelSize: 10
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-                }
-                Image {
-                    id: tempIcon
-                    source: "../assets/temperature.png"
-                    width: 36
-                    height: 36
-                    fillMode: Image.PreserveAspectFit
-                    smooth: true
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                
-                // Hiệu ứng hover
-                onEntered: {
-                    tempContainer.scale = 1.1
-                }
-                onExited: {
-                    tempContainer.scale = 1.0
                 }
             }
             

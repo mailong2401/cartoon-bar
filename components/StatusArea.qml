@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.Pipewire
 import "./WifiPanel/" as ComponentWifi
+import "./Bluetooth/" as ComponentBluetooth
 
 Rectangle {
     id: root
@@ -14,6 +15,7 @@ Rectangle {
 
     property string net_stat: "Checking..."
     property string wifi_icon: "../assets/system/wifi.png"
+    property string bluetooth_icon: "../assets/settings/bluetooth.png"
     property string status_battery: "Unknown"
     property string capacity_battery: "..."
     property int signal_current: 0
@@ -21,6 +23,8 @@ Rectangle {
     property bool visibleMixerPanel: false
     property bool visibleBatteryPanel: false
     property bool wifiPanelVisible: false
+    property bool bluetoothPanelVisible: false
+    property bool bluetoothVisible: true
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
     property var theme : currentTheme
@@ -32,24 +36,35 @@ Rectangle {
         PropertyChanges { target: root; wifiPanelVisible: true }
         PropertyChanges { target: root; visibleMixerPanel: false }
         PropertyChanges { target: root; visibleBatteryPanel: false }
+        PropertyChanges { target: root; bluetoothPanelVisible: false }
     },
     State {
-        name: "mixerPanel" 
+        name: "bluetoothPanel"
+        PropertyChanges { target: root; bluetoothPanelVisible: true }
+        PropertyChanges { target: root; wifiPanelVisible: false }
+        PropertyChanges { target: root; visibleMixerPanel: false }
+        PropertyChanges { target: root; visibleBatteryPanel: false }
+    },
+    State {
+        name: "mixerPanel"
         PropertyChanges { target: root; wifiPanelVisible: false }
         PropertyChanges { target: root; visibleMixerPanel: true }
         PropertyChanges { target: root; visibleBatteryPanel: false }
+        PropertyChanges { target: root; bluetoothPanelVisible: false }
       },
       State {
-        name: "batteryPanel" 
+        name: "batteryPanel"
         PropertyChanges { target: root; wifiPanelVisible: false }
         PropertyChanges { target: root; visibleMixerPanel: false }
         PropertyChanges { target: root; visibleBatteryPanel: true }
+        PropertyChanges { target: root; bluetoothPanelVisible: false }
     },
     State {
         name: "noPanel"
         PropertyChanges { target: root; wifiPanelVisible: false }
         PropertyChanges { target: root; visibleMixerPanel: false }
         PropertyChanges { target: root; visibleBatteryPanel: false }
+        PropertyChanges { target: root; bluetoothPanelVisible: false }
     }
   ]
 
@@ -57,6 +72,9 @@ Rectangle {
     switch (panelName) {
         case "wifi":
             state = state === "wifiPanel" ? "noPanel" : "wifiPanel"
+            break
+        case "bluetooth":
+            state = state === "bluetoothPanel" ? "noPanel" : "bluetoothPanel"
             break
         case "mixer":
             state = state === "mixerPanel" ? "noPanel" : "mixerPanel"
@@ -109,6 +127,15 @@ Rectangle {
         margins {
             top: 10
             right: 10
+        }
+      }
+
+      Loader {
+        id: bluetoothPanelLoader
+        source: "./Bluetooth/BluetoothPanel.qml"
+        active: bluetoothPanelVisible
+        onLoaded: {
+            item.visible = Qt.binding(function() { return bluetoothPanelVisible })
         }
       }
 
@@ -293,6 +320,50 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
         anchors.margins: 0
+        Rectangle {
+            id: bluetoothContainer
+            Layout.preferredWidth: bluetoothCContent.width + 20
+            Layout.preferredHeight: bluetoothCContent.height + 10
+            color: "transparent"
+            radius: 6
+            transformOrigin: Item.Center
+
+            RowLayout {
+                id: bluetoothCContent
+                anchors.centerIn: parent
+                spacing: 8
+
+                Image {
+                    id: bluetoothImage
+                    source: root.bluetooth_icon
+                    width: 35
+                    height: 35
+                    sourceSize: Qt.size(35, 35)
+                }
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                preventStealing: true
+
+                onEntered: bluetoothContainer.scale = 1.1
+                onExited: bluetoothContainer.scale = 1.0
+                onPressed: bluetoothContainer.scale = 0.95
+                onReleased: bluetoothContainer.scale = containsMouse ? 1.1 : 1.0
+
+                onClicked: togglePanel("bluetooth")
+            }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.OutCubic
+                }
+            }
+        }
+        Item { Layout.fillWidth: true }
 
         // Network Status
         Rectangle {
@@ -301,6 +372,7 @@ Rectangle {
             Layout.preferredHeight: networkContent.height + 10
             color: "transparent"
             radius: 6
+            transformOrigin: Item.Center
 
             RowLayout {
                 id: networkContent
@@ -318,11 +390,10 @@ Rectangle {
                 Text {
                     text: root.net_stat
                     color: theme.primary.foreground
-                    font { 
-                        pixelSize: 16
-                        bold: true 
+                    font {
+                        pixelSize: 12
+                        bold: true
                     }
-                    verticalAlignment: Text.AlignVCenter
                 }
             }
 
@@ -330,16 +401,22 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                
+                preventStealing: true
+
                 onEntered: networkContainer.scale = 1.1
                 onExited: networkContainer.scale = 1.0
                 onPressed: networkContainer.scale = 0.95
-                onReleased: networkContainer.scale = 1.1
-                
+                onReleased: networkContainer.scale = containsMouse ? 1.1 : 1.0
+
                 onClicked: togglePanel("wifi")
             }
-            
-            Behavior on scale { NumberAnimation { duration: 100 } }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.OutCubic
+                }
+            }
         }
 
         Item { Layout.fillWidth: true }
@@ -351,6 +428,7 @@ Rectangle {
             Layout.preferredHeight: volumeContent.height + 10
             color: "transparent"
             radius: 6
+            transformOrigin: Item.Center
 
             RowLayout {
                 id: volumeContent
@@ -368,7 +446,7 @@ Rectangle {
 
                     color: theme.primary.foreground
                     font { 
-                        pixelSize: 16
+                        pixelSize: 14
                         bold: true 
                     }
                     verticalAlignment: Text.AlignVCenter
@@ -379,11 +457,12 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                
+                preventStealing: true
+
                 onEntered: volumeContainer.scale = 1.1
                 onExited: volumeContainer.scale = 1.0
                 onPressed: volumeContainer.scale = 0.95
-                onReleased: volumeContainer.scale = 1.1
+                onReleased: volumeContainer.scale = containsMouse ? 1.1 : 1.0
                 onClicked: {
                   togglePanel("mixer")
 
@@ -398,8 +477,13 @@ Rectangle {
                     updateVolumeCurrentProcess()
                 }
             }
-            
-            Behavior on scale { NumberAnimation { duration: 100 } }
+
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.OutCubic
+                }
+            }
         }
 
         Item { Layout.fillWidth: true }
@@ -411,6 +495,7 @@ Rectangle {
             Layout.preferredHeight: batteryContent.height + 10
             color: "transparent"
             radius: 6
+            transformOrigin: Item.Center
 
             RowLayout {
                 id: batteryContent
@@ -459,6 +544,7 @@ Rectangle {
             Layout.preferredHeight: 40
             color: "transparent"
             radius: 6
+            transformOrigin: Item.Center
 
             Image {
                 id: powerIcon
