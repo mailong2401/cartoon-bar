@@ -3,7 +3,7 @@
 
 ## Giới thiệu
 
-https://github.com/user-attachments/assets/e4d91777-621e-43a6-8fd7-8aa22759b7d2
+https://github.com/user-attachments/assets/303b472b-cd2a-4213-b88b-9d24d28541fc
 
 
 ## Tính năng chính
