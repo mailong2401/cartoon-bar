@@ -12,6 +12,7 @@ ShellRoot {
 
     Components.ThemeLoader { id: themeLoader }
     Components.LanguageLoader { id: languageLoader }
+    Components.SizeLoader { id: sizeLoader }
     Components.VolumeOsd { }
     Components.NotificationPopup{}
 
@@ -94,6 +95,8 @@ ShellRoot {
 
     property var currentTheme: themeLoader.theme
     property var currentLanguage: languageLoader.translations
+    property var currentSizes: sizeLoader.sizes
+    property string currentSizeProfile: sizeLoader.currentSizeProfile
 
     // Property để điều khiển LauncherPanel
     property bool launcherPanelVisible: false
@@ -113,6 +116,13 @@ ShellRoot {
         }
     }
 
+    Connections {
+        target: sizeLoader
+        function onSizesReloaded() {
+            currentSizes = sizeLoader.sizes
+        }
+    }
+
     Component.onCompleted: {
         setClockPanelPosition("bottom")
     }
@@ -120,7 +130,7 @@ ShellRoot {
 
     PanelWindow {
         id: panel
-        implicitHeight: 50
+        implicitHeight: currentSizes.width_panel ?? 0
         color: "transparent"
 
         anchors {

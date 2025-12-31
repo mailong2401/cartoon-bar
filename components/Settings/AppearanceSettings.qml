@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "."
+import ".." as Components
 
 Item {
   property var theme: currentTheme
@@ -10,6 +11,15 @@ Item {
 
     signal toggleClockPanel()
     signal posClockPanel(string pos)
+
+    // Tạo JsonEditor riêng cho panel settings
+    Components.JsonEditor {
+        id: panelConfig
+        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
+        Component.onCompleted: {
+            panelConfig.load(panelConfig.filePath)
+        }
+    }
 
     ScrollView {
         anchors.fill: parent
@@ -533,15 +543,109 @@ Item {
               }
               }
 
-
-            
             // Opacity Setting
-                        
-            // Animation Settings
-                        
-            // Additional Appearance Settings
-                        
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 15
+
+                Text {
+                    text: "Độ trong suốt:"
+                    color: theme.primary.foreground
+                    font {
+                        family: "ComicShannsMono Nerd Font"
+                        pixelSize: 16
+                    }
+                    Layout.preferredWidth: 150
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: 5
+
+                    Slider {
+                        id: opacitySlider
+                        Layout.fillWidth: true
+                        value: 0.5
+                        from: 0
+                        to: 1.0
+
+                        property bool isInitialized: false
+
+                        Component.onCompleted: {
+                            // Đợi panelConfig load xong rồi mới set giá trị
+                            Qt.callLater(function() {
+                                if (panelConfig && panelConfig.json && panelConfig.json.width_panel !== undefined) {
+                                    value = panelConfig.json.width_panel / 100
+                                }
+                                isInitialized = true
+                            })
+                        }
+
+                        onValueChanged: {
+                            // Chỉ lưu khi đã initialized để tránh lưu giá trị mặc định
+                            if (!isInitialized) return
+
+                            var newValue = Math.round(value * 100)
+                            if (panelConfig && panelConfig.json) {
+                                panelConfig.set("width_panel", newValue)
+                                // Gọi loadSizes() để reload lại sizes
+                                Qt.callLater(function() {
+                                    sizeLoader.loadSizes()
+                                })
+                            }
+                        }
+
+                        background: Rectangle {
+                            x: opacitySlider.leftPadding
+                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
+                            implicitWidth: 200
+                            implicitHeight: 6
+                            width: opacitySlider.availableWidth
+                            height: implicitHeight
+                            radius: 3
+                            color: theme.button.background
+
+                            Rectangle {
+                                width: opacitySlider.visualPosition * parent.width
+                                height: parent.height
+                                color: theme.normal.blue
+                                radius: 3
+                            }
+                        }
+
+                        handle: Rectangle {
+                            x: opacitySlider.leftPadding + opacitySlider.visualPosition * (opacitySlider.availableWidth - width)
+                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
+                            implicitWidth: 22
+                            implicitHeight: 22
+                            radius: 11
+                            color: opacitySlider.pressed ? theme.normal.blue : theme.primary.background
+                            border.color: theme.normal.blue
+                            border.width: 3
+
+                            Behavior on color {
+                                ColorAnimation { duration: 150 }
+                            }
+                        }
+                    }
+
+                    Text {
+                        text: Math.round(opacitySlider.value * 100) + "%"
+                        color: theme.primary.dim_foreground
+                        font {
+                            family: "ComicShannsMono Nerd Font"
+                            pixelSize: 14
+                        }
+                        Layout.alignment: Qt.AlignRight
+                    }
+                }
+            }
+
             Item { Layout.fillHeight: true } // Spacer
         }
     }
+    Component.onCompleted: {
+    console.log("AppearanceSettings loaded with profile:", currentSizeProfile)
+}
+
 }
