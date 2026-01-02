@@ -8,6 +8,12 @@ QtObject {
     property string filePath: ""
     property var json: ({})
 
+    property Timer reloadTimer: Timer {
+        interval: 50
+        repeat: false
+        onTriggered: sizeLoader.loadSizes()
+    }
+
     // Load file
     function load(path) {
         filePath = path
@@ -49,6 +55,7 @@ QtObject {
 
         obj[keys[keys.length - 1]] = value
         save()
+        reloadTimer.restart()
     }
 
     // Get giá trị

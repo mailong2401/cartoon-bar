@@ -1,4 +1,7 @@
 {
   "width_panel": 50,
-  "barHeight": 36
+  "mainPanelPos": "bottom",
+  "clockPanelPosition": "bottomRight",
+  "clockPanelVisible": true,
+  "spacingPanel": 12
 }

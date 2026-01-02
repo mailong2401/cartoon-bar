@@ -16,8 +16,6 @@ PanelWindow {
     focusable: true
 
     signal closeRequested()
-    signal toggleClockPanel()
-    signal posClockPanel(string pos)
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
@@ -57,12 +55,14 @@ function closePanel() {
     }
 
     anchors {
-        top: true
+        bottom: currentSizes.mainPanelPos === "bottom"
+        top: currentSizes.mainPanelPos === "top"
         left: true
     }
 
     margins {
-        top: 10
+        top: currentSizes.mainPanelPos === "top" ? 10 : 0
+        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
         left: 10
     }
 
@@ -108,8 +108,6 @@ function closePanel() {
                     Behavior on Layout.preferredWidth {
                         NumberAnimation { duration: 250; easing.type: Easing.InOutQuad }
                     }
-                    onToggleClockPanel: launcherPanel.toggleClockPanel()
-                    onPosClockPanel: launcherPanel.posClockPanel(pos)
                 }
 
                 ColumnLayout {
