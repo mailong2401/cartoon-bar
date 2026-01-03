@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Настройки",
+    "general": "Общие",
+    "appearance": "Внешний вид",
+    "network": "Сеть",
+    "audio": "Аудио",
+    "performance": "Производительность",
+    "shortcuts": "Горячие клавиши",
+    "system": "Система",
+    "language": "Язык"
+  },
+  "general": {
+    "title": "Общие настройки",
+    "language_label": "Язык:",
+    "autostart_label": "Автозапуск:",
+    "notification_label": "Уведомления:",
+    "notification_system": "Показывать системные уведомления",
+    "notification_sound": "Звук уведомлений",
+    "notification_performance": "Уведомления о производительности"
+  },
+  "appearance": {
+    "title": "Внешний вид",
+    "theme_label": "Тема:",
+    "theme_light": "Светлая",
+    "theme_dark": "Темная",
+    "clock_panel_label": "Панель часов:",
+    "panel_position_label": "Положение панели:",
+    "position_top": "Сверху",
+    "position_bottom": "Снизу",
+    "clock_position_label": "Положение часов:",
+    "panel_height_label": "Высота панели:"
+  },
+  "system": {
+    "application": "Приложение",
+    "sleep": "Режим сна",
+    "logout": "Выйти",
+    "shutdown": "Выключить",
+    "restart": "Перезагрузить",
+    "lock": "Заблокировать экран"
+  },
+  "music": {
+    "nowPlaying": "Сейчас играет",
+    "paused": "Приостановлено"
+  },
+  "ram": {
+    "title": "Диспетчер процессов",
+    "loading": {
+      "title": "⏳",
+      "message": "Загрузка списка процессов..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Имя процесса",
+      "ram_percent": "RAM %",
+      "memory": "Память"
+    },
+    "footer": {
+      "process_count_label": "Количество процессов",
+      "total_ram_label": "Использование RAM",
+      "memory_distribution_label": "Распределение памяти",
+      "process_count_unit": "",
+      "total_ram_unit": "МБ"
+    },
+    "header_bar": {
+      "main_title": "Монитор процессов",
+      "last_update": "Последнее обновление"
+    },
+    "status_colors": {
+      "critical": "Критично",
+      "warning": "Предупреждение",
+      "normal": "Нормально",
+      "low": "Низко"
+    },
+    "distribution": {
+      "na": "Нет данных",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Скрипт не вернул данные",
+      "parse_error": "Ошибка парсинга данных"
+    }
+  }
+}

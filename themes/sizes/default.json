@@ -1,7 +1,9 @@
 {
   "width_panel": 50,
-  "mainPanelPos": "bottom",
+  "mainPanelPos": "top",
   "clockPanelPosition": "bottomRight",
   "clockPanelVisible": true,
-  "spacingPanel": 12
+  "spacingPanel": 12,
+  "lang": "vi",
+  "theme": "light"
 }

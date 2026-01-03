@@ -2,10 +2,20 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "../"
+import ".." as Components
+
 
 Item {
-    property var theme : currentTheme
+    property var theme: currentTheme
+    property var lang: currentLanguage
+
+    Components.JsonEditor {
+        id: panelConfig
+        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
+        Component.onCompleted: {
+            panelConfig.load(panelConfig.filePath)
+        }
+    }
     
     ScrollView {
         anchors.fill: parent
@@ -17,7 +27,7 @@ Item {
             spacing: 15
             
             Text {
-                text: "Cài đặt chung"
+                text: lang.general?.title || "Cài đặt chung"
                 color: theme.primary.foreground
                 font {
                     family: "ComicShannsMono Nerd Font"
@@ -33,100 +43,107 @@ Item {
                 color: theme.primary.dim_foreground + "40"
             }
             
-            // Language Setting
-            RowLayout {
+            // Language Selection
+            ColumnLayout {
                 Layout.fillWidth: true
-                
+                spacing: 10
+
                 Text {
-                    text: "Ngôn ngữ:"
+                    text: lang.general?.language_label || "Ngôn ngữ:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
-                        pixelSize: 18
+                        pixelSize: 16
                     }
-                    Layout.preferredWidth: 150
                 }
-                
-                // Sử dụng ComboBox thường trước, sau đó sẽ custom
-                ComboBox {
-                    id: languageCombo
-                    Layout.preferredWidth: 250
-                    Layout.preferredHeight: 45
-                    model: ["Tiếng Việt", "English", "한국어", "日本語", "中文"]
-                    
-                    background: Rectangle {
-                        color: theme.button.background
-                        border.color: theme.button.border
-                        border.width: 2
-                        radius: 8
-                    }
-                    
-                    contentItem: Text {
-                        text: languageCombo.displayText
-                        color: theme.primary.foreground
-                        font.pixelSize: 16
-                        font.family: "ComicShannsMono Nerd Font"
-                        verticalAlignment: Text.AlignVCenter
-                        horizontalAlignment: Text.AlignLeft
-                        elide: Text.ElideRight
-                        leftPadding: 15
-                    }
-                    
-                    popup: Popup {
-                        y: languageCombo.height - 1
-                        width: languageCombo.width
-                        implicitHeight: contentItem.implicitHeight
-                        padding: 1
-                        
-                        background: Rectangle {
-                            color: theme.primary.background
-                            border.color: theme.button.border
+
+                Grid {
+                    Layout.fillWidth: true
+                    columns: 5
+                    columnSpacing: 8
+                    rowSpacing: 8
+
+                    Repeater {
+                        model: [
+  { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
+  { code: "en", name: "English", flag: "🇬🇧" },
+  { code: "zh", name: "中文", flag: "🇨🇳" },
+  { code: "ja", name: "日本語", flag: "🇯🇵" },
+  { code: "kr", name: "한국어", flag: "🇰🇷" },
+  { code: "ru", name: "Русский", flag: "🇷🇺" },
+  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "pt", name: "Português", flag: "🇵🇹" },
+  { code: "fr", name: "Français", flag: "🇫🇷" },
+  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "it", name: "Italiano", flag: "🇮🇹" },
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+  { code: "nl", name: "Nederlands", flag: "🇳🇱" },
+]
+
+
+                        delegate: Rectangle {
+                            width: 90
+                            height: 70
+                            radius: 10
+                            color: currentSizes.lang === modelData.code ? theme.normal.blue : (langMouseArea.containsMouse ? theme.button.background_select : theme.button.background)
+                            border.color: currentSizes.lang === modelData.code ? theme.normal.blue : (langMouseArea.containsPress ? theme.button.border_select : theme.button.border)
                             border.width: 2
-                            radius: 8
-                        }
-                        
-                        contentItem: ListView {
-                            clip: true
-                            implicitHeight: contentHeight
-                            model: languageCombo.popup.visible ? languageCombo.delegateModel : null
-                            currentIndex: languageCombo.highlightedIndex
-                            
-                            delegate: ItemDelegate {
-                                width: languageCombo.width
-                                text: modelData
-                                font.family: "ComicShannsMono Nerd Font"
-                                font.pixelSize: 16
-                                highlighted: languageCombo.highlightedIndex === index
-                                background: Rectangle {
-                                    color: highlighted ? theme.button.background_select : 
-                                           hovered ? theme.button.background + "80" : "transparent"
-                                    radius: 6
+
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: 4
+
+                                Text {
+                                    text: modelData.flag
+                                    font.pixelSize: 24
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+
+                                Text {
+                                    text: modelData.name
+                                    color: currentSizes.lang === modelData.code ? theme.primary.background : theme.primary.foreground
+                                    font {
+                                        family: "ComicShannsMono Nerd Font"
+                                        pixelSize: 11
+                                        bold: currentSizes.lang === modelData.code
+                                    }
+                                    anchors.horizontalCenter: parent.horizontalCenter
                                 }
                             }
-                            
-                            ScrollIndicator.vertical: ScrollIndicator { }
+
+                            MouseArea {
+                                id: langMouseArea
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    panelConfig.set("lang", modelData.code)
+                                    languageLoader.changeLanguage(modelData.code)
+                                }
+                            }
+
+                            // Checkmark for selected language
+                            Rectangle {
+                                visible: currentSizes.lang === modelData.code
+                                width: 18
+                                height: 18
+                                radius: 9
+                                color: theme.normal.blue
+                                anchors.top: parent.top
+                                anchors.right: parent.right
+                                anchors.margins: 4
+
+                                Text {
+                                    text: "✓"
+                                    color: theme.primary.background
+                                    font.pixelSize: 11
+                                    font.bold: true
+                                    anchors.centerIn: parent
+                                }
+                            }
                         }
-                    }
-                    
-                    // Sự kiện chọn ngôn ngữ
-                    onActivated: (index) => {
-                      switch (index) {
-        case 0:
-            languageLoader.changeLanguage("vi")
-            break
-        case 1:
-            languageLoader.changeLanguage("en")
-            break
-        case 2:
-            languageLoader.changeLanguage("kr")
-            break
-        case 3:
-            languageLoader.changeLanguage("ja")
-            break
-        case 4:
-            languageLoader.changeLanguage("zh")
-            break
-        }
                     }
                 }
             }
@@ -135,9 +152,9 @@ Item {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 10
-                
+
                 Text {
-                    text: "Tự động khởi chạy:"
+                    text: lang.general?.autostart_label || "Tự động khởi chạy:"
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
                     font.pixelSize: 18
@@ -178,10 +195,10 @@ Item {
             // Notification Settings
             RowLayout {
                 Layout.fillWidth: true
-                
+
                 Text {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                    text: "Thông báo:"
+                    text: lang.general?.notification_label || "Thông báo:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
@@ -226,7 +243,7 @@ Item {
                         }
                         
                         Text {
-                            text: "Hiển thị thông báo hệ thống"
+                            text: lang.general?.notification_system || "Hiển thị thông báo hệ thống"
                             color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 16
@@ -264,7 +281,7 @@ Item {
                         }
                         
                         Text {
-                            text: "Âm thanh thông báo"
+                            text: lang.general?.notification_sound || "Âm thanh thông báo"
                             color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 16
@@ -302,7 +319,7 @@ Item {
                         }
                         
                         Text {
-                            text: "Thông báo hiệu suất"
+                            text: lang.general?.notification_performance || "Thông báo hiệu suất"
                             color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
                             font.pixelSize: 16

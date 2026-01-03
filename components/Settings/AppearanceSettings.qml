@@ -7,6 +7,7 @@ import ".." as Components
 
 Item {
     property var theme: currentTheme
+    property var lang: currentLanguage
     id: root
 
     // Hàm helper để set position
@@ -77,7 +78,7 @@ Item {
             spacing: 20
 
             Text {
-                text: "Giao diện"
+                text: lang.appearance?.title || "Giao diện"
                 color: theme.primary.foreground
                 font {
                     family: "ComicShannsMono Nerd Font"
@@ -98,7 +99,7 @@ Item {
                 Layout.fillWidth: true
 
                 Text {
-                    text: "Chủ đề:"
+                    text: lang.appearance?.theme_label || "Chủ đề:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
@@ -142,11 +143,14 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: themeLoader.changeTheme("light")
+                            onClicked: {
+                                themeLoader.changeTheme("light")
+                                panelConfig.set("theme", "light")
+                            }
                         }
 
                         Text {
-                            text: "Sáng"
+                            text: lang.appearance?.theme_light || "Sáng"
                             color: "#2b2530"
                             font {
                                 family: "ComicShannsMono Nerd Font"
@@ -211,11 +215,14 @@ Item {
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: themeLoader.changeTheme("dark")
+                            onClicked: {
+                                themeLoader.changeTheme("dark")
+                                panelConfig.set("theme", "dark")
+                            }
                         }
 
                         Text {
-                            text: "Tối"
+                            text: lang.appearance?.theme_dark || "Tối"
                             color: "#cad3f5"
                             font {
                                 family: "ComicShannsMono Nerd Font"
@@ -255,7 +262,7 @@ Item {
                 spacing: 10
 
                 Text {
-                    text: "bảng đồng hồ: "
+                    text: lang.appearance?.clock_panel_label || "Bảng đồng hồ:"
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
                     font.pixelSize: 18
@@ -303,7 +310,7 @@ Item {
                 Layout.fillWidth: true
 
                 Text {
-                    text: "Vị trí panel:"
+                    text: lang.appearance?.panel_position_label || "Vị trí panel:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
@@ -324,7 +331,7 @@ Item {
                         border.width: 2
 
                         Text {
-                            text: "Trên"
+                            text: lang.appearance?.position_top || "Trên"
                             color: currentSizes.mainPanelPos === "top" ? theme.primary.background : theme.primary.foreground
                             font {
                                 family: "ComicShannsMono Nerd Font"
@@ -354,7 +361,7 @@ Item {
                         border.width: 2
 
                         Text {
-                            text: "Dưới"
+                            text: lang.appearance?.position_bottom || "Dưới"
                             color: currentSizes.mainPanelPos === "bottom" ? theme.primary.background : theme.primary.foreground
                             font {
                                 family: "ComicShannsMono Nerd Font"
@@ -381,7 +388,7 @@ Item {
                 Layout.fillWidth: true
 
                 Text {
-                    text: "Vị trí đồng hồ:"
+                    text: lang.appearance?.clock_position_label || "Vị trí đồng hồ:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
@@ -479,13 +486,12 @@ Item {
                 }
             }
 
-            // Opacity Setting
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 15
 
                 Text {
-                    text: "Độ trong suốt:"
+                    text: lang.appearance?.panel_height_label || "Chiều cao panel:"
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"

@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Instellingen",
+    "general": "Algemeen",
+    "appearance": "Uiterlijk",
+    "network": "Netwerk",
+    "audio": "Audio",
+    "performance": "Prestaties",
+    "shortcuts": "Sneltoetsen",
+    "system": "Systeem",
+    "language": "Taal"
+  },
+  "general": {
+    "title": "Algemene instellingen",
+    "language_label": "Taal:",
+    "autostart_label": "Automatisch starten:",
+    "notification_label": "Meldingen:",
+    "notification_system": "Systeemmeldingen tonen",
+    "notification_sound": "Meldingsgeluiden",
+    "notification_performance": "Prestatiemeldingen"
+  },
+  "appearance": {
+    "title": "Uiterlijk",
+    "theme_label": "Thema:",
+    "theme_light": "Licht",
+    "theme_dark": "Donker",
+    "clock_panel_label": "Klokpaneel:",
+    "panel_position_label": "Paneelpositie:",
+    "position_top": "Boven",
+    "position_bottom": "Onder",
+    "clock_position_label": "Klokpositie:",
+    "panel_height_label": "Paneelhoogte:"
+  },
+  "system": {
+    "application": "Applicatie",
+    "sleep": "Slaapmodus",
+    "logout": "Uitloggen",
+    "shutdown": "Afsluiten",
+    "restart": "Herstarten",
+    "lock": "Scherm vergrendelen"
+  },
+  "music": {
+    "nowPlaying": "Nu aan het afspelen",
+    "paused": "Gepauzeerd"
+  },
+  "ram": {
+    "title": "Procesbeheer",
+    "loading": {
+      "title": "⏳",
+      "message": "Proceslijst laden..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Procesnaam",
+      "ram_percent": "RAM %",
+      "memory": "Geheugen"
+    },
+    "footer": {
+      "process_count_label": "Aantal processen",
+      "total_ram_label": "Totaal RAM-gebruik",
+      "memory_distribution_label": "Geheugenverdeling",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Procesmonitor",
+      "last_update": "Laatste update"
+    },
+    "status_colors": {
+      "critical": "Kritiek",
+      "warning": "Waarschuwing",
+      "normal": "Normaal",
+      "low": "Laag"
+    },
+    "distribution": {
+      "na": "Geen gegevens beschikbaar",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Script heeft geen gegevens geretourneerd",
+      "parse_error": "Fout bij het parsen van gegevens"
+    }
+  }
+}

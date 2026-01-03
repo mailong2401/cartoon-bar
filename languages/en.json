@@ -10,6 +10,27 @@
     "system": "System",
     "language": "Language"
   },
+  "general": {
+    "title": "General Settings",
+    "language_label": "Language:",
+    "autostart_label": "Auto-start:",
+    "notification_label": "Notifications:",
+    "notification_system": "Show system notifications",
+    "notification_sound": "Notification sounds",
+    "notification_performance": "Performance notifications"
+  },
+  "appearance": {
+    "title": "Appearance",
+    "theme_label": "Theme:",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "clock_panel_label": "Clock Panel:",
+    "panel_position_label": "Panel Position:",
+    "position_top": "Top",
+    "position_bottom": "Bottom",
+    "clock_position_label": "Clock Position:",
+    "panel_height_label": "Panel Height:"
+  },
   "system": {
     "application": "Application",
     "sleep": "Sleep Mode",

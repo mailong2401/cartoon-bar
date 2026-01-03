@@ -57,8 +57,7 @@ function togglePanel(panelName) {
         source: "./Cpu/CpuDetailPanel.qml"
         active: cpuPanelVisible
         onLoaded: {
-            item.anchors.top = parent.bottom
-            item.anchors.left = parent.left
+            item.exclusiveZone = 0
             item.visible = Qt.binding(function() { return cpuPanelVisible })
         }
       }
@@ -66,11 +65,8 @@ function togglePanel(panelName) {
         id: ramPanelLoader
         source: "./Ram/RamDetailPanel.qml"
         active: ramPanelVisible
-        onLoaded : {
-            item.anchors.top = parent.bottom
-            item.anchors.left = parent.left
+        onLoaded: {
             item.visible = Qt.binding(function() { return ramPanelVisible })
-
         }
       }
 

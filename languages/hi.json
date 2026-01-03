@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "सेटिंग्स",
+    "general": "सामान्य",
+    "appearance": "दिखावट",
+    "network": "नेटवर्क",
+    "audio": "ऑडियो",
+    "performance": "प्रदर्शन",
+    "shortcuts": "शॉर्टकट",
+    "system": "सिस्टम",
+    "language": "भाषा"
+  },
+  "general": {
+    "title": "सामान्य सेटिंग्स",
+    "language_label": "भाषा:",
+    "autostart_label": "ऑटो-स्टार्ट:",
+    "notification_label": "सूचनाएं:",
+    "notification_system": "सिस्टम सूचनाएं दिखाएं",
+    "notification_sound": "सूचना ध्वनि",
+    "notification_performance": "प्रदर्शन सूचनाएं"
+  },
+  "appearance": {
+    "title": "दिखावट",
+    "theme_label": "थीम:",
+    "theme_light": "हल्का",
+    "theme_dark": "गहरा",
+    "clock_panel_label": "घड़ी पैनल:",
+    "panel_position_label": "पैनल की स्थिति:",
+    "position_top": "ऊपर",
+    "position_bottom": "नीचे",
+    "clock_position_label": "घड़ी की स्थिति:",
+    "panel_height_label": "पैनल की ऊंचाई:"
+  },
+  "system": {
+    "application": "एप्लिकेशन",
+    "sleep": "स्लीप मोड",
+    "logout": "लॉगआउट",
+    "shutdown": "शटडाउन",
+    "restart": "पुनः आरंभ करें",
+    "lock": "स्क्रीन लॉक करें"
+  },
+  "music": {
+    "nowPlaying": "अब चल रहा है",
+    "paused": "रोका गया"
+  },
+  "ram": {
+    "title": "प्रक्रिया प्रबंधक",
+    "loading": {
+      "title": "⏳",
+      "message": "प्रक्रिया सूची लोड हो रही है..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "प्रक्रिया का नाम",
+      "ram_percent": "RAM %",
+      "memory": "मेमोरी"
+    },
+    "footer": {
+      "process_count_label": "प्रक्रिया संख्या",
+      "total_ram_label": "कुल RAM उपयोग",
+      "memory_distribution_label": "मेमोरी वितरण",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "प्रक्रिया मॉनिटर",
+      "last_update": "अंतिम अपडेट"
+    },
+    "status_colors": {
+      "critical": "गंभीर",
+      "warning": "चेतावनी",
+      "normal": "सामान्य",
+      "low": "कम"
+    },
+    "distribution": {
+      "na": "कोई डेटा उपलब्ध नहीं",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "स्क्रिप्ट ने कोई डेटा नहीं लौटाया",
+      "parse_error": "डेटा पार्स करने में त्रुटि"
+    }
+  }
+}

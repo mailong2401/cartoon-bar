@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Configurações",
+    "general": "Geral",
+    "appearance": "Aparência",
+    "network": "Rede",
+    "audio": "Áudio",
+    "performance": "Desempenho",
+    "shortcuts": "Atalhos",
+    "system": "Sistema",
+    "language": "Idioma"
+  },
+  "general": {
+    "title": "Configurações gerais",
+    "language_label": "Idioma:",
+    "autostart_label": "Início automático:",
+    "notification_label": "Notificações:",
+    "notification_system": "Mostrar notificações do sistema",
+    "notification_sound": "Sons de notificação",
+    "notification_performance": "Notificações de desempenho"
+  },
+  "appearance": {
+    "title": "Aparência",
+    "theme_label": "Tema:",
+    "theme_light": "Claro",
+    "theme_dark": "Escuro",
+    "clock_panel_label": "Painel do relógio:",
+    "panel_position_label": "Posição do painel:",
+    "position_top": "Superior",
+    "position_bottom": "Inferior",
+    "clock_position_label": "Posição do relógio:",
+    "panel_height_label": "Altura do painel:"
+  },
+  "system": {
+    "application": "Aplicação",
+    "sleep": "Modo de suspensão",
+    "logout": "Sair",
+    "shutdown": "Desligar",
+    "restart": "Reiniciar",
+    "lock": "Bloquear tela"
+  },
+  "music": {
+    "nowPlaying": "Tocando agora",
+    "paused": "Pausado"
+  },
+  "ram": {
+    "title": "Gerenciador de processos",
+    "loading": {
+      "title": "⏳",
+      "message": "Carregando lista de processos..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nome do processo",
+      "ram_percent": "RAM %",
+      "memory": "Memória"
+    },
+    "footer": {
+      "process_count_label": "Quantidade de processos",
+      "total_ram_label": "Uso total de RAM",
+      "memory_distribution_label": "Distribuição de memória",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor de processos",
+      "last_update": "Última atualização"
+    },
+    "status_colors": {
+      "critical": "Crítico",
+      "warning": "Aviso",
+      "normal": "Normal",
+      "low": "Baixo"
+    },
+    "distribution": {
+      "na": "Sem dados disponíveis",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "O script não retornou dados",
+      "parse_error": "Erro ao analisar os dados"
+    }
+  }
+}

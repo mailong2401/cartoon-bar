@@ -10,6 +10,27 @@
     "system": "系统",
     "language": "语言"
   },
+  "general": {
+    "title": "通用设置",
+    "language_label": "语言：",
+    "autostart_label": "自动启动：",
+    "notification_label": "通知：",
+    "notification_system": "显示系统通知",
+    "notification_sound": "通知声音",
+    "notification_performance": "性能通知"
+  },
+  "appearance": {
+    "title": "外观",
+    "theme_label": "主题：",
+    "theme_light": "浅色",
+    "theme_dark": "深色",
+    "clock_panel_label": "时钟面板：",
+    "panel_position_label": "面板位置：",
+    "position_top": "顶部",
+    "position_bottom": "底部",
+    "clock_position_label": "时钟位置：",
+    "panel_height_label": "面板高度："
+  },
   "system": {
     "application": "应用程序",
     "sleep": "睡眠模式",

@@ -10,6 +10,27 @@
     "system": "시스템",
     "language": "언어"
   },
+  "general": {
+    "title": "일반 설정",
+    "language_label": "언어：",
+    "autostart_label": "자동 시작：",
+    "notification_label": "알림：",
+    "notification_system": "시스템 알림 표시",
+    "notification_sound": "알림 소리",
+    "notification_performance": "성능 알림"
+  },
+  "appearance": {
+    "title": "외관",
+    "theme_label": "테마：",
+    "theme_light": "라이트",
+    "theme_dark": "다크",
+    "clock_panel_label": "시계 패널：",
+    "panel_position_label": "패널 위치：",
+    "position_top": "위",
+    "position_bottom": "아래",
+    "clock_position_label": "시계 위치：",
+    "panel_height_label": "패널 높이："
+  },
   "system": {
     "application": "응용 프로그램",
     "sleep": "절전 모드",
