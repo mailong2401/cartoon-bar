@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Paramètres",
+    "general": "Général",
+    "appearance": "Apparence",
+    "network": "Réseau",
+    "audio": "Audio",
+    "performance": "Performance",
+    "shortcuts": "Raccourcis",
+    "system": "Système",
+    "language": "Langue"
+  },
+  "general": {
+    "title": "Paramètres généraux",
+    "language_label": "Langue :",
+    "autostart_label": "Démarrage automatique :",
+    "notification_label": "Notifications :",
+    "notification_system": "Afficher les notifications système",
+    "notification_sound": "Sons de notification",
+    "notification_performance": "Notifications de performance"
+  },
+  "appearance": {
+    "title": "Apparence",
+    "theme_label": "Thème :",
+    "theme_light": "Clair",
+    "theme_dark": "Sombre",
+    "clock_panel_label": "Panneau d'horloge :",
+    "panel_position_label": "Position du panneau :",
+    "position_top": "Haut",
+    "position_bottom": "Bas",
+    "clock_position_label": "Position de l'horloge :",
+    "panel_height_label": "Hauteur du panneau :"
+  },
+  "system": {
+    "application": "Application",
+    "sleep": "Mode veille",
+    "logout": "Déconnexion",
+    "shutdown": "Éteindre",
+    "restart": "Redémarrer",
+    "lock": "Verrouiller l'écran"
+  },
+  "music": {
+    "nowPlaying": "Lecture en cours",
+    "paused": "En pause"
+  },
+  "ram": {
+    "title": "Gestionnaire de processus",
+    "loading": {
+      "title": "⏳",
+      "message": "Chargement de la liste des processus..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nom du processus",
+      "ram_percent": "RAM %",
+      "memory": "Mémoire"
+    },
+    "footer": {
+      "process_count_label": "Nombre de processus",
+      "total_ram_label": "Utilisation totale de la RAM",
+      "memory_distribution_label": "Distribution de la mémoire",
+      "process_count_unit": "",
+      "total_ram_unit": "Mo"
+    },
+    "header_bar": {
+      "main_title": "Moniteur de processus",
+      "last_update": "Dernière mise à jour"
+    },
+    "status_colors": {
+      "critical": "Critique",
+      "warning": "Avertissement",
+      "normal": "Normal",
+      "low": "Faible"
+    },
+    "distribution": {
+      "na": "Aucune donnée disponible",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Le script n'a renvoyé aucune donnée",
+      "parse_error": "Erreur d'analyse des données"
+    }
+  }
+}

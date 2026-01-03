@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "الإعدادات",
+    "general": "عام",
+    "appearance": "المظهر",
+    "network": "الشبكة",
+    "audio": "الصوت",
+    "performance": "الأداء",
+    "shortcuts": "الاختصارات",
+    "system": "النظام",
+    "language": "اللغة"
+  },
+  "general": {
+    "title": "الإعدادات العامة",
+    "language_label": "اللغة:",
+    "autostart_label": "البدء التلقائي:",
+    "notification_label": "الإشعارات:",
+    "notification_system": "إظهار إشعارات النظام",
+    "notification_sound": "أصوات الإشعارات",
+    "notification_performance": "إشعارات الأداء"
+  },
+  "appearance": {
+    "title": "المظهر",
+    "theme_label": "السمة:",
+    "theme_light": "فاتح",
+    "theme_dark": "داكن",
+    "clock_panel_label": "لوحة الساعة:",
+    "panel_position_label": "موضع اللوحة:",
+    "position_top": "أعلى",
+    "position_bottom": "أسفل",
+    "clock_position_label": "موضع الساعة:",
+    "panel_height_label": "ارتفاع اللوحة:"
+  },
+  "system": {
+    "application": "التطبيق",
+    "sleep": "وضع السكون",
+    "logout": "تسجيل الخروج",
+    "shutdown": "إيقاف التشغيل",
+    "restart": "إعادة التشغيل",
+    "lock": "قفل الشاشة"
+  },
+  "music": {
+    "nowPlaying": "قيد التشغيل الآن",
+    "paused": "متوقف مؤقتاً"
+  },
+  "ram": {
+    "title": "مدير العمليات",
+    "loading": {
+      "title": "⏳",
+      "message": "جاري تحميل قائمة العمليات..."
+    },
+    "headers": {
+      "pid": "معرّف العملية",
+      "name": "اسم العملية",
+      "ram_percent": "نسبة الذاكرة %",
+      "memory": "الذاكرة"
+    },
+    "footer": {
+      "process_count_label": "عدد العمليات",
+      "total_ram_label": "إجمالي استخدام الذاكرة",
+      "memory_distribution_label": "توزيع الذاكرة",
+      "process_count_unit": "",
+      "total_ram_unit": "ميجابايت"
+    },
+    "header_bar": {
+      "main_title": "مراقب العمليات",
+      "last_update": "آخر تحديث"
+    },
+    "status_colors": {
+      "critical": "حرج",
+      "warning": "تحذير",
+      "normal": "عادي",
+      "low": "منخفض"
+    },
+    "distribution": {
+      "na": "لا توجد بيانات متاحة",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "لم يُرجع السكريبت أي بيانات",
+      "parse_error": "خطأ في تحليل البيانات"
+    }
+  }
+}

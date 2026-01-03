@@ -11,6 +11,27 @@
     "system": "Hệ thống",
     "language": "Ngôn ngữ"
   },
+  "general": {
+    "title": "Cài đặt chung",
+    "language_label": "Ngôn ngữ:",
+    "autostart_label": "Tự động khởi chạy:",
+    "notification_label": "Thông báo:",
+    "notification_system": "Hiển thị thông báo hệ thống",
+    "notification_sound": "Âm thanh thông báo",
+    "notification_performance": "Thông báo hiệu suất"
+  },
+  "appearance": {
+    "title": "Giao diện",
+    "theme_label": "Chủ đề:",
+    "theme_light": "Sáng",
+    "theme_dark": "Tối",
+    "clock_panel_label": "Bảng đồng hồ:",
+    "panel_position_label": "Vị trí panel:",
+    "position_top": "Trên",
+    "position_bottom": "Dưới",
+    "clock_position_label": "Vị trí đồng hồ:",
+    "panel_height_label": "Chiều cao panel:"
+  },
   "system": {
     "application": "Ứng dụng",
     "sleep": "Chế độ ngủ",

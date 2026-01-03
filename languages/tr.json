@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Ayarlar",
+    "general": "Genel",
+    "appearance": "Görünüm",
+    "network": "Ağ",
+    "audio": "Ses",
+    "performance": "Performans",
+    "shortcuts": "Kısayollar",
+    "system": "Sistem",
+    "language": "Dil"
+  },
+  "general": {
+    "title": "Genel Ayarlar",
+    "language_label": "Dil:",
+    "autostart_label": "Otomatik başlatma:",
+    "notification_label": "Bildirimler:",
+    "notification_system": "Sistem bildirimlerini göster",
+    "notification_sound": "Bildirim sesleri",
+    "notification_performance": "Performans bildirimleri"
+  },
+  "appearance": {
+    "title": "Görünüm",
+    "theme_label": "Tema:",
+    "theme_light": "Açık",
+    "theme_dark": "Koyu",
+    "clock_panel_label": "Saat paneli:",
+    "panel_position_label": "Panel konumu:",
+    "position_top": "Üst",
+    "position_bottom": "Alt",
+    "clock_position_label": "Saat konumu:",
+    "panel_height_label": "Panel yüksekliği:"
+  },
+  "system": {
+    "application": "Uygulama",
+    "sleep": "Uyku modu",
+    "logout": "Çıkış yap",
+    "shutdown": "Kapat",
+    "restart": "Yeniden başlat",
+    "lock": "Ekranı kilitle"
+  },
+  "music": {
+    "nowPlaying": "Şimdi çalıyor",
+    "paused": "Duraklatıldı"
+  },
+  "ram": {
+    "title": "Süreç Yöneticisi",
+    "loading": {
+      "title": "⏳",
+      "message": "Süreç listesi yükleniyor..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Süreç adı",
+      "ram_percent": "RAM %",
+      "memory": "Bellek"
+    },
+    "footer": {
+      "process_count_label": "Süreç sayısı",
+      "total_ram_label": "Toplam RAM kullanımı",
+      "memory_distribution_label": "Bellek dağılımı",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Süreç İzleyici",
+      "last_update": "Son güncelleme"
+    },
+    "status_colors": {
+      "critical": "Kritik",
+      "warning": "Uyarı",
+      "normal": "Normal",
+      "low": "Düşük"
+    },
+    "distribution": {
+      "na": "Veri yok",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Betik veri döndürmedi",
+      "parse_error": "Veri ayrıştırma hatası"
+    }
+  }
+}

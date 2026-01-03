@@ -9,8 +9,6 @@ Rectangle {
     id: settingsPanel
     property var theme : currentTheme
     signal backRequested()
-    signal toggleClockPanel()
-    signal posClockPanel(string pos)
 
     radius: 12
     color: theme.primary.background
@@ -55,8 +53,6 @@ Rectangle {
                 
                 // Appearance Settings
                 AppearanceSettings {
-                  onToggleClockPanel: settingsPanel.toggleClockPanel()
-                  onPosClockPanel: settingsPanel.posClockPanel(pos)
                 }
 
                 // WallPapers Setetings

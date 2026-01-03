@@ -15,14 +15,16 @@ PanelWindow {
     property var theme : currentTheme
 
     anchors {
-      top: true
-      left: true
+      top: currentSizes.mainPanelPos === "top"
+      bottom: currentSizes.mainPanelPos === "bottom"
     }
 
     margins {
-        top: 10
+        top: currentSizes.mainPanelPos === "top" ? 10 : 0
+        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
         left: 800
     }
+    exclusiveZone: 0
     color: "transparent"
 
     Rectangle {

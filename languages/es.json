@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Configuración",
+    "general": "General",
+    "appearance": "Apariencia",
+    "network": "Red",
+    "audio": "Audio",
+    "performance": "Rendimiento",
+    "shortcuts": "Atajos",
+    "system": "Sistema",
+    "language": "Idioma"
+  },
+  "general": {
+    "title": "Configuración general",
+    "language_label": "Idioma:",
+    "autostart_label": "Inicio automático:",
+    "notification_label": "Notificaciones:",
+    "notification_system": "Mostrar notificaciones del sistema",
+    "notification_sound": "Sonidos de notificación",
+    "notification_performance": "Notificaciones de rendimiento"
+  },
+  "appearance": {
+    "title": "Apariencia",
+    "theme_label": "Tema:",
+    "theme_light": "Claro",
+    "theme_dark": "Oscuro",
+    "clock_panel_label": "Panel de reloj:",
+    "panel_position_label": "Posición del panel:",
+    "position_top": "Arriba",
+    "position_bottom": "Abajo",
+    "clock_position_label": "Posición del reloj:",
+    "panel_height_label": "Altura del panel:"
+  },
+  "system": {
+    "application": "Aplicación",
+    "sleep": "Modo de suspensión",
+    "logout": "Cerrar sesión",
+    "shutdown": "Apagar",
+    "restart": "Reiniciar",
+    "lock": "Bloquear pantalla"
+  },
+  "music": {
+    "nowPlaying": "Reproduciendo ahora",
+    "paused": "Pausado"
+  },
+  "ram": {
+    "title": "Administrador de procesos",
+    "loading": {
+      "title": "⏳",
+      "message": "Cargando lista de procesos..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nombre del proceso",
+      "ram_percent": "RAM %",
+      "memory": "Memoria"
+    },
+    "footer": {
+      "process_count_label": "Cantidad de procesos",
+      "total_ram_label": "Uso total de RAM",
+      "memory_distribution_label": "Distribución de memoria",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor de procesos",
+      "last_update": "Última actualización"
+    },
+    "status_colors": {
+      "critical": "Crítico",
+      "warning": "Advertencia",
+      "normal": "Normal",
+      "low": "Bajo"
+    },
+    "distribution": {
+      "na": "No hay datos disponibles",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "El script no devolvió datos",
+      "parse_error": "Error al analizar los datos"
+    }
+  }
+}

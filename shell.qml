@@ -12,16 +12,17 @@ ShellRoot {
 
     Components.ThemeLoader { id: themeLoader }
     Components.LanguageLoader { id: languageLoader }
+    Components.SizeLoader { id: sizeLoader }
     Components.VolumeOsd { }
     Components.NotificationPopup{}
 
-    property bool clockPanelVisible: true  // trạng thái bảng đồng hồ
+    property bool clockPanelVisible: currentSizes.clockPanelVisible
 
 
-    property bool anchorsTop: true
-    property bool anchorsBottom: false
-    property bool anchorsRight: false
-    property bool anchorsLeft: false
+    property bool anchorsTop: currentSizes.clockPanelPosition === "top" || currentSizes.clockPanelPosition === "topLeft" || currentSizes.clockPanelPosition === "topRight"
+    property bool anchorsBottom: currentSizes.clockPanelPosition === "bottom" || currentSizes.clockPanelPosition === "bottomLeft" || currentSizes.clockPanelPosition === "bottomRight"
+    property bool anchorsRight: currentSizes.clockPanelPosition === "right" || currentSizes.clockPanelPosition === "topRight" || currentSizes.clockPanelPosition === "bottomRight"
+    property bool anchorsLeft: currentSizes.clockPanelPosition === "left" || currentSizes.clockPanelPosition === "topLeft" || currentSizes.clockPanelPosition === "bottomLeft"
 
     Components.ClockPanel {
         id: clockPanel
@@ -34,59 +35,6 @@ ShellRoot {
     }
     }
 
-    function setClockPanelPosition(position) {
-    // reset trước
-    anchorsTop = false
-    anchorsBottom = false
-    anchorsLeft = false
-    anchorsRight = false
-
-    switch (position) {
-    case "topLeft":
-        anchorsTop = true
-        anchorsLeft = true
-        break
-
-    case "top":
-        anchorsTop = true
-        break
-
-    case "topRight":
-        anchorsTop = true
-        anchorsRight = true
-        break
-
-    case "left":
-        anchorsLeft = true
-        break
-
-    case "center":
-        anchorsTop = true
-        anchorsBottom = true
-        anchorsLeft = true
-        anchorsRight = true
-        break
-
-    case "right":
-        anchorsRight = true
-        break
-
-    case "bottomLeft":
-        anchorsBottom = true
-        anchorsLeft = true
-        break
-
-    case "bottom":
-        anchorsBottom = true
-        break
-
-    case "bottomRight":
-        anchorsBottom = true
-        anchorsRight = true
-        break
-    }
-}
-
 
     function toggleClockPanel() {
         clockPanelVisible = !clockPanelVisible
@@ -94,6 +42,8 @@ ShellRoot {
 
     property var currentTheme: themeLoader.theme
     property var currentLanguage: languageLoader.translations
+    property var currentSizes: sizeLoader.sizes
+    property string currentSizeProfile: sizeLoader.currentSizeProfile
 
     // Property để điều khiển LauncherPanel
     property bool launcherPanelVisible: false
@@ -113,42 +63,41 @@ ShellRoot {
         }
     }
 
-    Component.onCompleted: {
-        setClockPanelPosition("bottom")
+    Connections {
+        target: sizeLoader
+        function onSizesReloaded() {
+            currentSizes = sizeLoader.sizes
+        }
     }
-    
+
 
     PanelWindow {
         id: panel
-        implicitHeight: 50
+        implicitHeight: currentSizes.width_panel || 50
         color: "transparent"
 
         anchors {
             left: true
             right: true
-            top: true
-            bottom: false
+            top: currentSizes.mainPanelPos === "top"
+            bottom: currentSizes.mainPanelPos === "bottom"
         }
 
         margins {
-            top: 10
+            top: currentSizes.mainPanelPos === "top" ? 10 : 0
             left: 10
             right: 10
-            bottom: 0
+            bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
         }
 
         RowLayout {
             anchors.fill: parent
-            spacing: 10
+            spacing: currentSizes.spacingPanel
 
             Components.AppIcons {
                 id: appIcons
                 Layout.preferredWidth: 60
                 Layout.fillHeight: true
-                onToggleClockPanel: root.toggleClockPanel()
-                onPosClockPanel: root.setClockPanelPosition(pos)
-
-
             }
 
             Components.WorkspacePanel {

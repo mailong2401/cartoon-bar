@@ -121,12 +121,14 @@ Rectangle {
         visible: root.wifiPanelVisible
 
         anchors {
-            top: true
+            top: currentSizes.mainPanelPos === "top"
+            bottom: currentSizes.mainPanelPos === "bottom"
             right: true
         }
         margins {
-            top: 10
+            top: currentSizes.mainPanelPos === "top" ? 10 : 0
             right: 10
+            bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
         }
       }
 

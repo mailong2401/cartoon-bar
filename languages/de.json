@@ -1,0 +1,84 @@
+{
+  "settings": {
+    "title": "Einstellungen",
+    "general": "Allgemein",
+    "appearance": "Erscheinungsbild",
+    "network": "Netzwerk",
+    "audio": "Audio",
+    "performance": "Leistung",
+    "shortcuts": "Tastenkombinationen",
+    "system": "System",
+    "language": "Sprache"
+  },
+  "general": {
+    "title": "Allgemeine Einstellungen",
+    "language_label": "Sprache:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Benachrichtigungen:",
+    "notification_system": "Systembenachrichtigungen anzeigen",
+    "notification_sound": "Benachrichtigungstöne",
+    "notification_performance": "Leistungsbenachrichtigungen"
+  },
+  "appearance": {
+    "title": "Erscheinungsbild",
+    "theme_label": "Thema:",
+    "theme_light": "Hell",
+    "theme_dark": "Dunkel",
+    "clock_panel_label": "Uhr-Panel:",
+    "panel_position_label": "Panel-Position:",
+    "position_top": "Oben",
+    "position_bottom": "Unten",
+    "clock_position_label": "Uhr-Position:",
+    "panel_height_label": "Panel-Höhe:"
+  },
+  "system": {
+    "application": "Anwendung",
+    "sleep": "Ruhezustand",
+    "logout": "Abmelden",
+    "shutdown": "Herunterfahren",
+    "restart": "Neu starten",
+    "lock": "Bildschirm sperren"
+  },
+  "music": {
+    "nowPlaying": "Wird abgespielt",
+    "paused": "Pausiert"
+  },
+  "ram": {
+    "title": "Prozess-Manager",
+    "loading": {
+      "title": "⏳",
+      "message": "Prozessliste wird geladen..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Prozessname",
+      "ram_percent": "RAM %",
+      "memory": "Speicher"
+    },
+    "footer": {
+      "process_count_label": "Prozessanzahl",
+      "total_ram_label": "RAM-Gesamtnutzung",
+      "memory_distribution_label": "Speicherverteilung",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Prozess-Monitor",
+      "last_update": "Letzte Aktualisierung"
+    },
+    "status_colors": {
+      "critical": "Kritisch",
+      "warning": "Warnung",
+      "normal": "Normal",
+      "low": "Niedrig"
+    },
+    "distribution": {
+      "na": "Keine Daten verfügbar",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skript hat keine Daten zurückgegeben",
+      "parse_error": "Fehler beim Parsen der Daten"
+    }
+  }
+}

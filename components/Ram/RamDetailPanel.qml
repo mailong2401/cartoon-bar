@@ -11,14 +11,26 @@ PanelWindow {
     // Sử dụng WlrLayershell để căn giữa
     implicitWidth: 930
     implicitHeight: 930
-    margins {
-        top: 10
-        left: (Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2
+
+    anchors {
+        top: currentSizes.mainPanelPos === "top"
+        bottom: currentSizes.mainPanelPos === "bottom"
+        left: true
     }
+
+    margins {
+        top: currentSizes.mainPanelPos === "top" ? 10 : 0
+        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+        left: Math.round((Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2)
+    }
+
+    exclusiveZone: 0
+
     color: "transparent"
 
     property var theme : currentTheme
     property var lang : currentLanguage
+    
 
     Rectangle {
         anchors.fill: parent

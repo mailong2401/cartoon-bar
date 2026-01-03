@@ -13,8 +13,6 @@ Rectangle {
     radius: 10
     border.color: theme.normal.black
     border.width: 3
-    signal toggleClockPanel()
-    signal posClockPanel(string pos)
 
 
     property bool launcherPanelVisible: false
@@ -30,11 +28,6 @@ Rectangle {
             item.closeRequested.connect(function() {
                 launcherPanelVisible = false
             })
-            item.toggleClockPanel.connect(function() {toggleClockPanel()})
-            item.posClockPanel.connect(function(pos) {
-    posClockPanel(pos)
-})
-
         }
     }
 

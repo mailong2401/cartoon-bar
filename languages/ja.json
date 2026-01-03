@@ -10,6 +10,27 @@
     "system": "システム",
     "language": "言語"
   },
+  "general": {
+    "title": "一般設定",
+    "language_label": "言語：",
+    "autostart_label": "自動起動：",
+    "notification_label": "通知：",
+    "notification_system": "システム通知を表示",
+    "notification_sound": "通知音",
+    "notification_performance": "パフォーマンス通知"
+  },
+  "appearance": {
+    "title": "外観",
+    "theme_label": "テーマ：",
+    "theme_light": "ライト",
+    "theme_dark": "ダーク",
+    "clock_panel_label": "時計パネル：",
+    "panel_position_label": "パネル位置：",
+    "position_top": "上",
+    "position_bottom": "下",
+    "clock_position_label": "時計の位置：",
+    "panel_height_label": "パネルの高さ："
+  },
   "system": {
     "application": "アプリケーション",
     "sleep": "スリープモード",
