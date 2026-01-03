@@ -62,7 +62,7 @@ Rectangle {
                        selected ? theme.button.background_select : theme.button.background
                 
                 border.color: mouseArea.containsPress ? theme.button.border_select : 
-                             hovered ? theme.button.border_select + "80" : 
+                             hovered ? theme.normal.blue : 
                              selected ? theme.button.border_select : theme.button.border
                 border.width: 2
                 

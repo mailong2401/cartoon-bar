@@ -4,7 +4,9 @@
   "clockPanelPosition": "topRight",
   "clockPanelVisible": true,
   "spacingPanel": 12,
-  "lang": "vi",
+  "lang": "ja",
   "theme": "dark",
-  "countryFlag": "vietnam"
+  "countryFlag": "vietnam",
+  "weatherApiKey": "21e0f911c7de4308916165005251210",
+  "weatherLocation": "Ussuriysk,Russia"
 }

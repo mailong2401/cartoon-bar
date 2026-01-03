@@ -15,14 +15,17 @@ Rectangle {
 property var lang: currentLanguage
     property string currentDate: ""
     property string currentTime: ""
-    property string temperature: ""
-    property string condition: ""
-    property string icon: "⛅"
+    property string temperature: "..."
+    property string condition: "Đang tải"
+    property string icon: "⏳"
     property string humidity: ""
     property string feelsLike: ""
     property bool panelVisible: false
     property bool flagPanelVisible: false
+    property bool weatherPanelVisible: false
     property string selectedFlag: currentSizes.countryFlag
+    property string weatherApiKey: currentSizes.weatherApiKey
+    property string weatherLocation: currentSizes.weatherLocation || "Ho Chi Minh,VN"
 
     property var theme : currentTheme
 
@@ -56,22 +59,34 @@ property var lang: currentLanguage
         }
     }
 
+    // Weather Panel
+    Loader {
+        id: weatherPanelLoader
+        source: "./WeatherPanel.qml"
+        active: weatherPanelVisible
+        onLoaded: {
+            item.visible = Qt.binding(function() { return weatherPanelVisible })
+        }
+    }
+
     // Process lấy weather
     Process {
         id: weatherProcess
-        command: ["curl", "-s", `http://api.weatherapi.com/v1/current.json?key=21e0f911c7de4308916165005251210&q=Ho%20Chi%20Minh,VN&aqi=no`]
+        command: ["curl", "-s", `https://api.weatherapi.com/v1/current.json?key=${root.weatherApiKey}&q=${root.weatherLocation.replace(/ /g, '%20')}&lang=${currentSizes.lang}`]
         running: false
-        
+
         stdout: StdioCollector {
             onStreamFinished: {
-                if (text) {
-                    try {
-                        const data = JSON.parse(text)
-                        root.processWeatherData(data)
-                    } catch(e) {
-                        root.temperature = "Lỗi"
-                        root.condition = "Không thể tải"
-                    }
+
+                if (text && text.length > 0 && root.weatherApiKey !== "") {
+                    const parsed = JSON.parse(text)
+                    root.processWeatherData(parsed)
+                } else if (root.weatherApiKey === "") {
+                    root.temperature = "No API"
+                    root.condition = "Chưa có API key"
+                } else {
+                    root.temperature = "Lỗi"
+                    root.condition = "Không có dữ liệu"
                 }
             }
         }
@@ -142,6 +157,14 @@ property var lang: currentLanguage
     }
 
     function updateWeather() {
+        if (root.weatherApiKey === "" || root.weatherApiKey === undefined) {
+            root.temperature = "No API"
+            root.condition = "Chưa có key"
+            console.log("Cannot update weather: No API key")
+            return
+        }
+        console.log("Updating weather with key:", root.weatherApiKey)
+        console.log("Weather command:", weatherProcess.command)
         if (!weatherProcess.running) {
             weatherProcess.running = true
         }
@@ -208,6 +231,10 @@ property var lang: currentLanguage
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     root.panelVisible = !root.panelVisible
+                    if (root.panelVisible) {
+                        root.flagPanelVisible = false
+                        root.weatherPanelVisible = false
+                    }
                 }
                 
                 // Hiệu ứng hover
@@ -276,7 +303,11 @@ Text {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    root.updateWeather() // Refresh weather khi click
+                    root.weatherPanelVisible = !root.weatherPanelVisible
+                    if (root.weatherPanelVisible) {
+                        root.panelVisible = false
+                        root.flagPanelVisible = false
+                    }
                 }
                 
                 onEntered: {
@@ -313,6 +344,10 @@ Text {
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     root.flagPanelVisible = !root.flagPanelVisible
+                    if (root.flagPanelVisible) {
+                        root.panelVisible = false
+                        root.weatherPanelVisible = false
+                    }
                 }
 
                 onEntered: {
@@ -329,7 +364,7 @@ Text {
 
     // Timer cho weather (giữ nguyên)
     Timer {
-        interval: 300000 // 5 phút
+        interval: 50000 // 5 phút
         running: true
         repeat: true
         onTriggered: root.updateWeather()
@@ -337,6 +372,6 @@ Text {
 
     Component.onCompleted: {
         root.updateDateTime() // Khởi tạo thời gian ban đầu
-        root.updateWeather()  // Khởi tạo weather ban đầu
+        root.updateWeather()
     }
 }
