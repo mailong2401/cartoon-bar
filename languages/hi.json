@@ -3,12 +3,38 @@
     "title": "सेटिंग्स",
     "general": "सामान्य",
     "appearance": "दिखावट",
+    "wallpapers": "वॉलपेपर",
     "network": "नेटवर्क",
     "audio": "ऑडियो",
     "performance": "प्रदर्शन",
     "shortcuts": "शॉर्टकट",
     "system": "सिस्टम",
     "language": "भाषा"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "सोमवार",
+      "tuesday" : "मंगलवार",
+      "wednesday" : "बुधवार",
+      "thursday" : "गुरुवार",
+      "friday" : "शुक्रवार",
+      "saturday" : "शनिवार",
+      "sunday" : "रविवार"
+    },
+    "month" : {
+      "january" : "जनवरी",
+      "february" : "फरवरी",
+      "march" : "मार्च",
+      "april" : "अप्रैल",
+      "may" : "मई",
+      "june" : "जून",
+      "july" : "जुलाई",
+      "august" : "अगस्त",
+      "september" : "सितंबर",
+      "october" : "अक्टूबर",
+      "november" : "नवंबर",
+      "december" : "दिसंबर"
+    }
   },
   "general": {
     "title": "सामान्य सेटिंग्स",
@@ -38,6 +64,24 @@
     "shutdown": "शटडाउन",
     "restart": "पुनः आरंभ करें",
     "lock": "स्क्रीन लॉक करें"
+  },
+  "mixer": {
+    "title": "ऑडियो मिक्सर",
+    "subtitle": "ऑडियो स्ट्रीम और वॉल्यूम प्रबंधित करें",
+    "output_device": "आउटपुट डिवाइस",
+    "application_streams": "एप्लिकेशन ऑडियो स्ट्रीम",
+    "no_streams": "कोई सक्रिय ऑडियो स्ट्रीम नहीं",
+    "active_streams": "सक्रिय स्ट्रीम: %{count}"
+  },
+  "entry": {
+    "unknown_app": "अज्ञात एप्लिकेशन",
+    "unmute": "अनम्यूट करें",
+    "mute": "म्यूट करें",
+    "volume_percent": "%{volume}%",
+    "media_name": "मीडिया नाम",
+    "volume_slider_tooltip": "वॉल्यूम समायोजित करें",
+    "muted": "म्यूट किया गया",
+    "overdrive": "वॉल्यूम ओवरड्राइव"
   },
   "music": {
     "nowPlaying": "अब चल रहा है",

@@ -65,21 +65,21 @@ Item {
 
                     Repeater {
                         model: [
-  { code: "vi", name: "Tiếng Việt", flag: "🇻🇳" },
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
-  { code: "kr", name: "한국어", flag: "🇰🇷" },
-  { code: "ru", name: "Русский", flag: "🇷🇺" },
-  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "pt", name: "Português", flag: "🇵🇹" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "it", name: "Italiano", flag: "🇮🇹" },
-  { code: "ar", name: "العربية", flag: "🇸🇦" },
-  { code: "tr", name: "Türkçe", flag: "🇹🇷" },
-  { code: "nl", name: "Nederlands", flag: "🇳🇱" },
+  { code: "vi", name: "Tiếng Việt", flagImg: "vietnam" },
+  { code: "en", name: "English", flagImg: "britain" },
+  { code: "zh", name: "中文", flagImg: "china" },
+  { code: "ja", name: "日本語", flagImg: "japan" },
+  { code: "kr", name: "한국어", flagImg: "korea" },
+  { code: "ru", name: "Русский", flagImg: "russia" },
+  { code: "hi", name: "हिन्दी", flagImg: "india" },
+  { code: "es", name: "Español", flagImg: "spain" },
+  { code: "pt", name: "Português", flagImg: "portugal" },
+  { code: "fr", name: "Français", flagImg: "france" },
+  { code: "de", name: "Deutsch", flagImg: "german" },
+  { code: "it", name: "Italiano", flagImg: "italy" },
+  { code: "ar", name: "العربية", flagImg: "saudi_arabia" },
+  { code: "tr", name: "Türkçe", flagImg: "turkey" },
+  { code: "nl", name: "Nederlands", flagImg: "netherlands" },
 ]
 
 
@@ -95,9 +95,12 @@ Item {
                                 anchors.centerIn: parent
                                 spacing: 4
 
-                                Text {
-                                    text: modelData.flag
-                                    font.pixelSize: 24
+                                Image {
+                                    source: `../../assets/flags/${modelData.flagImg}.png`
+                                    width: 48
+                                    height: 32
+                                    fillMode: Image.PreserveAspectFit
+                                    smooth: true
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
 

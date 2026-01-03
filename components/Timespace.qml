@@ -19,8 +19,11 @@ Rectangle {
     property string humidity: ""
     property string feelsLike: ""
     property bool panelVisible: false
+    property bool flagPanelVisible: false
+    property string selectedFlag: currentSizes.countryFlag
 
     property var theme : currentTheme
+
 
     // SystemClock để lấy thời gian thực
     SystemClock {
@@ -37,6 +40,21 @@ Rectangle {
         active: panelVisible
         onLoaded: {
             item.visible = Qt.binding(function() { return panelVisible })
+        }
+    }
+
+    // Flag Selection Panel
+    Loader {
+        id: flagPanelLoader
+        source: "./FlagSelectionPanel.qml"
+        active: flagPanelVisible
+        onLoaded: {
+            item.visible = Qt.binding(function() { return flagPanelVisible })
+            item.selectedFlag = Qt.binding(function() { return root.selectedFlag })
+            item.flagSelected.connect(function(flagName) {
+                root.selectedFlag = flagName
+                root.flagPanelVisible = false
+            })
         }
     }
 
@@ -262,14 +280,40 @@ Text {
             Behavior on scale { NumberAnimation { duration: 100 } }
         }
 
-        // Cờ Vietnam
-        Image {
-            source: "../assets/vietnam.png"
-            width: 50
-            height: 50
-            fillMode: Image.PreserveAspectFit
-            smooth: true
+        // Flag Selector
+        Rectangle {
+            id: flagContainer
+            width: 60
+            height: 60
+            color: "transparent"
             anchors.verticalCenter: parent.verticalCenter
+
+            Image {
+                source: `../assets/flags/${root.selectedFlag}.png`
+                width: 50
+                height: 50
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.centerIn: parent
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    root.flagPanelVisible = !root.flagPanelVisible
+                }
+
+                onEntered: {
+                    flagContainer.scale = 1.1
+                }
+                onExited: {
+                    flagContainer.scale = 1.0
+                }
+            }
+
+            Behavior on scale { NumberAnimation { duration: 100 } }
         }
     }
 

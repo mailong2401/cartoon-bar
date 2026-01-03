@@ -3,12 +3,38 @@
     "title": "Impostazioni",
     "general": "Generale",
     "appearance": "Aspetto",
+    "wallpapers": "Sfondi",
     "network": "Rete",
     "audio": "Audio",
     "performance": "Prestazioni",
     "shortcuts": "Scorciatoie",
     "system": "Sistema",
     "language": "Lingua"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Lunedì",
+      "tuesday" : "Martedì",
+      "wednesday" : "Mercoledì",
+      "thursday" : "Giovedì",
+      "friday" : "Venerdì",
+      "saturday" : "Sabato",
+      "sunday" : "Domenica"
+    },
+    "month" : {
+      "january" : "Gennaio",
+      "february" : "Febbraio",
+      "march" : "Marzo",
+      "april" : "Aprile",
+      "may" : "Maggio",
+      "june" : "Giugno",
+      "july" : "Luglio",
+      "august" : "Agosto",
+      "september" : "Settembre",
+      "october" : "Ottobre",
+      "november" : "Novembre",
+      "december" : "Dicembre"
+    }
   },
   "general": {
     "title": "Impostazioni generali",
@@ -38,6 +64,24 @@
     "shutdown": "Spegni",
     "restart": "Riavvia",
     "lock": "Blocca schermo"
+  },
+  "mixer": {
+    "title": "Mixer audio",
+    "subtitle": "Gestisci flussi audio e volume",
+    "output_device": "Dispositivo di uscita",
+    "application_streams": "Flussi audio applicazioni",
+    "no_streams": "Nessun flusso audio attivo",
+    "active_streams": "Flussi attivi: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Applicazione sconosciuta",
+    "unmute": "Attiva audio",
+    "mute": "Disattiva audio",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nome media",
+    "volume_slider_tooltip": "Regola volume",
+    "muted": "Audio disattivato",
+    "overdrive": "Volume amplificato"
   },
   "music": {
     "nowPlaying": "In riproduzione",

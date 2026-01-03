@@ -3,6 +3,7 @@
     "title": "Settings",
     "general": "General",
     "appearance": "Appearance",
+    "wallpapers": "Wallpapers",
     "network": "Network",
     "audio": "Audio",
     "performance": "Performance",
@@ -10,6 +11,31 @@
     "system": "System",
     "language": "Language"
   },
+  "dateFormat": {
+      "day": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "month": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      }
+    },
   "general": {
     "title": "General Settings",
     "language_label": "Language:",
@@ -39,9 +65,23 @@
     "restart": "Restart",
     "lock": "Lock Screen"
   },
-  "music": {
-    "nowPlaying": "Now Playing",
-    "paused": "Paused"
+  "mixer": {
+    "title": "Audio Mixer",
+    "subtitle": "Manage audio streams and volume",
+    "output_device": "Output Device",
+    "application_streams": "Application Audio Streams",
+    "no_streams": "No active audio streams",
+    "active_streams": "Active Streams: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Unknown Application",
+    "unmute": "Unmute",
+    "mute": "Mute",
+    "volume_percent": "%{volume}%",
+    "media_name": "Media Name",
+    "volume_slider_tooltip": "Adjust Volume",
+    "muted": "Muted",
+    "overdrive": "Volume Overdrive"
   },
   "ram": {
     "title": "Process Manager",

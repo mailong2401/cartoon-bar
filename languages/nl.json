@@ -3,12 +3,38 @@
     "title": "Instellingen",
     "general": "Algemeen",
     "appearance": "Uiterlijk",
+    "wallpapers": "Achtergronden",
     "network": "Netwerk",
     "audio": "Audio",
     "performance": "Prestaties",
     "shortcuts": "Sneltoetsen",
     "system": "Systeem",
     "language": "Taal"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Maandag",
+      "tuesday" : "Dinsdag",
+      "wednesday" : "Woensdag",
+      "thursday" : "Donderdag",
+      "friday" : "Vrijdag",
+      "saturday" : "Zaterdag",
+      "sunday" : "Zondag"
+    },
+    "month" : {
+      "january" : "Januari",
+      "february" : "Februari",
+      "march" : "Maart",
+      "april" : "April",
+      "may" : "Mei",
+      "june" : "Juni",
+      "july" : "Juli",
+      "august" : "Augustus",
+      "september" : "September",
+      "october" : "Oktober",
+      "november" : "November",
+      "december" : "December"
+    }
   },
   "general": {
     "title": "Algemene instellingen",
@@ -38,6 +64,24 @@
     "shutdown": "Afsluiten",
     "restart": "Herstarten",
     "lock": "Scherm vergrendelen"
+  },
+  "mixer": {
+    "title": "Geluidsmixer",
+    "subtitle": "Beheer audiostreams en volume",
+    "output_device": "Uitvoerapparaat",
+    "application_streams": "Toepassingsaudiostreams",
+    "no_streams": "Geen actieve audiostreams",
+    "active_streams": "Actieve streams: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Onbekende toepassing",
+    "unmute": "Geluid inschakelen",
+    "mute": "Geluid uitschakelen",
+    "volume_percent": "%{volume}%",
+    "media_name": "Medianaam",
+    "volume_slider_tooltip": "Pas volume aan",
+    "muted": "Geluid uitgeschakeld",
+    "overdrive": "Geluid overdreven"
   },
   "music": {
     "nowPlaying": "Nu aan het afspelen",

@@ -3,12 +3,38 @@
     "title": "설정",
     "general": "일반",
     "appearance": "외관",
+    "wallpapers": "배경화면",
     "network": "네트워크",
     "audio": "오디오",
     "performance": "성능",
     "shortcuts": "단축키",
     "system": "시스템",
     "language": "언어"
+  },
+   "dateFormat": {
+    "day": {
+      "monday": "월요일",
+      "tuesday": "화요일",
+      "wednesday": "수요일",
+      "thursday": "목요일",
+      "friday": "금요일",
+      "saturday": "토요일",
+      "sunday": "일요일"
+    },
+    "month": {
+      "january": "1월",
+      "february": "2월",
+      "march": "3월",
+      "april": "4월",
+      "may": "5월",
+      "june": "6월",
+      "july": "7월",
+      "august": "8월",
+      "september": "9월",
+      "october": "10월",
+      "november": "11월",
+      "december": "12월"
+    }
   },
   "general": {
     "title": "일반 설정",
@@ -38,6 +64,24 @@
     "shutdown": "시스템 종료",
     "restart": "다시 시작",
     "lock": "화면 잠금"
+  },
+  "mixer": {
+    "title": "음향 믹서",
+    "subtitle": "오디오 스트림 및 음량 관리",
+    "output_device": "출력 장치",
+    "application_streams": "응용 프로그램 오디오 스트림",
+    "no_streams": "활성 오디오 스트림이 없습니다",
+    "active_streams": "활성 스트림: %{count}"
+  },
+  "entry": {
+    "unknown_app": "알 수 없는 응용 프로그램",
+    "unmute": "음소거 해제",
+    "mute": "음소거",
+    "volume_percent": "%{volume}%",
+    "media_name": "미디어 이름",
+    "volume_slider_tooltip": "음량 조절",
+    "muted": "음소거됨",
+    "overdrive": "음량 과다"
   },
   "music": {
     "nowPlaying": "현재 재생 중",

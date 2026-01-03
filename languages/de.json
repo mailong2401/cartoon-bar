@@ -3,12 +3,38 @@
     "title": "Einstellungen",
     "general": "Allgemein",
     "appearance": "Erscheinungsbild",
+    "wallpapers": "Hintergrundbilder",
     "network": "Netzwerk",
     "audio": "Audio",
     "performance": "Leistung",
     "shortcuts": "Tastenkombinationen",
     "system": "System",
     "language": "Sprache"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Montag",
+      "tuesday" : "Dienstag",
+      "wednesday" : "Mittwoch",
+      "thursday" : "Donnerstag",
+      "friday" : "Freitag",
+      "saturday" : "Samstag",
+      "sunday" : "Sonntag"
+    },
+    "month" : {
+      "january" : "Januar",
+      "february" : "Februar",
+      "march" : "März",
+      "april" : "April",
+      "may" : "Mai",
+      "june" : "Juni",
+      "july" : "Juli",
+      "august" : "August",
+      "september" : "September",
+      "october" : "Oktober",
+      "november" : "November",
+      "december" : "Dezember"
+    }
   },
   "general": {
     "title": "Allgemeine Einstellungen",
@@ -42,6 +68,24 @@
   "music": {
     "nowPlaying": "Wird abgespielt",
     "paused": "Pausiert"
+  },
+  "mixer": {
+    "title": "Audio-Mixer",
+    "subtitle": "Verwalten Sie Audio-Streams und Lautstärke",
+    "output_device": "Ausgabegerät",
+    "application_streams": "Anwendungs-Audio-Streams",
+    "no_streams": "Keine aktiven Audio-Streams",
+    "active_streams": "Aktive Streams: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Unbekannte Anwendung",
+    "unmute": "Stummschaltung aufheben",
+    "mute": "Stummschalten",
+    "volume_percent": "%{volume}%",
+    "media_name": "Medienname",
+    "volume_slider_tooltip": "Lautstärke anpassen",
+    "muted": "Stummgeschaltet",
+    "overdrive": "Lautstärke überschritten"
   },
   "ram": {
     "title": "Prozess-Manager",

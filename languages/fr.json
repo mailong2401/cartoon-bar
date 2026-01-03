@@ -3,12 +3,38 @@
     "title": "Paramètres",
     "general": "Général",
     "appearance": "Apparence",
+    "wallpapers": "Fonds d'écran",
     "network": "Réseau",
     "audio": "Audio",
     "performance": "Performance",
     "shortcuts": "Raccourcis",
     "system": "Système",
     "language": "Langue"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Lundi",
+      "tuesday" : "Mardi",
+      "wednesday" : "Mercredi",
+      "thursday" : "Jeudi",
+      "friday" : "Vendredi",
+      "saturday" : "Samedi",
+      "sunday" : "Dimanche"
+    },
+    "month" : {
+      "january" : "Janvier",
+      "february" : "Février",
+      "march" : "Mars",
+      "april" : "Avril",
+      "may" : "Mai",
+      "june" : "Juin",
+      "july" : "Juillet",
+      "august" : "Août",
+      "september" : "Septembre",
+      "october" : "Octobre",
+      "november" : "Novembre",
+      "december" : "Décembre"
+    }
   },
   "general": {
     "title": "Paramètres généraux",
@@ -42,6 +68,24 @@
   "music": {
     "nowPlaying": "Lecture en cours",
     "paused": "En pause"
+  },
+  "mixer": {
+    "title": "Mélangeur audio",
+    "subtitle": "Gérer les flux audio et le volume",
+    "output_device": "Périphérique de sortie",
+    "application_streams": "Flux audio de l'application",
+    "no_streams": "Aucun flux audio actif",
+    "active_streams": "Flux actifs : %{count}"
+  },
+  "entry": {
+    "unknown_app": "Application inconnue",
+    "unmute": "Activer le son",
+    "mute": "Couper le son",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nom du média",
+    "volume_slider_tooltip": "Ajuster le volume",
+    "muted": "Son coupé",
+    "overdrive": "Volume amplifié"
   },
   "ram": {
     "title": "Gestionnaire de processus",

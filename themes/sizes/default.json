@@ -1,9 +1,10 @@
 {
   "width_panel": 50,
   "mainPanelPos": "top",
-  "clockPanelPosition": "bottomRight",
+  "clockPanelPosition": "topRight",
   "clockPanelVisible": true,
   "spacingPanel": 12,
-  "lang": "vi",
-  "theme": "light"
+  "lang": "hi",
+  "theme": "dark",
+  "countryFlag": "vietnam"
 }

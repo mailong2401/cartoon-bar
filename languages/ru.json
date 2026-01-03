@@ -3,12 +3,38 @@
     "title": "Настройки",
     "general": "Общие",
     "appearance": "Внешний вид",
+    "wallpapers": "Обои",
     "network": "Сеть",
     "audio": "Аудио",
     "performance": "Производительность",
     "shortcuts": "Горячие клавиши",
     "system": "Система",
     "language": "Язык"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Понедельник",
+      "tuesday" : "Вторник",
+      "wednesday" : "Среда",
+      "thursday" : "Четверг",
+      "friday" : "Пятница",
+      "saturday" : "Суббота",
+      "sunday" : "Воскресенье"
+    },
+    "month" : {
+      "january" : "Январь",
+      "february" : "Февраль",
+      "march" : "Март",
+      "april" : "Апрель",
+      "may" : "Май",
+      "june" : "Июнь",
+      "july" : "Июль",
+      "august" : "Август",
+      "september" : "Сентябрь",
+      "october" : "Октябрь",
+      "november" : "Ноябрь",
+      "december" : "Декабрь"
+    }
   },
   "general": {
     "title": "Общие настройки",
@@ -38,6 +64,24 @@
     "shutdown": "Выключить",
     "restart": "Перезагрузить",
     "lock": "Заблокировать экран"
+  },
+  "mixer": {
+    "title": "Микшер звука",
+    "subtitle": "Управление потоками звука и громкостью",
+    "output_device": "Устройство вывода",
+    "application_streams": "Звуковые потоки приложений",
+    "no_streams": "Нет активных звуковых потоков",
+    "active_streams": "Активные потоки: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Неизвестное приложение",
+    "unmute": "Включить звук",
+    "mute": "Отключить звук",
+    "volume_percent": "%{volume}%",
+    "media_name": "Название медиа",
+    "volume_slider_tooltip": "Отрегулировать громкость",
+    "muted": "Звук отключен",
+    "overdrive": "Громкость превышена"
   },
   "music": {
     "nowPlaying": "Сейчас играет",

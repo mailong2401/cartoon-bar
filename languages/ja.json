@@ -3,12 +3,38 @@
     "title": "設定",
     "general": "一般",
     "appearance": "外観",
+    "wallpapers": "壁紙",
     "network": "ネットワーク",
     "audio": "オーディオ",
     "performance": "パフォーマンス",
     "shortcuts": "ショートカット",
     "system": "システム",
     "language": "言語"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "月曜日",
+      "tuesday": "火曜日",
+      "wednesday": "水曜日",
+      "thursday": "木曜日",
+      "friday": "金曜日",
+      "saturday": "土曜日",
+      "sunday": "日曜日"
+    },
+    "month": {
+      "january": "1月",
+      "february": "2月",
+      "march": "3月",
+      "april": "4月",
+      "may": "5月",
+      "june": "6月",
+      "july": "7月",
+      "august": "8月",
+      "september": "9月",
+      "october": "10月",
+      "november": "11月",
+      "december": "12月"
+    }
   },
   "general": {
     "title": "一般設定",
@@ -38,6 +64,24 @@
     "shutdown": "シャットダウン",
     "restart": "再起動",
     "lock": "画面ロック"
+  },
+  "mixer": {
+    "title": "オーディオミキサー",
+    "subtitle": "オーディオストリームと音量を管理",
+    "output_device": "出力デバイス",
+    "application_streams": "アプリケーションオーディオストリーム",
+    "no_streams": "アクティブなオーディオストリームがありません",
+    "active_streams": "アクティブなストリーム: %{count}"
+  },
+  "entry": {
+    "unknown_app": "不明なアプリケーション",
+    "unmute": "ミュート解除",
+    "mute": "ミュート",
+    "volume_percent": "%{volume}%",
+    "media_name": "メディア名",
+    "volume_slider_tooltip": "音量を調整",
+    "muted": "ミュート中",
+    "overdrive": "音量オーバードライブ"
   },
   "music": {
     "nowPlaying": "再生中",

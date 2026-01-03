@@ -3,12 +3,38 @@
     "title": "Configuración",
     "general": "General",
     "appearance": "Apariencia",
+    "wallpapers": "Fondos de pantalla",
     "network": "Red",
     "audio": "Audio",
     "performance": "Rendimiento",
     "shortcuts": "Atajos",
     "system": "Sistema",
     "language": "Idioma"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Lunes",
+      "tuesday" : "Martes",
+      "wednesday" : "Miércoles",
+      "thursday" : "Jueves",
+      "friday" : "Viernes",
+      "saturday" : "Sábado",
+      "sunday" : "Domingo"
+    },
+    "month" : {
+      "january" : "Enero",
+      "february" : "Febrero",
+      "march" : "Marzo",
+      "april" : "Abril",
+      "may" : "Mayo",
+      "june" : "Junio",
+      "july" : "Julio",
+      "august" : "Agosto",
+      "september" : "Septiembre",
+      "october" : "Octubre",
+      "november" : "Noviembre",
+      "december" : "Diciembre"
+    }
   },
   "general": {
     "title": "Configuración general",
@@ -42,6 +68,24 @@
   "music": {
     "nowPlaying": "Reproduciendo ahora",
     "paused": "Pausado"
+  },
+  "mixer": {
+    "title": "Mezclador de audio",
+    "subtitle": "Administrar flujos de audio y volumen",
+    "output_device": "Dispositivo de salida",
+    "application_streams": "Flujos de audio de aplicaciones",
+    "no_streams": "Sin flujos de audio activos",
+    "active_streams": "Flujos activos: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Aplicación desconocida",
+    "unmute": "Activar sonido",
+    "mute": "Desactivar sonido",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nombre del medio",
+    "volume_slider_tooltip": "Ajustar volumen",
+    "muted": "Desactivado",
+    "overdrive": "Volumen amplificado"
   },
   "ram": {
     "title": "Administrador de procesos",

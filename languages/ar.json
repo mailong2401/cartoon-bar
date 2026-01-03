@@ -3,12 +3,38 @@
     "title": "الإعدادات",
     "general": "عام",
     "appearance": "المظهر",
+    "wallpapers": "الخلفيات",
     "network": "الشبكة",
     "audio": "الصوت",
     "performance": "الأداء",
     "shortcuts": "الاختصارات",
     "system": "النظام",
     "language": "اللغة"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "الإثنين",
+      "tuesday" : "الثلاثاء",
+      "wednesday" : "الأربعاء",
+      "thursday" : "الخميس",
+      "friday" : "الجمعة",
+      "saturday" : "السبت",
+      "sunday" : "الأحد"
+    },
+    "month" : {
+      "january" : "يناير",
+      "february" : "فبراير",
+      "march" : "مارس",
+      "april" : "أبريل",
+      "may" : "مايو",
+      "june" : "يونيو",
+      "july" : "يوليو",
+      "august" : "أغسطس",
+      "september" : "سبتمبر",
+      "october" : "أكتوبر",
+      "november" : "نوفمبر",
+      "december" : "ديسمبر"
+    }
   },
   "general": {
     "title": "الإعدادات العامة",
@@ -38,6 +64,24 @@
     "shutdown": "إيقاف التشغيل",
     "restart": "إعادة التشغيل",
     "lock": "قفل الشاشة"
+  },
+  "mixer": {
+    "title": "خلاط الصوت",
+    "subtitle": "إدارة تدفقات الصوت ومستويات الصوت",
+    "output_device": "جهاز الإخراج",
+    "application_streams": "تدفقات صوت التطبيق",
+    "no_streams": "لا توجد تدفقات صوتية نشطة",
+    "active_streams": "التدفقات النشطة: %{count}"
+  },
+  "entry": {
+    "unknown_app": "تطبيق غير معروف",
+    "unmute": "إلغاء كتم الصوت",
+    "mute": "كتم الصوت",
+    "volume_percent": "%{volume}%",
+    "media_name": "اسم الوسيط",
+    "volume_slider_tooltip": "ضبط مستوى الصوت",
+    "muted": "مكتوم الصوت",
+    "overdrive": "تضخيم الصوت"
   },
   "music": {
     "nowPlaying": "قيد التشغيل الآن",

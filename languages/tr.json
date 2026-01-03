@@ -3,12 +3,38 @@
     "title": "Ayarlar",
     "general": "Genel",
     "appearance": "Görünüm",
+    "wallpapers": "Duvar Kağıtları",
     "network": "Ağ",
     "audio": "Ses",
     "performance": "Performans",
     "shortcuts": "Kısayollar",
     "system": "Sistem",
     "language": "Dil"
+  },
+  "dateFormat" : {
+    "day" : {
+      "monday" : "Pazartesi",
+      "tuesday" : "Salı",
+      "wednesday" : "Çarşamba",
+      "thursday" : "Perşembe",
+      "friday" : "Cuma",
+      "saturday" : "Cumartesi",
+      "sunday" : "Pazar"
+    },
+    "month" : {
+      "january" : "Ocak",
+      "february" : "Şubat",
+      "march" : "Mart",
+      "april" : "Nisan",
+      "may" : "Mayıs",
+      "june" : "Haziran",
+      "july" : "Temmuz",
+      "august" : "Ağustos",
+      "september" : "Eylül",
+      "october" : "Ekim",
+      "november" : "Kasım",
+      "december" : "Aralık"
+    }
   },
   "general": {
     "title": "Genel Ayarlar",
@@ -38,6 +64,24 @@
     "shutdown": "Kapat",
     "restart": "Yeniden başlat",
     "lock": "Ekranı kilitle"
+  },
+  "mixer": {
+    "title": "Ses Mikseri",
+    "subtitle": "Ses akışlarını ve ses düzeyini yönetin",
+    "output_device": "Çıkış Cihazı",
+    "application_streams": "Uygulama Ses Akışları",
+    "no_streams": "Aktif ses akışı yok",
+    "active_streams": "Aktif akışlar: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Bilinmeyen uygulama",
+    "unmute": "Sesi aç",
+    "mute": "Sesi kapat",
+    "volume_percent": "%{volume}%",
+    "media_name": "Ortam Adı",
+    "volume_slider_tooltip": "Ses düzeyini ayarla",
+    "muted": "Sesi kapalı",
+    "overdrive": "Aşırı ses"
   },
   "music": {
     "nowPlaying": "Şimdi çalıyor",

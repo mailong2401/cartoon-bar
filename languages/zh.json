@@ -3,12 +3,38 @@
     "title": "设置",
     "general": "通用",
     "appearance": "外观",
+    "wallpapers": "壁纸",
     "network": "网络",
     "audio": "音频",
     "performance": "性能",
     "shortcuts": "快捷键",
     "system": "系统",
     "language": "语言"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "星期一",
+      "tuesday": "星期二",
+      "wednesday": "星期三",
+      "thursday": "星期四",
+      "friday": "星期五",
+      "saturday": "星期六",
+      "sunday": "星期日"
+    },
+    "month": {
+      "january": "1月",
+      "february": "2月",
+      "march": "3月",
+      "april": "4月",
+      "may": "5月",
+      "june": "6月",
+      "july": "7月",
+      "august": "8月",
+      "september": "9月",
+      "october": "10月",
+      "november": "11月",
+      "december": "12月"
+    }
   },
   "general": {
     "title": "通用设置",
@@ -39,9 +65,23 @@
     "restart": "重新启动",
     "lock": "锁定屏幕"
   },
-  "music": {
-    "nowPlaying": "正在播放",
-    "paused": "已暂停"
+  "mixer": {
+    "title": "音频混音器",
+    "subtitle": "管理音频流和音量",
+    "output_device": "输出设备",
+    "application_streams": "应用程序音频流",
+    "no_streams": "没有活动的音频流",
+    "active_streams": "活动流：%{count}"
+  },
+  "entry": {
+    "unknown_app": "未知应用程序",
+    "unmute": "取消静音",
+    "mute": "静音",
+    "volume_percent": "%{volume}%",
+    "media_name": "媒体名称",
+    "volume_slider_tooltip": "调整音量",
+    "muted": "已静音",
+    "overdrive": "音量超限"
   },
   "ram": {
     "title": "进程管理器",

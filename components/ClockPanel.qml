@@ -26,6 +26,8 @@ PanelWindow {
     property string currentMin: ""
     property string currentDay: ""
     property string currentDate: ""
+    property var lang: currentLanguage
+
     
     implicitWidth: content.implicitWidth + 40
     implicitHeight: content.implicitHeight + 40
@@ -42,9 +44,31 @@ PanelWindow {
     
     function updateDateTime() {
         const now = new Date()
-        const weekdays = ["Chủ nhật", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"]
-        const months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", 
-                      "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+        const weekdays = [
+  lang.dateFormat.day.sunday,
+  lang.dateFormat.day.monday,
+  lang.dateFormat.day.tuesday,
+  lang.dateFormat.day.wednesday,
+  lang.dateFormat.day.thursday,
+  lang.dateFormat.day.friday,
+  lang.dateFormat.day.saturday
+]
+
+const months = [
+  lang.dateFormat.month.january,
+  lang.dateFormat.month.february,
+  lang.dateFormat.month.march,
+  lang.dateFormat.month.april,
+  lang.dateFormat.month.may,
+  lang.dateFormat.month.june,
+  lang.dateFormat.month.july,
+  lang.dateFormat.month.august,
+  lang.dateFormat.month.september,
+  lang.dateFormat.month.october,
+  lang.dateFormat.month.november,
+  lang.dateFormat.month.december
+]
+
         
         root.currentDay = `${weekdays[now.getDay()]}`
         root.currentHour = Qt.formatTime(now, "HH")
