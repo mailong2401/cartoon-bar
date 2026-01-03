@@ -9,8 +9,10 @@ Rectangle {
     color: theme.primary.background
     radius: 10
     border.color: theme.normal.black
+
     border.width: 3
 
+property var lang: currentLanguage
     property string currentDate: ""
     property string currentTime: ""
     property string temperature: ""
@@ -51,10 +53,6 @@ Rectangle {
         onLoaded: {
             item.visible = Qt.binding(function() { return flagPanelVisible })
             item.selectedFlag = Qt.binding(function() { return root.selectedFlag })
-            item.flagSelected.connect(function(flagName) {
-                root.selectedFlag = flagName
-                root.flagPanelVisible = false
-            })
         }
     }
 
@@ -152,8 +150,20 @@ Rectangle {
     function updateDateTime() {
         const now = clock.date
         const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
-        const months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", 
-                       "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+        const months = [
+  lang.dateFormat.month.january,
+  lang.dateFormat.month.february,
+  lang.dateFormat.month.march,
+  lang.dateFormat.month.april,
+  lang.dateFormat.month.may,
+  lang.dateFormat.month.june,
+  lang.dateFormat.month.july,
+  lang.dateFormat.month.august,
+  lang.dateFormat.month.september,
+  lang.dateFormat.month.october,
+  lang.dateFormat.month.november,
+  lang.dateFormat.month.december
+]
         
         root.currentDate = `${weekdays[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
         root.currentTime = Qt.formatTime(now, "HH:mm")

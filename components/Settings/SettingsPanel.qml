@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "."
+import ".." as Components
 
 
 Rectangle {
@@ -14,6 +15,15 @@ Rectangle {
     color: theme.primary.background
     // Shadow effect
     layer.enabled: true
+
+    // Shared JsonEditor for all Settings
+    Components.JsonEditor {
+        id: sharedPanelConfig
+        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
+        Component.onCompleted: {
+            sharedPanelConfig.load(sharedPanelConfig.filePath)
+        }
+    }
 
     RowLayout {
         anchors.fill: parent
@@ -49,10 +59,12 @@ Rectangle {
                 
                 // General Settings
                 GeneralSettings {
+                    panelConfig: sharedPanelConfig
                 }
-                
+
                 // Appearance Settings
                 AppearanceSettings {
+                    panelConfig: sharedPanelConfig
                 }
 
                 // WallPapers Setetings

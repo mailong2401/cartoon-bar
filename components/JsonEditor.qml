@@ -9,7 +9,7 @@ QtObject {
     property var json: ({})
 
     property Timer reloadTimer: Timer {
-        interval: 10
+        interval: 30
         repeat: false
         onTriggered: sizeLoader.loadSizes()
     }

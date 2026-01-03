@@ -22,8 +22,6 @@ PanelWindow {
     property var theme: currentTheme
     property string selectedFlag: currentSizes.selectedFlag
 
-    signal flagSelected(string flagName)
-
     property var flagList: [
         { name: "britain", displayName: "Britain" },
         { name: "china", displayName: "China" },

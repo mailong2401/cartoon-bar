@@ -8,20 +8,12 @@ import ".." as Components
 Item {
     property var theme: currentTheme
     property var lang: currentLanguage
+    property var panelConfig  // Received from parent SettingsPanel
     id: root
 
     // Hàm helper để set position
     function setClockPosition(position) {
         panelConfig.set("clockPanelPosition", position)
-    }
-
-    // Tạo JsonEditor riêng cho panel settings
-    Components.JsonEditor {
-        id: panelConfig
-        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
-        Component.onCompleted: {
-            panelConfig.load(panelConfig.filePath)
-        }
     }
 
     // Component cho position button

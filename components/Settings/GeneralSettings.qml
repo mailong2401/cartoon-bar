@@ -8,13 +8,17 @@ import ".." as Components
 Item {
     property var theme: currentTheme
     property var lang: currentLanguage
+    property var panelConfig  // Received from parent SettingsPanel
 
-    Components.JsonEditor {
-        id: panelConfig
-        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
-        Component.onCompleted: {
-            panelConfig.load(panelConfig.filePath)
-        }
+    property Timer reloadTimer: Timer {
+        interval: 30
+        repeat: false
+        onTriggered: languageLoader.loadLanguage()
+    }
+
+    function setLanguageEditor(name) {
+        panelConfig.set("lang",name)
+        reloadTimer.restart()
     }
     
     ScrollView {
@@ -122,8 +126,8 @@ Item {
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
-                                    panelConfig.set("lang", modelData.code)
-                                    languageLoader.changeLanguage(modelData.code)
+                                    setLanguageEditor(modelData.code)
+                                    
                                 }
                             }
 
@@ -175,8 +179,8 @@ Item {
                         implicitWidth: 48
                         implicitHeight: 28
                         radius: 14
-                        color: autoStartSwitch.checked ? theme.normal.green : theme.button.background
-                        border.color: autoStartSwitch.checked ? theme.normal.green : theme.button.border
+                        color: autoStartSwitch.checked ? theme.normal.blue : theme.button.background
+                        border.color: autoStartSwitch.checked ? theme.normal.blue : theme.button.border
                         border.width: 2
                     }
                     
