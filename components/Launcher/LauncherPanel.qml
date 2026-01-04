@@ -55,14 +55,14 @@ function closePanel() {
     }
 
     anchors {
-        bottom: currentSizes.mainPanelPos === "bottom"
-        top: currentSizes.mainPanelPos === "top"
+        bottom: currentConfig.mainPanelPos === "bottom"
+        top: currentConfig.mainPanelPos === "top"
         left: true
     }
 
     margins {
-        top: currentSizes.mainPanelPos === "top" ? 10 : 0
-        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+        top: currentConfig.mainPanelPos === "top" ? 10 : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         left: 10
     }
 

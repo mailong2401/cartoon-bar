@@ -5,7 +5,7 @@ QtObject {
     id: languageLoader
 
     // --- Thuộc tính ---
-    property string currentLanguage: currentSizes.lang
+    property string currentLanguage: currentConfig.lang
     property var translations: ({})  // Dữ liệu ngôn ngữ hiện tại
 
     // --- Tín hiệu ---

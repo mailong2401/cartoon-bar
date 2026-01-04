@@ -4,7 +4,7 @@ import QtQuick 2.15
 QtObject {
     id: themeLoader
 
-    property string currentTheme: currentSizes.theme
+    property string currentTheme: currentConfig.theme
     property var theme: ({})  // theme hiện tại
 
     signal themeReloaded()     // signal thông báo theme đã thay đổi

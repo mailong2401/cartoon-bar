@@ -9,7 +9,7 @@ Rectangle {
     color: theme.primary.background
     border.color: theme.normal.black
     border.width: 3
-    radius: 10
+    radius: currentSizes.radius?.normal || 10
 
     property string currentSong: "No song playing"
     property string currentArtist: ""
@@ -95,20 +95,20 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 8
+        anchors.margins: currentSizes.spacing?.normal || 8
         Layout.alignment: Qt.AlignVCenter
 
         // Song info với hiệu ứng marquee
         ColumnLayout {
-            spacing: 2
+            spacing: currentSizes.spacing?.small || 2
             Layout.fillWidth: true
-            Layout.maximumWidth: parent.width * 0.7 // Giới hạn chiều rộng
+            Layout.maximumWidth: parent.width * (currentSizes.musicPlayerLayout?.maxWidth || 0.7) // Giới hạn chiều rộng
 
             // Container cho song title với marquee effect
             Rectangle {
                 id: songContainer
                 Layout.fillWidth: true
-                height: 20
+                height: currentSizes.musicPlayerLayout?.songContainerHeight || 20
                 color: "transparent"
                 clip: true
 
@@ -116,7 +116,7 @@ Rectangle {
                     id: songText
                     text: truncatedSong
                     color: theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.fontSize?.medium || 16
                     elide: Text.ElideRight
                     
                     // Hiệu ứng marquee khi text quá dài
@@ -158,7 +158,7 @@ Rectangle {
             Text {
                 text: currentArtist
                 color: theme.primary.dim_foreground
-                font.pixelSize: 10
+                font.pixelSize: currentSizes.fontSize?.small || 10
                 elide: Text.ElideRight
                 Layout.fillWidth: true
             }
@@ -167,16 +167,16 @@ Rectangle {
         Item { Layout.fillWidth: true }  // spacer
 
         // Controls
-        Row {
-            spacing: 12
+        RowLayout {
+            spacing: currentSizes.spacing?.medium || 12
             Layout.alignment: Qt.AlignVCenter
 
             // Previous button
             Image {
                 id: preBtn
                 source: "../assets/music/pre.png"
-                width: 30
-                height: 30
+                Layout.preferredWidth: currentSizes.iconSize?.normal || 30
+                Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit
                 smooth: true
 
@@ -200,8 +200,8 @@ Rectangle {
             Image {
                 id: playPauseBtn
                 source: isPlaying ? "../assets/music/pause.png" : "../assets/music/play.png"
-                width: 30
-                height: 30
+                Layout.preferredWidth: currentSizes.iconSize?.normal || 30
+                Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit
                 smooth: true
 
@@ -226,8 +226,8 @@ Rectangle {
             Image {
                 id: nextBtn
                 source: "../assets/music/next.png"
-                width: 30
-                height: 30
+                Layout.preferredWidth: currentSizes.iconSize?.normal || 30
+                Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit
                 smooth: true
 

@@ -7,7 +7,7 @@ import "./WeatherTime/" as WeatherTime
 Rectangle {
     id: root
     color: theme.primary.background
-    radius: 10
+    radius: currentSizes.radius?.normal || 10
     border.color: theme.normal.black
 
     border.width: 3
@@ -23,9 +23,9 @@ property var lang: currentLanguage
     property bool panelVisible: false
     property bool flagPanelVisible: false
     property bool weatherPanelVisible: false
-    property string selectedFlag: currentSizes.countryFlag
-    property string weatherApiKey: currentSizes.weatherApiKey
-    property string weatherLocation: currentSizes.weatherLocation || "Ho Chi Minh,VN"
+    property string selectedFlag: currentConfig.countryFlag
+    property string weatherApiKey: currentConfig.weatherApiKey
+    property string weatherLocation: currentConfig.weatherLocation || "Ho Chi Minh,VN"
 
     property var theme : currentTheme
 
@@ -72,7 +72,7 @@ property var lang: currentLanguage
     // Process lấy weather
     Process {
         id: weatherProcess
-        command: ["curl", "-s", `https://api.weatherapi.com/v1/current.json?key=${root.weatherApiKey}&q=${root.weatherLocation.replace(/ /g, '%20')}&lang=${currentSizes.lang}`]
+        command: ["curl", "-s", `https://api.weatherapi.com/v1/current.json?key=${root.weatherApiKey}&q=${root.weatherLocation.replace(/ /g, '%20')}&lang=${currentConfig.lang}`]
         running: false
 
         stdout: StdioCollector {
@@ -192,35 +192,35 @@ property var lang: currentLanguage
         root.currentTime = Qt.formatTime(now, "HH:mm")
     }
 
-    Row {
+    RowLayout {
         anchors.centerIn: parent
-        spacing: 8
+        spacing: currentSizes.spacing?.normal || 8
 
         // Phần datetime
         Rectangle {
             id: timeContainer
-            width: 190
-            height: parent.height
+            Layout.preferredWidth: currentSizes.timespaceLayout?.timeContainer || 190
+            Layout.fillHeight: true
             color: "transparent"
 
-            Column {
+            ColumnLayout {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 0
-                
-                Text { 
-                    text: root.currentTime 
+
+                Text {
+                    text: root.currentTime
                     color: root.theme.primary.foreground
-                    font { 
-                        pixelSize: 16 
-                        bold: true 
+                    font {
+                        pixelSize: currentSizes.fontSize?.medium || 16
+                        bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
                 }
-                
-                Text { 
+
+                Text {
                     text: root.currentDate
                     color: root.theme.primary.dim_foreground
-                    font.pixelSize: 13
+                    font.pixelSize: currentSizes.fontSize?.normal || 13
                     font.family: "ComicShannsMono Nerd Font"
                 }
             }
@@ -252,49 +252,49 @@ property var lang: currentLanguage
         // Phần weather - ĐÃ SỬA: Thêm icon và condition
         Rectangle {
             id: weatherContainer
-            width: 120
-            height: parent.height
+            Layout.preferredWidth: currentSizes.timespaceLayout?.weatherContainer || 120
+            Layout.fillHeight: true
             color: "transparent"
 
 
                 
                 
                 
-                Column {
+                ColumnLayout {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 1
 
-                    Row {
-                spacing: 8
-                      Text {
-                        text: root.temperature || "Đang tải..."
-                        color: root.theme.primary.foreground
-                    anchors.verticalCenter: parent.verticalCenter
-                        font { 
-                            pixelSize: 16
-                            bold: true 
-                            family: "ComicShannsMono Nerd Font"
+                    RowLayout {
+                        spacing: currentSizes.spacing?.normal || 8
+                        Text {
+                            text: root.temperature || "Đang tải..."
+                            color: root.theme.primary.foreground
+                            Layout.alignment: Qt.AlignVCenter
+                            font {
+                                pixelSize: currentSizes.fontSize?.medium || 16
+                                bold: true
+                                family: "ComicShannsMono Nerd Font"
+                            }
+                        }
+                        Text {
+                            text: root.icon
+                            font.pixelSize: currentSizes.fontSize?.xlarge || 24
+                            Layout.alignment: Qt.AlignVCenter
                         }
                     }
-Text {
-                    text: root.icon
-                    font.pixelSize: 24
-                    anchors.verticalCenter: parent.verticalCenter
-                }
-                    }
-                    
-                    
-                    
+
+
+
                     Text {
                         text: root.condition || "..."
                         color: root.theme.primary.dim_foreground
-                        font { 
-                            pixelSize: 11
+                        font {
+                            pixelSize: currentSizes.fontSize?.small || 11
                             family: "ComicShannsMono Nerd Font"
                         }
                         elide: Text.ElideRight
                         maximumLineCount: 1
-                        width: 80
+                        Layout.preferredWidth: 80
                     }
                 }
 
@@ -324,15 +324,14 @@ Text {
         // Flag Selector
         Rectangle {
             id: flagContainer
-            width: 60
-            height: 60
+            Layout.preferredWidth: currentSizes.timespaceLayout?.flagContainer || 60
+            Layout.preferredHeight: currentSizes.timespaceLayout?.flagContainer || 60
             color: "transparent"
-            anchors.verticalCenter: parent.verticalCenter
 
             Image {
                 source: `../assets/flags/${root.selectedFlag}.png`
-                width: 50
-                height: 50
+                width: currentSizes.iconSize?.large || 50
+                height: currentSizes.iconSize?.large || 50
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 anchors.centerIn: parent
@@ -369,6 +368,18 @@ Text {
         repeat: true
         onTriggered: root.updateWeather()
     }
+    Timer {
+    id: initialLoadTimer
+    interval: 100  // Delay 100ms để đảm bảo các properties đã được load
+    running: true
+    repeat: false
+    onTriggered: {
+        console.log("Initial load timer triggered")
+        console.log("API Key:", root.weatherApiKey ? "exists" : "empty")
+        console.log("Location:", root.weatherLocation)
+        root.updateWeather()
+    }
+}
 
     Component.onCompleted: {
         root.updateDateTime() // Khởi tạo thời gian ban đầu

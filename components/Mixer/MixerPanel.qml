@@ -15,14 +15,14 @@ PanelWindow {
     property var lang : currentLanguage
 
     anchors {
-            top: currentSizes.mainPanelPos === "top"
-            bottom: currentSizes.mainPanelPos === "bottom"
+            top: currentConfig.mainPanelPos === "top"
+            bottom: currentConfig.mainPanelPos === "bottom"
             right: true
         }
         margins {
-            top: currentSizes.mainPanelPos === "top" ? 10 : 0
+            top: currentConfig.mainPanelPos === "top" ? 10 : 0
             right: 10
-            bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+            bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         }
     color: "transparent"
 

@@ -13,14 +13,14 @@ PanelWindow {
     implicitHeight: 930
 
     anchors {
-        top: currentSizes.mainPanelPos === "top"
-        bottom: currentSizes.mainPanelPos === "bottom"
+        top: currentConfig.mainPanelPos === "top"
+        bottom: currentConfig.mainPanelPos === "bottom"
         left: true
     }
 
     margins {
-        top: currentSizes.mainPanelPos === "top" ? 10 : 0
-        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+        top: currentConfig.mainPanelPos === "top" ? 10 : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         left: Math.round((Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2)
     }
 

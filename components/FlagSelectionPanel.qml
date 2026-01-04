@@ -10,7 +10,7 @@ PanelWindow {
 
     Components.JsonEditor {
         id: panelConfig
-        filePath: Qt.resolvedUrl("../themes/sizes/" + currentSizeProfile + ".json")
+        filePath: Qt.resolvedUrl("../themes/sizes/" + currentConfigProfile + ".json")
         Component.onCompleted: {
             panelConfig.load(panelConfig.filePath)
         }
@@ -20,7 +20,7 @@ PanelWindow {
     implicitHeight: 420
 
     property var theme: currentTheme
-    property string selectedFlag: currentSizes.selectedFlag
+    property string selectedFlag: currentConfig.selectedFlag
 
     property var flagList: [
         { name: "britain", displayName: "Britain" },
@@ -41,13 +41,13 @@ PanelWindow {
     ]
 
     anchors {
-        top: currentSizes.mainPanelPos === "top"
-        bottom: currentSizes.mainPanelPos === "bottom"
+        top: currentConfig.mainPanelPos === "top"
+        bottom: currentConfig.mainPanelPos === "bottom"
     }
 
     margins {
-        top: currentSizes.mainPanelPos === "top" ? 10 : 0
-        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+        top: currentConfig.mainPanelPos === "top" ? 10 : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         left: 800
     }
 

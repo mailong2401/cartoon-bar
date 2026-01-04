@@ -121,14 +121,14 @@ Rectangle {
         visible: root.wifiPanelVisible
 
         anchors {
-            top: currentSizes.mainPanelPos === "top"
-            bottom: currentSizes.mainPanelPos === "bottom"
+            top: currentConfig.mainPanelPos === "top"
+            bottom: currentConfig.mainPanelPos === "bottom"
             right: true
         }
         margins {
-            top: currentSizes.mainPanelPos === "top" ? 10 : 0
+            top: currentConfig.mainPanelPos === "top" ? 10 : 0
             right: 10
-            bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+            bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         }
       }
 
@@ -137,14 +137,14 @@ Rectangle {
         visible: root.bluetoothPanelVisible
 
         anchors {
-            top: currentSizes.mainPanelPos === "top"
-            bottom: currentSizes.mainPanelPos === "bottom"
+            top: currentConfig.mainPanelPos === "top"
+            bottom: currentConfig.mainPanelPos === "bottom"
             right: true
         }
         margins {
-            top: currentSizes.mainPanelPos === "top" ? 10 : 0
+            top: currentConfig.mainPanelPos === "top" ? 10 : 0
             right: 10
-            bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+            bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         }
       }
 
@@ -326,10 +326,11 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
         anchors.margins: 0
+        spacing: currentSizes.spacing?.small || 5
         Rectangle {
             id: bluetoothContainer
-            Layout.preferredWidth: bluetoothCContent.width + 20
-            Layout.preferredHeight: bluetoothCContent.height + 10
+            Layout.preferredWidth: bluetoothCContent.width + currentSizes.statusAreaLayout?.containerPadding
+            Layout.preferredHeight: bluetoothCContent.height + currentSizes.statusAreaLayout?.containerVerticalPadding
             color: "transparent"
             radius: 6
             transformOrigin: Item.Center
@@ -342,9 +343,9 @@ Rectangle {
                 Image {
                     id: bluetoothImage
                     source: root.bluetooth_icon
-                    width: 35
-                    height: 35
-                    sourceSize: Qt.size(35, 35)
+                    width: currentSizes.iconSize?.medium || 35
+                    height: currentSizes.iconSize?.medium || 35
+                    sourceSize: Qt.size(currentSizes.iconSize?.medium || 35, currentSizes.iconSize?.medium || 35)
                 }
             }
 
@@ -374,8 +375,8 @@ Rectangle {
         // Network Status
         Rectangle {
             id: networkContainer
-            Layout.preferredWidth: networkContent.width + 20
-            Layout.preferredHeight: networkContent.height + 10
+            Layout.preferredWidth: networkContent.width + currentSizes.statusAreaLayout?.containerPadding
+            Layout.preferredHeight: networkContent.height + currentSizes.statusAreaLayout?.containerVerticalPadding
             color: "transparent"
             radius: 6
             transformOrigin: Item.Center
@@ -388,16 +389,16 @@ Rectangle {
                 Image {
                     id: wifiImage
                     source: root.wifi_icon
-                    width: 35
-                    height: 35
-                    sourceSize: Qt.size(35, 35)
+                    width: currentSizes.iconSize?.medium || 35
+                    height: currentSizes.iconSize?.medium || 35
+                    sourceSize: Qt.size(currentSizes.iconSize?.medium || 35, currentSizes.iconSize?.medium || 35)
                 }
                 
                 Text {
                     text: root.net_stat
                     color: theme.primary.foreground
                     font {
-                        pixelSize: 12
+                        pixelSize: currentSizes.fontSize?.small
                         bold: true
                     }
                 }
@@ -430,8 +431,8 @@ Rectangle {
         // Volume
         Rectangle {
             id: volumeContainer
-            Layout.preferredWidth: volumeContent.width + 20
-            Layout.preferredHeight: volumeContent.height + 10
+            Layout.preferredWidth: volumeContent.width + currentSizes.statusAreaLayout?.containerPadding
+            Layout.preferredHeight: volumeContent.height + currentSizes.statusAreaLayout?.containerVerticalPadding
             color: "transparent"
             radius: 6
             transformOrigin: Item.Center
@@ -443,16 +444,16 @@ Rectangle {
                 Image {
                     id: volumeIcon
                     source: isMuted || currentVolume === 0 ? "../assets/volume/mute.png" : "../assets/volume/volume.png"
-                    width: 34
-                    height: 34
-                    sourceSize: Qt.size(34, 34)
+                    width: currentSizes.iconSize?.medium || 34
+                    height: currentSizes.iconSize?.medium || 34
+                    sourceSize: Qt.size(currentSizes.iconSize?.medium || 34, currentSizes.iconSize?.medium || 34)
                 }
                 Text {
                     text: isMuted ? "Muted" : Math.round(currentVolume * 100) + "%"
 
                     color: theme.primary.foreground
                     font { 
-                        pixelSize: 14
+                        pixelSize: currentSizes.fontSize?.normal
                         bold: true 
                     }
                     verticalAlignment: Text.AlignVCenter
@@ -497,8 +498,8 @@ Rectangle {
         // Battery
         Rectangle {
             id: batteryContainer
-            Layout.preferredWidth: batteryContent.width + 20
-            Layout.preferredHeight: batteryContent.height + 10
+            Layout.preferredWidth: batteryContent.width + currentSizes.statusAreaLayout?.containerPadding
+            Layout.preferredHeight: batteryContent.height + currentSizes.statusAreaLayout?.containerVerticalPadding
             color: "transparent"
             radius: 6
             transformOrigin: Item.Center
@@ -511,15 +512,15 @@ Rectangle {
                 Image {
                     id: batteryIcon
                     source: '../assets/battery/full.png'
-                    width: 30
-                    height: 30
-                    sourceSize: Qt.size(30, 30)
+                    width: currentSizes.iconSize?.normal || 30
+                    height: currentSizes.iconSize?.normal || 30
+                    sourceSize: Qt.size(currentSizes.iconSize?.normal || 30, currentSizes.iconSize?.normal || 30)
                 }
                 Text {
                     text: root.capacity_battery + "%"
                     color: theme.primary.foreground
                     font { 
-                        pixelSize: 16
+                        pixelSize: currentSizes.fontSize?.medium
                         bold: true 
                     }
                     verticalAlignment: Text.AlignVCenter
@@ -546,8 +547,8 @@ Rectangle {
         // Power Off
         Rectangle {
             id: powerContainer
-            Layout.preferredWidth: 40
-            Layout.preferredHeight: 40
+            Layout.preferredWidth: currentSizes.statusAreaLayout?.powerContainerSize || 40
+            Layout.preferredHeight: currentSizes.statusAreaLayout?.powerContainerSize || 40
             color: "transparent"
             radius: 6
             transformOrigin: Item.Center
@@ -555,9 +556,9 @@ Rectangle {
             Image {
                 id: powerIcon
                 source: '../assets/system/poweroff.png'
-                width: 30
-                height: 30
-                sourceSize: Qt.size(30, 30)
+                width: currentSizes.iconSize?.normal || 30
+                height: currentSizes.iconSize?.normal || 30
+                sourceSize: Qt.size(currentSizes.iconSize?.normal || 30, currentSizes.iconSize?.normal || 30)
                 anchors.centerIn: parent
             }
 

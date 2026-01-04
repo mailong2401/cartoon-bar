@@ -15,13 +15,13 @@ PanelWindow {
     property var theme : currentTheme
 
     anchors {
-      top: currentSizes.mainPanelPos === "top"
-      bottom: currentSizes.mainPanelPos === "bottom"
+      top: currentConfig.mainPanelPos === "top"
+      bottom: currentConfig.mainPanelPos === "bottom"
     }
 
     margins {
-        top: currentSizes.mainPanelPos === "top" ? 10 : 0
-        bottom: currentSizes.mainPanelPos === "bottom" ? 10 : 0
+        top: currentConfig.mainPanelPos === "top" ? 10 : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
         left: 800
     }
     exclusiveZone: 0

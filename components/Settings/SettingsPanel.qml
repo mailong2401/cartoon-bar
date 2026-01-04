@@ -19,7 +19,7 @@ Rectangle {
     // Shared JsonEditor for all Settings
     Components.JsonEditor {
         id: sharedPanelConfig
-        filePath: Qt.resolvedUrl("../../themes/sizes/" + currentSizeProfile + ".json")
+        filePath: Qt.resolvedUrl("../../configs/" + currentConfigProfile + ".json")
         Component.onCompleted: {
             sharedPanelConfig.load(sharedPanelConfig.filePath)
         }

@@ -11,7 +11,7 @@ QtObject {
     property Timer reloadTimer: Timer {
         interval: 30
         repeat: false
-        onTriggered: sizeLoader.loadSizes()
+        onTriggered: configLoader.loadConfig()
     }
 
     // Load file

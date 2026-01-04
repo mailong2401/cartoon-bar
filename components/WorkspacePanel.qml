@@ -5,7 +5,7 @@ import Quickshell.Io
 
 Rectangle {
     id: root
-    radius: 10
+    radius: currentSizes.radius?.normal || 10
     border.color: theme.normal.black
     border.width: 3
     color: theme.primary.background
@@ -89,29 +89,32 @@ Rectangle {
 
 
     // 🧱 Dòng workspace
-    Row {
+    RowLayout {
         id: workspaceRow
         anchors.centerIn: parent
-        spacing: 4
+        spacing: currentSizes.spacing?.small || 4
 
         Repeater {
             model: root.workspaces
             Rectangle {
                 property string wsId: modelData.id
-                width: 32; height: 32; radius: 6
+                Layout.preferredWidth: currentSizes.iconSize?.medium || 32
+                Layout.preferredHeight: currentSizes.iconSize?.medium || 32
+                radius: currentSizes.radius?.small || 6
                 color: "transparent"
 
                 Image {
-      anchors.centerIn: parent
-    width: 32; height: 32
-    fillMode: Image.PreserveAspectFit
-    source: modelData.id === root.activeWorkspace
-        ? "../assets/pacman.png"
-        : modelData.exists
-            ? "../assets/ghost.png"
-            : "../assets/empty.png"
-            opacity: 1
-        }
+                    anchors.centerIn: parent
+                    width: currentSizes.iconSize?.medium || 32
+                    height: currentSizes.iconSize?.medium || 32
+                    fillMode: Image.PreserveAspectFit
+                    source: modelData.id === root.activeWorkspace
+                        ? "../assets/pacman.png"
+                        : modelData.exists
+                            ? "../assets/ghost.png"
+                            : "../assets/empty.png"
+                    opacity: 1
+                }
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true

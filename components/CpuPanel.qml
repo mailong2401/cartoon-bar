@@ -10,9 +10,7 @@ Rectangle {
     color: theme.primary.background
     border.color: theme.normal.black
     border.width: 3
-    radius: 10
-    width: 300  // Chiều rộng phù hợp với panel hệ thống
-    height: 50  // Chiều cao phù hợp với panel hệ thống
+    radius: currentSizes.radius?.normal || 10
 
     property string cpuUsage: "0%"
     property string memoryUsage: "0%"
@@ -118,51 +116,50 @@ function togglePanel(panelName) {
 
     RowLayout {
         anchors.centerIn: parent
-        spacing: 5
+        spacing: currentSizes.spacing?.small || 5
 
         // CPU Container - Click để mở panel chi tiết
         Rectangle {
             id: cpuContainer
-            width: cpuContent.width + 20
-            height: cpuContent.height + 10
+            width: cpuContent.width + (currentSizes.cpuPanelLayout?.containerPadding || 20)
+            height: cpuContent.height + (currentSizes.cpuPanelLayout?.containerVerticalPadding || 10)
             color: "transparent"
-            radius: 6
+            radius: currentSizes.cpuPanelLayout?.containerRadius || 6
 
-            Row {
+            RowLayout {
                 id: cpuContent
                 anchors.centerIn: parent
                 spacing: 0
-                anchors.verticalCenter: parent.verticalCenter
-                
-                Column {
-                    anchors.verticalCenter: parent.verticalCenter
+
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignVCenter
                     spacing: 0
                     Text {
                         id: cpuText
                         text: root.cpuUsage
                         color: theme.primary.foreground
-                        font { 
-                            pixelSize: 15
-                            bold: true 
+                        font {
+                            pixelSize: currentSizes.cpuPanelLayout?.usageTextSize || 15
+                            bold: true
                         }
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.alignment: Qt.AlignHCenter
                     }
                     Text {
                         id: cpuLabel
                         text: "Cpu"
                         color: theme.primary.dim_foreground
-                        font.pixelSize: 10
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        Layout.alignment: Qt.AlignHCenter
                     }
                 }
                 Image {
                     id: cpuIcon
                     source: "../assets/cpu.png"
-                    width: 36
-                    height: 36
+                    Layout.preferredWidth: currentSizes.cpuPanelLayout?.cpuIconSize || 36
+                    Layout.preferredHeight: currentSizes.cpuPanelLayout?.cpuIconSize || 36
                     fillMode: Image.PreserveAspectFit
                     smooth: true
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
                 }
             }
 
@@ -191,47 +188,46 @@ function togglePanel(panelName) {
         // Memory (giữ nguyên)
         Rectangle {
             id: memoryContainer
-            width: memoryContent.width + 20
-            height: memoryContent.height + 10
+            width: memoryContent.width + (currentSizes.cpuPanelLayout?.containerPadding || 20)
+            height: memoryContent.height + (currentSizes.cpuPanelLayout?.containerVerticalPadding || 10)
             color: "transparent"
-            radius: 6
+            radius: currentSizes.cpuPanelLayout?.containerRadius || 6
 
-            Row {
+            RowLayout {
                 id: memoryContent
                 anchors.centerIn: parent
                 spacing: 0
-                anchors.verticalCenter: parent.verticalCenter
-                
-                Column {
-                    anchors.verticalCenter: parent.verticalCenter
+
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignVCenter
                     spacing: 0
                     Text {
                         id: memoryText
                         text: root.memoryUsage
                         color: theme.primary.foreground
-                        font { 
-                            pixelSize: 15
-                            bold: true 
+                        font {
+                            pixelSize: currentSizes.cpuPanelLayout?.usageTextSize || 15
+                            bold: true
                         }
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        Layout.alignment: Qt.AlignHCenter
                     }
                     Text {
                         id: memoryLabel
                         text: "Ram"
                         color: theme.primary.dim_foreground
-                        font.pixelSize: 10
-                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        Layout.alignment: Qt.AlignHCenter
                     }
                 }
-                
+
                 Image {
                     id: memoryIcon
                     source: "../assets/memory.png"
-                    width: 30
-                    height: 30
+                    Layout.preferredWidth: currentSizes.cpuPanelLayout?.ramIconSize || 30
+                    Layout.preferredHeight: currentSizes.cpuPanelLayout?.ramIconSize || 30
                     fillMode: Image.PreserveAspectFit
                     smooth: true
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
                 }
             }
 

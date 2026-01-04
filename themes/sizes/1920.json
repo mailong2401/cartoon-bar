@@ -1,0 +1,65 @@
+{
+  "panelHeight": 50,
+  "panelWidth": {
+    "appIcons": 60,
+    "workspace": 380,
+    "musicPlayer": 340,
+    "timespace": 400,
+    "cpuPanel": 200,
+    "statusArea": 430
+  },
+  "timespaceLayout": {
+    "timeContainer": 190,
+    "weatherContainer": 120,
+    "flagContainer": 60
+  },
+  "musicPlayerLayout": {
+    "songContainerHeight": 20,
+    "maxWidth": 0.7
+  },
+  "cpuPanelLayout": {
+    "containerPadding": 20,
+    "containerVerticalPadding": 10,
+    "cpuIconSize": 36,
+    "ramIconSize": 30,
+    "containerRadius": 6,
+    "usageTextSize": 15,
+    "labelTextSize": 10
+  },
+  "statusAreaLayout": {
+    "containerPadding": 20,
+    "containerVerticalPadding": 10,
+    "containerRadius": 6,
+    "spacing": 8,
+    "networkTextSize": 12,
+    "volumeTextSize": 14,
+    "batteryTextSize": 16,
+    "powerContainerSize": 40
+  },
+  "fontSize": {
+    "small": 12,
+    "normal": 14,
+    "medium": 16,
+    "large": 20,
+    "xlarge": 24,
+    "title": 30
+  },
+  "iconSize": {
+    "small": 20,
+    "normal": 25,
+    "medium": 32,
+    "large": 40
+  },
+  "spacing": {
+    "small": 5,
+    "normal": 8,
+    "medium": 12,
+    "large": 16
+  },
+  "radius": {
+    "small": 8,
+    "normal": 12,
+    "medium": 16,
+    "large": 20
+  }
+}
