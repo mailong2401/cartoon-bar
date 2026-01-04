@@ -6,13 +6,14 @@ import Quickshell.Bluetooth
 
 PanelWindow {
     id: root
-    implicitWidth: 470
-    implicitHeight: 600
+    implicitWidth: currentSizes.bluetoothPanel?.width || 470
+    implicitHeight: currentSizes.bluetoothPanel?.height || 600
     color: "transparent"
     focusable: true
     aboveWindows: true
     objectName: "BluetoothPanel"
 
+    property var sizes: currentSizes.bluetoothPanel || {}
     property var theme: currentTheme
     property var lang: currentLanguage
     property var adapter: Bluetooth.defaultAdapter
@@ -55,8 +56,8 @@ PanelWindow {
             required property int index
 
             width: ListView.view.width
-            height: 70
-            radius: 10
+            height: sizes.deviceItemHeight || 70
+            radius: sizes.deviceItemRadius || 10
             color: deviceMouseArea.containsMouse ? theme.primary.dim_background : theme.primary.background
             border.width: modelData?.connected ? 2 : 0
             border.color: modelData?.connected ? theme.normal.blue : "transparent"
@@ -88,14 +89,14 @@ PanelWindow {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 12
-                spacing: 12
+                anchors.margins: sizes.deviceItemMargins || 12
+                spacing: sizes.deviceItemSpacing || 12
                 opacity: modelData?.pairing ? 0.7 : 1.0
 
                 Rectangle {
-                    width: 46
-                    height: 46
-                    radius: 23
+                    width: sizes.deviceIconSize || 46
+                    height: sizes.deviceIconSize || 46
+                    radius: sizes.deviceIconRadius || 23
                     color: modelData?.connected ? theme.normal.blue : theme.button.background
 
                     scale: deviceMouseArea.containsMouse ? 1.05 : 1.0
@@ -146,7 +147,7 @@ PanelWindow {
                     Text {
                         text: modelData?.name || modelData?.deviceName || modelData?.address || "Unknown"
                         color: deviceMouseArea.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                        font.pixelSize: 14
+                        font.pixelSize: sizes.deviceNameFontSize || 14
                         font.weight: deviceMouseArea.containsMouse ? Font.Bold : Font.Medium
                         elide: Text.ElideRight
                         Layout.fillWidth: true
@@ -171,7 +172,7 @@ PanelWindow {
                                 if (modelData?.paired) return theme.normal.yellow
                                 return theme.primary.dim_foreground
                             }
-                            font.pixelSize: 11
+                            font.pixelSize: sizes.deviceStatusFontSize || 11
 
                             opacity: deviceMouseArea.containsMouse ? 1.0 : 0.8
                             Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -181,7 +182,7 @@ PanelWindow {
                             visible: modelData?.batteryAvailable && modelData?.battery > 0
                             text: `🔋 ${Math.round((modelData?.battery || 0) * 100)}%`
                             color: theme.primary.dim_foreground
-                            font.pixelSize: 11
+                            font.pixelSize: sizes.deviceStatusFontSize || 11
 
                             opacity: deviceMouseArea.containsMouse ? 1.0 : 0.8
                             Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -194,9 +195,9 @@ PanelWindow {
 
                     Rectangle {
                         id: connectButton
-                        width: 32
-                        height: 32
-                        radius: 8
+                        width: sizes.deviceButtonSize || 32
+                        height: sizes.deviceButtonSize || 32
+                        radius: sizes.deviceButtonRadius || 8
                         color: modelData?.connected ? theme.normal.red :
                                modelData?.paired ? theme.normal.blue : theme.button.background
                         opacity: (modelData?.paired || modelData?.connecting) ? 1 : 0.5
@@ -241,9 +242,9 @@ PanelWindow {
 
                     Rectangle {
                         id: pairButton
-                        width: 32
-                        height: 32
-                        radius: 8
+                        width: sizes.deviceButtonSize || 32
+                        height: sizes.deviceButtonSize || 32
+                        radius: sizes.deviceButtonRadius || 8
                         color: modelData?.pairing ? theme.normal.yellow :
                                modelData?.paired ? theme.normal.red : theme.normal.blue
                         opacity: modelData?.pairing ? 0.8 : 1
@@ -329,41 +330,41 @@ PanelWindow {
         Rectangle {
             anchors.fill: parent
             color: theme.primary.background
-            radius: 16
+            radius: sizes.radius || 16
             border.color: theme.normal.black
-            border.width: 3
+            border.width: sizes.borderWidth || 3
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 10
-                spacing: 6
+                anchors.margins: sizes.margins || 10
+                spacing: sizes.spacing || 6
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 100
-                    radius: 12
+                    height: sizes.headerHeight || 100
+                    radius: sizes.headerRadius || 12
                     color: theme.primary.background
 
                     RowLayout {
                         anchors.fill: parent
-                        anchors.margins: 12
-                        spacing: 12
+                        anchors.margins: sizes.headerMargins || 12
+                        spacing: sizes.headerSpacing || 12
 
                         Rectangle {
-                            width: 64
-                            height: 64
+                            width: sizes.headerIconSize || 64
+                            height: sizes.headerIconSize || 64
                             radius: 20
                             color: theme.primary.background
 
                             Image {
                                 source: "../../assets/settings/bluetooth.png"
-                                width: 64
-                                height: 64
-                                sourceSize: Qt.size(64, 64)
+                                width: sizes.headerIconSize || 64
+                                height: sizes.headerIconSize || 64
+                                sourceSize: Qt.size(sizes.headerIconSize || 64, sizes.headerIconSize || 64)
                                 anchors.centerIn: parent
                             }
                         }
-                        
+
 
                         ColumnLayout {
                             spacing: 4
@@ -372,19 +373,19 @@ PanelWindow {
                             Text {
                                 text: "Bluetooth"
                                 color: theme.primary.foreground
-                                font.pixelSize: 40
+                                font.pixelSize: sizes.headerTitleFontSize || 40
                                 font.family: "ComicShannsMono Nerd Font"
                                 font.weight: Font.Bold
                             }
                         }
                                 Item { Layout.fillWidth: true }
 
-                        
+
                         Rectangle {
                             id: scanButton
-                            Layout.preferredWidth: 55
-                            Layout.preferredHeight: 55
-                            radius: 27.5
+                            Layout.preferredWidth: sizes.scanButtonSize || 55
+                            Layout.preferredHeight: sizes.scanButtonSize || 55
+                            radius: sizes.scanButtonRadius || 28
                             visible: adapter?.enabled || false
                             color: {
                                 if (adapter?.discovering) return theme.normal.red
@@ -398,15 +399,15 @@ PanelWindow {
 
                             Image {
                                 source: "../../assets/search.png"
-                                width: 40
-                                height: 40
-                                sourceSize: Qt.size(40, 40)
+                                width: sizes.scanIconSize || 40
+                                height: sizes.scanIconSize || 40
+                                sourceSize: Qt.size(sizes.scanIconSize || 40, sizes.scanIconSize || 40)
                                 anchors.centerIn: parent
                             }
 
                             Rectangle {
                                 anchors.fill: parent
-                                radius: 27.5
+                                radius: sizes.scanButtonRadius || 28
                                 color: "transparent"
                                 border.width: 2
                                 border.color: theme.normal.green
@@ -497,16 +498,16 @@ PanelWindow {
                 Rectangle {
                     id: statusCard
                     Layout.fillWidth: true
-                    height: 82
-                    radius: 12
+                    height: sizes.statusCardHeight || 82
+                    radius: sizes.statusCardRadius || 12
                     color: theme.primary.dim_background
                     border.width: 3
                     border.color: theme.normal.black
 
                     RowLayout {
                         anchors.fill: parent
-                        anchors.margins: 14
-                        spacing: 12
+                        anchors.margins: sizes.statusCardMargins || 14
+                        spacing: sizes.statusCardSpacing || 12
 
                         // Column bên trái: trạng thái và số thiết bị
                         ColumnLayout {
@@ -516,7 +517,7 @@ PanelWindow {
                             Text {
                                 text: adapter?.enabled ? (lang?.bluetooth?.enabled || "Bluetooth đang bật") : (lang?.bluetooth?.disabled || "Bluetooth đang tắt")
                                 color: adapter?.enabled ? theme.normal.blue : theme.primary.dim_foreground
-                                font.pixelSize: 20
+                                font.pixelSize: sizes.statusTitleFontSize || 20
                                 font.family: "ComicShannsMono Nerd Font"
                                 font.bold: true
 
@@ -526,7 +527,7 @@ PanelWindow {
                             Text {
                                 text: `${connectedCount} ` + (lang?.bluetooth?.devices_connected || "thiết bị đã kết nối")
                                 color: theme.primary.dim_foreground
-                                font.pixelSize: 16
+                                font.pixelSize: sizes.statusSubtitleFontSize || 16
                                 font.family: "ComicShannsMono Nerd Font"
                                 visible: adapter?.enabled || false
                             }
@@ -535,9 +536,9 @@ PanelWindow {
 
                         // Nút bật/tắt bluetooth
                         Rectangle {
-                            width: 56
-                            height: 32
-                            radius: 16
+                            width: sizes.toggleWidth || 56
+                            height: sizes.toggleHeight || 32
+                            radius: sizes.toggleRadius || 16
                             color: adapter?.enabled ? theme.normal.blue : theme.button.background
                             opacity: adapter ? 1 : 0.5
 
@@ -548,9 +549,9 @@ PanelWindow {
                             Rectangle {
                                 x: adapter?.enabled ? parent.width - width - 4 : 4
                                 y: 4
-                                width: 24
-                                height: 24
-                                radius: 12
+                                width: sizes.toggleIndicatorSize || 24
+                                height: sizes.toggleIndicatorSize || 24
+                                radius: (sizes.toggleIndicatorSize || 24) / 2
                                 color: theme.primary.dim_background
 
                                 Behavior on x { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }

@@ -160,11 +160,8 @@ property var lang: currentLanguage
         if (root.weatherApiKey === "" || root.weatherApiKey === undefined) {
             root.temperature = "No API"
             root.condition = "Chưa có key"
-            console.log("Cannot update weather: No API key")
             return
         }
-        console.log("Updating weather with key:", root.weatherApiKey)
-        console.log("Weather command:", weatherProcess.command)
         if (!weatherProcess.running) {
             weatherProcess.running = true
         }
@@ -371,17 +368,12 @@ property var lang: currentLanguage
         onTriggered: root.updateWeather()
     }
     Timer {
-    id: initialLoadTimer
-    interval: 100  // Delay 100ms để đảm bảo các properties đã được load
-    running: true
-    repeat: false
-    onTriggered: {
-        console.log("Initial load timer triggered")
-        console.log("API Key:", root.weatherApiKey ? "exists" : "empty")
-        console.log("Location:", root.weatherLocation)
-        root.updateWeather()
+        id: initialLoadTimer
+        interval: 100
+        running: true
+        repeat: false
+        onTriggered: root.updateWeather()
     }
-}
 
     Component.onCompleted: {
         root.updateDateTime() // Khởi tạo thời gian ban đầu

@@ -5,8 +5,9 @@ import Quickshell
 
 PanelWindow {
     id: wifiPanel
-    implicitWidth: 430
-    implicitHeight: 800
+    property var sizes: currentSizes.wifiPanel || {}
+    implicitWidth: sizes.width || 430
+    implicitHeight: sizes.height || 800
     color: "transparent"
     focusable: true
     aboveWindows: true
@@ -18,49 +19,53 @@ PanelWindow {
     property var lang: currentLanguage
 
     Rectangle {
-        radius: 10
+        radius: sizes.radius || 10
         anchors.fill: parent
         color: theme.primary.background
-        border.width: 2
+        border.width: sizes.borderWidth || 2
         border.color: theme.normal.black
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 12
+            anchors.margins: sizes.margins || 16
+            spacing: sizes.spacing || 12
 
             // HEADER
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 20
+                spacing: sizes.headerSpacing || 20
                 Rectangle {
-                    width: 70; height: 70; radius: 12
+                    width: sizes.headerIconContainerSize || 70
+                    height: sizes.headerIconContainerSize || 70
+                    radius: sizes.headerIconContainerRadius || 12
                     color: "transparent"
                     Image {
                         source: "../../assets/system/wifi.png"
                         fillMode: Image.PreserveAspectFit
                         smooth: true
-                        width: parent.width - 20
-                        height: parent.height - 20
+                        width: sizes.headerIconSize || 50
+                        height: sizes.headerIconSize || 50
                         anchors.centerIn: parent
                     }
                 }
                 Text {
                     text: "WiFi"
-                    font.pixelSize: 50
+                    font.pixelSize: sizes.headerTitleFontSize || 50
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: true
                     color: theme.primary.foreground
                 }
                 Item { Layout.fillWidth: true }
                 Rectangle {
-                    width: 60; height: 60; radius: 10
+                    width: sizes.refreshButtonSize || 60
+                    height: sizes.refreshButtonSize || 60
+                    radius: sizes.refreshButtonRadius || 10
                     color: refreshMouseArea.containsMouse ? theme.normal.yellow : theme.primary.dim_background
                     Image {
                         source: '../../assets/wifi/refresh.png'
                         fillMode: Image.PreserveAspectFit
-                        width: parent.width - 16
-                        height: parent.height - 16
+                        width: sizes.refreshIconSize || 44
+                        height: sizes.refreshIconSize || 44
                         anchors.centerIn: parent
                     }
                     MouseArea {
@@ -75,46 +80,50 @@ PanelWindow {
 
             // WIFI STATUS
             Rectangle {
-                Layout.fillWidth: true; height: 80; radius: 12; 
+                Layout.fillWidth: true
+                height: sizes.statusCardHeight || 80
+                radius: sizes.statusCardRadius || 12
                 color: theme.primary.dim_background
-                border.width: 2
+                border.width: sizes.borderWidth || 2
                 border.color: theme.normal.black
 
                 RowLayout {
-                    anchors.fill: parent; anchors.margins: 12
+                    anchors.fill: parent
+                    anchors.margins: sizes.statusCardMargins || 12
                     Column {
                         Layout.fillWidth: true
                         Text {
                             text: wifiManager.wifiEnabled ? (lang?.wifi?.enabled || "WiFi đang bật") : (lang?.wifi?.disabled || "WiFi đang tắt")
-                            font.pixelSize: 20; font.bold: true;
+                            font.pixelSize: sizes.statusTitleFontSize || 20
+                            font.bold: true
                             color: wifiManager.wifiEnabled ? theme.normal.blue : theme.normal.red
                             font.family: "ComicShannsMono Nerd Font"
                         }
                         Text {
-                            text: wifiManager.connectedWifi || (lang?.wifi?.not_connected || "Chưa kết nối"); 
-                            font.pixelSize: 14; 
-                            color: theme.primary.dim_foreground; 
-                            elide: Text.ElideRight 
+                            text: wifiManager.connectedWifi || (lang?.wifi?.not_connected || "Chưa kết nối")
+                            font.pixelSize: sizes.statusSubtitleFontSize || 14
+                            color: theme.primary.dim_foreground
+                            elide: Text.ElideRight
                             font.family: "ComicShannsMono Nerd Font"
                         }
                     }
                     Switch {
                         checked: wifiManager.wifiEnabled
                         onCheckedChanged: if (checked !== wifiManager.wifiEnabled) wifiManager.toggleWifi()
-                        
+
                         // Custom switch styling
                         indicator: Rectangle {
-                            implicitWidth: 48
-                            implicitHeight: 26
-                            radius: 13
+                            implicitWidth: sizes.switchWidth || 48
+                            implicitHeight: sizes.switchHeight || 26
+                            radius: sizes.switchRadius || 13
                             color: parent.checked ? theme.normal.blue : theme.normal.black
                             border.color: parent.checked ? theme.normal.blue : theme.primary.dim_foreground
 
                             Rectangle {
                                 x: parent.checked ? parent.width - width : 0
-                                width: 26
-                                height: 26
-                                radius: 13
+                                width: sizes.switchIndicatorSize || 26
+                                height: sizes.switchIndicatorSize || 26
+                                radius: sizes.switchRadius || 13
                                 color: parent.checked ? theme.primary.foreground : theme.primary.dim_foreground
                                 border.color: theme.normal.black
                             }
@@ -131,11 +140,11 @@ PanelWindow {
                 Text {
                     anchors {
                         fill: parent
-                        leftMargin: 10
+                        leftMargin: sizes.sectionLabelMargin || 10
                     }
                     text: (lang?.wifi?.available_networks || "Mạng có sẵn") + " (" + wifiManager.wifiList.length + ")"
                     visible: wifiManager.wifiEnabled
-                    font.pixelSize: 17; 
+                    font.pixelSize: sizes.sectionLabelFontSize || 17
                     color: theme.primary.dim_foreground
                     font.family: "ComicShannsMono Nerd Font"
                 }
@@ -171,41 +180,43 @@ PanelWindow {
                         Rectangle {
                             id: wifiItem
                             width: parent.width
-                            height: 70
-                            radius: 12
-                            color: mouseArea.containsMouse ? 
-                                   theme.button.background_select : 
+                            height: sizes.networkItemHeight || 70
+                            radius: sizes.networkItemRadius || 12
+                            color: mouseArea.containsMouse ?
+                                   theme.button.background_select :
                                    (modelData.isConnected ? theme.normal.blue : theme.primary.dim_background)
-                            border.width: 2
+                            border.width: sizes.borderWidth || 2
                             border.color: modelData.isConnected ? theme.normal.blue : theme.normal.black
 
 
                                 RowLayout {
-                                    anchors.margins: 8
+                                    anchors.margins: sizes.networkItemMargins || 8
                                     anchors.fill: parent
-                                    Column { 
+                                    Column {
                                         Layout.fillWidth: true
-                                        Text { 
-                                            text: modelData.ssid; 
-                                            font.pixelSize: 18; 
-                                            font.bold: true; 
+                                        Text {
+                                            text: modelData.ssid
+                                            font.pixelSize: sizes.networkNameFontSize || 18
+                                            font.bold: true
                                             color: modelData.isConnected ? theme.normal.black : theme.primary.foreground
                                             font.family: "ComicShannsMono Nerd Font"
                                         }
-                                        Text { 
-                                            text: modelData.security + " • " + modelData.signal; 
-                                            font.pixelSize: 13; 
+                                        Text {
+                                            text: modelData.security + " • " + modelData.signal
+                                            font.pixelSize: sizes.networkInfoFontSize || 13
                                             color: modelData.isConnected ? theme.normal.black : theme.primary.dim_foreground
                                             font.family: "ComicShannsMono Nerd Font"
                                         }
                                     }
                                     Rectangle {
-                                        width: 40; height: 40; radius: 8
+                                        width: sizes.networkIconSize || 40
+                                        height: sizes.networkIconSize || 40
+                                        radius: sizes.networkIconRadius || 8
                                         color: modelData.isConnected ? theme.normal.black : theme.normal.magenta
-                                        Image { 
-                                            source: modelData.isConnected ? 
-                                                   "../../assets/wifi/check-mark.png" : 
-                                                   "../../assets/wifi/padlock.png";
+                                        Image {
+                                            source: modelData.isConnected ?
+                                                   "../../assets/wifi/check-mark.png" :
+                                                   "../../assets/wifi/padlock.png"
                                             width: parent.width - 12
                                             height: parent.height - 12
                                             anchors.centerIn: parent
@@ -234,10 +245,10 @@ PanelWindow {
                             id: passwordBox
                             visible: modelData.ssid === wifiManager.openSsid
                             color: theme.primary.dim_background
-                            radius: 12
+                            radius: sizes.passwordBoxRadius || 12
                             width: parent.width
                             height: visible ? (hasError ? 150 : 100) : 0
-                            border.width: 2
+                            border.width: sizes.borderWidth || 2
                             border.color: theme.normal.blue
                             Behavior on height {
                                 NumberAnimation { duration: 200 }
@@ -265,12 +276,12 @@ PanelWindow {
 
                             ColumnLayout {
                                 anchors.fill: parent
-                                anchors.margins: 12
-                                spacing: 8
+                                anchors.margins: sizes.passwordBoxMargins || 12
+                                spacing: sizes.passwordBoxSpacing || 8
 
                                 Text {
-                                    text: "🔒 " + modelData.ssid;
-                                    font.pixelSize: 14;
+                                    text: "🔒 " + modelData.ssid
+                                    font.pixelSize: sizes.passwordLabelFontSize || 14
                                     color: theme.primary.foreground
                                     font.family: "ComicShannsMono Nerd Font"
                                 }
@@ -301,7 +312,7 @@ PanelWindow {
                                         Layout.fillWidth: true
                                         height: 40
                                         color: theme.primary.background
-                                        radius: 8
+                                        radius: sizes.passwordInputRadius || 8
                                         border.color: theme.normal.blue
                                         border.width: 1
 
@@ -322,7 +333,7 @@ PanelWindow {
                                         background: Rectangle {
                                             color: parent.down ? theme.button.background_select :
                                                    parent.hovered ? theme.button.background_select : theme.button.background
-                                            radius: 8
+                                            radius: sizes.passwordButtonRadius || 8
                                         }
                                         contentItem: Text {
                                             text: passwordBox.showPassword ? "👁️" : "🙈"
@@ -343,7 +354,7 @@ PanelWindow {
                                         background: Rectangle {
                                             color: parent.down ? theme.normal.red :
                                                    parent.hovered ? Qt.lighter(theme.normal.red, 1.2) : theme.normal.red
-                                            radius: 8
+                                            radius: sizes.passwordButtonRadius || 8
                                         }
                                         contentItem: Text {
                                             text: parent.text
@@ -377,7 +388,7 @@ PanelWindow {
                                         color: theme.primary.foreground
                                         background: Rectangle {
                                             color: theme.primary.background
-                                            radius: 8
+                                            radius: sizes.passwordInputRadius || 8
                                             border.color: theme.normal.blue
                                             border.width: 1
                                         }
@@ -396,7 +407,7 @@ PanelWindow {
                                         background: Rectangle {
                                             color: parent.down ? theme.button.background_select :
                                                    parent.hovered ? theme.button.background_select : theme.button.background
-                                            radius: 8
+                                            radius: sizes.passwordButtonRadius || 8
                                         }
                                         contentItem: Text {
                                             text: passwordBox.showPassword ? "👁️" : "🙈"
@@ -416,7 +427,7 @@ PanelWindow {
                                         background: Rectangle {
                                             color: parent.down ? theme.normal.blue :
                                                    parent.hovered ? theme.bright.blue : theme.normal.blue
-                                            radius: 8
+                                            radius: sizes.passwordButtonRadius || 8
                                         }
                                         contentItem: Text {
                                             text: parent.text
@@ -470,24 +481,26 @@ PanelWindow {
                     anchors.centerIn: parent
                     spacing: 16
                     Rectangle {
-                        width: 80; height: 80; radius: 16
+                        width: sizes.emptyStateIconSize || 80
+                        height: sizes.emptyStateIconSize || 80
+                        radius: sizes.emptyStateIconRadius || 16
                         color: theme.normal.red
                         anchors.horizontalCenter: parent.horizontalCenter
-                        Text { 
-                            text: "📶"; 
+                        Text {
+                            text: "📶"
                             font.pixelSize: 40
                             anchors.centerIn: parent
                         }
                     }
                     Text {
-                        text: lang?.wifi?.disabled || "WiFi đang tắt";
-                        font.pixelSize: 18;
+                        text: lang?.wifi?.disabled || "WiFi đang tắt"
+                        font.pixelSize: sizes.emptyStateTitleFontSize || 18
                         color: theme.primary.foreground
                         font.family: "ComicShannsMono Nerd Font"
                     }
                     Text {
-                        text: lang?.wifi?.turn_on || "Bật WiFi để xem mạng khả dụng";
-                        font.pixelSize: 14;
+                        text: lang?.wifi?.turn_on || "Bật WiFi để xem mạng khả dụng"
+                        font.pixelSize: sizes.emptyStateSubtitleFontSize || 14
                         color: theme.primary.dim_foreground
                         font.family: "ComicShannsMono Nerd Font"
                     }

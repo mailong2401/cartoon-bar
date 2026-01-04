@@ -8,33 +8,34 @@ import "./" as Components
 PanelWindow {
     id: batteryDetailPanel
 
-    width: 430
-    height: 400
-    anchors {
-            top: currentConfig.mainPanelPos === "top"
-            bottom: currentConfig.mainPanelPos === "bottom"
-            right: true
-        }
-        margins {
-            top: currentConfig.mainPanelPos === "top" ? 10 : 0
-            right: 10
-            bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
-        }
-    color: "transparent"
+    property var sizes: currentSizes.batteryDetailPanel || {}
+    property var theme: currentTheme
 
-    property var theme : currentTheme
+    width: sizes.width || 430
+    height: sizes.height || 400
+    anchors {
+        top: currentConfig.mainPanelPos === "top"
+        bottom: currentConfig.mainPanelPos === "bottom"
+        right: true
+    }
+    margins {
+        top: currentConfig.mainPanelPos === "top" ? (sizes.anchorMargin || 10) : 0
+        right: sizes.anchorMargin || 10
+        bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.anchorMargin || 10) : 0
+    }
+    color: "transparent"
 
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 8
+        radius: sizes.radius || 8
         border.color: theme.normal.black
-        border.width: 3
+        border.width: sizes.borderWidth || 3
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 16
+            anchors.margins: sizes.margins || 16
+            spacing: sizes.spacing || 16
 
             // Header
             Text {
@@ -42,7 +43,7 @@ PanelWindow {
                 font.family: "ComicShannsMono Nerd Font"
                 color: theme.primary.foreground
                 font.bold: true
-                font.pointSize: 16
+                font.pixelSize: sizes.headerFontSize || 16
                 Layout.alignment: Qt.AlignHCenter
             }
 
