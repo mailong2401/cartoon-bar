@@ -15,6 +15,7 @@ PanelWindow {
     // Nhận wifiManager từ bên ngoài
     required property var wifiManager
     property var theme : currentTheme
+    property var lang: currentLanguage
 
     Rectangle {
         radius: 10
@@ -84,13 +85,13 @@ PanelWindow {
                     Column {
                         Layout.fillWidth: true
                         Text {
-                            text: wifiManager.wifiEnabled ? "WiFi đang bật" : "WiFi đang tắt"
-                            font.pixelSize: 20; font.bold: true; 
+                            text: wifiManager.wifiEnabled ? (lang?.wifi?.enabled || "WiFi đang bật") : (lang?.wifi?.disabled || "WiFi đang tắt")
+                            font.pixelSize: 20; font.bold: true;
                             color: wifiManager.wifiEnabled ? theme.normal.blue : theme.normal.red
                             font.family: "ComicShannsMono Nerd Font"
                         }
-                        Text { 
-                            text: wifiManager.connectedWifi || "Chưa kết nối"; 
+                        Text {
+                            text: wifiManager.connectedWifi || (lang?.wifi?.not_connected || "Chưa kết nối"); 
                             font.pixelSize: 14; 
                             color: theme.primary.dim_foreground; 
                             elide: Text.ElideRight 
@@ -132,7 +133,7 @@ PanelWindow {
                         fill: parent
                         leftMargin: 10
                     }
-                    text: "Mạng có sẵn (" + wifiManager.wifiList.length + ")"
+                    text: (lang?.wifi?.available_networks || "Mạng có sẵn") + " (" + wifiManager.wifiList.length + ")"
                     visible: wifiManager.wifiEnabled
                     font.pixelSize: 17; 
                     color: theme.primary.dim_foreground
@@ -337,7 +338,7 @@ PanelWindow {
 
                                     // Nút quên/xóa mật khẩu
                                     Button {
-                                        text: "Quên"
+                                        text: lang?.wifi?.forget || "Quên"
                                         font.family: "ComicShannsMono Nerd Font"
                                         background: Rectangle {
                                             color: parent.down ? theme.normal.red :
@@ -369,7 +370,7 @@ PanelWindow {
                                     TextField {
                                         id: wifiPassword
                                         Layout.fillWidth: true
-                                        placeholderText: modelData.security === "Open" ? "Không cần mật khẩu" : "Nhập mật khẩu"
+                                        placeholderText: modelData.security === "Open" ? (lang?.wifi?.no_password || "Không cần mật khẩu") : (lang?.wifi?.enter_password || "Nhập mật khẩu")
                                         echoMode: passwordBox.showPassword ? TextInput.Normal : TextInput.Password
                                         enabled: modelData.security !== "Open"
                                         font.family: "ComicShannsMono Nerd Font"
@@ -410,7 +411,7 @@ PanelWindow {
                                     }
 
                                     Button {
-                                        text: "Kết nối"
+                                        text: lang?.wifi?.connect || "Kết nối"
                                         font.family: "ComicShannsMono Nerd Font"
                                         background: Rectangle {
                                             color: parent.down ? theme.normal.blue :
@@ -428,7 +429,7 @@ PanelWindow {
                                         onClicked: {
                                             if (wifiPassword.text.trim().length === 0 && modelData.security !== "Open") {
                                                 passwordBox.hasError = true
-                                                passwordBox.errorMessage = "Vui lòng nhập mật khẩu"
+                                                passwordBox.errorMessage = lang?.wifi?.password_required || "Vui lòng nhập mật khẩu"
                                                 return
                                             }
 
@@ -442,7 +443,7 @@ PanelWindow {
                                             Qt.callLater(function() {
                                                 if (wifiManager.connectionError) {
                                                     passwordBox.hasError = true
-                                                    passwordBox.errorMessage = "Mật khẩu không đúng"
+                                                    passwordBox.errorMessage = lang?.wifi?.wrong_password || "Mật khẩu không đúng"
                                                 } else {
                                                     passwordBox.hasSavedPassword = true
                                                     wifiManager.openSsid = ""
@@ -478,15 +479,15 @@ PanelWindow {
                             anchors.centerIn: parent
                         }
                     }
-                    Text { 
-                        text: "WiFi đang tắt"; 
-                        font.pixelSize: 18; 
+                    Text {
+                        text: lang?.wifi?.disabled || "WiFi đang tắt";
+                        font.pixelSize: 18;
                         color: theme.primary.foreground
                         font.family: "ComicShannsMono Nerd Font"
                     }
-                    Text { 
-                        text: "Bật WiFi để xem mạng khả dụng"; 
-                        font.pixelSize: 14; 
+                    Text {
+                        text: lang?.wifi?.turn_on || "Bật WiFi để xem mạng khả dụng";
+                        font.pixelSize: 14;
                         color: theme.primary.dim_foreground
                         font.family: "ComicShannsMono Nerd Font"
                     }

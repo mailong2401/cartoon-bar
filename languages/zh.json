@@ -123,6 +123,13 @@
   },
   "ram": {
     "title": "进程管理器",
+    "panel_title": "内存管理",
+    "memory_monitor": "内存监控",
+    "used": "已用",
+    "free": "空闲",
+    "available": "可用",
+    "no_swap": "无交换分区",
+    "loading_memory": "正在加载内存数据...",
     "loading": {
       "title": "⏳",
       "message": "正在加载进程列表..."
@@ -158,5 +165,40 @@
       "empty_output": "脚本未返回数据",
       "parse_error": "解析输出数据错误"
     }
+  },
+  "volume": {
+    "title": "音量",
+    "muted": "已静音"
+  },
+  "bluetooth": {
+    "title": "蓝牙",
+    "enabled": "蓝牙已开启",
+    "disabled": "蓝牙已关闭",
+    "devices_connected": "设备已连接",
+    "pairing": "配对中...",
+    "connecting": "连接中...",
+    "connected": "已连接",
+    "paired": "已配对",
+    "not_connected": "未连接",
+    "searching": "搜索设备中...",
+    "no_devices": "未找到设备",
+    "turn_on": "开启蓝牙以连接设备",
+    "pair_error": "无法与设备配对"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi已开启",
+    "disabled": "WiFi已关闭",
+    "not_connected": "未连接",
+    "available_networks": "可用网络",
+    "searching": "搜索网络中...",
+    "no_networks": "未找到网络",
+    "turn_on": "开启WiFi以查看可用网络",
+    "forget": "忘记",
+    "connect": "连接",
+    "no_password": "无需密码",
+    "enter_password": "输入密码",
+    "password_required": "请输入密码",
+    "wrong_password": "密码错误"
   }
 }

@@ -10,6 +10,7 @@ Item {
     width: 320
     height: 180
 
+    property var lang: currentLanguage
     property color usedRamColor: theme.normal.green
     property color freeRamColor: theme.normal.black
     property color usedSwapColor: theme.normal.blue
@@ -116,7 +117,7 @@ Item {
             Layout.fillWidth: true
             
             Text {
-                text: "Memory Monitor"
+                text: lang?.ram?.memory_monitor || "Memory Monitor"
                 font.family: "ComicShannsMono Nerd Font"
                 color: textColor
                 font.bold: true
@@ -206,7 +207,7 @@ Item {
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
-                        text: "Used"
+                        text: lang?.ram?.used || "Used"
                         color: dimTextColor
                         font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
@@ -223,7 +224,7 @@ Item {
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
-                        text: "Free"
+                        text: lang?.ram?.free || "Free"
                         color: dimTextColor
                         font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
@@ -240,7 +241,7 @@ Item {
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
-                        text: "Available"
+                        text: lang?.ram?.available || "Available"
                         color: dimTextColor
                         font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
@@ -330,7 +331,7 @@ Item {
 
                     Text {
                         anchors.centerIn: parent
-                        text: swapTotal > 0 ? (swapUsed + " / " + swapTotal + " MB") : "No SWAP"
+                        text: swapTotal > 0 ? (swapUsed + " / " + swapTotal + " MB") : (lang?.ram?.no_swap || "No SWAP")
                         color: theme.primary.background
                         font.bold: true
                         font.pixelSize: currentSizes.fontSize?.large || 20
@@ -348,37 +349,36 @@ Item {
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
-                    text: "Used:"
-                    color: dimTextColor
-                    font.pixelSize: currentSizes.fontSize?.large || 20
-                    font.family: "ComicShannsMono Nerd Font"
-                }
-                Text {
-                    text: swapUsed + " MB"
-                    color: theme.normal.blue
-                    font.pixelSize: currentSizes.fontSize?.large || 20
+                        text: (lang?.ram?.used || "Used") + ":"
+                        color: dimTextColor
+                        font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
-                    font.bold: true
-                }
+                    }
+                    Text {
+                        text: swapUsed + " MB"
+                        color: theme.normal.blue
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.bold: true
+                    }
                 }
 
-                
-Column {
+                Column {
                     Layout.alignment: Qt.AlignHCenter
-                Text {
-                    text: "Free:"
-                    color: dimTextColor
-                    font.pixelSize: currentSizes.fontSize?.large || 20
+                    Text {
+                        text: (lang?.ram?.free || "Free") + ":"
+                        color: dimTextColor
+                        font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
-                }
-                Text {
-                    text: swapFree + " MB"
-                    color: theme.normal.green
-                    font.pixelSize: currentSizes.fontSize?.large || 20
+                    }
+                    Text {
+                        text: swapFree + " MB"
+                        color: theme.normal.green
+                        font.pixelSize: currentSizes.fontSize?.large || 20
                         font.family: "ComicShannsMono Nerd Font"
-                    font.bold: true
+                        font.bold: true
+                    }
                 }
-            }
             }
         }
     }
@@ -404,7 +404,7 @@ Column {
             }
             
             Text {
-                text: "Loading memory data..."
+                text: lang?.ram?.loading_memory || "Loading memory data..."
                 color: dimTextColor
                 font.pixelSize: currentSizes.ramManagement?.ramDisplay?.smallFontSize || 10
                 anchors.horizontalCenter: parent.horizontalCenter

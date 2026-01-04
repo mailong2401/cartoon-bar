@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "プロセスマネージャー",
+    "panel_title": "RAMマネージャー",
+    "memory_monitor": "メモリモニター",
+    "used": "使用中",
+    "free": "空き",
+    "available": "利用可能",
+    "no_swap": "SWAPなし",
+    "loading_memory": "メモリデータを読み込み中...",
     "loading": {
       "title": "⏳",
       "message": "プロセスリストを読み込み中..."
@@ -162,5 +169,40 @@
       "empty_output": "スクリプトがデータを返しませんでした",
       "parse_error": "出力データの解析エラー"
     }
+  },
+  "volume": {
+    "title": "音量",
+    "muted": "ミュート"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetoothがオン",
+    "disabled": "Bluetoothがオフ",
+    "devices_connected": "台接続中",
+    "pairing": "ペアリング中...",
+    "connecting": "接続中...",
+    "connected": "接続済み",
+    "paired": "ペアリング済み",
+    "not_connected": "未接続",
+    "searching": "デバイスを検索中...",
+    "no_devices": "デバイスが見つかりません",
+    "turn_on": "Bluetoothをオンにしてデバイスを接続",
+    "pair_error": "デバイスとペアリングできません"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFiがオン",
+    "disabled": "WiFiがオフ",
+    "not_connected": "未接続",
+    "available_networks": "利用可能なネットワーク",
+    "searching": "ネットワークを検索中...",
+    "no_networks": "ネットワークが見つかりません",
+    "turn_on": "WiFiをオンにして利用可能なネットワークを表示",
+    "forget": "削除",
+    "connect": "接続",
+    "no_password": "パスワード不要",
+    "enter_password": "パスワードを入力",
+    "password_required": "パスワードを入力してください",
+    "wrong_password": "パスワードが間違っています"
   }
 }

@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Procesbeheer",
+    "panel_title": "RAM-beheer",
+    "memory_monitor": "Geheugenmonitor",
+    "used": "Gebruikt",
+    "free": "Vrij",
+    "available": "Beschikbaar",
+    "no_swap": "Geen SWAP",
+    "loading_memory": "Geheugengegevens laden...",
     "loading": {
       "title": "⏳",
       "message": "Proceslijst laden..."
@@ -162,5 +169,40 @@
       "empty_output": "Script heeft geen gegevens geretourneerd",
       "parse_error": "Fout bij het parsen van gegevens"
     }
+  },
+  "volume": {
+    "title": "Volume",
+    "muted": "Gedempt"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth is aan",
+    "disabled": "Bluetooth is uit",
+    "devices_connected": "apparaten verbonden",
+    "pairing": "Koppelen...",
+    "connecting": "Verbinden...",
+    "connected": "Verbonden",
+    "paired": "Gekoppeld",
+    "not_connected": "Niet verbonden",
+    "searching": "Apparaten zoeken...",
+    "no_devices": "Geen apparaten gevonden",
+    "turn_on": "Zet Bluetooth aan om apparaten te verbinden",
+    "pair_error": "Kan niet koppelen met apparaat"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi is aan",
+    "disabled": "WiFi is uit",
+    "not_connected": "Niet verbonden",
+    "available_networks": "Beschikbare netwerken",
+    "searching": "Netwerken zoeken...",
+    "no_networks": "Geen netwerken gevonden",
+    "turn_on": "Zet WiFi aan om beschikbare netwerken te zien",
+    "forget": "Vergeten",
+    "connect": "Verbinden",
+    "no_password": "Geen wachtwoord nodig",
+    "enter_password": "Wachtwoord invoeren",
+    "password_required": "Voer een wachtwoord in",
+    "wrong_password": "Onjuist wachtwoord"
   }
 }

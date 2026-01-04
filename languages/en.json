@@ -123,6 +123,13 @@
   },
   "ram": {
     "title": "Process Manager",
+    "panel_title": "RAM Manager",
+    "memory_monitor": "Memory Monitor",
+    "used": "Used",
+    "free": "Free",
+    "available": "Available",
+    "no_swap": "No SWAP",
+    "loading_memory": "Loading memory data...",
     "loading": {
       "title": "⏳",
       "message": "Loading process list..."
@@ -158,5 +165,40 @@
       "empty_output": "Script returned no data",
       "parse_error": "Error parsing output data"
     }
+  },
+  "volume": {
+    "title": "Volume",
+    "muted": "Muted"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth is on",
+    "disabled": "Bluetooth is off",
+    "devices_connected": "devices connected",
+    "pairing": "Pairing...",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "paired": "Paired",
+    "not_connected": "Not connected",
+    "searching": "Searching for devices...",
+    "no_devices": "No devices found",
+    "turn_on": "Turn on Bluetooth to connect to devices",
+    "pair_error": "Unable to pair with device"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi is on",
+    "disabled": "WiFi is off",
+    "not_connected": "Not connected",
+    "available_networks": "Available networks",
+    "searching": "Searching for networks...",
+    "no_networks": "No networks found",
+    "turn_on": "Turn on WiFi to see available networks",
+    "forget": "Forget",
+    "connect": "Connect",
+    "no_password": "No password required",
+    "enter_password": "Enter password",
+    "password_required": "Please enter password",
+    "wrong_password": "Wrong password"
   }
 }

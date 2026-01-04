@@ -24,6 +24,7 @@ Scope {
     property real currentVolume: Pipewire.defaultAudioSink?.audio.volume ?? 0
     property bool isMuted: Pipewire.defaultAudioSink?.audio.mute ?? false
     property var theme : currentTheme
+    property var lang: currentLanguage
 
     Timer {
         id: hideTimer
@@ -72,7 +73,7 @@ Scope {
                           smooth: true
                         }
                     Text {
-                          text: isMuted ? "Muted" : Math.round(currentVolume * 100) + "%"
+                          text: isMuted ? (lang?.volume?.muted || "Muted") : Math.round(currentVolume * 100) + "%"
                           color: theme.primary.foreground
                           font.family: "ComicShannsMono Nerd Font"
                           font.pixelSize: 30
@@ -84,7 +85,7 @@ Scope {
                           Layout.fillWidth: true
                         Layout.fillHeight: true
                             Text {
-                          text: " Âm thanh"
+                          text: " " + (lang?.volume?.title || "Âm thanh")
                           anchors.margins: 10
                           anchors.top: parent.top
                             anchors.right: parent.right

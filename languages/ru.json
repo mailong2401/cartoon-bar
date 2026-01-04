@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Диспетчер процессов",
+    "panel_title": "Управление RAM",
+    "memory_monitor": "Монитор памяти",
+    "used": "Использовано",
+    "free": "Свободно",
+    "available": "Доступно",
+    "no_swap": "Нет SWAP",
+    "loading_memory": "Загрузка данных памяти...",
     "loading": {
       "title": "⏳",
       "message": "Загрузка списка процессов..."
@@ -162,5 +169,40 @@
       "empty_output": "Скрипт не вернул данные",
       "parse_error": "Ошибка парсинга данных"
     }
+  },
+  "volume": {
+    "title": "Громкость",
+    "muted": "Без звука"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth включен",
+    "disabled": "Bluetooth выключен",
+    "devices_connected": "устройств подключено",
+    "pairing": "Сопряжение...",
+    "connecting": "Подключение...",
+    "connected": "Подключено",
+    "paired": "Сопряжено",
+    "not_connected": "Не подключено",
+    "searching": "Поиск устройств...",
+    "no_devices": "Устройства не найдены",
+    "turn_on": "Включите Bluetooth для подключения устройств",
+    "pair_error": "Не удалось выполнить сопряжение"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi включен",
+    "disabled": "WiFi выключен",
+    "not_connected": "Не подключено",
+    "available_networks": "Доступные сети",
+    "searching": "Поиск сетей...",
+    "no_networks": "Сети не найдены",
+    "turn_on": "Включите WiFi для просмотра доступных сетей",
+    "forget": "Забыть",
+    "connect": "Подключить",
+    "no_password": "Пароль не требуется",
+    "enter_password": "Введите пароль",
+    "password_required": "Пожалуйста, введите пароль",
+    "wrong_password": "Неверный пароль"
   }
 }

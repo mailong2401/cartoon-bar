@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "مدير العمليات",
+    "panel_title": "إدارة الذاكرة",
+    "memory_monitor": "مراقب الذاكرة",
+    "used": "مستخدم",
+    "free": "حر",
+    "available": "متاح",
+    "no_swap": "لا يوجد SWAP",
+    "loading_memory": "جاري تحميل بيانات الذاكرة...",
     "loading": {
       "title": "⏳",
       "message": "جاري تحميل قائمة العمليات..."
@@ -162,5 +169,40 @@
       "empty_output": "لم يُرجع السكريبت أي بيانات",
       "parse_error": "خطأ في تحليل البيانات"
     }
+  },
+  "volume": {
+    "title": "الصوت",
+    "muted": "صامت"
+  },
+  "bluetooth": {
+    "title": "بلوتوث",
+    "enabled": "البلوتوث مفعل",
+    "disabled": "البلوتوث معطل",
+    "devices_connected": "أجهزة متصلة",
+    "pairing": "جاري الإقران...",
+    "connecting": "جاري الاتصال...",
+    "connected": "متصل",
+    "paired": "مقترن",
+    "not_connected": "غير متصل",
+    "searching": "البحث عن الأجهزة...",
+    "no_devices": "لم يتم العثور على أجهزة",
+    "turn_on": "قم بتشغيل البلوتوث للاتصال بالأجهزة",
+    "pair_error": "تعذر الإقران مع الجهاز"
+  },
+  "wifi": {
+    "title": "واي فاي",
+    "enabled": "الواي فاي مفعل",
+    "disabled": "الواي فاي معطل",
+    "not_connected": "غير متصل",
+    "available_networks": "الشبكات المتاحة",
+    "searching": "البحث عن الشبكات...",
+    "no_networks": "لم يتم العثور على شبكات",
+    "turn_on": "قم بتشغيل الواي فاي لرؤية الشبكات المتاحة",
+    "forget": "نسيان",
+    "connect": "اتصال",
+    "no_password": "لا تحتاج كلمة مرور",
+    "enter_password": "أدخل كلمة المرور",
+    "password_required": "الرجاء إدخال كلمة المرور",
+    "wrong_password": "كلمة المرور خاطئة"
   }
 }

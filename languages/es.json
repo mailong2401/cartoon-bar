@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Administrador de procesos",
+    "panel_title": "Gestor de RAM",
+    "memory_monitor": "Monitor de memoria",
+    "used": "Usado",
+    "free": "Libre",
+    "available": "Disponible",
+    "no_swap": "Sin SWAP",
+    "loading_memory": "Cargando datos de memoria...",
     "loading": {
       "title": "⏳",
       "message": "Cargando lista de procesos..."
@@ -162,5 +169,40 @@
       "empty_output": "El script no devolvió datos",
       "parse_error": "Error al analizar los datos"
     }
+  },
+  "volume": {
+    "title": "Volumen",
+    "muted": "Silenciado"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth activado",
+    "disabled": "Bluetooth desactivado",
+    "devices_connected": "dispositivos conectados",
+    "pairing": "Emparejando...",
+    "connecting": "Conectando...",
+    "connected": "Conectado",
+    "paired": "Emparejado",
+    "not_connected": "No conectado",
+    "searching": "Buscando dispositivos...",
+    "no_devices": "No se encontraron dispositivos",
+    "turn_on": "Activa Bluetooth para conectar dispositivos",
+    "pair_error": "No se puede emparejar con el dispositivo"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi activado",
+    "disabled": "WiFi desactivado",
+    "not_connected": "No conectado",
+    "available_networks": "Redes disponibles",
+    "searching": "Buscando redes...",
+    "no_networks": "No se encontraron redes",
+    "turn_on": "Activa WiFi para ver redes disponibles",
+    "forget": "Olvidar",
+    "connect": "Conectar",
+    "no_password": "Sin contraseña",
+    "enter_password": "Ingresa contraseña",
+    "password_required": "Por favor ingresa la contraseña",
+    "wrong_password": "Contraseña incorrecta"
   }
 }

@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Prozess-Manager",
+    "panel_title": "RAM-Verwaltung",
+    "memory_monitor": "Speicherüberwachung",
+    "used": "Belegt",
+    "free": "Frei",
+    "available": "Verfügbar",
+    "no_swap": "Kein SWAP",
+    "loading_memory": "Speicherdaten werden geladen...",
     "loading": {
       "title": "⏳",
       "message": "Prozessliste wird geladen..."
@@ -162,5 +169,40 @@
       "empty_output": "Skript hat keine Daten zurückgegeben",
       "parse_error": "Fehler beim Parsen der Daten"
     }
+  },
+  "volume": {
+    "title": "Lautstärke",
+    "muted": "Stummgeschaltet"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth ist eingeschaltet",
+    "disabled": "Bluetooth ist ausgeschaltet",
+    "devices_connected": "Geräte verbunden",
+    "pairing": "Kopplung läuft...",
+    "connecting": "Verbindung wird hergestellt...",
+    "connected": "Verbunden",
+    "paired": "Gekoppelt",
+    "not_connected": "Nicht verbunden",
+    "searching": "Suche nach Geräten...",
+    "no_devices": "Keine Geräte gefunden",
+    "turn_on": "Bluetooth einschalten, um Geräte zu verbinden",
+    "pair_error": "Kopplung mit Gerät nicht möglich"
+  },
+  "wifi": {
+    "title": "WLAN",
+    "enabled": "WLAN ist eingeschaltet",
+    "disabled": "WLAN ist ausgeschaltet",
+    "not_connected": "Nicht verbunden",
+    "available_networks": "Verfügbare Netzwerke",
+    "searching": "Suche nach Netzwerken...",
+    "no_networks": "Keine Netzwerke gefunden",
+    "turn_on": "WLAN einschalten, um verfügbare Netzwerke anzuzeigen",
+    "forget": "Vergessen",
+    "connect": "Verbinden",
+    "no_password": "Kein Passwort erforderlich",
+    "enter_password": "Passwort eingeben",
+    "password_required": "Bitte Passwort eingeben",
+    "wrong_password": "Falsches Passwort"
   }
 }

@@ -14,6 +14,7 @@ PanelWindow {
     objectName: "BluetoothPanel"
 
     property var theme: currentTheme
+    property var lang: currentLanguage
     property var adapter: Bluetooth.defaultAdapter
     property int connectedCount: {
         let count = 0
@@ -78,7 +79,7 @@ PanelWindow {
 
                 Text {
                     anchors.centerIn: parent
-                    text: "Đang ghép nối..."
+                    text: lang?.bluetooth?.pairing || "Đang ghép nối..."
                     color: theme.primary.foreground
                     font.pixelSize: 14
                     font.weight: Font.Bold
@@ -160,10 +161,10 @@ PanelWindow {
 
                         Text {
                             text: {
-                                if (modelData?.connecting) return "Đang kết nối..."
-                                if (modelData?.connected) return "Đã kết nối"
-                                if (modelData?.paired) return "Đã ghép nối"
-                                return "Không kết nối"
+                                if (modelData?.connecting) return lang?.bluetooth?.connecting || "Đang kết nối..."
+                                if (modelData?.connected) return lang?.bluetooth?.connected || "Đã kết nối"
+                                if (modelData?.paired) return lang?.bluetooth?.paired || "Đã ghép nối"
+                                return lang?.bluetooth?.not_connected || "Không kết nối"
                             }
                             color: {
                                 if (modelData?.connected) return theme.normal.green
@@ -283,7 +284,7 @@ PanelWindow {
                                     try {
                                         modelData.pair()
                                     } catch (error) {
-                                        pairErrorMessage = "Không thể ghép nối với thiết bị"
+                                        pairErrorMessage = lang?.bluetooth?.pair_error || "Không thể ghép nối với thiết bị"
                                         errorMessageTimer.restart()
                                     }
                                 }
@@ -513,7 +514,7 @@ PanelWindow {
                             spacing: 4
 
                             Text {
-                                text: adapter?.enabled ? "Bluetooth đang bật" : "Bluetooth đang tắt"
+                                text: adapter?.enabled ? (lang?.bluetooth?.enabled || "Bluetooth đang bật") : (lang?.bluetooth?.disabled || "Bluetooth đang tắt")
                                 color: adapter?.enabled ? theme.normal.blue : theme.primary.dim_foreground
                                 font.pixelSize: 20
                                 font.family: "ComicShannsMono Nerd Font"
@@ -523,7 +524,7 @@ PanelWindow {
                             }
 
                             Text {
-                                text: `${connectedCount} thiết bị đã kết nối`
+                                text: `${connectedCount} ` + (lang?.bluetooth?.devices_connected || "thiết bị đã kết nối")
                                 color: theme.primary.dim_foreground
                                 font.pixelSize: 16
                                 font.family: "ComicShannsMono Nerd Font"
@@ -611,9 +612,9 @@ PanelWindow {
                                 Text {
                                     anchors.centerIn: parent
                                     text: {
-                                        if (!adapter?.enabled) return "Bluetooth đã tắt"
-                                        if (adapter?.discovering && deviceList.count === 0) return "🔍 Đang tìm kiếm thiết bị..."
-                                        if (deviceList.count === 0) return "Không có thiết bị nào"
+                                        if (!adapter?.enabled) return lang?.bluetooth?.disabled || "Bluetooth đã tắt"
+                                        if (adapter?.discovering && deviceList.count === 0) return "🔍 " + (lang?.bluetooth?.searching || "Đang tìm kiếm thiết bị...")
+                                        if (deviceList.count === 0) return lang?.bluetooth?.no_devices || "Không có thiết bị nào"
                                         return ""
                                     }
                                     color: theme.primary.dim_foreground
@@ -644,7 +645,7 @@ PanelWindow {
                         }
 
                         Text {
-                            text: "Bluetooth đã tắt"
+                            text: lang?.bluetooth?.disabled || "Bluetooth đã tắt"
                             color: theme.primary.foreground
                             font.pixelSize: 16
                             font.weight: Font.Medium
@@ -652,7 +653,7 @@ PanelWindow {
                         }
 
                         Text {
-                            text: "Bật Bluetooth để kết nối với thiết bị"
+                            text: lang?.bluetooth?.turn_on || "Bật Bluetooth để kết nối với thiết bị"
                             color: theme.primary.dim_foreground
                             font.pixelSize: 12
                             anchors.horizontalCenter: parent.horizontalCenter

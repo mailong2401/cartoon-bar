@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "프로세스 관리자",
+    "panel_title": "RAM 관리자",
+    "memory_monitor": "메모리 모니터",
+    "used": "사용중",
+    "free": "여유",
+    "available": "사용가능",
+    "no_swap": "SWAP 없음",
+    "loading_memory": "메모리 데이터 로딩 중...",
     "loading": {
       "title": "⏳",
       "message": "프로세스 목록 로드 중..."
@@ -162,5 +169,40 @@
       "empty_output": "스크립트가 데이터를 반환하지 않음",
       "parse_error": "출력 데이터 구문 분석 오류"
     }
+  },
+  "volume": {
+    "title": "볼륨",
+    "muted": "음소거"
+  },
+  "bluetooth": {
+    "title": "블루투스",
+    "enabled": "블루투스 켜짐",
+    "disabled": "블루투스 꺼짐",
+    "devices_connected": "기기 연결됨",
+    "pairing": "페어링 중...",
+    "connecting": "연결 중...",
+    "connected": "연결됨",
+    "paired": "페어링됨",
+    "not_connected": "연결 안 됨",
+    "searching": "기기 검색 중...",
+    "no_devices": "기기를 찾을 수 없음",
+    "turn_on": "블루투스를 켜서 기기에 연결",
+    "pair_error": "기기와 페어링할 수 없음"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi 켜짐",
+    "disabled": "WiFi 꺼짐",
+    "not_connected": "연결 안 됨",
+    "available_networks": "사용 가능한 네트워크",
+    "searching": "네트워크 검색 중...",
+    "no_networks": "네트워크를 찾을 수 없음",
+    "turn_on": "WiFi를 켜서 사용 가능한 네트워크 보기",
+    "forget": "삭제",
+    "connect": "연결",
+    "no_password": "비밀번호 불필요",
+    "enter_password": "비밀번호 입력",
+    "password_required": "비밀번호를 입력하세요",
+    "wrong_password": "비밀번호가 틀렸습니다"
   }
 }

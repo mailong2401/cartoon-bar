@@ -123,6 +123,13 @@
   },
   "ram": {
     "title": "Trình quản lý tiến trình",
+    "panel_title": "Quản lí Ram",
+    "memory_monitor": "Giám sát bộ nhớ",
+    "used": "Đã dùng",
+    "free": "Còn trống",
+    "available": "Khả dụng",
+    "no_swap": "Không có SWAP",
+    "loading_memory": "Đang tải dữ liệu bộ nhớ...",
     "loading": {
       "title": "⏳",
       "message": "Đang tải danh sách tiến trình..."
@@ -158,6 +165,41 @@
       "empty_output": "Tập lệnh không trả về dữ liệu",
       "parse_error": "Lỗi phân tích dữ liệu đầu ra"
     }
+  },
+  "volume": {
+    "title": "Âm thanh",
+    "muted": "Đã tắt tiếng"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth đang bật",
+    "disabled": "Bluetooth đang tắt",
+    "devices_connected": "thiết bị đã kết nối",
+    "pairing": "Đang ghép nối...",
+    "connecting": "Đang kết nối...",
+    "connected": "Đã kết nối",
+    "paired": "Đã ghép nối",
+    "not_connected": "Không kết nối",
+    "searching": "Đang tìm kiếm thiết bị...",
+    "no_devices": "Không có thiết bị nào",
+    "turn_on": "Bật Bluetooth để kết nối với thiết bị",
+    "pair_error": "Không thể ghép nối với thiết bị"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi đang bật",
+    "disabled": "WiFi đang tắt",
+    "not_connected": "Chưa kết nối",
+    "available_networks": "Mạng có sẵn",
+    "searching": "Đang tìm kiếm thiết bị...",
+    "no_networks": "Không có mạng nào",
+    "turn_on": "Bật WiFi để xem mạng khả dụng",
+    "forget": "Quên",
+    "connect": "Kết nối",
+    "no_password": "Không cần mật khẩu",
+    "enter_password": "Nhập mật khẩu",
+    "password_required": "Vui lòng nhập mật khẩu",
+    "wrong_password": "Mật khẩu không đúng"
   }
 }
 

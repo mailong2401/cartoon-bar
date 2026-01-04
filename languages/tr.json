@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Süreç Yöneticisi",
+    "panel_title": "RAM Yöneticisi",
+    "memory_monitor": "Bellek İzleyici",
+    "used": "Kullanılan",
+    "free": "Boş",
+    "available": "Kullanılabilir",
+    "no_swap": "SWAP Yok",
+    "loading_memory": "Bellek verileri yükleniyor...",
     "loading": {
       "title": "⏳",
       "message": "Süreç listesi yükleniyor..."
@@ -162,5 +169,40 @@
       "empty_output": "Betik veri döndürmedi",
       "parse_error": "Veri ayrıştırma hatası"
     }
+  },
+  "volume": {
+    "title": "Ses",
+    "muted": "Sessiz"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth açık",
+    "disabled": "Bluetooth kapalı",
+    "devices_connected": "cihaz bağlı",
+    "pairing": "Eşleştiriliyor...",
+    "connecting": "Bağlanıyor...",
+    "connected": "Bağlandı",
+    "paired": "Eşleştirildi",
+    "not_connected": "Bağlı değil",
+    "searching": "Cihazlar aranıyor...",
+    "no_devices": "Cihaz bulunamadı",
+    "turn_on": "Cihazlara bağlanmak için Bluetooth'u açın",
+    "pair_error": "Cihazla eşleştirilemedi"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi açık",
+    "disabled": "WiFi kapalı",
+    "not_connected": "Bağlı değil",
+    "available_networks": "Kullanılabilir ağlar",
+    "searching": "Ağlar aranıyor...",
+    "no_networks": "Ağ bulunamadı",
+    "turn_on": "Mevcut ağları görmek için WiFi'yi açın",
+    "forget": "Unut",
+    "connect": "Bağlan",
+    "no_password": "Şifre gerekmiyor",
+    "enter_password": "Şifre girin",
+    "password_required": "Lütfen şifre girin",
+    "wrong_password": "Yanlış şifre"
   }
 }

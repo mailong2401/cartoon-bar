@@ -127,6 +127,13 @@
   },
   "ram": {
     "title": "Gestione processi",
+    "panel_title": "Gestione RAM",
+    "memory_monitor": "Monitor memoria",
+    "used": "Usato",
+    "free": "Libero",
+    "available": "Disponibile",
+    "no_swap": "Nessun SWAP",
+    "loading_memory": "Caricamento dati memoria...",
     "loading": {
       "title": "⏳",
       "message": "Caricamento elenco processi..."
@@ -162,5 +169,40 @@
       "empty_output": "Lo script non ha restituito dati",
       "parse_error": "Errore nell'analisi dei dati"
     }
+  },
+  "volume": {
+    "title": "Volume",
+    "muted": "Disattivato"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth attivo",
+    "disabled": "Bluetooth disattivo",
+    "devices_connected": "dispositivi connessi",
+    "pairing": "Associazione in corso...",
+    "connecting": "Connessione in corso...",
+    "connected": "Connesso",
+    "paired": "Associato",
+    "not_connected": "Non connesso",
+    "searching": "Ricerca dispositivi...",
+    "no_devices": "Nessun dispositivo trovato",
+    "turn_on": "Attiva Bluetooth per connettere dispositivi",
+    "pair_error": "Impossibile associare il dispositivo"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi attivo",
+    "disabled": "WiFi disattivo",
+    "not_connected": "Non connesso",
+    "available_networks": "Reti disponibili",
+    "searching": "Ricerca reti...",
+    "no_networks": "Nessuna rete trovata",
+    "turn_on": "Attiva WiFi per vedere le reti disponibili",
+    "forget": "Dimentica",
+    "connect": "Connetti",
+    "no_password": "Nessuna password richiesta",
+    "enter_password": "Inserisci password",
+    "password_required": "Inserisci la password",
+    "wrong_password": "Password errata"
   }
 }
