@@ -173,21 +173,22 @@ property var lang: currentLanguage
     function updateDateTime() {
         const now = clock.date
         const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
-        const months = [
-  lang.dateFormat.month.january,
-  lang.dateFormat.month.february,
-  lang.dateFormat.month.march,
-  lang.dateFormat.month.april,
-  lang.dateFormat.month.may,
-  lang.dateFormat.month.june,
-  lang.dateFormat.month.july,
-  lang.dateFormat.month.august,
-  lang.dateFormat.month.september,
-  lang.dateFormat.month.october,
-  lang.dateFormat.month.november,
-  lang.dateFormat.month.december
-]
-        
+        const monthData = lang?.dateFormat?.month
+        const months = monthData ? [
+            monthData.january || "Th1",
+            monthData.february || "Th2",
+            monthData.march || "Th3",
+            monthData.april || "Th4",
+            monthData.may || "Th5",
+            monthData.june || "Th6",
+            monthData.july || "Th7",
+            monthData.august || "Th8",
+            monthData.september || "Th9",
+            monthData.october || "Th10",
+            monthData.november || "Th11",
+            monthData.december || "Th12"
+        ] : ["Th1", "Th2", "Th3", "Th4", "Th5", "Th6", "Th7", "Th8", "Th9", "Th10", "Th11", "Th12"]
+
         root.currentDate = `${weekdays[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
         root.currentTime = Qt.formatTime(now, "HH:mm")
     }
@@ -329,12 +330,13 @@ property var lang: currentLanguage
             color: "transparent"
 
             Image {
-                source: `../assets/flags/${root.selectedFlag}.png`
+                source: root.selectedFlag ? `../assets/flags/${root.selectedFlag}.png` : ""
                 width: currentSizes.iconSize?.large || 50
                 height: currentSizes.iconSize?.large || 50
                 fillMode: Image.PreserveAspectFit
                 smooth: true
                 anchors.centerIn: parent
+                visible: root.selectedFlag !== ""
             }
 
             MouseArea {

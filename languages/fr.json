@@ -87,6 +87,18 @@
     "muted": "Son coupé",
     "overdrive": "Volume amplifié"
   },
+  "calendar": {
+    "title": "Calendrier",
+    "weekdays": {
+      "sunday": "Dim",
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday": "Sam"
+    }
+  },
   "ram": {
     "title": "Gestionnaire de processus",
     "loading": {

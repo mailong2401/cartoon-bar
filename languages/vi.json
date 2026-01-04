@@ -83,6 +83,18 @@
     "muted": "Đang tắt tiếng",
     "overdrive": "Âm lượng vượt mức"
   },
+  "calendar": {
+    "title": "Lịch",
+    "weekdays": {
+      "sunday": "CN",
+      "monday": "T2",
+      "tuesday": "T3",
+      "wednesday": "T4",
+      "thursday": "T5",
+      "friday": "T6",
+      "saturday": "T7"
+    }
+  },
   "ram": {
     "title": "Trình quản lý tiến trình",
     "loading": {

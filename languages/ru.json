@@ -87,6 +87,18 @@
     "nowPlaying": "Сейчас играет",
     "paused": "Приостановлено"
   },
+  "calendar": {
+    "title": "Календарь",
+    "weekdays": {
+      "sunday": "Вс",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб"
+    }
+  },
   "ram": {
     "title": "Диспетчер процессов",
     "loading": {

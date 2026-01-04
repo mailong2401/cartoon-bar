@@ -87,6 +87,18 @@
     "muted": "Desactivado",
     "overdrive": "Volumen amplificado"
   },
+  "calendar": {
+    "title": "Calendario",
+    "weekdays": {
+      "sunday": "Dom",
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mié",
+      "thursday": "Jue",
+      "friday": "Vie",
+      "saturday": "Sáb"
+    }
+  },
   "ram": {
     "title": "Administrador de procesos",
     "loading": {

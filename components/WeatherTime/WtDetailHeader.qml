@@ -5,15 +5,16 @@ Item {
     signal closeClicked()
 
     property var theme : currentTheme
+    property var lang : currentLanguage
 
     Row {
         anchors.centerIn: parent
-        spacing: 20
-        
+        spacing: currentSizes.wtDetailPanel?.header?.spacing || 20
+
         Text {
-            text: "Lịch"
+            text: lang?.calendar?.title || "Lịch"
             color: theme.primary.foreground
-            font.pixelSize: 40
+            font.pixelSize: currentSizes.wtDetailPanel?.header?.fontSize || 40
             font.bold: true
             font.family: "ComicShannsMono Nerd Font"
         }

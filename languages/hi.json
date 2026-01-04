@@ -87,6 +87,18 @@
     "nowPlaying": "अब चल रहा है",
     "paused": "रोका गया"
   },
+  "calendar": {
+    "title": "कैलेंडर",
+    "weekdays": {
+      "sunday": "रवि",
+      "monday": "सोम",
+      "tuesday": "मंगल",
+      "wednesday": "बुध",
+      "thursday": "गुरु",
+      "friday": "शुक्र",
+      "saturday": "शनि"
+    }
+  },
   "ram": {
     "title": "प्रक्रिया प्रबंधक",
     "loading": {

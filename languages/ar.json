@@ -87,6 +87,18 @@
     "nowPlaying": "قيد التشغيل الآن",
     "paused": "متوقف مؤقتاً"
   },
+  "calendar": {
+    "title": "التقويم",
+    "weekdays": {
+      "sunday": "أحد",
+      "monday": "إثن",
+      "tuesday": "ثلث",
+      "wednesday": "أرب",
+      "thursday": "خمس",
+      "friday": "جمع",
+      "saturday": "سبت"
+    }
+  },
   "ram": {
     "title": "مدير العمليات",
     "loading": {

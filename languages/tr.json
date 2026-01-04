@@ -87,6 +87,18 @@
     "nowPlaying": "Şimdi çalıyor",
     "paused": "Duraklatıldı"
   },
+  "calendar": {
+    "title": "Takvim",
+    "weekdays": {
+      "sunday": "Paz",
+      "monday": "Pzt",
+      "tuesday": "Sal",
+      "wednesday": "Çar",
+      "thursday": "Per",
+      "friday": "Cum",
+      "saturday": "Cmt"
+    }
+  },
   "ram": {
     "title": "Süreç Yöneticisi",
     "loading": {

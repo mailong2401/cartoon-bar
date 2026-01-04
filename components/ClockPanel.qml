@@ -44,32 +44,33 @@ PanelWindow {
     
     function updateDateTime() {
         const now = new Date()
-        const weekdays = [
-  lang.dateFormat.day.sunday,
-  lang.dateFormat.day.monday,
-  lang.dateFormat.day.tuesday,
-  lang.dateFormat.day.wednesday,
-  lang.dateFormat.day.thursday,
-  lang.dateFormat.day.friday,
-  lang.dateFormat.day.saturday
-]
+        const dayData = lang?.dateFormat?.day
+        const weekdays = dayData ? [
+            dayData.sunday || "CN",
+            dayData.monday || "T2",
+            dayData.tuesday || "T3",
+            dayData.wednesday || "T4",
+            dayData.thursday || "T5",
+            dayData.friday || "T6",
+            dayData.saturday || "T7"
+        ] : ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
 
-const months = [
-  lang.dateFormat.month.january,
-  lang.dateFormat.month.february,
-  lang.dateFormat.month.march,
-  lang.dateFormat.month.april,
-  lang.dateFormat.month.may,
-  lang.dateFormat.month.june,
-  lang.dateFormat.month.july,
-  lang.dateFormat.month.august,
-  lang.dateFormat.month.september,
-  lang.dateFormat.month.october,
-  lang.dateFormat.month.november,
-  lang.dateFormat.month.december
-]
+        const monthData = lang?.dateFormat?.month
+        const months = monthData ? [
+            monthData.january || "Th1",
+            monthData.february || "Th2",
+            monthData.march || "Th3",
+            monthData.april || "Th4",
+            monthData.may || "Th5",
+            monthData.june || "Th6",
+            monthData.july || "Th7",
+            monthData.august || "Th8",
+            monthData.september || "Th9",
+            monthData.october || "Th10",
+            monthData.november || "Th11",
+            monthData.december || "Th12"
+        ] : ["Th1", "Th2", "Th3", "Th4", "Th5", "Th6", "Th7", "Th8", "Th9", "Th10", "Th11", "Th12"]
 
-        
         root.currentDay = `${weekdays[now.getDay()]}`
         root.currentHour = Qt.formatTime(now, "HH")
         root.currentMin = Qt.formatTime(now, "mm")

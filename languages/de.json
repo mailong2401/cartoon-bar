@@ -87,6 +87,18 @@
     "muted": "Stummgeschaltet",
     "overdrive": "Lautstärke überschritten"
   },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "So",
+      "monday": "Mo",
+      "tuesday": "Di",
+      "wednesday": "Mi",
+      "thursday": "Do",
+      "friday": "Fr",
+      "saturday": "Sa"
+    }
+  },
   "ram": {
     "title": "Prozess-Manager",
     "loading": {

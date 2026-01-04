@@ -200,6 +200,38 @@
     "notificationSpacing": 10,
     "notificationFontSize": 16
 },
+"wtDetailPanel": {
+  "panelWidth": 500,
+  "panelHeight": 500,
+  "panelRadius": 8,
+  "panelBorderWidth": 3,
+  "panelMargins": 16,
+  "spacing": 16,
+  "marginLeft": 800,
+
+  "header": {
+    "height": 70,
+    "fontSize": 40,
+    "spacing": 20
+  },
+
+  "calendar": {
+    "width": 400,
+    "height": 400,
+    "radius": 10,
+    "margins": 10,
+    "spacing": 15,
+    "navButtonFontSize": 20,
+    "monthLabelFontSize": 24,
+    "weekdayFontSize": 19,
+    "weekdayHeight": 30,
+    "dayFontSize": 19,
+    "dayCellSize": 40,
+    "dayCellRadius": 20,
+    "gridRowSpacing": 8,
+    "gridColumnSpacing": 8
+  }
+},
 "ramManagement": {
   "panelWidth": 930,
   "panelHeight": 960,

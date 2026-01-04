@@ -83,6 +83,18 @@
     "muted": "Muted",
     "overdrive": "Volume Overdrive"
   },
+  "calendar": {
+    "title": "Calendar",
+    "weekdays": {
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
+    }
+  },
   "ram": {
     "title": "Process Manager",
     "loading": {

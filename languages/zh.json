@@ -83,6 +83,18 @@
     "muted": "已静音",
     "overdrive": "音量超限"
   },
+  "calendar": {
+    "title": "日历",
+    "weekdays": {
+      "sunday": "日",
+      "monday": "一",
+      "tuesday": "二",
+      "wednesday": "三",
+      "thursday": "四",
+      "friday": "五",
+      "saturday": "六"
+    }
+  },
   "ram": {
     "title": "进程管理器",
     "loading": {

@@ -87,6 +87,18 @@
     "nowPlaying": "Nu aan het afspelen",
     "paused": "Gepauzeerd"
   },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "Zo",
+      "monday": "Ma",
+      "tuesday": "Di",
+      "wednesday": "Wo",
+      "thursday": "Do",
+      "friday": "Vr",
+      "saturday": "Za"
+    }
+  },
   "ram": {
     "title": "Procesbeheer",
     "loading": {

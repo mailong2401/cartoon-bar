@@ -4,10 +4,10 @@ import QtQuick.Layouts
 
 Rectangle {
     id: calendar
-    width: 400
-    height: 400
+    width: currentSizes.wtDetailPanel?.calendar?.width || 400
+    height: currentSizes.wtDetailPanel?.calendar?.height || 400
     color: "transparent"
-    radius: 10
+    radius: currentSizes.wtDetailPanel?.calendar?.radius || 10
     
     property date currentDate: new Date()
     property int currentMonth: currentDate.getMonth()
@@ -15,13 +15,45 @@ Rectangle {
     property date selectedDate: new Date()
     
     property var theme : currentTheme
+    property var lang : currentLanguage
+
+    property var weekdayLabels: {
+        const w = lang?.calendar?.weekdays
+        return w ? [
+            w.sunday || "CN",
+            w.monday || "T2",
+            w.tuesday || "T3",
+            w.wednesday || "T4",
+            w.thursday || "T5",
+            w.friday || "T6",
+            w.saturday || "T7"
+        ] : ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+    }
+
+    property var monthLabels: {
+        const m = lang?.dateFormat?.month
+        return m ? [
+            m.january || "Tháng 1",
+            m.february || "Tháng 2",
+            m.march || "Tháng 3",
+            m.april || "Tháng 4",
+            m.may || "Tháng 5",
+            m.june || "Tháng 6",
+            m.july || "Tháng 7",
+            m.august || "Tháng 8",
+            m.september || "Tháng 9",
+            m.october || "Tháng 10",
+            m.november || "Tháng 11",
+            m.december || "Tháng 12"
+        ] : ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+    }
 
     signal dateSelected(date selectedDate)
     
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 10
-        spacing: 15
+        anchors.margins: currentSizes.wtDetailPanel?.calendar?.margins || 10
+        spacing: currentSizes.wtDetailPanel?.calendar?.spacing || 15
         
         // Header
         RowLayout {
@@ -35,7 +67,7 @@ Rectangle {
                     text: parent.text
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
-                    font.pixelSize: 20
+                    font.pixelSize: currentSizes.wtDetailPanel?.calendar?.navButtonFontSize || 20
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -43,17 +75,17 @@ Rectangle {
                     color: "transparent"
                 }
             }
-            
+
             Label {
-                text: Qt.formatDate(calendar.currentDate, "MMMM yyyy")
+                text: monthLabels[currentMonth] + " " + currentYear
                 font.bold: true
-                font.pixelSize: 24
+                font.pixelSize: currentSizes.wtDetailPanel?.calendar?.monthLabelFontSize || 24
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
                 color: theme.primary.foreground
                 font.family: "ComicShannsMono Nerd Font"
             }
-            
+
             Button {
                 text: "▶"
                 onClicked: nextMonth()
@@ -62,7 +94,7 @@ Rectangle {
                     text: parent.text
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
-                    font.pixelSize: 20
+                    font.pixelSize: currentSizes.wtDetailPanel?.calendar?.navButtonFontSize || 20
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -85,49 +117,49 @@ Rectangle {
                 id: calendarGrid
                 width: flickable.width
                 columns: 7
-                rowSpacing: 8
-                columnSpacing: 8
-                
+                rowSpacing: currentSizes.wtDetailPanel?.calendar?.gridRowSpacing || 8
+                columnSpacing: currentSizes.wtDetailPanel?.calendar?.gridColumnSpacing || 8
+
                 // Week day headers
                 Repeater {
-                    model: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+                    model: weekdayLabels
                     Label {
                         text: modelData
                         font.bold: true
                         color: theme.primary.foreground
                         horizontalAlignment: Text.AlignHCenter
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        font.pixelSize: 19
+                        Layout.preferredHeight: currentSizes.wtDetailPanel?.calendar?.weekdayHeight || 30
+                        font.pixelSize: currentSizes.wtDetailPanel?.calendar?.weekdayFontSize || 19
                         font.family: "ComicShannsMono Nerd Font"
                     }
                 }
-                
+
                 // Days
                 Repeater {
                     id: daysRepeater
                     model: getDaysInMonth(currentMonth, currentYear)
-                    
+
                     Rectangle {
                         id: dayRect
-                        Layout.preferredWidth: 40
-                        Layout.preferredHeight: 40
+                        Layout.preferredWidth: currentSizes.wtDetailPanel?.calendar?.dayCellSize || 40
+                        Layout.preferredHeight: currentSizes.wtDetailPanel?.calendar?.dayCellSize || 40
                         color: {
-                            if (modelData.isToday && modelData.isCurrentMonth) 
+                            if (modelData.isToday && modelData.isCurrentMonth)
                                 return theme.button.background
                             else if (modelData.fullDate.toDateString() === selectedDate.toDateString())
                                 return theme.button.background_select
                             else
                                 return "transparent"
                         }
-                        radius: 20
+                        radius: currentSizes.wtDetailPanel?.calendar?.dayCellRadius || 20
                         border.color: modelData.isCurrentMonth ? theme.button.border : "transparent"
-                        
+
                         Label {
                             text: modelData.day
                             anchors.centerIn: parent
                             color: {
-                                if (!modelData.isCurrentMonth) 
+                                if (!modelData.isCurrentMonth)
                                     return theme.primary.dim_foreground
                                 else if (modelData.isToday)
                                     return "white"
@@ -136,11 +168,11 @@ Rectangle {
                             }
                             font {
                               bold: modelData.isToday
-                              pixelSize: 19
+                              pixelSize: currentSizes.wtDetailPanel?.calendar?.dayFontSize || 19
                               family: "ComicShannsMono Nerd Font"
                             }
                         }
-                        
+
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {

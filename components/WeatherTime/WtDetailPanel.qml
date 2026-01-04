@@ -9,8 +9,8 @@ import "./" as Components
 PanelWindow {
     id: wtDetailPanel
 
-    implicitWidth: 500
-    implicitHeight: 500
+    implicitWidth: currentSizes.wtDetailPanel?.panelWidth || 500
+    implicitHeight: currentSizes.wtDetailPanel?.panelHeight || 500
 
     property var theme : currentTheme
 
@@ -22,7 +22,7 @@ PanelWindow {
     margins {
         top: currentConfig.mainPanelPos === "top" ? 10 : 0
         bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
-        left: 800
+        left: currentSizes.wtDetailPanel?.marginLeft || 800
     }
     exclusiveZone: 0
     color: "transparent"
@@ -30,17 +30,17 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 8
+        radius: currentSizes.wtDetailPanel?.panelRadius || 8
         border.color: theme.normal.black
-        border.width: 3
+        border.width: currentSizes.wtDetailPanel?.panelBorderWidth || 3
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 16
+            anchors.margins: currentSizes.wtDetailPanel?.panelMargins || 16
+            spacing: currentSizes.wtDetailPanel?.spacing || 16
             Components.WtDetailHeader{
                 Layout.fillWidth: true
-                Layout.preferredHeight: 70
+                Layout.preferredHeight: currentSizes.wtDetailPanel?.header?.height || 70
               }
             Components.WtDetailCalendar{
               Layout.alignment: Qt.AlignHCenter

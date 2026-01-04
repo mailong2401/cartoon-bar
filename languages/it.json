@@ -87,6 +87,18 @@
     "nowPlaying": "In riproduzione",
     "paused": "In pausa"
   },
+  "calendar": {
+    "title": "Calendario",
+    "weekdays": {
+      "sunday": "Dom",
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Gio",
+      "friday": "Ven",
+      "saturday": "Sab"
+    }
+  },
   "ram": {
     "title": "Gestione processi",
     "loading": {

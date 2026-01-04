@@ -87,6 +87,18 @@
     "muted": "Mutar",
     "overdrive": "Volume acima do normal"
   },
+  "calendar": {
+    "title": "Calendário",
+    "weekdays": {
+      "sunday": "Dom",
+      "monday": "Seg",
+      "tuesday": "Ter",
+      "wednesday": "Qua",
+      "thursday": "Qui",
+      "friday": "Sex",
+      "saturday": "Sáb"
+    }
+  },
   "ram": {
     "title": "Gerenciador de processos",
     "loading": {

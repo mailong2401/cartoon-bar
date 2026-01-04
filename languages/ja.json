@@ -87,6 +87,18 @@
     "nowPlaying": "再生中",
     "paused": "一時停止中"
   },
+  "calendar": {
+    "title": "カレンダー",
+    "weekdays": {
+      "sunday": "日",
+      "monday": "月",
+      "tuesday": "火",
+      "wednesday": "水",
+      "thursday": "木",
+      "friday": "金",
+      "saturday": "土"
+    }
+  },
   "ram": {
     "title": "プロセスマネージャー",
     "loading": {

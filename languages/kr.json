@@ -87,6 +87,18 @@
     "nowPlaying": "현재 재생 중",
     "paused": "일시 중지됨"
   },
+  "calendar": {
+    "title": "달력",
+    "weekdays": {
+      "sunday": "일",
+      "monday": "월",
+      "tuesday": "화",
+      "wednesday": "수",
+      "thursday": "목",
+      "friday": "금",
+      "saturday": "토"
+    }
+  },
   "ram": {
     "title": "프로세스 관리자",
     "loading": {
