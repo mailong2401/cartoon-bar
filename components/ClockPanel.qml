@@ -8,29 +8,29 @@ PanelWindow {
     id: root
     WlrLayershell.exclusiveZone: 0   // không chiếm không gian ứng dụng
 
-    anchors {
-        top: true
-        bottom: true 
-        left: true
-        right: true
-    }
-
-    margins {
-        top: 20
-        bottom: 20
-        left: 20
-        right: 20
-    }
-    
+    property var sizes: currentSizes.clockPanel || {}
     property string currentHour: ""
     property string currentMin: ""
     property string currentDay: ""
     property string currentDate: ""
     property var lang: currentLanguage
 
-    
-    implicitWidth: content.implicitWidth + 40
-    implicitHeight: content.implicitHeight + 40
+    anchors {
+        top: true
+        bottom: true
+        left: true
+        right: true
+    }
+
+    margins {
+        top: sizes.anchorMargin || 20
+        bottom: sizes.anchorMargin || 20
+        left: sizes.anchorMargin || 20
+        right: sizes.anchorMargin || 20
+    }
+
+    implicitWidth: content.implicitWidth + (sizes.contentPadding || 40)
+    implicitHeight: content.implicitHeight + (sizes.contentPadding || 40)
 
     WlrLayershell.layer: WlrLayer.Bottom
 
@@ -82,57 +82,57 @@ PanelWindow {
     Rectangle {
         id: clockContainer
         anchors.fill: parent
-        radius: 10
+        radius: sizes.containerRadius || 10
         color: "transparent"
-        
+
         RowLayout {
             id: content
             anchors.centerIn: parent
-            spacing: 33
-                    
+            spacing: sizes.contentSpacing || 33
+
             // Phần hiển thị thời gian (giờ và phút)
             ColumnLayout {
-                spacing: 5
+                spacing: sizes.columnSpacing || 5
                 Text {
                     id: timeHour
                     text: root.currentHour
                     color: "#ffffff"
-                    font { 
-                        pixelSize: 124 
-                        bold: true 
+                    font {
+                        pixelSize: sizes.timeFontSize || 124
+                        bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
                 }
-                
+
                 Text {
                     id: timeMin
                     text: root.currentMin
                     color: "#ffffff"
-                    font { 
-                        pixelSize: 124 
-                        bold: true 
+                    font {
+                        pixelSize: sizes.timeFontSize || 124
+                        bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
                 }
             }
 
             Rectangle {
-                Layout.preferredWidth: 10
+                Layout.preferredWidth: sizes.dividerWidth || 10
                 Layout.preferredHeight: Math.max(timeHour.implicitHeight, timeMin.implicitHeight) * 2
                 color: "#ffffff"
-                radius: 10
+                radius: sizes.dividerRadius || 10
             }
-            
+
             // Phần hiển thị ngày tháng
             ColumnLayout {
-                spacing: 5
+                spacing: sizes.columnSpacing || 5
                 Text {
                     id: dayText
                     text: root.currentDay
                     color: "#ffffff"
-                    font { 
-                        pixelSize: 124 
-                        bold: true 
+                    font {
+                        pixelSize: sizes.dayFontSize || 124
+                        bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
                 }
@@ -140,9 +140,9 @@ PanelWindow {
                     id: dateText
                     text: root.currentDate
                     color: "#ffffff"
-                    font { 
-                        pixelSize: 64 
-                        bold: true 
+                    font {
+                        pixelSize: sizes.dateFontSize || 64
+                        bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
                 }

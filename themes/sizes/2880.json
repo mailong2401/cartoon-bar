@@ -181,5 +181,17 @@
     "spacing": 24,
     "headerFontSize": 24,
     "anchorMargin": 15
+  },
+  "clockPanel": {
+    "containerRadius": 15,
+    "contentSpacing": 50,
+    "contentPadding": 60,
+    "anchorMargin": 30,
+    "timeFontSize": 186,
+    "dayFontSize": 186,
+    "dateFontSize": 96,
+    "columnSpacing": 8,
+    "dividerWidth": 15,
+    "dividerRadius": 15
   }
 }
