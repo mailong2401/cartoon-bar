@@ -496,7 +496,7 @@ Item {
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
-                                    // Logic sẽ thêm sau
+                                    sizesLoader.changeSizeProfile("1680")
                                 }
                             }
                         }
@@ -541,7 +541,7 @@ Item {
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
                                 onClicked: {
-                                    // Logic sẽ thêm sau
+                                    sizesLoader.changeSizeProfile("1920")
                                 }
                             }
                         }
