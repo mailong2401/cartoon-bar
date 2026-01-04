@@ -16,6 +16,98 @@ Item {
         panelConfig.set("clockPanelPosition", position)
     }
 
+    // Hàm helper để set display size
+    function setDisplaySize(size) {
+        sizesLoader.changeSizeProfile(size)
+        panelConfig.set("displaySize", size)
+    }
+
+    // Data model cho các kích thước màn hình
+    ListModel {
+        id: sizeOptionsModel
+        ListElement { size: "1280"; label: "HD" }
+        ListElement { size: "1366"; label: "WXGA" }
+        ListElement { size: "1440"; label: "WXGA+" }
+        ListElement { size: "1600"; label: "HD+" }
+        ListElement { size: "1680"; label: "WSXGA+" }
+        ListElement { size: "1920"; label: "Full HD" }
+        ListElement { size: "2560"; label: "2K / QHD" }
+        ListElement { size: "2880"; label: "3K" }
+        ListElement { size: "3440"; label: "UW-QHD" }
+        ListElement { size: "3840"; label: "4K / UHD" }
+    }
+
+    // Component cho size button
+    Component {
+        id: sizeButton
+
+        Rectangle {
+            property string sizeValue: ""
+            property string sizeLabel: ""
+
+            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
+            color: currentConfig.displaySize === sizeValue ? theme.normal.blue : (sizeMouseArea.containsMouse ? theme.button.background_select : theme.button.background)
+            border.color: currentConfig.displaySize === sizeValue ? theme.normal.blue : (sizeMouseArea.containsPress ? theme.button.border_select : theme.button.border)
+            border.width: currentSizes.appearanceSettings?.panelSizeButtonBorderWidth || 2
+
+            Column {
+                anchors.centerIn: parent
+                spacing: currentSizes.appearanceSettings?.tinySpacing || 2
+
+                Text {
+                    text: sizeValue
+                    color: currentConfig.displaySize === sizeValue ? theme.primary.background : theme.primary.foreground
+                    font {
+                        family: "ComicShannsMono Nerd Font"
+                        pixelSize: currentSizes.appearanceSettings?.panelSizeButtonTextSize || 16
+                        bold: true
+                    }
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                Text {
+                    text: sizeLabel
+                    color: currentConfig.displaySize === sizeValue ? theme.primary.background : theme.primary.dim_foreground
+                    font {
+                        family: "ComicShannsMono Nerd Font"
+                        pixelSize: currentSizes.appearanceSettings?.panelSizeButtonSubTextSize || 11
+                    }
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+
+            // Checkmark for selected size
+            Rectangle {
+                visible: currentConfig.displaySize === sizeValue
+                width: currentSizes.appearanceSettings?.selectedCheckSize || 20
+                height: currentSizes.appearanceSettings?.selectedCheckSize || 20
+                radius: currentSizes.appearanceSettings?.selectedCheckRadius || 10
+                color: theme.primary.background
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.margins: 4
+
+                Text {
+                    text: "✓"
+                    color: theme.normal.blue
+                    font.pixelSize: 10
+                    font.bold: true
+                    anchors.centerIn: parent
+                }
+            }
+
+            MouseArea {
+                id: sizeMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.setDisplaySize(sizeValue)
+            }
+        }
+    }
+
     // Component cho position button
     Component {
         id: positionButton
@@ -252,7 +344,7 @@ Item {
             // Panel Size Selection
             RowLayout {
                 Layout.fillWidth: true
-                Layout.topMargin: 10
+                Layout.topMargin: currentSizes.appearanceSettings?.rowSpacing || 10
 
                 Text {
                     text: lang.appearance?.panel_size_label || "Kích thước panel:"
@@ -264,475 +356,19 @@ Item {
                     Layout.preferredWidth: currentSizes.appearanceSettings?.themeSelectionpreferredWidth || 150
                 }
 
-                Column {
-                    spacing: 10
+                // Grid hiển thị các tùy chọn kích thước
+                Grid {
+                    columns: 3
+                    spacing: currentSizes.appearanceSettings?.rowSpacing || 10
 
-                    // Row 1: 1280, 1366, 1440
-                    Row {
-                        spacing: 10
+                    Repeater {
+                        model: sizeOptionsModel
 
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1280.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1280.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1280"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "HD"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1280
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1280")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1366.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1366.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1366"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "HD (WXGA)"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1366
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1366")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1440.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1440.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1440"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "HD+ (WXGA+)"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1440
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1440")
-                                }
-                            }
-                        }
-                    }
-
-                    // Row 2: 1600, 1680, 1920
-                    Row {
-                        spacing: 10
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1600.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1600.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1600"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "HD+"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1600
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1600")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1680.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1680.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1680"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "WSXGA+"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1680
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1680")
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea1920.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea1920.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "1920"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "Full HD"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea1920
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    sizesLoader.changeSizeProfile("1920")
-                                }
-                            }
-                        }
-                    }
-
-                    // Row 3: 2560, 2880, 3440
-                    Row {
-                        spacing: 10
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea2560.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea2560.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "2560"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "2K / QHD"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea2560
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    // Logic sẽ thêm sau
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea2880.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea2880.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "2880"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "3K"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea2880
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    // Logic sẽ thêm sau
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea3440.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea3440.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "3440"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "UW-QHD"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea3440
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    // Logic sẽ thêm sau
-                                }
-                            }
-                        }
-                    }
-
-                    // Row 4: 3840
-                    Row {
-                        spacing: 10
-
-                        Rectangle {
-                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
-                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
-                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
-                            color: mouseArea3840.containsMouse ? theme.button.background_select : theme.button.background
-                            border.color: mouseArea3840.containsPress ? theme.button.border_select : theme.button.border
-                            border.width: 2
-
-                            Column {
-                                anchors.centerIn: parent
-                                spacing: 2
-
-                                Text {
-                                    text: "3840"
-                                    color: theme.primary.foreground
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.medium || 16
-                                        bold: true
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-
-                                Text {
-                                    text: "4K / UHD"
-                                    color: theme.primary.foreground 
-                                    font {
-                                        family: "ComicShannsMono Nerd Font"
-                                        pixelSize: currentSizes.fontSize?.small || 12
-                                    }
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                }
-                            }
-
-                            MouseArea {
-                                id: mouseArea3840
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    // Logic sẽ thêm sau
-                                }
+                        Loader {
+                            sourceComponent: sizeButton
+                            onLoaded: {
+                                item.sizeValue = model.size
+                                item.sizeLabel = model.label
                             }
                         }
                     }

@@ -11,6 +11,7 @@ Rectangle {
     border.color: theme.normal.black
     border.width: 3
     radius: currentSizes.radius?.normal || 10
+    clip: true
 
     property string cpuUsage: "0%"
     property string memoryUsage: "0%"
@@ -115,21 +116,22 @@ function togglePanel(panelName) {
     }
 
     RowLayout {
-        anchors.centerIn: parent
-        spacing: currentSizes.spacing?.small || 5
+        anchors.fill: parent
+        anchors.margins: currentSizes.cpuPanelLayout?.containerMargin || 4
+        spacing: currentSizes.cpuPanelLayout?.containerSpacing || 4
 
         // CPU Container - Click để mở panel chi tiết
         Rectangle {
             id: cpuContainer
-            width: cpuContent.width + (currentSizes.cpuPanelLayout?.containerPadding || 20)
-            height: cpuContent.height + (currentSizes.cpuPanelLayout?.containerVerticalPadding || 10)
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             color: "transparent"
             radius: currentSizes.cpuPanelLayout?.containerRadius || 6
 
             RowLayout {
                 id: cpuContent
                 anchors.centerIn: parent
-                spacing: 0
+                spacing: currentSizes.cpuPanelLayout?.itemSpacing || 2
 
                 ColumnLayout {
                     Layout.alignment: Qt.AlignVCenter
@@ -139,6 +141,7 @@ function togglePanel(panelName) {
                         text: root.cpuUsage
                         color: theme.primary.foreground
                         font {
+                            family: "ComicShannsMono Nerd Font"
                             pixelSize: currentSizes.cpuPanelLayout?.usageTextSize || 15
                             bold: true
                         }
@@ -148,7 +151,10 @@ function togglePanel(panelName) {
                         id: cpuLabel
                         text: "Cpu"
                         color: theme.primary.dim_foreground
-                        font.pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        font {
+                            family: "ComicShannsMono Nerd Font"
+                            pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        }
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
@@ -168,35 +174,35 @@ function togglePanel(panelName) {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
-                
+
                 onClicked: {
                   root.togglePanel("cpu")
                 }
-                
-                // Hiệu ứng hover
+
+                // Hiệu ứng hover - dùng opacity thay vì scale để tránh tràn
                 onEntered: {
-                    cpuContainer.scale = 1.1
+                    cpuContainer.opacity = 0.8
                 }
                 onExited: {
-                    cpuContainer.scale = 1.0
+                    cpuContainer.opacity = 1.0
                 }
             }
-            
-            Behavior on scale { NumberAnimation { duration: 100 } }
+
+            Behavior on opacity { NumberAnimation { duration: 100 } }
         }
 
-        // Memory (giữ nguyên)
+        // Memory Container
         Rectangle {
             id: memoryContainer
-            width: memoryContent.width + (currentSizes.cpuPanelLayout?.containerPadding || 20)
-            height: memoryContent.height + (currentSizes.cpuPanelLayout?.containerVerticalPadding || 10)
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             color: "transparent"
             radius: currentSizes.cpuPanelLayout?.containerRadius || 6
 
             RowLayout {
                 id: memoryContent
                 anchors.centerIn: parent
-                spacing: 0
+                spacing: currentSizes.cpuPanelLayout?.itemSpacing || 2
 
                 ColumnLayout {
                     Layout.alignment: Qt.AlignVCenter
@@ -206,6 +212,7 @@ function togglePanel(panelName) {
                         text: root.memoryUsage
                         color: theme.primary.foreground
                         font {
+                            family: "ComicShannsMono Nerd Font"
                             pixelSize: currentSizes.cpuPanelLayout?.usageTextSize || 15
                             bold: true
                         }
@@ -215,7 +222,10 @@ function togglePanel(panelName) {
                         id: memoryLabel
                         text: "Ram"
                         color: theme.primary.dim_foreground
-                        font.pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        font {
+                            family: "ComicShannsMono Nerd Font"
+                            pixelSize: currentSizes.cpuPanelLayout?.labelTextSize || 10
+                        }
                         Layout.alignment: Qt.AlignHCenter
                     }
                 }
@@ -238,17 +248,17 @@ function togglePanel(panelName) {
                 onClicked: {
                   root.togglePanel("ram")
                 }
-                
-                // Hiệu ứng hover
+
+                // Hiệu ứng hover - dùng opacity thay vì scale để tránh tràn
                 onEntered: {
-                    memoryContainer.scale = 1.1
+                    memoryContainer.opacity = 0.8
                 }
                 onExited: {
-                    memoryContainer.scale = 1.0
+                    memoryContainer.opacity = 1.0
                 }
             }
-            
-            Behavior on scale { NumberAnimation { duration: 100 } }
+
+            Behavior on opacity { NumberAnimation { duration: 100 } }
         }
     }
 

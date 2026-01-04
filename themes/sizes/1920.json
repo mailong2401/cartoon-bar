@@ -113,8 +113,9 @@
     "selectedCheckRadius": 10
 },
   "cpuPanelLayout": {
-    "containerPadding": 20,
-    "containerVerticalPadding": 10,
+    "containerMargin": 6,
+    "containerSpacing": 6,
+    "itemSpacing": 4,
     "cpuIconSize": 36,
     "ramIconSize": 30,
     "containerRadius": 6,

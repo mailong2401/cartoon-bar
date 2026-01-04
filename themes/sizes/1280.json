@@ -113,8 +113,9 @@
     "selectedCheckRadius": 7
   },
   "cpuPanelLayout": {
-    "containerPadding": 13,
-    "containerVerticalPadding": 7,
+    "containerMargin": 4,
+    "containerSpacing": 4,
+    "itemSpacing": 2,
     "cpuIconSize": 24,
     "ramIconSize": 20,
     "containerRadius": 4,
@@ -216,6 +217,38 @@
     "notificationSpacing": 7,
     "notificationFontSize": 11
   },
+  "wtDetailPanel": {
+    "panelWidth": 333,
+    "panelHeight": 333,
+    "panelRadius": 5,
+    "panelBorderWidth": 2,
+    "panelMargins": 11,
+    "spacing": 11,
+    "marginLeft": 533,
+
+    "header": {
+      "height": 47,
+      "fontSize": 27,
+      "spacing": 13
+    },
+
+    "calendar": {
+      "width": 267,
+      "height": 267,
+      "radius": 7,
+      "margins": 7,
+      "spacing": 10,
+      "navButtonFontSize": 13,
+      "monthLabelFontSize": 16,
+      "weekdayFontSize": 13,
+      "weekdayHeight": 20,
+      "dayFontSize": 13,
+      "dayCellSize": 27,
+      "dayCellRadius": 13,
+      "gridRowSpacing": 5,
+      "gridColumnSpacing": 5
+    }
+  },
   "ramManagement": {
     "panelWidth": 620,
     "panelHeight": 640,
@@ -223,13 +256,13 @@
     "panelBorderWidth": 2,
     "panelMargins": 11,
     "spacing": 20,
-    
+
     "header": {
       "height": 27,
       "fontSize": 27,
       "spacing": 13
     },
-    
+
     "ramDisplay": {
       "height": 213,
       "radius": 8,
@@ -245,7 +278,7 @@
       "gridSpacing": 3,
       "separatorHeight": 1
     },
-    
+
     "ramTaskManager": {
       "height": 334,
       "radius": 8,

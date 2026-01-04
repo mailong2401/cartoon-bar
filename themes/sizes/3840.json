@@ -18,8 +18,9 @@
     "maxWidth": 0.7
   },
   "cpuPanelLayout": {
-    "containerPadding": 40,
-    "containerVerticalPadding": 20,
+    "containerMargin": 12,
+    "containerSpacing": 12,
+    "itemSpacing": 8,
     "cpuIconSize": 72,
     "ramIconSize": 60,
     "containerRadius": 12,

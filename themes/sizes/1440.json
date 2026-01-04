@@ -113,8 +113,9 @@
     "selectedCheckRadius": 8
   },
   "cpuPanelLayout": {
-    "containerPadding": 15,
-    "containerVerticalPadding": 8,
+    "containerMargin": 5,
+    "containerSpacing": 5,
+    "itemSpacing": 3,
     "cpuIconSize": 27,
     "ramIconSize": 23,
     "containerRadius": 5,
@@ -215,6 +216,95 @@
     "notificationTopMargin": 15,
     "notificationSpacing": 8,
     "notificationFontSize": 12
+  },
+  "wtDetailPanel": {
+    "panelWidth": 375,
+    "panelHeight": 375,
+    "panelRadius": 6,
+    "panelBorderWidth": 2,
+    "panelMargins": 12,
+    "spacing": 12,
+    "marginLeft": 600,
+
+    "header": {
+      "height": 53,
+      "fontSize": 30,
+      "spacing": 15
+    },
+
+    "calendar": {
+      "width": 300,
+      "height": 300,
+      "radius": 8,
+      "margins": 8,
+      "spacing": 11,
+      "navButtonFontSize": 15,
+      "monthLabelFontSize": 18,
+      "weekdayFontSize": 14,
+      "weekdayHeight": 23,
+      "dayFontSize": 14,
+      "dayCellSize": 30,
+      "dayCellRadius": 15,
+      "gridRowSpacing": 6,
+      "gridColumnSpacing": 6
+    }
+  },
+  "ramManagement": {
+    "panelWidth": 698,
+    "panelHeight": 720,
+    "panelRadius": 6,
+    "panelBorderWidth": 2,
+    "panelMargins": 12,
+    "spacing": 23,
+
+    "header": {
+      "height": 30,
+      "fontSize": 30,
+      "spacing": 15
+    },
+
+    "ramDisplay": {
+      "height": 240,
+      "radius": 9,
+      "borderWidth": 2,
+      "margins": 12,
+      "spacing": 12,
+      "titleFontSize": 11,
+      "percentFontSize": 8,
+      "valueFontSize": 8,
+      "smallFontSize": 6,
+      "progressBarHeight": 15,
+      "swapProgressBarHeight": 11,
+      "gridSpacing": 3,
+      "separatorHeight": 1
+    },
+
+    "ramTaskManager": {
+      "height": 375,
+      "radius": 9,
+      "borderWidth": 2,
+      "margins": 12,
+      "spacing": 9,
+      "headerHeight": 38,
+      "headerRadius": 6,
+      "headerFontSize": 12,
+      "headerSpacing": 6,
+      "timeFontSize": 8,
+      "columnHeaderHeight": 24,
+      "columnHeaderRadius": 5,
+      "columnHeaderFontSize": 8,
+      "processItemHeight": 38,
+      "processItemRadius": 5,
+      "processItemSpacing": 8,
+      "processFontSize": 8,
+      "progressBarHeight": 2,
+      "footerHeight": 45,
+      "footerRadius": 6,
+      "footerBorderWidth": 1,
+      "footerFontSize": 11,
+      "footerLabelFontSize": 9,
+      "footerSpacing": 8
+    }
   },
   "fontSize": {
     "small": 9,
