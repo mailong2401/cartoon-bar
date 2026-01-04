@@ -1,4 +1,5 @@
 {
+  "name" : 1920,
   "panelHeight": 50,
   "panelWidth": {
     "appIcons": 60,
@@ -198,6 +199,63 @@
     "notificationTopMargin": 20,
     "notificationSpacing": 10,
     "notificationFontSize": 16
+},
+"ramManagement": {
+  "panelWidth": 930,
+  "panelHeight": 960,
+  "panelRadius": 8,
+  "panelBorderWidth": 3,
+  "panelMargins": 16,
+  "spacing": 30,
+  
+  "header": {
+    "height": 40,
+    "fontSize": 40,
+    "spacing": 20
+  },
+  
+  "ramDisplay": {
+    "height": 320,
+    "radius": 12,
+    "borderWidth": 2,
+    "margins": 16,
+    "spacing": 16,
+    "titleFontSize": 14,
+    "percentFontSize": 11,
+    "valueFontSize": 10,
+    "smallFontSize": 8,
+    "progressBarHeight": 20,
+    "swapProgressBarHeight": 14,
+    "gridSpacing": 4,
+    "separatorHeight": 1
+  },
+  
+  "ramTaskManager": {
+    "height": 500,
+    "radius": 12,
+    "borderWidth": 2,
+    "margins": 16,
+    "spacing": 12,
+    "headerHeight": 50,
+    "headerRadius": 8,
+    "headerFontSize": 16,
+    "headerSpacing": 8,
+    "timeFontSize": 11,
+    "columnHeaderHeight": 32,
+    "columnHeaderRadius": 6,
+    "columnHeaderFontSize": 11,
+    "processItemHeight": 50,
+    "processItemRadius": 6,
+    "processItemSpacing": 10,
+    "processFontSize": 10,
+    "progressBarHeight": 3,
+    "footerHeight": 60,
+    "footerRadius": 8,
+    "footerBorderWidth": 1,
+    "footerFontSize": 14,
+    "footerLabelFontSize": 12,
+    "footerSpacing": 10
+  }
 },
   "fontSize": {
     "small": 12,

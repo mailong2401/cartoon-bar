@@ -8,9 +8,8 @@ import "./" as Components
 PanelWindow {
     id: root
 
-    // Sử dụng WlrLayershell để căn giữa
-    implicitWidth: 930
-    implicitHeight: 930
+    implicitWidth: currentSizes.ramManagement?.panelWidth || 930
+    implicitHeight: currentSizes.ramManagement?.panelHeight || 960
 
     anchors {
         top: currentConfig.mainPanelPos === "top"
@@ -21,42 +20,40 @@ PanelWindow {
     margins {
         top: currentConfig.mainPanelPos === "top" ? 10 : 0
         bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
-        left: Math.round((Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2)
+        left: Math.round((Quickshell.screens.primary?.width ?? currentSizes.name) / 2 - implicitWidth / 2)
     }
 
     exclusiveZone: 0
-
     color: "transparent"
 
     property var theme : currentTheme
     property var lang : currentLanguage
     
-
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 8
+        radius: currentSizes.ramManagement?.panelRadius || 8
         border.color: theme.normal.black
-        border.width: 3
+        border.width: currentSizes.ramManagement?.panelBorderWidth || 3
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 30
+            anchors.margins: currentSizes.ramManagement?.panelMargins || 16
+            spacing: currentSizes.ramManagement?.spacing || 30
 
             Components.RamDetailHeader {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 40
+                Layout.preferredHeight: currentSizes.ramManagement?.header?.height || 40
             }
 
             Components.RamDisplay {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 300
+                Layout.preferredHeight: currentSizes.ramManagement?.ramDisplay?.height || 300
             }
 
             Components.RamTaskManager {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 500
+                Layout.preferredHeight: currentSizes.ramManagement?.ramTaskManager?.height || 500
             }
 
         }

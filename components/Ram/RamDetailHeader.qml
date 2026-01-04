@@ -8,11 +8,11 @@ Item {
 
     Row {
         anchors.centerIn: parent
-        spacing: 20
+        spacing: currentSizes.ramManagement?.header?.spacing || 20
         Text {
             text: "Quản lí Ram"
             color: theme.primary.foreground
-            font.pixelSize: 40
+            font.pixelSize: currentSizes.ramManagement?.header?.fontSize || 40
             font.bold: true
             font.family: "ComicShannsMono Nerd Font"
         }

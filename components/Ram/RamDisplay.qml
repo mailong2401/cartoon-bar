@@ -8,23 +8,21 @@ import Quickshell
 Item {
     id: ramDisplay
     width: 320
-    height: 160  // Tăng chiều cao để chứa thêm thông tin
+    height: 180
 
-    // Catppuccin Mocha color scheme
-    property color usedRamColor: theme.normal.green       // "#a6da95"
-    property color freeRamColor: theme.normal.black       // "#494d64" 
-    property color usedSwapColor: theme.normal.blue       // "#8aadf4"
-    property color freeSwapColor: theme.normal.black      // "#494d64"
-    property color textColor: theme.primary.foreground    // "#cad3f5"
-    property color dimTextColor: theme.primary.dim_foreground // "#8087a2"
-    property color borderColor: theme.bright.black        // "#5b6078"
-    property color separatorColor: theme.normal.black     // "#494d64"
+    property color usedRamColor: theme.normal.green
+    property color freeRamColor: theme.normal.black
+    property color usedSwapColor: theme.normal.blue
+    property color freeSwapColor: theme.normal.black
+    property color textColor: theme.primary.foreground
+    property color dimTextColor: theme.primary.dim_foreground
+    property color borderColor: theme.bright.black
+    property color separatorColor: theme.normal.black
     
     property int ramPercent: 0
     property int swapPercent: 0
     property int updateInterval: 2000
     
-    // Thêm các property mới để lưu thông tin chi tiết
     property int ramTotal: 0
     property int ramUsed: 0
     property int ramFree: 0
@@ -33,7 +31,6 @@ Item {
     property int swapUsed: 0
     property int swapFree: 0
 
-    // Biến cho animation
     property bool dataLoaded: false
 
     Timer {
@@ -58,7 +55,6 @@ Item {
                     ramDisplay.ramPercent = data.memory.used_percent
                     ramDisplay.swapPercent = data.swap.used_percent
                     
-                    // Lấy thông tin chi tiết
                     ramDisplay.ramTotal = data.memory.total_mb
                     ramDisplay.ramUsed = data.memory.used_mb
                     ramDisplay.ramFree = data.memory.free_mb
@@ -68,7 +64,6 @@ Item {
                     ramDisplay.swapFree = data.swap.free_mb
                     
                     ramDisplay.dataLoaded = true
-                } else {
                 }
             } catch (e) {
             }
@@ -78,16 +73,15 @@ Item {
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 12
+        radius: currentSizes.ramManagement?.ramDisplay?.radius || 12
         border.color: borderColor
-        border.width: 2
+        border.width: currentSizes.ramManagement?.ramDisplay?.borderWidth || 2
         
-        // Background pattern nhẹ
         Rectangle {
             anchors.fill: parent
             color: "transparent"
             opacity: 0.1
-            radius: 12
+            radius: currentSizes.ramManagement?.ramDisplay?.radius || 12
             
             Canvas {
                 anchors.fill: parent
@@ -96,7 +90,6 @@ Item {
                     ctx.strokeStyle = theme.primary.foreground
                     ctx.lineWidth = 0.5
                     
-                    // Vẽ grid pattern nhẹ
                     for (var x = 0; x < width; x += 15) {
                         ctx.beginPath()
                         ctx.moveTo(x, 0)
@@ -116,25 +109,22 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 16
-        spacing: 16
+        anchors.margins: currentSizes.ramManagement?.ramDisplay?.margins || 16
+        spacing: currentSizes.ramManagement?.ramDisplay?.spacing || 16
 
-        // Header với icon
         RowLayout {
             Layout.fillWidth: true
-            
             
             Text {
                 text: "Memory Monitor"
                 font.family: "ComicShannsMono Nerd Font"
                 color: textColor
                 font.bold: true
-                font.pointSize: 14
+                font.pixelSize: currentSizes.fontSize?.title || 30
             }
             
             Item { Layout.fillWidth: true }
             
-            // Usage indicator
             Rectangle {
                 width: 8
                 height: 8
@@ -144,12 +134,10 @@ Item {
             }
         }
 
-        // RAM Section
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 6
+            spacing: currentSizes.ramManagement?.ramDisplay?.gridSpacing || 6
 
-            // Header với phần trăm và thanh tiến trình
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 4
@@ -161,7 +149,8 @@ Item {
                         text: "RAM"
                         color: textColor
                         font.bold: true
-                        font.pointSize: 11
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: currentSizes.fontSize?.xlarge || 24
                     }
                     
                     Item { Layout.fillWidth: true }
@@ -170,14 +159,14 @@ Item {
                         text: ramPercent + "%"
                         color: getUsageColor(ramPercent)
                         font.bold: true
-                        font.pointSize: 11
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: currentSizes.fontSize?.xlarge || 24
                     }
                 }
 
-                // Progress bar với gradient
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 20
+                    height: currentSizes.ramManagement?.ramDisplay?.progressBarHeight || 20
                     radius: 10
                     color: freeRamColor
 
@@ -197,79 +186,79 @@ Item {
                         }
                     }
 
-                    // Text overlay trên progress bar
                     Text {
                         anchors.centerIn: parent
                         text: ramUsed + " / " + ramTotal + " MB"
                         color: theme.primary.background
                         font.bold: true
-                        font.pointSize: 9
-                        opacity: 0.8
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     }
                 }
             }
 
-            // Chi tiết RAM dạng grid
             GridLayout {
                 Layout.fillWidth: true
                 columns: 3
-                rowSpacing: 4
+                rowSpacing: currentSizes.ramManagement?.ramDisplay?.gridSpacing || 4
                 columnSpacing: 8
 
-                // Used
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
                         text: "Used"
                         color: dimTextColor
-                        font.pointSize: 8
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     }
                     Text {
                         text: ramUsed + " MB"
                         color: theme.normal.red
-                        font.pointSize: 10
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                         font.bold: true
                     }
                 }
 
-                // Free
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
                         text: "Free"
                         color: dimTextColor
-                        font.pointSize: 8
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     }
                     Text {
                         text: ramFree + " MB"
                         color: theme.normal.green
-                        font.pointSize: 10
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                         font.bold: true
                     }
                 }
 
-                // Available
                 Column {
                     Layout.alignment: Qt.AlignHCenter
                     Text {
                         text: "Available"
                         color: dimTextColor
-                        font.pointSize: 8
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     }
                     Text {
                         text: ramAvailable + " MB"
                         color: theme.normal.cyan
-                        font.pointSize: 10
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                         font.bold: true
                     }
                 }
             }
         }
 
-        // Separator với pattern
         Rectangle {
             Layout.fillWidth: true
-            height: 1
+            height: currentSizes.ramManagement?.ramDisplay?.separatorHeight || 1
             color: "transparent"
             
             Rectangle {
@@ -285,12 +274,10 @@ Item {
             }
         }
 
-        // SWAP Section
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 6
+            spacing: currentSizes.ramManagement?.ramDisplay?.gridSpacing || 6
 
-            // Header với phần trăm
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 4
@@ -302,7 +289,8 @@ Item {
                         text: "SWAP"
                         color: textColor
                         font.bold: true
-                        font.pointSize: 11
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: currentSizes.fontSize?.xlarge || 24
                     }
                     
                     Item { Layout.fillWidth: true }
@@ -311,15 +299,15 @@ Item {
                         text: swapPercent + "%"
                         color: getUsageColor(swapPercent)
                         font.bold: true
-                        font.pointSize: 11
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: currentSizes.fontSize?.xlarge || 24
                         opacity: swapTotal > 0 ? 1 : 0.3
                     }
                 }
 
-                // Progress bar
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 14
+                    height: currentSizes.ramManagement?.ramDisplay?.swapProgressBarHeight || 14
                     radius: 7
                     color: freeSwapColor
                     opacity: swapTotal > 0 ? 1 : 0.3
@@ -340,58 +328,65 @@ Item {
                         }
                     }
 
-                    // Text overlay cho SWAP
                     Text {
                         anchors.centerIn: parent
                         text: swapTotal > 0 ? (swapUsed + " / " + swapTotal + " MB") : "No SWAP"
                         color: theme.primary.background
                         font.bold: true
-                        font.pointSize: 8
-                        opacity: 0.8
+                        font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     }
                 }
             }
 
-            // Chi tiết SWAP
             GridLayout {
                 Layout.fillWidth: true
                 columns: 2
                 rowSpacing: 2
                 columnSpacing: 8
                 opacity: swapTotal > 0 ? 1 : 0.3
-
-                Text {
+                Column {
+                    Layout.alignment: Qt.AlignHCenter
+                    Text {
                     text: "Used:"
                     color: dimTextColor
-                    font.pointSize: 8
+                    font.pixelSize: currentSizes.fontSize?.large || 20
+                    font.family: "ComicShannsMono Nerd Font"
                 }
                 Text {
                     text: swapUsed + " MB"
                     color: theme.normal.blue
-                    font.pointSize: 9
+                    font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     font.bold: true
                 }
+                }
 
+                
+Column {
+                    Layout.alignment: Qt.AlignHCenter
                 Text {
                     text: "Free:"
                     color: dimTextColor
-                    font.pointSize: 8
+                    font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                 }
                 Text {
                     text: swapFree + " MB"
                     color: theme.normal.green
-                    font.pointSize: 9
+                    font.pixelSize: currentSizes.fontSize?.large || 20
+                        font.family: "ComicShannsMono Nerd Font"
                     font.bold: true
                 }
+            }
             }
         }
     }
 
-    // Loading animation
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 12
+        radius: currentSizes.ramManagement?.ramDisplay?.radius || 12
         opacity: dataLoaded ? 0 : 1
         visible: opacity > 0
         
@@ -403,7 +398,7 @@ Item {
             
             Text {
                 text: "⏳"
-                font.pointSize: 20
+                font.pixelSize: 20
                 color: dimTextColor
                 anchors.horizontalCenter: parent.horizontalCenter
             }
@@ -411,13 +406,12 @@ Item {
             Text {
                 text: "Loading memory data..."
                 color: dimTextColor
-                font.pointSize: 10
+                font.pixelSize: currentSizes.ramManagement?.ramDisplay?.smallFontSize || 10
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }
 
-    // Helper function để lấy màu theo phần trăm sử dụng
     function getUsageColor(percent) {
         if (percent > 90) return theme.normal.red
         if (percent > 70) return theme.normal.yellow

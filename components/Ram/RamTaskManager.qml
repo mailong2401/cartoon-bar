@@ -6,35 +6,27 @@ import Quickshell.Io
 
 Item {
     id: ramTaskManager
-    width: 600
-    height: 400
 
-
-    // Catppuccin Mocha color scheme
-    property color headerColor: theme.normal.blue        // "#8aadf4"
-    property color rowEvenColor: theme.primary.background // "#24273a"
-    property color rowOddColor: theme.primary.dim_background // "#1e2030"
-    property color textColor: theme.primary.foreground   // "#cad3f5"
-    property color dimTextColor: theme.primary.dim_foreground // "#8087a2"
-    property color highlightColor: theme.normal.green    // "#a6da95"
+    property color headerColor: theme.normal.blue
+    property color rowEvenColor: theme.primary.background
+    property color rowOddColor: theme.primary.dim_background
+    property color textColor: theme.primary.foreground
+    property color dimTextColor: theme.primary.dim_foreground
+    property color highlightColor: theme.normal.green
     
-    // Alert colors
-    property color criticalColor: theme.normal.red       // "#ed8796" - >10%
-    property color warningColor: theme.normal.yellow     // "#eed49f" - >5%
-    property color normalColor: theme.normal.green       // "#a6da95" - <=5%
-    property color lowColor: theme.normal.cyan           // "#8bd5ca" - <=2%
+    property color criticalColor: theme.normal.red
+    property color warningColor: theme.normal.yellow
+    property color normalColor: theme.normal.green
+    property color lowColor: theme.normal.cyan
     
-    property color borderColor: theme.normal.black       // "#494d64"
-    property color progressBgColor: theme.bright.black   // "#5b6078"
+    property color borderColor: theme.normal.black
+    property color progressBgColor: theme.bright.black
     
     property int updateInterval: 3000
 
-    // Danh sách process
     property var processList: []
-    // Biến hiển thị thời gian cập nhật
     property string lastUpdateTime: Qt.formatTime(new Date(), "hh:mm:ss")
 
-    // Cập nhật dữ liệu định kỳ
     Timer {
         id: refreshTimer
         interval: updateInterval
@@ -43,7 +35,6 @@ Item {
         onTriggered: processFetcher.running = true
     }
 
-    // Cập nhật thời gian hiển thị
     Timer {
         id: clockTimer
         interval: 2000
@@ -67,7 +58,6 @@ Item {
                 if (txt !== "") {
                     const data = JSON.parse(txt)
                     ramTaskManager.processList = data
-                } else {
                 }
             } catch (e) {
             }
@@ -77,25 +67,24 @@ Item {
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 12
+        radius: currentSizes.ramManagement?.ramTaskManager?.radius || 12
         border.color: borderColor
-        border.width: 2
+        border.width: currentSizes.ramManagement?.ramTaskManager?.borderWidth || 2
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 12
+            anchors.margins: currentSizes.ramManagement?.ramTaskManager?.margins || 16
+            spacing: currentSizes.ramManagement?.ramTaskManager?.spacing || 12
 
-            // Header với gradient
             Rectangle {
                 Layout.fillWidth: true
-                color: theme.normal.blue
-                height: 50
-                radius: 8
+                color: theme.primary.background
+                height: currentSizes.ramManagement?.ramTaskManager?.headerHeight || 50
+                radius: currentSizes.ramManagement?.ramTaskManager?.headerRadius || 8
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.margins: 12
+                    anchors.margins: currentSizes.ramManagement?.ramTaskManager?.headerSpacing || 12
 
                     Row {
                         spacing: 8
@@ -103,9 +92,9 @@ Item {
                         Text {
                             text: lang.ram.title
                             font.family: "ComicShannsMono Nerd Font"
-                            color: theme.primary.foreground
-                            font.bold: true
-                            font.pointSize: 16
+                            color: textColor
+                font.bold: true
+                font.pixelSize: currentSizes.fontSize?.title || 30
                         }
                     }
 
@@ -117,25 +106,24 @@ Item {
                             text: lang.ram.header_bar.last_update
                             color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
-                            font.pointSize: 9
+                            font.pixelSize: currentSizes.fontSize?.medium || 16
                         }
                         Text {
                             text: lastUpdateTime
                             color: theme.primary.foreground
                             font.family: "ComicShannsMono Nerd Font"
-                            font.pointSize: 11
+                            font.pixelSize: currentSizes.fontSize?.medium || 16
                             font.bold: true
                         }
                     }
                 }
             }
 
-            // Column headers với background
             Rectangle {
                 Layout.fillWidth: true
-                height: 32
+                height: currentSizes.ramManagement?.ramTaskManager?.columnHeaderHeight || 32
                 color: theme.bright.black
-                radius: 6
+                radius: currentSizes.ramManagement?.ramTaskManager?.columnHeaderRadius || 6
 
                 RowLayout {
                     anchors.fill: parent
@@ -147,7 +135,7 @@ Item {
                         color: theme.primary.dim_foreground
                         font.family: "ComicShannsMono Nerd Font"
                         font.bold: true 
-                        font.pointSize: 11
+                        font.pixelSize: currentSizes.fontSize?.medium || 14
                         Layout.preferredWidth: 70 
                     }
                     
@@ -156,7 +144,7 @@ Item {
                         font.family: "ComicShannsMono Nerd Font"
                         color: theme.primary.dim_foreground
                         font.bold: true 
-                        font.pointSize: 11
+                        font.pixelSize: currentSizes.fontSize?.medium || 14
                         Layout.fillWidth: true 
                     }
                     
@@ -164,7 +152,7 @@ Item {
                         text: lang.ram.headers.ram_percent
                         color: theme.primary.dim_foreground
                         font.bold: true 
-                        font.pointSize: 11
+                        font.pixelSize: currentSizes.fontSize?.medium || 14
                         Layout.preferredWidth: 80 
                         horizontalAlignment: Text.AlignRight
                     }
@@ -174,14 +162,13 @@ Item {
                         color: theme.primary.dim_foreground
                         font.family: "ComicShannsMono Nerd Font"
                         font.bold: true 
-                        font.pointSize: 11
+                        font.pixelSize: currentSizes.fontSize?.medium || 14
                         Layout.preferredWidth: 100 
                         horizontalAlignment: Text.AlignRight
                     }
                 }
             }
 
-            // List view cho processes
             ListView {
                 id: processListView
                 Layout.fillWidth: true
@@ -192,59 +179,54 @@ Item {
 
                 delegate: Rectangle {
                     width: processListView.width
-                    height: 40
+                    height: currentSizes.ramManagement?.ramTaskManager?.processItemHeight || 50
                     color: index % 2 === 0 ? rowEvenColor : rowOddColor
-                    radius: 6
+                    radius: currentSizes.ramManagement?.ramTaskManager?.processItemRadius || 6
                     border.color: Qt.lighter(color, 1.1)
                     border.width: 1
 
                     RowLayout {
                         anchors.fill: parent
                         anchors.margins: 10
-                        spacing: 10
+                        spacing: currentSizes.ramManagement?.ramTaskManager?.processItemSpacing || 10
 
-                        // PID
                         Text { 
                             text: modelData.pid
                             color: theme.normal.blue
                             font.family: "ComicShannsMono Nerd Font"
-                            font.pointSize: 10
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             font.bold: true
                             Layout.preferredWidth: 70 
                         }
                         
-                        // Process Name
                         Text { 
                             text: modelData.name
                             color: textColor
-                            font.pointSize: 10
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             elide: Text.ElideRight
                             Layout.fillWidth: true
                         }
                         
-                        // RAM Percentage
                         Text {
                             text: modelData.percent.toFixed(1) + "%"
                             color: getPercentageColor(modelData.percent)
                             font.family: "ComicShannsMono Nerd Font"
-                            font.pointSize: 10
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             font.bold: modelData.percent > 3
                             Layout.preferredWidth: 80
                             horizontalAlignment: Text.AlignRight
                         }
                         
-                        // Memory Usage
                         Text {
                             text: modelData.rss_mb.toFixed(1) + " MB"
                             color: textColor
                             font.family: "ComicShannsMono Nerd Font"
-                            font.pointSize: 10
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             Layout.preferredWidth: 100
                             horizontalAlignment: Text.AlignRight
                         }
                     }
 
-                    // Progress bar
                     Rectangle {
                         anchors { 
                             left: parent.left
@@ -252,7 +234,7 @@ Item {
                             bottom: parent.bottom
                             margins: 6
                         }
-                        height: 3
+                        height: currentSizes.ramManagement?.ramTaskManager?.progressBarHeight || 3
                         radius: 1.5
                         color: progressBgColor
 
@@ -268,7 +250,6 @@ Item {
                     }
                 }
 
-                // Empty state
                 Rectangle {
                     visible: processListView.count === 0
                     anchors.fill: parent
@@ -279,86 +260,82 @@ Item {
                         spacing: 12
                         Text { 
                             text: "⏳"
-                            font.pointSize: 28
+                            font.pixelSize: currentSizes.fontSize?.title || 30
                             color: dimTextColor
                         }
                         Text { 
                             text: lang.ram.loading.message
                             font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 12
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                         }
                     }
                 }
             }
 
-            // Footer với thông tin tổng hợp
             Rectangle {
                 Layout.fillWidth: true
-                height: 60
+                height: currentSizes.ramManagement?.ramTaskManager?.footerHeight || 60
                 color: theme.bright.black
-                radius: 8
+                radius: currentSizes.ramManagement?.ramTaskManager?.footerRadius || 8
                 border.color: borderColor
-                border.width: 1
+                border.width: currentSizes.ramManagement?.ramTaskManager?.footerBorderWidth || 1
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.margins: 10
+                    anchors.margins: currentSizes.ramManagement?.ramTaskManager?.footerSpacing || 10
 
-                    // Tổng số process
                     Column {
                         spacing: 2
                         Text {
                             text: lang.ram.footer.process_count_label
                             font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 12
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                         }
                         Text {
                             text: processListView.count
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.cyan
-                            font.pointSize: 14
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             font.bold: true
                         }
                     }
 
                     Item { Layout.fillWidth: true }
 
-                    // Tổng RAM usage
                     Column {
                         spacing: 2
                         Text {
                             text: lang.ram.footer.total_ram_label
                             font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 12
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                         }
                         Text {
                             text: calculateTotalRAM().toFixed(1) + " MB"
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.green
-                            font.pointSize: 14
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             font.bold: true
                         }
                     }
 
                     Item { Layout.preferredWidth: 20 }
 
-                    // Process memory distribution
                     Column {
                         spacing: 2
                         Text {
                             text: lang.ram.footer.memory_distribution_label
                             font.family: "ComicShannsMono Nerd Font"
                             color: dimTextColor
-                            font.pointSize: 12
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                         }
                         Text {
                             text: getMemoryDistribution()
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.normal.magenta
-                            font.pointSize: 14
+                            font.pixelSize: currentSizes.fontSize?.medium || 14
                             font.bold: true
                         }
                     }
@@ -367,7 +344,6 @@ Item {
         }
     }
 
-    // Helper functions
     function calculateTotalRAM() {
         var total = 0
         for (var i = 0; i < processList.length; i++) {
@@ -377,10 +353,10 @@ Item {
     }
 
     function getPercentageColor(percent) {
-        if (percent > 10) return criticalColor    // Red
-        if (percent > 5) return warningColor      // Yellow  
-        if (percent > 2) return normalColor       // Green
-        return lowColor                           // Cyan
+        if (percent > 10) return criticalColor
+        if (percent > 5) return warningColor  
+        if (percent > 2) return normalColor
+        return lowColor
     }
 
     function getMemoryDistribution() {

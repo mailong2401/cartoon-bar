@@ -1,11 +1,11 @@
 {
   "mainPanelPos": "top",
-  "clockPanelPosition": "bottom",
+  "clockPanelPosition": "bottomLeft",
   "clockPanelVisible": true,
   "spacingPanel": 12,
-  "lang": "vi",
-  "theme": "light",
-  "countryFlag": "korea",
+  "lang": "de",
+  "theme": "dark",
+  "countryFlag": "france",
   "weatherApiKey": "21e0f911c7de4308916165005251210",
   "weatherLocation": "Ho Chi Minh City,Vietnam",
   "displaySize": "1920"
