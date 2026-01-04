@@ -22,11 +22,14 @@ Rectangle {
         id: launcherPanelLoader
         source: "./Launcher/LauncherPanel.qml"
         active: launcherPanelVisible
-        
+
         onLoaded: {
             item.visible = launcherPanelVisible
             item.closeRequested.connect(function() {
                 launcherPanelVisible = false
+            })
+            item.confirmRequested.connect(function(action, actionLabel) {
+                confirmDialog.show(action, actionLabel)
             })
         }
     }

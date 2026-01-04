@@ -20,6 +20,7 @@ implicitHeight: launcherPanel.settingsPanelVisible ?
     focusable: true
 
     signal closeRequested()
+    signal confirmRequested(string action, string actionLabel)
 
     Behavior on width { NumberAnimation { duration: 10 } }
     Behavior on height { NumberAnimation { duration: 10 } }
@@ -100,8 +101,12 @@ function closePanel() {
                 spacing: currentSizes.spacing?.medium || 12
 
                 LauncherComponents.Sidebar {
+                    id: sidebar
                     onAppLaunched: launcherPanel.openLauncher()
                     onAppSettings: launcherPanel.openSettings()
+                    onConfirmRequested: (action, actionLabel) => {
+                        launcherPanel.confirmRequested(action, actionLabel)
+                    }
                 }
 
                 Settings.SettingsPanel {

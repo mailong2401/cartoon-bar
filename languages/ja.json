@@ -99,6 +99,32 @@
       "saturday": "土"
     }
   },
+  "wallpapers": {
+    "title": "画像管理",
+    "total_images": "画像数:",
+    "path": "パス:",
+    "loading": "読み込み中...",
+    "loading_info": "情報を読み込み中...",
+    "no_images": "~/Pictures/Wallpapersフォルダに画像が見つかりません",
+    "set_wallpaper": "設定",
+    "already_set": "設定済み",
+    "delete": "削除",
+    "delete_confirm": "削除確認",
+    "cancel": "キャンセル",
+    "success_set": "壁紙を設定しました！",
+    "success_delete": "画像を削除しました！"
+  },
+  "confirm": {
+    "title": "確認",
+    "message": "{action}してもよろしいですか？",
+    "yes": "はい",
+    "no": "いいえ",
+    "sleep": "スリープモードに入る",
+    "lock": "画面をロックする",
+    "logout": "ログアウトする",
+    "restart": "再起動する",
+    "shutdown": "シャットダウンする"
+  },
   "ram": {
     "title": "プロセスマネージャー",
     "loading": {

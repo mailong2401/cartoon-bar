@@ -99,6 +99,32 @@
       "saturday": "Sáb"
     }
   },
+  "wallpapers": {
+    "title": "Gerenciamento de imagens",
+    "total_images": "Total de imagens:",
+    "path": "Caminho:",
+    "loading": "Carregando...",
+    "loading_info": "Carregando informações...",
+    "no_images": "Nenhuma imagem encontrada na pasta ~/Pictures/Wallpapers",
+    "set_wallpaper": "Definir",
+    "already_set": "Definido",
+    "delete": "Excluir",
+    "delete_confirm": "Confirmar exclusão",
+    "cancel": "Cancelar",
+    "success_set": "Papel de parede definido com sucesso!",
+    "success_delete": "Imagem excluída com sucesso!"
+  },
+  "confirm": {
+    "title": "Confirmar",
+    "message": "Tem certeza de que deseja {action}?",
+    "yes": "Sim",
+    "no": "Não",
+    "sleep": "entrar em modo de suspensão",
+    "lock": "bloquear a tela",
+    "logout": "sair",
+    "restart": "reiniciar",
+    "shutdown": "desligar"
+  },
   "ram": {
     "title": "Gerenciador de processos",
     "loading": {

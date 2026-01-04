@@ -16,6 +16,12 @@ ShellRoot {
     Components.SizesLoader { id: sizesLoader }
     Components.VolumeOsd { }
     Components.NotificationPopup{}
+    Components.ConfirmDialog { id: confirmDialog }
+
+    // Function để hiển thị confirm dialog từ bất kỳ đâu
+    function showConfirmDialog(action, actionLabel) {
+        confirmDialog.show(action, actionLabel)
+    }
 
     property bool clockPanelVisible: currentConfig.clockPanelVisible
 

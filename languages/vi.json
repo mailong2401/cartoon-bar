@@ -95,6 +95,32 @@
       "saturday": "T7"
     }
   },
+  "wallpapers": {
+    "title": "Quản lý hình ảnh",
+    "total_images": "Tổng số ảnh:",
+    "path": "Đường dẫn:",
+    "loading": "Đang tải...",
+    "loading_info": "Đang tải thông tin...",
+    "no_images": "Không tìm thấy ảnh nào trong thư mục ~/Pictures/Wallpapers",
+    "set_wallpaper": "Đặt nền",
+    "already_set": "Đã đặt",
+    "delete": "Xóa",
+    "delete_confirm": "Xác nhận xóa",
+    "cancel": "Hủy",
+    "success_set": "Đã đặt hình nền thành công!",
+    "success_delete": "Đã xóa ảnh thành công!"
+  },
+  "confirm": {
+    "title": "Xác nhận",
+    "message": "Bạn có chắc chắn muốn {action}?",
+    "yes": "Có",
+    "no": "Không",
+    "sleep": "chuyển sang chế độ ngủ",
+    "lock": "khóa màn hình",
+    "logout": "đăng xuất",
+    "restart": "khởi động lại",
+    "shutdown": "tắt máy"
+  },
   "ram": {
     "title": "Trình quản lý tiến trình",
     "loading": {

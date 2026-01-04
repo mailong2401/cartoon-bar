@@ -99,6 +99,32 @@
       "saturday": "Sa"
     }
   },
+  "wallpapers": {
+    "title": "Bilderverwaltung",
+    "total_images": "Bilder insgesamt:",
+    "path": "Pfad:",
+    "loading": "Laden...",
+    "loading_info": "Informationen werden geladen...",
+    "no_images": "Keine Bilder im Ordner ~/Pictures/Wallpapers gefunden",
+    "set_wallpaper": "Festlegen",
+    "already_set": "Festgelegt",
+    "delete": "Löschen",
+    "delete_confirm": "Löschen bestätigen",
+    "cancel": "Abbrechen",
+    "success_set": "Hintergrundbild erfolgreich festgelegt!",
+    "success_delete": "Bild erfolgreich gelöscht!"
+  },
+  "confirm": {
+    "title": "Bestätigen",
+    "message": "Sind Sie sicher, dass Sie {action} möchten?",
+    "yes": "Ja",
+    "no": "Nein",
+    "sleep": "in den Ruhezustand wechseln",
+    "lock": "den Bildschirm sperren",
+    "logout": "sich abmelden",
+    "restart": "neu starten",
+    "shutdown": "herunterfahren"
+  },
   "ram": {
     "title": "Prozess-Manager",
     "loading": {

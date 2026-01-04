@@ -99,6 +99,32 @@
       "saturday": "Za"
     }
   },
+  "wallpapers": {
+    "title": "Afbeeldingenbeheer",
+    "total_images": "Totaal afbeeldingen:",
+    "path": "Pad:",
+    "loading": "Laden...",
+    "loading_info": "Informatie laden...",
+    "no_images": "Geen afbeeldingen gevonden in de map ~/Pictures/Wallpapers",
+    "set_wallpaper": "Instellen",
+    "already_set": "Ingesteld",
+    "delete": "Verwijderen",
+    "delete_confirm": "Verwijderen bevestigen",
+    "cancel": "Annuleren",
+    "success_set": "Achtergrond succesvol ingesteld!",
+    "success_delete": "Afbeelding succesvol verwijderd!"
+  },
+  "confirm": {
+    "title": "Bevestigen",
+    "message": "Weet u zeker dat u {action} wilt?",
+    "yes": "Ja",
+    "no": "Nee",
+    "sleep": "naar slaapstand gaan",
+    "lock": "het scherm vergrendelen",
+    "logout": "uitloggen",
+    "restart": "herstarten",
+    "shutdown": "afsluiten"
+  },
   "ram": {
     "title": "Procesbeheer",
     "loading": {

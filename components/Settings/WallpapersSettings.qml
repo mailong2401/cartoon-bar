@@ -8,7 +8,8 @@ import Qt.labs.folderlistmodel
 Item {
     id: systemSettings
     property var theme: currentTheme
-    
+    property var lang: currentLanguage
+
     property string homePath: ""
     property string wallpapersPath: ""
     property string wallpaperPath: ""
@@ -43,7 +44,7 @@ Item {
         onRunningChanged: {
             if (!running) {
                 currentWallpaper = wallpaperPath
-                showNotification("Đã đặt hình nền thành công!")
+                showNotification(lang?.wallpapers?.success_set || "Đã đặt hình nền thành công!")
                 folderModel.update()
             }
         }
@@ -60,7 +61,7 @@ Item {
 
         onRunningChanged: {
             if (!running) {
-                showNotification("Đã xóa ảnh thành công!")
+                showNotification(lang?.wallpapers?.success_delete || "Đã xóa ảnh thành công!")
                 folderModel.update()
             }
         }
@@ -77,7 +78,7 @@ Item {
 
             // Header
             Text {
-                text: "Quản lý hình ảnh"
+                text: lang?.wallpapers?.title || "Quản lý hình ảnh"
                 color: theme.primary.foreground
                 font.pixelSize: currentSizes.wallpaperSettings?.titleFontSize || currentSizes.fontSize?.xlarge || 24
                 font.family: "ComicShannsMono Nerd Font"
@@ -109,7 +110,7 @@ Item {
                         spacing: 4
 
                         Text {
-                            text: "Tổng số ảnh: "
+                            text: lang?.wallpapers?.total_images || "Tổng số ảnh:"
                             font.family: "ComicShannsMono Nerd Font"
                             color: theme.primary.dim_foreground
                             font.pixelSize: currentSizes.wallpaperSettings?.statsLabelFontSize || 15
@@ -126,7 +127,7 @@ Item {
                 }
 
                 Text {
-                    text: homePath ? "Đường dẫn: " + homePath + "/Pictures/Wallpapers/" : "Đang tải..."
+                    text: homePath ? (lang?.wallpapers?.path || "Đường dẫn:") + " " + homePath + "/Pictures/Wallpapers/" : (lang?.wallpapers?.loading || "Đang tải...")
                     font.family: "ComicShannsMono Nerd Font"
                     color: theme.primary.dim_foreground
                     font.pixelSize: currentSizes.wallpaperSettings?.pathFontSize || 16
@@ -140,8 +141,8 @@ Item {
                 id: wallpapersGrid
                 Layout.fillWidth: true
                 Layout.preferredHeight: Math.max(
-                    currentSizes.wallpaperSettings?.gridMinHeight || 400, 
-                    Math.ceil(folderModel.count / Math.floor((parent.width - (2 * (currentSizes.wallpaperSettings?.margin || 20))) / (currentSizes.wallpaperSettings?.gridCellWidth || 190))) * 
+                    currentSizes.wallpaperSettings?.gridMinHeight || 400,
+                    Math.ceil(folderModel.count / Math.floor((parent.width - (2 * (currentSizes.wallpaperSettings?.margin || 20))) / (currentSizes.wallpaperSettings?.gridCellWidth || 190))) *
                     (currentSizes.wallpaperSettings?.gridCellHeight || 200)
                 )
                 cellWidth: currentSizes.wallpaperSettings?.gridCellWidth || 190
@@ -246,7 +247,7 @@ Item {
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: isCurrentWallpaper(filePath) ? "Đã đặt" : "Đặt nền"
+                                        text: isCurrentWallpaper(filePath) ? (lang?.wallpapers?.already_set || "Đã đặt") : (lang?.wallpapers?.set_wallpaper || "Đặt nền")
                                         color: theme.primary.background
                                         font.pixelSize: currentSizes.wallpaperSettings?.buttonFontSize || 10
                                         font.bold: true
@@ -268,7 +269,7 @@ Item {
 
                                     Text {
                                         anchors.centerIn: parent
-                                        text: "Xóa"
+                                        text: lang?.wallpapers?.delete || "Xóa"
                                         color: theme.primary.background
                                         font.pixelSize: currentSizes.wallpaperSettings?.buttonFontSize || 10
                                         font.bold: true
@@ -289,7 +290,7 @@ Item {
             // No images message
             Text {
                 visible: folderModel.count === 0 && homePath
-                text: "Không tìm thấy ảnh nào trong thư mục ~/Pictures/Wallpapers"
+                text: lang?.wallpapers?.no_images || "Không tìm thấy ảnh nào trong thư mục ~/Pictures/Wallpapers"
                 color: theme.primary.dim_foreground
                 font.pixelSize: currentSizes.fontSize?.normal || 14
                 Layout.alignment: Qt.AlignCenter
@@ -298,7 +299,7 @@ Item {
             // Loading message
             Text {
                 visible: !homePath
-                text: "Đang tải thông tin..."
+                text: lang?.wallpapers?.loading_info || "Đang tải thông tin..."
                 color: theme.primary.dim_foreground
                 font.pixelSize: currentSizes.fontSize?.normal || 14
                 Layout.alignment: Qt.AlignCenter
@@ -328,7 +329,7 @@ Item {
             spacing: currentSizes.wallpaperSettings?.dialogSpacing || 15
 
             Text {
-                text: "Xác nhận xóa\n" + deleteDialog.fileNameToDelete
+                text: (lang?.wallpapers?.delete_confirm || "Xác nhận xóa") + "\n" + deleteDialog.fileNameToDelete
                 color: theme.normal.red
                 font.pixelSize: currentSizes.wallpaperSettings?.dialogTitleFontSize || 16
                 font.bold: true
@@ -347,16 +348,16 @@ Item {
                     color: theme.button.background
                     border.color: theme.button.border
 
-                    Text { 
-                        anchors.centerIn: parent; 
-                        text: "Hủy"; 
-                        color: theme.primary.foreground 
+                    Text {
+                        anchors.centerIn: parent;
+                        text: lang?.wallpapers?.cancel || "Hủy";
+                        color: theme.primary.foreground
                         font.pixelSize: currentSizes.wallpaperSettings?.dialogButtonFontSize || 14
                     }
 
-                    MouseArea { 
-                        anchors.fill: parent; 
-                        onClicked: deleteDialog.visible = false 
+                    MouseArea {
+                        anchors.fill: parent;
+                        onClicked: deleteDialog.visible = false
                     }
                 }
 
@@ -367,10 +368,10 @@ Item {
                     radius: currentSizes.wallpaperSettings?.dialogButtonRadius || 6
                     color: theme.normal.red
 
-                    Text { 
-                        anchors.centerIn: parent; 
-                        text: "Xóa"; 
-                        color: theme.primary.background 
+                    Text {
+                        anchors.centerIn: parent;
+                        text: lang?.wallpapers?.delete || "Xóa";
+                        color: theme.primary.background
                         font.pixelSize: currentSizes.wallpaperSettings?.dialogButtonFontSize || 14
                     }
 
@@ -399,28 +400,28 @@ Item {
         color: theme.normal.green
         z: 1001
 
-        Row { 
-            anchors.centerIn: parent; 
+        Row {
+            anchors.centerIn: parent;
             spacing: currentSizes.wallpaperSettings?.notificationSpacing || 10
-            Text { 
-                text: "✓"; 
+            Text {
+                text: "✓";
                 color: theme.primary.background;
                 font.bold: true;
                 font.pixelSize: currentSizes.wallpaperSettings?.notificationFontSize || 16
             }
-            Text { 
-                id: notificationText; 
-                color: theme.primary.background; 
+            Text {
+                id: notificationText;
+                color: theme.primary.background;
                 text: "";
                 font.bold: true;
                 font.pixelSize: currentSizes.wallpaperSettings?.notificationFontSize || 16
             }
         }
 
-        Timer { 
-            id: notificationTimer; 
-            interval: 3000; 
-            onTriggered: successNotification.visible = false 
+        Timer {
+            id: notificationTimer;
+            interval: 3000;
+            onTriggered: successNotification.visible = false
         }
     }
 

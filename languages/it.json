@@ -99,6 +99,32 @@
       "saturday": "Sab"
     }
   },
+  "wallpapers": {
+    "title": "Gestione immagini",
+    "total_images": "Immagini totali:",
+    "path": "Percorso:",
+    "loading": "Caricamento...",
+    "loading_info": "Caricamento informazioni...",
+    "no_images": "Nessuna immagine trovata nella cartella ~/Pictures/Wallpapers",
+    "set_wallpaper": "Imposta",
+    "already_set": "Impostato",
+    "delete": "Elimina",
+    "delete_confirm": "Conferma eliminazione",
+    "cancel": "Annulla",
+    "success_set": "Sfondo impostato con successo!",
+    "success_delete": "Immagine eliminata con successo!"
+  },
+  "confirm": {
+    "title": "Conferma",
+    "message": "Sei sicuro di voler {action}?",
+    "yes": "Sì",
+    "no": "No",
+    "sleep": "attivare la modalità sleep",
+    "lock": "bloccare lo schermo",
+    "logout": "disconnetterti",
+    "restart": "riavviare",
+    "shutdown": "spegnere"
+  },
   "ram": {
     "title": "Gestione processi",
     "loading": {

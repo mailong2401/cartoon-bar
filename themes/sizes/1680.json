@@ -149,6 +149,22 @@
     "checkmarkRadius": 8,
     "checkmarkMargin": 4
   },
+  "confirmDialog": {
+    "width": 333,
+    "height": 175,
+    "radius": 13,
+    "borderWidth": 3,
+    "margins": 22,
+    "spacing": 18,
+    "titleFontSize": 21,
+    "messageFontSize": 14,
+    "buttonWidth": 96,
+    "buttonHeight": 39,
+    "buttonRadius": 9,
+    "buttonBorderWidth": 2,
+    "buttonFontSize": 16,
+    "buttonSpacing": 26
+  },
   "wallpaperSettings": {
     "margin": 18,
     "columnSpacing": 18,

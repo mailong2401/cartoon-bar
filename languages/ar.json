@@ -99,6 +99,32 @@
       "saturday": "سبت"
     }
   },
+  "wallpapers": {
+    "title": "إدارة الصور",
+    "total_images": "إجمالي الصور:",
+    "path": "المسار:",
+    "loading": "جاري التحميل...",
+    "loading_info": "جاري تحميل المعلومات...",
+    "no_images": "لم يتم العثور على صور في المجلد ~/Pictures/Wallpapers",
+    "set_wallpaper": "تعيين",
+    "already_set": "تم التعيين",
+    "delete": "حذف",
+    "delete_confirm": "تأكيد الحذف",
+    "cancel": "إلغاء",
+    "success_set": "تم تعيين الخلفية بنجاح!",
+    "success_delete": "تم حذف الصورة بنجاح!"
+  },
+  "confirm": {
+    "title": "تأكيد",
+    "message": "هل أنت متأكد أنك تريد {action}؟",
+    "yes": "نعم",
+    "no": "لا",
+    "sleep": "الدخول في وضع السكون",
+    "lock": "قفل الشاشة",
+    "logout": "تسجيل الخروج",
+    "restart": "إعادة التشغيل",
+    "shutdown": "إيقاف التشغيل"
+  },
   "ram": {
     "title": "مدير العمليات",
     "loading": {

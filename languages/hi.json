@@ -99,6 +99,32 @@
       "saturday": "शनि"
     }
   },
+  "wallpapers": {
+    "title": "छवि प्रबंधन",
+    "total_images": "कुल छवियां:",
+    "path": "पथ:",
+    "loading": "लोड हो रहा है...",
+    "loading_info": "जानकारी लोड हो रही है...",
+    "no_images": "~/Pictures/Wallpapers फोल्डर में कोई छवि नहीं मिली",
+    "set_wallpaper": "सेट करें",
+    "already_set": "सेट किया गया",
+    "delete": "हटाएं",
+    "delete_confirm": "हटाने की पुष्टि करें",
+    "cancel": "रद्द करें",
+    "success_set": "वॉलपेपर सफलतापूर्वक सेट किया गया!",
+    "success_delete": "छवि सफलतापूर्वक हटा दी गई!"
+  },
+  "confirm": {
+    "title": "पुष्टि करें",
+    "message": "क्या आप वाकई {action} चाहते हैं?",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "sleep": "स्लीप मोड में जाना",
+    "lock": "स्क्रीन लॉक करना",
+    "logout": "लॉगआउट करना",
+    "restart": "पुनः आरंभ करना",
+    "shutdown": "शटडाउन करना"
+  },
   "ram": {
     "title": "प्रक्रिया प्रबंधक",
     "loading": {

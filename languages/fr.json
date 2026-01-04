@@ -99,6 +99,32 @@
       "saturday": "Sam"
     }
   },
+  "wallpapers": {
+    "title": "Gestion des images",
+    "total_images": "Total images:",
+    "path": "Chemin:",
+    "loading": "Chargement...",
+    "loading_info": "Chargement des informations...",
+    "no_images": "Aucune image trouvée dans le dossier ~/Pictures/Wallpapers",
+    "set_wallpaper": "Définir",
+    "already_set": "Défini",
+    "delete": "Supprimer",
+    "delete_confirm": "Confirmer la suppression",
+    "cancel": "Annuler",
+    "success_set": "Fond d'écran défini avec succès!",
+    "success_delete": "Image supprimée avec succès!"
+  },
+  "confirm": {
+    "title": "Confirmer",
+    "message": "Êtes-vous sûr de vouloir {action} ?",
+    "yes": "Oui",
+    "no": "Non",
+    "sleep": "passer en mode veille",
+    "lock": "verrouiller l'écran",
+    "logout": "vous déconnecter",
+    "restart": "redémarrer",
+    "shutdown": "éteindre"
+  },
   "ram": {
     "title": "Gestionnaire de processus",
     "loading": {

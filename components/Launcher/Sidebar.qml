@@ -18,11 +18,12 @@ Rectangle {
     signal appLaunched()
     signal appSettings()
 
-    Process { id: sleepProcess }
-    Process { id: lockProcess }
-    Process { id: logoutProcess }
-    Process { id: restartProcess }
-    Process { id: shutdownProcess }
+    signal confirmRequested(string action, string actionLabel)
+
+    function showConfirmDialog(action, actionLabel) {
+        // Emit signal để parent components xử lý
+        confirmRequested(action, actionLabel)
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -250,8 +251,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    sleepProcess.command = ["systemctl", "suspend"]
-                    sleepProcess.startDetached()
+                    showConfirmDialog("sleep", lang?.confirm?.sleep || "chuyển sang chế độ ngủ")
                 }
             }
         }
@@ -327,7 +327,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    // Thêm lệnh khóa màn hình ở đây
+                    showConfirmDialog("lock", lang?.confirm?.lock || "khóa màn hình")
                 }
             }
         }
@@ -403,8 +403,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    logoutProcess.command = ["hyprctl", "dispatch", "exit"]
-                    logoutProcess.startDetached()
+                    showConfirmDialog("logout", lang?.confirm?.logout || "đăng xuất")
                 }
             }
         }
@@ -480,8 +479,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    restartProcess.command = ["systemctl", "reboot"]
-                    restartProcess.startDetached()
+                    showConfirmDialog("restart", lang?.confirm?.restart || "khởi động lại")
                 }
             }
         }
@@ -557,8 +555,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
-                    shutdownProcess.command = ["systemctl", "poweroff"]
-                    shutdownProcess.startDetached()
+                    showConfirmDialog("shutdown", lang?.confirm?.shutdown || "tắt máy")
                 }
             }
         }

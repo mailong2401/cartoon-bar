@@ -51,5 +51,21 @@
     "normal": 16,
     "medium": 21,
     "large": 27
+  },
+  "confirmDialog": {
+    "width": 507,
+    "height": 267,
+    "radius": 20,
+    "borderWidth": 4,
+    "margins": 33,
+    "spacing": 27,
+    "titleFontSize": 32,
+    "messageFontSize": 21,
+    "buttonWidth": 147,
+    "buttonHeight": 60,
+    "buttonRadius": 13,
+    "buttonBorderWidth": 3,
+    "buttonFontSize": 24,
+    "buttonSpacing": 40
   }
 }

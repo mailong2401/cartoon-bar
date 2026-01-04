@@ -95,6 +95,32 @@
       "saturday": "六"
     }
   },
+  "wallpapers": {
+    "title": "图片管理",
+    "total_images": "图片总数:",
+    "path": "路径:",
+    "loading": "加载中...",
+    "loading_info": "正在加载信息...",
+    "no_images": "在~/Pictures/Wallpapers文件夹中未找到图片",
+    "set_wallpaper": "设置",
+    "already_set": "已设置",
+    "delete": "删除",
+    "delete_confirm": "确认删除",
+    "cancel": "取消",
+    "success_set": "壁纸设置成功！",
+    "success_delete": "图片删除成功！"
+  },
+  "confirm": {
+    "title": "确认",
+    "message": "您确定要{action}吗？",
+    "yes": "是",
+    "no": "否",
+    "sleep": "进入睡眠模式",
+    "lock": "锁定屏幕",
+    "logout": "退出登录",
+    "restart": "重新启动",
+    "shutdown": "关机"
+  },
   "ram": {
     "title": "进程管理器",
     "loading": {

@@ -99,6 +99,32 @@
       "saturday": "Cmt"
     }
   },
+  "wallpapers": {
+    "title": "Görsel Yönetimi",
+    "total_images": "Toplam görsel:",
+    "path": "Yol:",
+    "loading": "Yükleniyor...",
+    "loading_info": "Bilgiler yükleniyor...",
+    "no_images": "~/Pictures/Wallpapers klasöründe görsel bulunamadı",
+    "set_wallpaper": "Ayarla",
+    "already_set": "Ayarlandı",
+    "delete": "Sil",
+    "delete_confirm": "Silmeyi onayla",
+    "cancel": "İptal",
+    "success_set": "Duvar kağıdı başarıyla ayarlandı!",
+    "success_delete": "Görsel başarıyla silindi!"
+  },
+  "confirm": {
+    "title": "Onay",
+    "message": "{action} yapmak istediğinizden emin misiniz?",
+    "yes": "Evet",
+    "no": "Hayır",
+    "sleep": "Uyku moduna geçmek",
+    "lock": "Ekranı kilitlemek",
+    "logout": "Çıkış yapmak",
+    "restart": "Yeniden başlatmak",
+    "shutdown": "Kapatmak"
+  },
   "ram": {
     "title": "Süreç Yöneticisi",
     "loading": {

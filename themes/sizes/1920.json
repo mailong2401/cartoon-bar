@@ -200,6 +200,22 @@
     "notificationSpacing": 10,
     "notificationFontSize": 16
 },
+"confirmDialog": {
+  "width": 380,
+  "height": 200,
+  "radius": 15,
+  "borderWidth": 3,
+  "margins": 25,
+  "spacing": 20,
+  "titleFontSize": 24,
+  "messageFontSize": 16,
+  "buttonWidth": 110,
+  "buttonHeight": 45,
+  "buttonRadius": 10,
+  "buttonBorderWidth": 2,
+  "buttonFontSize": 18,
+  "buttonSpacing": 30
+},
 "wtDetailPanel": {
   "panelWidth": 500,
   "panelHeight": 500,

@@ -95,6 +95,32 @@
       "saturday": "Sat"
     }
   },
+  "wallpapers": {
+    "title": "Image Management",
+    "total_images": "Total images:",
+    "path": "Path:",
+    "loading": "Loading...",
+    "loading_info": "Loading information...",
+    "no_images": "No images found in ~/Pictures/Wallpapers folder",
+    "set_wallpaper": "Set",
+    "already_set": "Applied",
+    "delete": "Delete",
+    "delete_confirm": "Confirm delete",
+    "cancel": "Cancel",
+    "success_set": "Wallpaper set successfully!",
+    "success_delete": "Image deleted successfully!"
+  },
+  "confirm": {
+    "title": "Confirm",
+    "message": "Are you sure you want to {action}?",
+    "yes": "Yes",
+    "no": "No",
+    "sleep": "enter sleep mode",
+    "lock": "lock the screen",
+    "logout": "logout",
+    "restart": "restart",
+    "shutdown": "shutdown"
+  },
   "ram": {
     "title": "Process Manager",
     "loading": {
