@@ -1,4 +1,3 @@
-// components/Settings/SidebarSettings.qml
 import QtQuick
 import QtQuick.Layouts
 
@@ -10,29 +9,29 @@ Rectangle {
     signal categoryChanged(int index)
     signal backRequested()
 
-    Layout.preferredWidth: 200
+    Layout.preferredWidth: currentSizes.settingsPanel?.sidebarWidth || 200
     Layout.fillHeight: true
     color: theme.primary.dim_background
-    radius: 12
+    radius: currentSizes.settingsPanel?.sidebarRadius || currentSizes.radius?.normal || 12
     border.color: theme.normal.black
     border.width: 2
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 12
-        spacing: 10
+        anchors.margins: currentSizes.settingsPanel?.sidebarMargins || 12
+        spacing: currentSizes.settingsPanel?.sidebarSpacing || 10
 
         Text {
             text: lang.settings.title
             color: theme.primary.foreground
             font {
                 family: "ComicShannsMono Nerd Font"
-                pixelSize: 26
+                pixelSize: currentSizes.settingsPanel?.sidebarTitleFontSize || currentSizes.fontSize?.xlarge || 26
                 bold: true
             }
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 15
-            Layout.bottomMargin: 25
+            Layout.topMargin: currentSizes.settingsPanel?.sidebarTitleTopMargin || currentSizes.spacing?.medium || 15
+            Layout.bottomMargin: currentSizes.settingsPanel?.sidebarTitleBottomMargin || currentSizes.spacing?.large || 25
         }
 
         // Danh mục cài đặt
@@ -51,8 +50,8 @@ Rectangle {
             delegate: Rectangle {
                 id: categoryDelegate
                 Layout.fillWidth: true
-                Layout.preferredHeight: 50
-                radius: 8
+                Layout.preferredHeight: currentSizes.settingsPanel?.sidebarCategoryItemHeight || 50
+                radius: currentSizes.settingsPanel?.sidebarCategoryItemRadius || currentSizes.radius?.small || 8
                 
                 property bool hovered: false
                 property bool selected: sidebarSettings.currentIndex === index
@@ -76,13 +75,13 @@ Rectangle {
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.margins: 8
-                    spacing: 12
+                    anchors.margins: currentSizes.settingsPanel?.sidebarCategoryItemMargins || currentSizes.spacing?.normal || 8
+                    spacing: currentSizes.settingsPanel?.sidebarCategoryItemSpacing || currentSizes.spacing?.medium || 12
                     
                     Image {
                         source: modelData.icon
-                        Layout.preferredHeight: 28
-                        Layout.preferredWidth: 28
+                        Layout.preferredHeight: currentSizes.settingsPanel?.sidebarCategoryIconSize || currentSizes.iconSize?.normal || 28
+                        Layout.preferredWidth: currentSizes.settingsPanel?.sidebarCategoryIconSize || currentSizes.iconSize?.normal || 28
                         fillMode: Image.PreserveAspectFit
                         smooth: true
                         
@@ -111,7 +110,7 @@ Rectangle {
                                selected ? theme.primary.bright_foreground : theme.primary.foreground
                         font {
                             family: "ComicShannsMono Nerd Font"
-                            pixelSize: 16
+                            pixelSize: currentSizes.settingsPanel?.sidebarCategoryFontSize || currentSizes.fontSize?.medium || 16
                             bold: selected || hovered
                         }
                         Layout.fillWidth: true
@@ -130,8 +129,8 @@ Rectangle {
                     
                     // Indicator khi selected
                     Rectangle {
-                        Layout.preferredWidth: 4
-                        Layout.preferredHeight: 20
+                        Layout.preferredWidth: currentSizes.settingsPanel?.sidebarCategoryIndicatorWidth || 4
+                        Layout.preferredHeight: currentSizes.settingsPanel?.sidebarCategoryIndicatorHeight || 20
                         radius: 2
                         color: theme.normal.blue
                         visible: selected

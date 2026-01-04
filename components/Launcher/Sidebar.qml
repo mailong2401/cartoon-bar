@@ -3,12 +3,11 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell.Io
 
-
 Rectangle {
     id: root
-    Layout.preferredWidth: 210
+    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarWidth || 210
     Layout.fillHeight: true
-    radius: 12
+    radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.normal || 12
     color: theme.primary.dim_background
     border.color: theme.normal.black
     border.width: 2
@@ -27,15 +26,15 @@ Rectangle {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 12
-        spacing: 10
+        anchors.margins: currentSizes.launcherPanel?.sidebarMargins || 12
+        spacing: currentSizes.launcherPanel?.sidebarItemSpacing || 10
 
         // Tiêu đề Menu
         Rectangle {
             id: launcherButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaLauncher.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaLauncher.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -47,12 +46,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/dashboard.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -63,7 +62,7 @@ Rectangle {
                 Text {
                     text: lang.system.application
                     color: mouseAreaLauncher.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaLauncher.containsMouse
                     
@@ -109,8 +108,8 @@ Rectangle {
         Rectangle {
             id: settingsButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaSettings.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaSettings.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -122,12 +121,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/setting.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -138,7 +137,7 @@ Rectangle {
                 Text {
                     text: lang.settings.title
                     color: mouseAreaSettings.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaSettings.containsMouse
                     
@@ -184,8 +183,8 @@ Rectangle {
         Rectangle {
             id: sleepButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaSleep.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaSleep.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -197,12 +196,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/sys-sleep.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -213,7 +212,7 @@ Rectangle {
                 Text {
                     text: lang.system.sleep
                     color: mouseAreaSleep.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaSleep.containsMouse
                     
@@ -254,17 +253,15 @@ Rectangle {
                     sleepProcess.command = ["systemctl", "suspend"]
                     sleepProcess.startDetached()
                 }
-
-              }
-
+            }
         }
 
         // Khóa màn hình
         Rectangle {
             id: lockButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaLock.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaLock.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -276,12 +273,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/sys-lock.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -292,7 +289,7 @@ Rectangle {
                 Text {
                     text: lang.system.lock
                     color: mouseAreaLock.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaLock.containsMouse
                     
@@ -330,6 +327,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 
                 onClicked: {
+                    // Thêm lệnh khóa màn hình ở đây
                 }
             }
         }
@@ -338,8 +336,8 @@ Rectangle {
         Rectangle {
             id: logoutButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaLogout.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaLogout.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -351,12 +349,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/sys-exit.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -367,7 +365,7 @@ Rectangle {
                 Text {
                     text: lang.system.logout
                     color: mouseAreaLogout.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaLogout.containsMouse
                     
@@ -415,8 +413,8 @@ Rectangle {
         Rectangle {
             id: restartButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaRestart.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaRestart.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -428,12 +426,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/sys-reboot.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -444,7 +442,7 @@ Rectangle {
                 Text {
                     text: lang.system.restart
                     color: mouseAreaRestart.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaRestart.containsMouse
                     
@@ -492,8 +490,8 @@ Rectangle {
         Rectangle {
             id: shutdownButton
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            radius: 8
+            Layout.preferredHeight: currentSizes.launcherPanel?.sidebarItemHeight || 60
+            radius: currentSizes.launcherPanel?.sidebarItemRadius || currentSizes.radius?.small || 8
             color: mouseAreaShutdown.containsMouse ? theme.button.background_select : theme.button.background
             border.color: mouseAreaShutdown.containsPress ? theme.button.border_select : theme.button.border
             border.width: 3
@@ -505,12 +503,12 @@ Rectangle {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: currentSizes.launcherPanel?.sidebarButtonMargins || 8
                 
                 Image {
                     source: "../../assets/system/poweroff.png"
-                    Layout.preferredHeight: 28
-                    Layout.preferredWidth: 28
+                    Layout.preferredHeight: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
+                    Layout.preferredWidth: currentSizes.launcherPanel?.sidebarIconSize || currentSizes.iconSize?.normal || 28
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     
@@ -521,7 +519,7 @@ Rectangle {
                 Text {
                     text: lang.system.shutdown
                     color: mouseAreaShutdown.containsMouse ? theme.primary.bright_foreground : theme.primary.foreground
-                    font.pixelSize: 16
+                    font.pixelSize: currentSizes.launcherPanel?.sidebarFontSize || currentSizes.fontSize?.medium || 16
                     font.family: "ComicShannsMono Nerd Font"
                     font.bold: mouseAreaShutdown.containsMouse
                     

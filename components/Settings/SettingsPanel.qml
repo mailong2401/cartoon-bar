@@ -5,13 +5,12 @@ import QtQuick.Layouts
 import "."
 import ".." as Components
 
-
 Rectangle {
     id: settingsPanel
     property var theme : currentTheme
     signal backRequested()
 
-    radius: 12
+    radius: currentSizes.settingsPanel?.panelRadius || currentSizes.radius?.normal || 12
     color: theme.primary.background
     // Shadow effect
     layer.enabled: true
@@ -27,9 +26,8 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
-        spacing: 20
+        spacing: currentSizes.settingsPanel?.contentSpacing || currentSizes.spacing?.large || 20
 
-        
         // Sidebar
         SidebarSettings {
             theme: settingsPanel.theme
@@ -46,15 +44,16 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             color: theme.primary.dim_background
-            radius: 8
+            radius: currentSizes.settingsPanel?.contentAreaRadius || currentSizes.radius?.small || 8
             border {
-              color : theme.normal.black
-              width: 2
+                color: theme.normal.black
+                width: currentSizes.settingsPanel?.contentAreaBorderWidth || 2
             }
             
             StackLayout {
                 id: settingsStack
                 anchors.fill: parent
+                anchors.margins: currentSizes.settingsPanel?.contentMargins || currentSizes.spacing?.normal || 8
                 currentIndex: 0
                 
                 // General Settings
@@ -67,9 +66,8 @@ Rectangle {
                     panelConfig: sharedPanelConfig
                 }
 
-                // WallPapers Setetings
-                WallpapersSettings{
-
+                // Wallpapers Settings
+                WallpapersSettings {
                 }
                 
                 // Network Settings
@@ -87,7 +85,6 @@ Rectangle {
                 // Shortcuts Settings
                 ShortcutsSettings {
                 }
-                
                 
                 // System Settings
                 SystemSettings {

@@ -10,7 +10,7 @@ PanelWindow {
 
     Components.JsonEditor {
         id: panelConfig
-        filePath: Qt.resolvedUrl("../themes/sizes/" + currentConfigProfile + ".json")
+        filePath: Qt.resolvedUrl("../configs/" + currentConfigProfile + ".json")
         Component.onCompleted: {
             panelConfig.load(panelConfig.filePath)
         }

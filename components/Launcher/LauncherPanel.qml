@@ -10,8 +10,12 @@ import "./" as LauncherComponents
 
 PanelWindow {
     id: launcherPanel
-    implicitWidth: launcherPanel.settingsPanelVisible ? 1000 : 600
-    implicitHeight: launcherPanel.settingsPanelVisible ? 700 : 640
+    implicitWidth: launcherPanel.settingsPanelVisible ? 
+    (currentSizes.launcherPanel?.settingsWidth || 1000) : 
+    (currentSizes.launcherPanel?.width || 600)
+implicitHeight: launcherPanel.settingsPanelVisible ? 
+    (currentSizes.launcherPanel?.settingsHeight || 700) : 
+    (currentSizes.launcherPanel?.height || 640)
     color: "transparent"
     focusable: true
 
@@ -85,15 +89,15 @@ function closePanel() {
 
         Rectangle {
             anchors.fill: parent
-            radius: 20
+            radius: currentSizes.launcherPanel?.radius || 20
             color: theme.primary.background
             border.color: theme.normal.black
             border.width: 3
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 16
-                spacing: 12
+                anchors.margins: currentSizes.launcherPanel?.margins || 16
+                spacing: currentSizes.spacing?.medium || 12
 
                 LauncherComponents.Sidebar {
                     onAppLaunched: launcherPanel.openLauncher()
@@ -114,12 +118,12 @@ function closePanel() {
                     visible: launcherPanel.launcherPanelVisible
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    spacing: 10
+                    spacing: currentSizes.launcherPanel?.spacing || 10
 
                     Text {
                         text: "Ứng dụng"
                         color: theme.primary.foreground
-                        font.pixelSize: 40
+                        font.pixelSize: currentSizes.launcherPanel?.titleFontSize ||  40
                         font.bold: true
                         font.family: "ComicShannsMono Nerd Font"
                         Layout.alignment: Qt.AlignHCenter

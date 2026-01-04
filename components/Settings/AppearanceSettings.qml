@@ -24,17 +24,17 @@ Item {
             property string position: ""
             property var anchorConfig: ({})
 
-            width: 60
-            height: 60
-            radius: 12
+            width: currentSizes.appearanceSettings?.positionButtonWidth || 60
+            height: currentSizes.appearanceSettings?.positionButtonHeight || 60
+            radius: currentSizes.appearanceSettings?.positionButtonRadius || currentSizes.radius?.normal || 12
             color: currentConfig.clockPanelPosition === position ? theme.normal.blue : (mouseArea.containsMouse ? theme.button.background_select : theme.button.background)
             border.color: currentConfig.clockPanelPosition === position ? theme.normal.blue : (mouseArea.containsPress ? theme.button.border_select : theme.button.border)
             border.width: 3
 
             Rectangle {
-                width: 25
-                height: 15
-                radius: 6
+                width: currentSizes.appearanceSettings?.positionIndicatorWidth || 25
+                height: currentSizes.appearanceSettings?.positionIndicatorHeight || 15
+                radius: currentSizes.appearanceSettings?.positionIndicatorRadius || currentSizes.radius?.small || 6
                 color: theme.primary.background
 
                 anchors.top: anchorConfig.top ? parent.top : undefined
@@ -44,10 +44,10 @@ Item {
                 anchors.horizontalCenter: anchorConfig.hCenter ? parent.horizontalCenter : undefined
                 anchors.verticalCenter: anchorConfig.vCenter ? parent.verticalCenter : undefined
 
-                anchors.topMargin: anchorConfig.top ? 10 : 0
-                anchors.bottomMargin: anchorConfig.bottom ? 10 : 0
-                anchors.leftMargin: anchorConfig.left ? 10 : 0
-                anchors.rightMargin: anchorConfig.right ? 10 : 0
+                anchors.topMargin: anchorConfig.top ? currentSizes.spacing?.normal : 0
+                anchors.bottomMargin: anchorConfig.bottom ? currentSizes.spacing?.normal : 0
+                anchors.leftMargin: anchorConfig.left ? currentSizes.spacing?.normal : 0
+                anchors.rightMargin: anchorConfig.right ? currentSizes.spacing?.normal : 0
             }
 
             MouseArea {
@@ -62,22 +62,22 @@ Item {
 
     ScrollView {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: currentSizes.appearanceSettings?.margin || 20
         clip: true
 
         ColumnLayout {
             width: parent.width
-            spacing: 20
+            spacing: currentSizes.appearanceSettings?.sectionSpacing || 20
 
             Text {
                 text: lang.appearance?.title || "Giao diện"
                 color: theme.primary.foreground
                 font {
                     family: "ComicShannsMono Nerd Font"
-                    pixelSize: 24
+                    pixelSize: currentSizes.appearanceSettings?.titleFontSize || currentSizes.fontSize?.xlarge || 24
                     bold: true
                 }
-                Layout.topMargin: 10
+                Layout.topMargin: currentSizes.spacing?.normal || 10
             }
 
             Rectangle {
@@ -95,20 +95,20 @@ Item {
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
+                        pixelSize: currentSizes.fontSize?.medium || 16
                     }
-                    Layout.preferredWidth: 150
+                    Layout.preferredWidth: currentSizes.appearanceSettings?.themeSelectionpreferredWidth || 150
                 }
 
                 Row {
-                    spacing: 15
+                    spacing: currentSizes.spacing?.large || 12
 
                     // Light Theme Card
                     Rectangle {
                         id: lightThemeCard
-                        width: 100
-                        height: 80
-                        radius: 12
+                        width: currentSizes.appearanceSettings?.themeCardWidth || 100
+                        height: currentSizes.appearanceSettings?.themeCardHeight || 80
+                        radius: currentSizes.radius?.normal || 12
                         color: "#f5eee6"
                         border.color: theme.type === "light" ? theme.normal.blue : theme.button.border
                         border.width: theme.type === "light" ? 3 : 2
@@ -118,16 +118,16 @@ Item {
                             spacing: 6
 
                             Rectangle {
-                                width: 60
-                                height: 24
-                                radius: 6
+                                width: currentSizes.panelWidth?.appIcons || 60
+                                height: currentSizes.launcherPanel?.searchIconSize || 24
+                                radius: currentSizes.radius?.small || 8
                                 color: "#2b2530"
                             }
 
                             Rectangle {
-                                width: 60
-                                height: 10
-                                radius: 3
+                                width: currentSizes.panelWidth?.appIcons || 60
+                                height: currentSizes.appearanceSettings?.rowSpacing || 10
+                                radius: currentSizes.appearanceSettings.themeCardSelectedBorderWidth || 3
                                 color: "#b0a89e"
                             }
                         }
@@ -178,9 +178,9 @@ Item {
                     // Dark Theme Card
                     Rectangle {
                         id: darkThemeCard
-                        width: 100
-                        height: 80
-                        radius: 12
+                        width: currentSizes.appearanceSettings?.themeCardWidth || 100
+                        height: currentSizes.appearanceSettings?.themeCardHeight || 80
+                        radius: currentSizes.radius?.normal || 12
                         color: "#24273a"
                         border.color: theme.type === "dark" ? theme.normal.blue : theme.button.border
                         border.width: theme.type === "dark" ? 3 : 2
@@ -190,16 +190,16 @@ Item {
                             spacing: 6
 
                             Rectangle {
-                                width: 60
-                                height: 24
-                                radius: 6
+                                width: currentSizes.panelWidth?.appIcons || 60
+                                height: currentSizes.launcherPanel?.searchIconSize || 24
+                                radius: currentSizes.radius?.small || 8
                                 color: "#cad3f5"
                             }
 
                             Rectangle {
-                                width: 60
-                                height: 10
-                                radius: 3
+                                width: currentSizes.panelWidth?.appIcons || 60
+                                height: currentSizes.appearanceSettings?.rowSpacing || 10
+                                radius: currentSizes.appearanceSettings.themeCardSelectedBorderWidth || 3
                                 color: "#494d64"
                             }
                         }
@@ -259,9 +259,9 @@ Item {
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
+                        pixelSize: currentSizes.fontSize?.medium || 16
                     }
-                    Layout.preferredWidth: 150
+                    Layout.preferredWidth: currentSizes.appearanceSettings?.themeSelectionpreferredWidth || 150
                 }
 
                 Column {
@@ -272,9 +272,9 @@ Item {
                         spacing: 10
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1280.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1280.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -288,7 +288,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -296,10 +296,10 @@ Item {
 
                                 Text {
                                     text: "HD"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -317,9 +317,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1366.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1366.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -333,7 +333,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -341,10 +341,10 @@ Item {
 
                                 Text {
                                     text: "HD (WXGA)"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -362,9 +362,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1440.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1440.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -378,7 +378,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -386,10 +386,10 @@ Item {
 
                                 Text {
                                     text: "HD+ (WXGA+)"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -412,9 +412,9 @@ Item {
                         spacing: 10
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1600.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1600.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -428,7 +428,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -436,10 +436,10 @@ Item {
 
                                 Text {
                                     text: "HD+"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -457,9 +457,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1680.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1680.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -473,7 +473,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -481,10 +481,10 @@ Item {
 
                                 Text {
                                     text: "WSXGA+"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -502,9 +502,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea1920.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea1920.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -518,7 +518,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -526,10 +526,10 @@ Item {
 
                                 Text {
                                     text: "Full HD"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -552,9 +552,9 @@ Item {
                         spacing: 10
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea2560.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea2560.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -568,7 +568,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -576,10 +576,10 @@ Item {
 
                                 Text {
                                     text: "2K / QHD"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -597,9 +597,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea2880.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea2880.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -613,7 +613,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -621,10 +621,10 @@ Item {
 
                                 Text {
                                     text: "3K"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -642,9 +642,9 @@ Item {
                         }
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea3440.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea3440.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -658,7 +658,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -666,10 +666,10 @@ Item {
 
                                 Text {
                                     text: "UW-QHD"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -692,9 +692,9 @@ Item {
                         spacing: 10
 
                         Rectangle {
-                            width: 90
-                            height: 50
-                            radius: 8
+                            width: currentSizes.appearanceSettings?.panelSizeButtonWidth || 90
+                            height: currentSizes.appearanceSettings?.panelSizeButtonHeight || 50
+                            radius: currentSizes.appearanceSettings?.panelSizeButtonRadius || 8
                             color: mouseArea3840.containsMouse ? theme.button.background_select : theme.button.background
                             border.color: mouseArea3840.containsPress ? theme.button.border_select : theme.button.border
                             border.width: 2
@@ -708,7 +708,7 @@ Item {
                                     color: theme.primary.foreground
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 16
+                                        pixelSize: currentSizes.fontSize?.medium || 16
                                         bold: true
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
@@ -716,10 +716,10 @@ Item {
 
                                 Text {
                                     text: "4K / UHD"
-                                    color: theme.primary.dim_foreground
+                                    color: theme.primary.foreground 
                                     font {
                                         family: "ComicShannsMono Nerd Font"
-                                        pixelSize: 11
+                                        pixelSize: currentSizes.fontSize?.small || 12
                                     }
                                     anchors.horizontalCenter: parent.horizontalCenter
                                 }
@@ -747,7 +747,7 @@ Item {
                     text: lang.appearance?.clock_panel_label || "Bảng đồng hồ:"
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
-                    font.pixelSize: 18
+                    font.pixelSize: currentSizes.fontSize?.medium || 16
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 }
 
@@ -765,9 +765,9 @@ Item {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
                     background: Rectangle {
-                        implicitWidth: 48
-                        implicitHeight: 28
-                        radius: 14
+                        implicitWidth: currentSizes.appearanceSettings?.switchWidth || 48
+                        implicitHeight: currentSizes.appearanceSettings?.switchHeight || 28
+                        radius: currentSizes.appearanceSettings?.switchRadius || 14
                         color: autoStartSwitch.checked ? theme.normal.blue : theme.button.background
                         border.color: autoStartSwitch.checked ? theme.normal.blue : theme.button.border
                         border.width: 2
@@ -776,9 +776,9 @@ Item {
                     indicator: Rectangle {
                         x: autoStartSwitch.checked ? parent.background.width - width - 4 : 4
                         y: (parent.background.height - height) / 2
-                        width: 20
-                        height: 20
-                        radius: 10
+                        width: currentSizes.appearanceSettings?.switchIndicatorSize || 20
+                        height: currentSizes.appearanceSettings?.switchIndicatorSize || 20
+                        radius: currentSizes.appearanceSettings?.switchIndicatorSize / 2 || 10
                         color: theme.primary.background
 
                         Behavior on x {
@@ -796,18 +796,18 @@ Item {
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
+                        pixelSize: currentSizes.fontSize?.medium || 16
                     }
-                    Layout.preferredWidth: 150
+                    Layout.preferredWidth: currentSizes.appearanceSettings?.themeSelectionpreferredWidth || 150
                 }
 
                 Row {
                     spacing: 15
 
                     Rectangle {
-                        width: 80
-                        height: 40
-                        radius: 8
+                        width: currentSizes.appearanceSettings?.themeCardHeight || 80
+                        height: currentSizes.launcherPanel?.itemIconSize || 40
+                        radius: currentSizes.radius?.small || 8
                         color: currentConfig.mainPanelPos === "top" ? theme.normal.blue : (mouseAreaTop.containsMouse ? theme.button.background_select : theme.button.background)
                         border.color: currentConfig.mainPanelPos === "top" ? theme.normal.blue : (mouseAreaTop.containsPress ? theme.button.border_select : theme.button.border)
                         border.width: 2
@@ -817,7 +817,7 @@ Item {
                             color: currentConfig.mainPanelPos === "top" ? theme.primary.background : theme.primary.foreground
                             font {
                                 family: "ComicShannsMono Nerd Font"
-                                pixelSize: 14
+                                pixelSize: currentSizes.fontSize?.normal || 14
                                 bold: currentConfig.mainPanelPos === "top"
                             }
                             anchors.centerIn: parent
@@ -835,9 +835,9 @@ Item {
                     }
 
                     Rectangle {
-                        width: 80
-                        height: 40
-                        radius: 8
+                        width: currentSizes.appearanceSettings?.themeCardHeight || 80
+                        height: currentSizes.launcherPanel?.itemIconSize || 40
+                        radius: currentSizes.radius?.small || 8
                         color: currentConfig.mainPanelPos === "bottom" ? theme.normal.blue : (mouseAreaBottom.containsMouse ? theme.button.background_select : theme.button.background)
                         border.color: currentConfig.mainPanelPos === "bottom" ? theme.normal.blue : (mouseAreaBottom.containsPress ? theme.button.border_select : theme.button.border)
                         border.width: 2
@@ -847,7 +847,7 @@ Item {
                             color: currentConfig.mainPanelPos === "bottom" ? theme.primary.background : theme.primary.foreground
                             font {
                                 family: "ComicShannsMono Nerd Font"
-                                pixelSize: 14
+                                pixelSize: currentSizes.fontSize?.normal || 14
                                 bold: currentConfig.mainPanelPos === "bottom"
                             }
                             anchors.centerIn: parent
@@ -874,9 +874,9 @@ Item {
                     color: theme.primary.foreground
                     font {
                         family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
+                        pixelSize: currentSizes.fontSize?.medium || 16
                     }
-                    Layout.preferredWidth: 150
+                    Layout.preferredWidth: currentSizes.appearanceSettings?.themeSelectionpreferredWidth || 150
                 }
 
                 Column {
@@ -964,97 +964,6 @@ Item {
                                 item.anchorConfig = { bottom: true, right: true }
                             }
                         }
-                    }
-                }
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: 15
-
-                Text {
-                    text: lang.appearance?.panel_height_label || "Chiều cao panel:"
-                    color: theme.primary.foreground
-                    font {
-                        family: "ComicShannsMono Nerd Font"
-                        pixelSize: 16
-                    }
-                    Layout.preferredWidth: 150
-                }
-
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    spacing: 5
-
-                    Slider {
-                        id: opacitySlider
-                        Layout.fillWidth: true
-                        value: 0.5
-                        from: 0
-                        to: 1.0
-
-                        property bool isInitialized: false
-
-                        Component.onCompleted: {
-                            Qt.callLater(function() {
-                                if (panelConfig && panelConfig.json && panelConfig.json.width_panel !== undefined) {
-                                    value = panelConfig.json.width_panel / 100
-                                }
-                                isInitialized = true
-                            })
-                        }
-
-                        onValueChanged: {
-                            if (!isInitialized) return
-
-                            var newValue = Math.round(value * 100)
-                            if (panelConfig && panelConfig.json) {
-                                panelConfig.set("width_panel", newValue)
-                            }
-                        }
-
-                        background: Rectangle {
-                            x: opacitySlider.leftPadding
-                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
-                            implicitWidth: 200
-                            implicitHeight: 6
-                            width: opacitySlider.availableWidth
-                            height: implicitHeight
-                            radius: 3
-                            color: theme.button.background
-
-                            Rectangle {
-                                width: opacitySlider.visualPosition * parent.width
-                                height: parent.height
-                                color: theme.normal.blue
-                                radius: 3
-                            }
-                        }
-
-                        handle: Rectangle {
-                            x: opacitySlider.leftPadding + opacitySlider.visualPosition * (opacitySlider.availableWidth - width)
-                            y: opacitySlider.topPadding + opacitySlider.availableHeight / 2 - height / 2
-                            implicitWidth: 22
-                            implicitHeight: 22
-                            radius: 11
-                            color: opacitySlider.pressed ? theme.normal.blue : theme.primary.background
-                            border.color: theme.normal.blue
-                            border.width: 3
-
-                            Behavior on color {
-                                ColorAnimation { duration: 150 }
-                            }
-                        }
-                    }
-
-                    Text {
-                        text: Math.round(opacitySlider.value * 100) + "%"
-                        color: theme.primary.dim_foreground
-                        font {
-                            family: "ComicShannsMono Nerd Font"
-                            pixelSize: 14
-                        }
-                        Layout.alignment: Qt.AlignRight
                     }
                 }
             }

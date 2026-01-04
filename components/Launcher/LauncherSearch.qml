@@ -5,8 +5,8 @@ import QtQuick.Layouts
 Rectangle {
     id: root
     Layout.fillWidth: true
-    Layout.preferredHeight: 45
-    radius: 12
+    Layout.preferredHeight: currentSizes.launcherPanel?.searchHeight || 45
+    radius: currentSizes.radius?.normal || 12
     color: theme.primary.dim_background
     border.color: theme.normal.black
     border.width: 2
@@ -19,13 +19,13 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
-        anchors.margins: 8
+        anchors.margins: currentSizes.spacing?.normal || 8
         spacing: 8
 
         Image {
             source: "../../assets/search.png"
-            Layout.preferredHeight: 24
-            Layout.preferredWidth: 24
+            Layout.preferredHeight: currentSizes.launcherPanel?.searchIconSize || 24
+            Layout.preferredWidth: currentSizes.launcherPanel?.searchIconSize || 24
             fillMode: Image.PreserveAspectFit
             smooth: true
         }
@@ -36,7 +36,7 @@ Rectangle {
             placeholderText: "Tìm kiếm ứng dụng..."
             palette.text: theme.primary.foreground       // màu chữ chính
             palette.placeholderText: theme.primary.dim_foreground  // sửa thành dim_foreground
-            font.pixelSize: 14
+            font.pixelSize: currentSizes.fontSize?.normal || 14
             font.family: "ComicShannsMono Nerd Font"
             background: Rectangle { 
                 color: "transparent" 

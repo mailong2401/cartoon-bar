@@ -96,13 +96,13 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
         anchors.margins: currentSizes.spacing?.normal || 8
-        Layout.alignment: Qt.AlignVCenter
+        spacing: currentSizes.spacing?.medium || 12
 
-        // Song info với hiệu ứng marquee
+        // Song info với hiệu ứng marquee - chiếm toàn bộ không gian còn lại
         ColumnLayout {
-            spacing: currentSizes.spacing?.small || 2
+            id: songInfoColumn
             Layout.fillWidth: true
-            Layout.maximumWidth: parent.width * (currentSizes.musicPlayerLayout?.maxWidth || 0.7) // Giới hạn chiều rộng
+            spacing: currentSizes.spacing?.small || 2
 
             // Container cho song title với marquee effect
             Rectangle {
@@ -164,12 +164,14 @@ Rectangle {
             }
         }
 
-        Item { Layout.fillWidth: true }  // spacer
-
-        // Controls
+        // Controls - chỉ đủ rộng cho các nút
         RowLayout {
+            id: controlsRow
             spacing: currentSizes.spacing?.medium || 12
-            Layout.alignment: Qt.AlignVCenter
+            Layout.fillHeight: true  // Chiếm toàn bộ chiều cao
+            Layout.preferredWidth: childrenRect.width // Chỉ đủ rộng cho các nút
+            Layout.minimumWidth: childrenRect.width
+            Layout.maximumWidth: childrenRect.width
 
             // Previous button
             Image {
@@ -211,7 +213,6 @@ Rectangle {
                     onClicked: {
                         // Command play/pause
                         isPlaying ? musicPlayer.musicController("pause") : musicPlayer.musicController("play")
-
                     }
                     
                     // Hiệu ứng hover
