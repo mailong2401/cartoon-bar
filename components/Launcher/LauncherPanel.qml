@@ -27,6 +27,7 @@ implicitHeight: launcherPanel.settingsPanelVisible ?
 
     property var theme: currentTheme
     property bool settingsPanelVisible: false
+    property var lang : currentLanguage
     property bool launcherPanelVisible: true
 
     function openSettings() {
@@ -126,7 +127,7 @@ function closePanel() {
                     spacing: currentSizes.launcherPanel?.spacing || 10
 
                     Text {
-                        text: "Ứng dụng"
+                        text: lang.system.application
                         color: theme.primary.foreground
                         font.pixelSize: currentSizes.launcherPanel?.titleFontSize ||  40
                         font.bold: true
