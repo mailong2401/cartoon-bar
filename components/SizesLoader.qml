@@ -4,7 +4,7 @@ import QtQuick 2.15
 QtObject {
     id: sizesLoader
 
-    property string currentSizeProfile: currentConfig.displaySize  // Độ phân giải mặc định
+    property string currentSizeProfile: "1920"  // Độ phân giải mặc định
     property var sizes: ({})  // Tất cả kích thước hiện tại
 
     signal sizesReloaded()     // Signal thông báo kích thước đã thay đổi

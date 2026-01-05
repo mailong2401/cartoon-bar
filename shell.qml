@@ -138,7 +138,7 @@ ShellRoot {
             }
             
             Components.StatusArea {
-                Layout.preferredWidth: currentSizes.panelWidth?.statusArea || 280
+                Layout.preferredWidth: currentSizes.panelWidth?.statusArea || 430
                 Layout.fillHeight: true
             }
         }
