@@ -18,6 +18,7 @@
 
 - [Introduction](#-introduction)
 - [Features](#-features)
+- [Screenshots](#-screenshots)
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Configuration](#-configuration)
@@ -43,6 +44,62 @@
 - 🎵 **Media Control**: Integrated playerctl for Spotify/MPD
 - 🌦️ **Weather Widget**: Real-time weather API
 - 💻 **System Monitor**: CPU, RAM, Network, Battery tracking
+
+---
+
+## 📸 Screenshots
+
+### Menu & Settings
+
+| Launcher | Settings Panel |
+|:--------:|:--------------:|
+| ![Launcher](screenshot/menu/screenshot_Launcher.png) | ![Settings 1](screenshot/menu/screenshot_setting1.png) |
+
+| Settings Panel (cont.) | Confirm Dialog |
+|:----------------------:|:--------------:|
+| ![Settings 2](screenshot/menu/screenshot_setting2.png) | ![Confirm Dialog](screenshot/menu/screenshot_ConfirmDialog1.png) |
+
+| Confirm Dialog (cont.) |
+|:----------------------:|
+| ![Confirm Dialog 2](screenshot/menu/screenshot_ConfirmDialog2.png) |
+
+### System Status Panels
+
+| CPU Panel | RAM Panel |
+|:---------:|:---------:|
+| ![CPU](screenshot/cpu/screenshot_panel_cpu.png) | ![RAM](screenshot/ram/screenshot_panel_ram.png) |
+
+| Battery Panel |
+|:-------------:|
+| ![Battery](screenshot/battery/screenshot_panel_battery_1.png) |
+
+### Network & Connectivity
+
+| WiFi Panel | WiFi Panel (cont.) |
+|:----------:|:------------------:|
+| ![WiFi 1](screenshot/wifi/screenshot_panel_wifi_1.png) | ![WiFi 2](screenshot/wifi/screenshot_panel_wifi_2.png) |
+
+| Bluetooth Panel | Bluetooth Panel (cont.) |
+|:---------------:|:-----------------------:|
+| ![Bluetooth 1](screenshot/bluetooth/screenshot_2026-01-06_06-36-52.png) | ![Bluetooth 2](screenshot/bluetooth/screenshot_2026-01-06_06-37-01.png) |
+
+### Audio
+
+| Mixer Panel |
+|:-----------:|
+| ![Mixer](screenshot/mixer/screenshot_panel_mixer.png) |
+
+### Time & Calendar
+
+| Calendar | Country Flag Selection |
+|:--------:|:----------------------:|
+| ![Calendar](screenshot/panel_time/screenshot_calendar.png) | ![Flag Selection](screenshot/panel_time/screenshot_select_flag.png) |
+
+### Volume OSD
+
+| Volume OSD |
+|:----------:|
+| ![Volume OSD](screenshot/volumeOsd/volume_osd.gif) |
 
 ---
 
