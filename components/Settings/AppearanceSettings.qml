@@ -18,8 +18,13 @@ Item {
 
     // Hàm helper để set display size
     function setDisplaySize(size) {
-        sizesLoader.changeSizeProfile(size)
+        console.log("Setting display size to:", size)
+        // Save to config first
         panelConfig.set("displaySize", size)
+        console.log("Config saved, now changing size profile...")
+        // Then change the size profile
+        sizesLoader.changeSizeProfile(size)
+        console.log("Size profile changed to:", size)
     }
 
     // Data model cho các kích thước màn hình

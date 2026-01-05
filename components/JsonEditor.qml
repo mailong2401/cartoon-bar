@@ -44,6 +44,9 @@ QtObject {
 
     // Set giá trị (support path dạng a.b.c)
     function set(path, value) {
+        // Reload json từ file trước khi set để đảm bảo sync
+        load(filePath)
+
         var keys = path.split(".")
         var obj = json
 

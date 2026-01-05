@@ -76,6 +76,11 @@ ShellRoot {
         target: configLoader
         function onConfigReloaded() {
             currentConfig = configLoader.config
+            // Update size profile when config changes or on first load
+            if (currentConfig.displaySize && sizesLoader.currentSizeProfile !== currentConfig.displaySize) {
+                console.log("Config reloaded, updating size profile to:", currentConfig.displaySize)
+                sizesLoader.changeSizeProfile(currentConfig.displaySize)
+            }
         }
     }
 
