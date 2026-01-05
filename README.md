@@ -4,6 +4,8 @@
 
 ![Cartoon Bar Demo](https://github.com/user-attachments/assets/303b472b-cd2a-4213-b88b-9d24d28541fc)
 
+![Cartoon Bar Screenshot](https://github.com/user-attachments/assets/5d26eb04-14fa-42c2-a8a8-3d8ddafc04c7)
+
 *A modern, feature-rich Wayland panel built with QuickShell for Hyprland*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
