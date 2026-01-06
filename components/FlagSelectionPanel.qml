@@ -8,6 +8,10 @@ import "." as Components
 PanelWindow {
     id: flagSelectionPanel
 
+    property var sizes: currentSizes.flagSelectionPanel || {}
+    property var theme: currentTheme
+    property string selectedFlag: currentConfig.selectedFlag
+
     Components.JsonEditor {
         id: panelConfig
         filePath: Qt.resolvedUrl("../configs/" + currentConfigProfile + ".json")
@@ -15,12 +19,9 @@ PanelWindow {
             panelConfig.load(panelConfig.filePath)
         }
     }
-    
-    implicitWidth: 600
-    implicitHeight: 420
 
-    property var theme: currentTheme
-    property string selectedFlag: currentConfig.selectedFlag
+    implicitWidth: sizes.width || 600
+    implicitHeight: sizes.height || 420
 
     property var flagList: [
         { name: "britain", displayName: "Britain" },
@@ -46,9 +47,9 @@ PanelWindow {
     }
 
     margins {
-        top: currentConfig.mainPanelPos === "top" ? 10 : 0
-        bottom: currentConfig.mainPanelPos === "bottom" ? 10 : 0
-        left: 800
+        top: currentConfig.mainPanelPos === "top" ? (sizes.marginTop || 10) : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.marginBottom || 10) : 0
+        left: sizes.marginLeft || 800
     }
 
     exclusiveZone: 0
@@ -62,24 +63,24 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 10
+        radius: sizes.radius || 10
         border.color: theme.normal.black
-        border.width: 3
+        border.width: sizes.borderWidth || 3
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 20
-            spacing: 15
+            anchors.margins: sizes.margins || 20
+            spacing: sizes.spacing || 15
 
             // Header
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 10
+                spacing: sizes.headerSpacing || 10
 
                 Image {
                     source: "../assets/panel/earth.png"
-                    width: 32
-                    height: 32
+                    width: sizes.headerIconSize || 32
+                    height: sizes.headerIconSize || 32
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                 }
@@ -88,7 +89,7 @@ PanelWindow {
                     text: "Select Your Country Flag"
                     color: theme.primary.foreground
                     font {
-                        pixelSize: 32
+                        pixelSize: sizes.headerFontSize || 32
                         bold: true
                         family: "ComicShannsMono Nerd Font"
                     }
@@ -99,7 +100,7 @@ PanelWindow {
             // Divider
             Rectangle {
                 Layout.fillWidth: true
-                height: 2
+                height: sizes.dividerHeight || 2
                 color: theme.normal.black
                 radius: 1
             }
@@ -108,29 +109,29 @@ PanelWindow {
             Grid {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                columns: 5
-                columnSpacing: 12
-                rowSpacing: 12
+                columns: sizes.gridColumns || 5
+                columnSpacing: sizes.gridColumnSpacing || 12
+                rowSpacing: sizes.gridRowSpacing || 12
 
                 Repeater {
                     model: flagSelectionPanel.flagList
 
                     Rectangle {
-                        width: 105
-                        height: 70
+                        width: sizes.flagItemWidth || 105
+                        height: sizes.flagItemHeight || 70
                         color: flagSelectionPanel.selectedFlag === modelData.name ? theme.primary.dim_background : theme.primary.background
                         border.color: flagSelectionPanel.selectedFlag === modelData.name ? theme.normal.green : theme.normal.black
-                        border.width: flagSelectionPanel.selectedFlag === modelData.name ? 3 : 2
-                        radius: 10
+                        border.width: flagSelectionPanel.selectedFlag === modelData.name ? (sizes.flagItemSelectedBorderWidth || 3) : (sizes.flagItemBorderWidth || 2)
+                        radius: sizes.flagItemRadius || 10
 
                         Column {
                             anchors.centerIn: parent
-                            spacing: 4
+                            spacing: sizes.flagItemSpacing || 4
 
                             Image {
                                 source: `../assets/flags/${modelData.name}.png`
-                                width: 64
-                                height: 45
+                                width: sizes.flagImageWidth || 64
+                                height: sizes.flagImageHeight || 45
                                 fillMode: Image.PreserveAspectFit
                                 smooth: true
                                 anchors.horizontalCenter: parent.horizontalCenter
@@ -140,7 +141,7 @@ PanelWindow {
                                 text: modelData.displayName
                                 color: theme.primary.foreground
                                 font {
-                                    pixelSize: 12
+                                    pixelSize: sizes.flagNameFontSize || 12
                                     family: "ComicShannsMono Nerd Font"
                                     bold: flagSelectionPanel.selectedFlag === modelData.name
                                 }
@@ -155,7 +156,7 @@ PanelWindow {
 
                             onClicked: {
                                 setFlag(modelData.name)
-                                
+
                             }
 
                             onEntered: {
@@ -185,7 +186,7 @@ PanelWindow {
                 text: `Selected: ${flagSelectionPanel.selectedFlag}`
                 color: theme.primary.dim_foreground
                 font {
-                    pixelSize: 16
+                    pixelSize: sizes.footerFontSize || 16
                     family: "ComicShannsMono Nerd Font"
                     italic: true
                 }
