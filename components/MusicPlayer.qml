@@ -112,18 +112,33 @@ Rectangle {
                 color: "transparent"
                 clip: true
 
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    onClicked: {
+                        if (musicPanelLoader.active && musicPanelLoader.item) {
+                            musicPanelLoader.item.visible = !musicPanelLoader.item.visible
+                        } else {
+                            musicPanelLoader.active = true
+                        }
+                    }
+                    onEntered: songContainer.opacity = 0.8
+                    onExited: songContainer.opacity = 1.0
+                }
+
                 Text {
                     id: songText
                     text: truncatedSong
                     color: theme.primary.foreground
                     font.pixelSize: currentSizes.fontSize?.medium || 16
                     elide: Text.ElideRight
-                    
+
                     // Hiệu ứng marquee khi text quá dài
                     property bool needsMarquee: currentSong.length > 30
-                    
+
                     x: needsMarquee && marqueeTimer.running ? -marqueeAnimation.value : 0
-                    
+
                     Behavior on x {
                         NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
                     }
@@ -151,6 +166,10 @@ Rectangle {
                             marqueeAnimation.start()
                         }
                     }
+                }
+
+                Behavior on opacity {
+                    NumberAnimation { duration: 100 }
                 }
             }
 
@@ -249,6 +268,16 @@ Rectangle {
         }
     }
 
+
+    // Loader for MusicPanel
+    Loader {
+        id: musicPanelLoader
+        active: false
+        source: "MusicPanel.qml"
+        onLoaded: {
+            item.visible = true
+        }
+    }
 
     Component.onCompleted: {
         truncatedSong = currentSong.length > 30 ? currentSong.substring(0, 30) + "..." : currentSong

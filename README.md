@@ -177,6 +177,7 @@ hyprctl               # Hyprland control
 
 # Media player
 playerctl             # MPRIS media control
+cava                  # Audio visualizer for Music Panel
 
 # Network
 networkmanager        # WiFi/Network management
@@ -231,7 +232,7 @@ chmod +x setup.sh
 ```bash
 # Install main packages
 sudo pacman -S hyprland quickshell playerctl networkmanager \
-               bluez bluez-utils pipewire wireplumber curl python
+               bluez bluez-utils pipewire wireplumber curl python cava
 
 # Install Nerd Font
 yay -S ttf-comicshannsmono-nerd
@@ -351,11 +352,17 @@ bottomLeft  bottom  bottomRight
 - Real-time tracking via Hyprland socket
 
 ### MusicPlayer
-- Support: Spotify, MPD, VLC, etc. (MPRIS compatible)
+- Support: Spotify, MPD, VLC, Firefox, etc. (MPRIS compatible)
 - Display: Artist - Song title (marquee scrolling)
 - Controls: Previous, Play/Pause, Next
 - Updates every 1 second
 - Scripts: `music-controller`, `check-playing`
+- **Music Panel** (click on song info):
+  - Album art display
+  - Song title & artist
+  - Progress bar with time
+  - Playback controls
+  - **Cava audio visualizer** with theme colors
 
 ### Timespace Widget
 - **⏰ Clock**: Display HH:MM
