@@ -195,7 +195,7 @@ Rectangle {
             // Previous button
             Image {
                 id: preBtn
-                source: "../assets/music/pre.png"
+                source: theme.type === "dark" ? "../assets/music/pre_dark.png" : "../assets/music/pre.png"
                 Layout.preferredWidth: currentSizes.iconSize?.normal || 30
                 Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit
@@ -220,7 +220,10 @@ Rectangle {
             // Play/Pause button
             Image {
                 id: playPauseBtn
-                source: isPlaying ? "../assets/music/pause.png" : "../assets/music/play.png"
+                source: {
+                    var suffix = theme.type === "dark" ? "_dark" : ""
+                    return isPlaying ? "../assets/music/pause" + suffix + ".png" : "../assets/music/play" + suffix + ".png"
+                }
                 Layout.preferredWidth: currentSizes.iconSize?.normal || 30
                 Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit
@@ -245,7 +248,7 @@ Rectangle {
             // Next button
             Image {
                 id: nextBtn
-                source: "../assets/music/next.png"
+                source: theme.type === "dark" ? "../assets/music/next_dark.png" : "../assets/music/next.png"
                 Layout.preferredWidth: currentSizes.iconSize?.normal || 30
                 Layout.preferredHeight: currentSizes.iconSize?.normal || 30
                 fillMode: Image.PreserveAspectFit

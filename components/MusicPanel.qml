@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Io
+import Quickshell.Widgets
 import "." as Components
 
 PanelWindow {
@@ -28,12 +29,13 @@ PanelWindow {
     anchors {
         top: currentConfig.mainPanelPos === "top"
         bottom: currentConfig.mainPanelPos === "bottom"
+        left: true
     }
 
     margins {
         top: currentConfig.mainPanelPos === "top" ? (sizes.marginTop || 10) : 0
         bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.marginBottom || 10) : 0
-        left: sizes.marginLeft || 300
+        left: sizes.marginLeft || 400
     }
 
     exclusiveZone: 0
@@ -139,38 +141,46 @@ PanelWindow {
             spacing: sizes.spacing || 16
 
             // Header
-            RowLayout {
+            Item {
                 Layout.fillWidth: true
                 Layout.preferredHeight: sizes.headerHeight || 50
-                spacing: sizes.headerSpacing || 12
 
-                Image {
-                    source: "../assets/music/music-icon.png"
-                    Layout.preferredWidth: sizes.headerIconSize || 32
-                    Layout.preferredHeight: sizes.headerIconSize || 32
-                    fillMode: Image.PreserveAspectFit
-                    visible: source != ""
+                // Title centered
+                Row {
+                    anchors.centerIn: parent
+                    spacing: sizes.headerSpacing || 12
+
+                    Image {
+                        source: "../assets/music/music-icon.png"
+                        width: sizes.headerIconSize || 32
+                        height: sizes.headerIconSize || 32
+                        fillMode: Image.PreserveAspectFit
+                        visible: source != ""
+                    }
+
+                    Text {
+                        text: lang.musicPanel?.title || "Music Player"
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: currentSizes.ramManagement?.header?.fontSize || 40
+                        font.bold: true
+                        color: theme.primary.foreground
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
                 }
 
-                Text {
-                    text: lang.musicPanel?.title || "Music Player"
-                    font.pixelSize: sizes.headerFontSize || 24
-                    font.bold: true
-                    color: theme.primary.foreground
-                }
-
-                Item { Layout.fillWidth: true }
-
-                // Close button
+                // Close button (right side)
                 Rectangle {
-                    Layout.preferredWidth: sizes.closeButtonSize || 32
-                    Layout.preferredHeight: sizes.closeButtonSize || 32
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: sizes.closeButtonSize || 32
+                    height: sizes.closeButtonSize || 32
                     radius: sizes.closeButtonRadius || 8
                     color: closeArea.containsMouse ? theme.normal.red : theme.button.background
 
                     Text {
                         anchors.centerIn: parent
                         text: "x"
+                        font.family: "ComicShannsMono Nerd Font"
                         font.pixelSize: sizes.closeButtonFontSize || 18
                         font.bold: true
                         color: theme.primary.foreground
@@ -192,33 +202,56 @@ PanelWindow {
                 Layout.preferredHeight: sizes.albumSectionHeight || 180
                 spacing: sizes.albumSpacing || 20
 
-                // Album art
-                Rectangle {
+                // Album art (circular with rotation)
+                Item {
                     Layout.preferredWidth: sizes.albumArtSize || 160
                     Layout.preferredHeight: sizes.albumArtSize || 160
-                    radius: sizes.albumArtRadius || 12
-                    color: theme.primary.dim_background
-                    clip: true
 
-                    Image {
-                        id: albumImage
+                    // Rotating container
+                    Item {
+                        id: rotatingContainer
                         anchors.fill: parent
-                        source: musicPanel.albumArt
-                        fillMode: Image.PreserveAspectCrop
-                        visible: status === Image.Ready
-                        cache: false
-                        asynchronous: true
-                    }
 
-                    // Placeholder when no album art
-                    Text {
-                        anchors.centerIn: parent
-                        text: "No Art"
-                        font.pixelSize: sizes.placeholderFontSize || 14
-                        color: theme.primary.dim_foreground
-                        visible: albumImage.status !== Image.Ready
+                        RotationAnimation on rotation {
+                            from: 0
+                            to: 360
+                            duration: 10000
+                            loops: Animation.Infinite
+                            running: isPlaying
+                        }
+
+                        ClippingRectangle {
+                            id: albumArtContainer
+                            anchors.fill: parent
+                            radius: width / 2
+                            color: theme.primary.dim_background
+                            border.color: theme.normal.black
+                            border.width: sizes.borderWidth || 3
+
+                            Image {
+                                id: albumImage
+                                anchors.fill: parent
+                                source: musicPanel.albumArt
+                                fillMode: Image.PreserveAspectCrop
+                                visible: status === Image.Ready
+                                cache: false
+                                asynchronous: true
+                                smooth: true
+                            }
+
+                            // Placeholder when no album art
+                            Text {
+                                anchors.centerIn: parent
+                                text: "No Art"
+                                font.family: "ComicShannsMono Nerd Font"
+                                font.pixelSize: sizes.placeholderFontSize || 14
+                                color: theme.primary.dim_foreground
+                                visible: albumImage.status !== Image.Ready
+                            }
+                        }
                     }
                 }
+
 
                 // Song info
                 ColumnLayout {
@@ -228,17 +261,55 @@ PanelWindow {
 
                     Item { Layout.fillHeight: true }
 
-                    Text {
-                        text: currentSong
-                        font.pixelSize: sizes.songFontSize || 22
-                        font.bold: true
-                        color: theme.primary.foreground
-                        elide: Text.ElideRight
+                    // Song title with marquee effect
+                    Item {
                         Layout.fillWidth: true
+                        Layout.preferredHeight: songText.height
+                        clip: true
+
+                        Text {
+                            id: songText
+                            text: currentSong
+                            font.family: "ComicShannsMono Nerd Font"
+                            font.pixelSize: sizes.songFontSize || 22
+                            font.bold: true
+                            color: theme.primary.foreground
+
+                            property bool needsMarquee: width > parent.width
+
+                            x: 0
+
+                            SequentialAnimation on x {
+                                id: marqueeAnimation
+                                running: songText.needsMarquee && musicPanel.visible
+                                loops: Animation.Infinite
+
+                                // Pause at start
+                                PauseAnimation { duration: 2000 }
+
+                                // Scroll left
+                                NumberAnimation {
+                                    to: -(songText.width - songText.parent.width)
+                                    duration: Math.max(2000, (songText.width - songText.parent.width) * 20)
+                                    easing.type: Easing.Linear
+                                }
+
+                                // Pause at end
+                                PauseAnimation { duration: 2000 }
+
+                                // Scroll back
+                                NumberAnimation {
+                                    to: 0
+                                    duration: Math.max(2000, (songText.width - songText.parent.width) * 20)
+                                    easing.type: Easing.Linear
+                                }
+                            }
+                        }
                     }
 
                     Text {
                         text: currentArtist
+                        font.family: "ComicShannsMono Nerd Font"
                         font.pixelSize: sizes.artistFontSize || 16
                         color: theme.primary.dim_foreground
                         elide: Text.ElideRight
@@ -274,6 +345,7 @@ PanelWindow {
 
                             Text {
                                 text: formatTime(position)
+                                font.family: "ComicShannsMono Nerd Font"
                                 font.pixelSize: sizes.timeFontSize || 11
                                 color: theme.primary.dim_foreground
                             }
@@ -282,6 +354,7 @@ PanelWindow {
 
                             Text {
                                 text: formatTime(duration)
+                                font.family: "ComicShannsMono Nerd Font"
                                 font.pixelSize: sizes.timeFontSize || 11
                                 color: theme.primary.dim_foreground
                             }
@@ -309,7 +382,7 @@ PanelWindow {
 
                     Image {
                         anchors.centerIn: parent
-                        source: "../assets/music/pre.png"
+                        source: theme.type === "dark" ? "../assets/music/pre_dark.png" : "../assets/music/pre.png"
                         width: sizes.controlIconSize || 28
                         height: sizes.controlIconSize || 28
                         fillMode: Image.PreserveAspectFit
@@ -335,7 +408,10 @@ PanelWindow {
 
                     Image {
                         anchors.centerIn: parent
-                        source: isPlaying ? "../assets/music/pause.png" : "../assets/music/play.png"
+                        source: {
+                            var suffix = theme.type === "dark" ? "_dark" : ""
+                            return isPlaying ? "../assets/music/pause" + suffix + ".png" : "../assets/music/play" + suffix + ".png"
+                        }
                         width: sizes.playIconSize || 32
                         height: sizes.playIconSize || 32
                         fillMode: Image.PreserveAspectFit
@@ -361,7 +437,7 @@ PanelWindow {
 
                     Image {
                         anchors.centerIn: parent
-                        source: "../assets/music/next.png"
+                        source: theme.type === "dark" ? "../assets/music/next_dark.png" : "../assets/music/next.png"
                         width: sizes.controlIconSize || 28
                         height: sizes.controlIconSize || 28
                         fillMode: Image.PreserveAspectFit
@@ -435,6 +511,7 @@ PanelWindow {
                     Text {
                         anchors.centerIn: parent
                         text: !isPlaying ? (lang.musicPanel?.notPlaying || "Not playing") : (lang.musicPanel?.loading || "Loading...")
+                        font.family: "ComicShannsMono Nerd Font"
                         font.pixelSize: sizes.cavaPlaceholderFontSize || 14
                         color: theme.primary.dim_foreground
                     }
