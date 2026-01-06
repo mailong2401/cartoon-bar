@@ -69,9 +69,15 @@
 |:---------:|:---------:|
 | ![CPU](screenshot/cpu/screenshot_panel_cpu.png) | ![RAM](screenshot/ram/screenshot_panel_ram.png) |
 
-| Battery Panel |
-|:-------------:|
-| ![Battery](screenshot/battery/screenshot_panel_battery_1.png) |
+| Battery Panel | Battery Panel (cont.) |
+|:-------------:|:---------------------:|
+| ![Battery 1](screenshot/battery/screenshot_panel_battery_1.png) | ![Battery 2](screenshot/battery/screenshot_panel_battery_2.png) |
+
+### Music Panel
+
+| Music Panel |
+|:-----------:|
+| ![Music Panel](screenshot/panelMusic/screenshot_panel_music.png) |
 
 ### Network & Connectivity
 

@@ -14,34 +14,23 @@ Rectangle {
     property string currentSong: "No song playing"
     property string currentArtist: ""
     property bool isPlaying: false
-    property string truncatedSong: ""
-    property var theme : currentTheme
+    property var theme: currentTheme
 
-    // Cập nhật truncatedSong khi currentSong thay đổi
-    onCurrentSongChanged: {
-        if (currentSong.length > 30) {
-            truncatedSong = currentSong.substring(0, 30) + "..."
-        } else {
-            truncatedSong = currentSong
-        }
-    }
-
-    // Process lấy thông tin bài hát
+    // Process get metadata (same as MusicPanel)
     Process {
-        id: playerctl
+        id: metadataProc
         running: false
-        command: ["playerctl", "metadata", "--format", "{{artist}} - {{title}}"]
+        command: ["playerctl", "metadata", "--format", "{{artist}}|||{{title}}"]
 
         stdout: StdioCollector {
             onStreamFinished: {
                 if (this.text) {
-                    var data = this.text.trim()
-                    var parts = data.split(" - ")
+                    var parts = this.text.trim().split("|||")
                     if (parts.length >= 2) {
-                        musicPlayer.currentArtist = parts[0]
-                        musicPlayer.currentSong = parts[1]
+                        musicPlayer.currentArtist = parts[0] || ""
+                        musicPlayer.currentSong = parts[1] || "No song playing"
                     } else {
-                        musicPlayer.currentSong = data
+                        musicPlayer.currentSong = this.text.trim()
                         musicPlayer.currentArtist = ""
                     }
                 }
@@ -49,47 +38,37 @@ Rectangle {
         }
     }
 
-    // 🧠 Kiểm tra trạng thái phát nhạc
+    // Process check playing status (same as MusicPanel)
     Process {
-        id: statusCheck
-        command: [Qt.resolvedUrl("../scripts/check-playing")]
+        id: statusProc
+        running: false
+        command: ["playerctl", "status"]
 
         stdout: StdioCollector {
             onStreamFinished: {
-                musicPlayer.isPlaying = (this.text.trim() === "true")
+                musicPlayer.isPlaying = (this.text.trim() === "Playing")
             }
         }
     }
 
-    // 🧠 Các lệnh điều khiển
-    Process { id: nextMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "next"] }
-    Process { id: preMusic;  command: [Qt.resolvedUrl("../scripts/music-controller"), "pre"] }
-    Process { id: playMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "play"] }
-    Process { id: pauseMusic; command: [Qt.resolvedUrl("../scripts/music-controller"), "pause"] }
-
+    // Control processes (direct playerctl commands like MusicPanel)
+    Process { id: nextProc; command: ["playerctl", "next"] }
+    Process { id: prevProc; command: ["playerctl", "previous"] }
+    Process { id: playProc; command: ["playerctl", "play"] }
+    Process { id: pauseProc; command: ["playerctl", "pause"] }
 
     function runProcess(proc) {
-        if (!proc.running) {
-            proc.running = true
-        }
+        if (!proc.running) proc.running = true
     }
 
-    function musicController(action) {
-      switch (action) {
-      case "next": runProcess(nextMusic); break;
-      case "pre": runProcess(preMusic); break; 
-      case "pause": runProcess(pauseMusic); break;
-      case "play": runProcess(playMusic); break;
-      }
-    }
-    // Timer refresh metadata và trạng thái phát
+    // Timer refresh metadata and status
     Timer {
         interval: 1000
         running: true
         repeat: true
         onTriggered: {
-            if (!playerctl.running) playerctl.running = true
-            if (!statusCheck.running) statusCheck.running = true
+            if (!metadataProc.running) metadataProc.running = true
+            if (!statusProc.running) statusProc.running = true
         }
     }
 
@@ -98,18 +77,17 @@ Rectangle {
         anchors.margins: currentSizes.spacing?.normal || 8
         spacing: currentSizes.spacing?.medium || 12
 
-        // Song info với hiệu ứng marquee - chiếm toàn bộ không gian còn lại
+        // Song info with marquee effect
         ColumnLayout {
             id: songInfoColumn
             Layout.fillWidth: true
             spacing: currentSizes.spacing?.small || 2
 
-            // Container cho song title với marquee effect
-            Rectangle {
+            // Container for song title with marquee effect (like MusicPanel)
+            Item {
                 id: songContainer
                 Layout.fillWidth: true
-                height: currentSizes.musicPlayerLayout?.songContainerHeight || 20
-                color: "transparent"
+                Layout.preferredHeight: currentSizes.musicPlayerLayout?.songContainerHeight || 20
                 clip: true
 
                 MouseArea {
@@ -129,41 +107,38 @@ Rectangle {
 
                 Text {
                     id: songText
-                    text: truncatedSong
+                    text: currentSong
                     color: theme.primary.foreground
+                    font.family: "ComicShannsMono Nerd Font"
                     font.pixelSize: currentSizes.fontSize?.medium || 16
-                    elide: Text.ElideRight
 
-                    // Hiệu ứng marquee khi text quá dài
-                    property bool needsMarquee: currentSong.length > 30
+                    property bool needsMarquee: width > songContainer.width
 
-                    x: needsMarquee && marqueeTimer.running ? -marqueeAnimation.value : 0
+                    x: 0
 
-                    Behavior on x {
-                        NumberAnimation { duration: 500; easing.type: Easing.InOutQuad }
-                    }
-                }
+                    SequentialAnimation on x {
+                        id: marqueeAnimation
+                        running: songText.needsMarquee
+                        loops: Animation.Infinite
 
-                // Animation cho marquee effect
-                PropertyAnimation {
-                    id: marqueeAnimation
-                    target: songText
-                    property: "x"
-                    from: 0
-                    to: -songText.width + songContainer.width
-                    duration: 3000
-                    running: false
-                }
+                        // Pause at start
+                        PauseAnimation { duration: 2000 }
 
-                // Timer để kích hoạt marquee
-                Timer {
-                    id: marqueeTimer
-                    interval: 2000
-                    running: songText.needsMarquee
-                    repeat: true
-                    onTriggered: {
-                        if (songText.needsMarquee) {
-                            marqueeAnimation.start()
+                        // Scroll left
+                        NumberAnimation {
+                            to: -(songText.width - songContainer.width)
+                            duration: Math.max(2000, (songText.width - songContainer.width) * 20)
+                            easing.type: Easing.Linear
+                        }
+
+                        // Pause at end
+                        PauseAnimation { duration: 2000 }
+
+                        // Scroll back
+                        NumberAnimation {
+                            to: 0
+                            duration: Math.max(2000, (songText.width - songContainer.width) * 20)
+                            easing.type: Easing.Linear
                         }
                     }
                 }
@@ -177,18 +152,19 @@ Rectangle {
             Text {
                 text: currentArtist
                 color: theme.primary.dim_foreground
+                font.family: "ComicShannsMono Nerd Font"
                 font.pixelSize: currentSizes.fontSize?.small || 10
                 elide: Text.ElideRight
                 Layout.fillWidth: true
             }
         }
 
-        // Controls - chỉ đủ rộng cho các nút
+        // Controls
         RowLayout {
             id: controlsRow
             spacing: currentSizes.spacing?.medium || 12
-            Layout.fillHeight: true  // Chiếm toàn bộ chiều cao
-            Layout.preferredWidth: childrenRect.width // Chỉ đủ rộng cho các nút
+            Layout.fillHeight: true
+            Layout.preferredWidth: childrenRect.width
             Layout.minimumWidth: childrenRect.width
             Layout.maximumWidth: childrenRect.width
 
@@ -204,16 +180,11 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        // Thêm command để chuyển bài trước
-                        musicPlayer.musicController("pre")
-                    }
-                    
-                    // Hiệu ứng hover
+                    onClicked: runProcess(prevProc)
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
-                
+
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
 
@@ -232,16 +203,11 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        // Command play/pause
-                        isPlaying ? musicPlayer.musicController("pause") : musicPlayer.musicController("play")
-                    }
-                    
-                    // Hiệu ứng hover
+                    onClicked: isPlaying ? runProcess(pauseProc) : runProcess(playProc)
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
-                
+
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
 
@@ -257,20 +223,15 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        musicPlayer.musicController("next")
-                    }
-                    
-                    // Hiệu ứng hover
+                    onClicked: runProcess(nextProc)
                     onEntered: parent.scale = 1.2
                     onExited: parent.scale = 1.0
                 }
-                
+
                 Behavior on scale { NumberAnimation { duration: 100 } }
             }
         }
     }
-
 
     // Loader for MusicPanel
     Loader {
@@ -280,9 +241,5 @@ Rectangle {
         onLoaded: {
             item.visible = true
         }
-    }
-
-    Component.onCompleted: {
-        truncatedSong = currentSong.length > 30 ? currentSong.substring(0, 30) + "..." : currentSong
     }
 }
