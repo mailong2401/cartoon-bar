@@ -1,63 +1,64 @@
 import QtQuick
 
 Rectangle {
-    color: theme.primary.dim_background
-    border.color: "#4f4f5b"
-    border.width: 2
-    radius: 4
-
     property var calculateTotalUsage: function() { return "0.0" }
     property var getMaxUsage: function() { return "0.0" }
     property var getUsageColor: function(usageStr) { return "#3498db" }
     property var cpuHistory: []
-    property var theme : currentTheme
+    property var theme: currentTheme
+    property var sizes: currentSizes.cpuDetailPanel
+
+    color: theme.primary.dim_background
+    border.color: "#4f4f5b"
+    border.width: sizes.statsBorderWidth || 2
+    radius: sizes.statsRadius || 4
 
     Row {
         anchors.centerIn: parent
-        spacing: 40
+        spacing: sizes.statsRowSpacing || 40
 
-        Row{
+        Row {
             Image {
-                width: 40
-                height: 40
+                width: sizes.statsIconSize || 40
+                height: sizes.statsIconSize || 40
                 source: '../../assets/pie-chart.png'
             }
             Column {
-                spacing: 2
+                spacing: sizes.statsColumnSpacing || 2
                 Text {
                     text: "Tổng Usage"
                     color: "#4f4f5b"
-                    font.pixelSize: 16
+                    font.pixelSize: sizes.statsLabelFontSize || 16
                     font.family: "ComicShannsMono Nerd Font"
                 }
                 Text {
                     text: calculateTotalUsage() + "%"
                     color: getUsageColor(calculateTotalUsage())
-                    font.pixelSize: 18
+                    font.pixelSize: sizes.statsValueFontSize || 18
                     font.bold: true
                     font.family: "ComicShannsMono Nerd Font"
                 }
             }
         }
-        
+
         Row {
-            Image{
-                width: 40
-                height: 40
+            Image {
+                width: sizes.statsIconSize || 40
+                height: sizes.statsIconSize || 40
                 source: '../../assets/fire.png'
             }
             Column {
-                spacing: 2
+                spacing: sizes.statsColumnSpacing || 2
                 Text {
                     text: "Core Cao Nhất"
                     color: "#4f4f5b"
-                    font.pixelSize: 16
+                    font.pixelSize: sizes.statsLabelFontSize || 16
                     font.family: "ComicShannsMono Nerd Font"
                 }
                 Text {
                     text: getMaxUsage() + "%"
                     color: getUsageColor(getMaxUsage())
-                    font.pixelSize: 18
+                    font.pixelSize: sizes.statsValueFontSize || 18
                     font.bold: true
                     font.family: "ComicShannsMono Nerd Font"
                 }
@@ -65,17 +66,17 @@ Rectangle {
         }
 
         Column {
-            spacing: 2
+            spacing: sizes.statsColumnSpacing || 2
             Text {
                 text: "⏱️ Thời Gian"
                 color: "#4f4f5b"
-                font.pixelSize: 14
+                font.pixelSize: sizes.statsTimeLabelFontSize || 14
                 font.family: "ComicShannsMono Nerd Font"
             }
             Text {
                 text: cpuHistory.length + " điểm"
                 color: "#4f4f5b"
-                font.pixelSize: 18
+                font.pixelSize: sizes.statsValueFontSize || 18
                 font.bold: true
                 font.family: "ComicShannsMono Nerd Font"
             }

@@ -4,18 +4,20 @@ import QtQuick.Layouts
 
 Rectangle {
     id: calendar
-    width: currentSizes.wtDetailPanel?.calendar?.width || 400
-    height: currentSizes.wtDetailPanel?.calendar?.height || 400
-    color: "transparent"
-    radius: currentSizes.wtDetailPanel?.calendar?.radius || 10
-    
+
+    property var theme: currentTheme
+    property var lang: currentLanguage
+    property var sizes: ({})
+
     property date currentDate: new Date()
     property int currentMonth: currentDate.getMonth()
     property int currentYear: currentDate.getFullYear()
     property date selectedDate: new Date()
-    
-    property var theme : currentTheme
-    property var lang : currentLanguage
+
+    width: sizes.calendar?.width || 400
+    height: sizes.calendar?.height || 400
+    color: "transparent"
+    radius: sizes.calendar?.radius || 10
 
     property var weekdayLabels: {
         const w = lang?.calendar?.weekdays
@@ -52,13 +54,13 @@ Rectangle {
     
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: currentSizes.wtDetailPanel?.calendar?.margins || 10
-        spacing: currentSizes.wtDetailPanel?.calendar?.spacing || 15
-        
+        anchors.margins: sizes.calendar?.margins || 10
+        spacing: sizes.calendar?.spacing || 15
+
         // Header
         RowLayout {
             Layout.fillWidth: true
-            
+
             Button {
                 text: "◀"
                 onClicked: previousMonth()
@@ -67,7 +69,7 @@ Rectangle {
                     text: parent.text
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
-                    font.pixelSize: currentSizes.wtDetailPanel?.calendar?.navButtonFontSize || 20
+                    font.pixelSize: sizes.calendar?.navButtonFontSize || 20
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -79,7 +81,7 @@ Rectangle {
             Label {
                 text: monthLabels[currentMonth] + " " + currentYear
                 font.bold: true
-                font.pixelSize: currentSizes.wtDetailPanel?.calendar?.monthLabelFontSize || 24
+                font.pixelSize: sizes.calendar?.monthLabelFontSize || 24
                 Layout.fillWidth: true
                 horizontalAlignment: Text.AlignHCenter
                 color: theme.primary.foreground
@@ -94,7 +96,7 @@ Rectangle {
                     text: parent.text
                     color: theme.primary.foreground
                     font.family: "ComicShannsMono Nerd Font"
-                    font.pixelSize: currentSizes.wtDetailPanel?.calendar?.navButtonFontSize || 20
+                    font.pixelSize: sizes.calendar?.navButtonFontSize || 20
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -103,7 +105,7 @@ Rectangle {
                 }
             }
         }
-        
+
         // Calendar grid với Flickable để cuộn
         Flickable {
             id: flickable
@@ -112,13 +114,13 @@ Rectangle {
             contentWidth: calendarGrid.width
             contentHeight: calendarGrid.height
             clip: true
-            
+
             GridLayout {
                 id: calendarGrid
                 width: flickable.width
                 columns: 7
-                rowSpacing: currentSizes.wtDetailPanel?.calendar?.gridRowSpacing || 8
-                columnSpacing: currentSizes.wtDetailPanel?.calendar?.gridColumnSpacing || 8
+                rowSpacing: sizes.calendar?.gridRowSpacing || 8
+                columnSpacing: sizes.calendar?.gridColumnSpacing || 8
 
                 // Week day headers
                 Repeater {
@@ -129,8 +131,8 @@ Rectangle {
                         color: theme.primary.foreground
                         horizontalAlignment: Text.AlignHCenter
                         Layout.fillWidth: true
-                        Layout.preferredHeight: currentSizes.wtDetailPanel?.calendar?.weekdayHeight || 30
-                        font.pixelSize: currentSizes.wtDetailPanel?.calendar?.weekdayFontSize || 19
+                        Layout.preferredHeight: sizes.calendar?.weekdayHeight || 30
+                        font.pixelSize: sizes.calendar?.weekdayFontSize || 19
                         font.family: "ComicShannsMono Nerd Font"
                     }
                 }
@@ -142,8 +144,8 @@ Rectangle {
 
                     Rectangle {
                         id: dayRect
-                        Layout.preferredWidth: currentSizes.wtDetailPanel?.calendar?.dayCellSize || 40
-                        Layout.preferredHeight: currentSizes.wtDetailPanel?.calendar?.dayCellSize || 40
+                        Layout.preferredWidth: sizes.calendar?.dayCellSize || 40
+                        Layout.preferredHeight: sizes.calendar?.dayCellSize || 40
                         color: {
                             if (modelData.isToday && modelData.isCurrentMonth)
                                 return theme.button.background
@@ -152,7 +154,7 @@ Rectangle {
                             else
                                 return "transparent"
                         }
-                        radius: currentSizes.wtDetailPanel?.calendar?.dayCellRadius || 20
+                        radius: sizes.calendar?.dayCellRadius || 20
                         border.color: modelData.isCurrentMonth ? theme.button.border : "transparent"
 
                         Label {
@@ -167,9 +169,9 @@ Rectangle {
                                     return theme.primary.foreground
                             }
                             font {
-                              bold: modelData.isToday
-                              pixelSize: currentSizes.wtDetailPanel?.calendar?.dayFontSize || 19
-                              family: "ComicShannsMono Nerd Font"
+                                bold: modelData.isToday
+                                pixelSize: sizes.calendar?.dayFontSize || 19
+                                family: "ComicShannsMono Nerd Font"
                             }
                         }
 

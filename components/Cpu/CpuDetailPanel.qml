@@ -8,9 +8,10 @@ import "./" as Components
 PanelWindow {
     id: detailPanel
 
-    // Sử dụng WlrLayershell để căn giữa
-    implicitWidth: 1030
-    implicitHeight: 850
+    property var sizes: currentSizes.cpuDetailPanel || {}
+
+    implicitWidth: sizes.width || 1030
+    implicitHeight: sizes.height || 850
 
     anchors {
         top: currentConfig.mainPanelPos === "top"
@@ -19,22 +20,22 @@ PanelWindow {
     }
 
     margins {
-        top: currentConfig.mainPanelPos === "top" ? 10 : 0
-        bottom: currentConfig.mainPanelPos === "bottom" ? + 10 : 0
-        left: Math.round((Quickshell.screens.primary?.width ?? 1920) / 2 - implicitWidth / 2)
+        top: currentConfig.mainPanelPos === "top" ? (sizes.marginTop || 10) : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.marginBottom || 10) : 0
+        left: Math.round((Quickshell.screens.primary?.width ?? currentSizes.name) / 2 - implicitWidth / 2)
     }
 
     exclusiveZone: 0
 
     color: "transparent"
-    
+
     signal closeRequested()
 
     property int cpuCores: 12
     property var cpuUsageList: Array(cpuCores).fill("0%")
     property var cpuHistory: []
     property int maxHistoryLength: 50
-    property var theme : currentTheme
+    property var theme: currentTheme
 
     // Process để lấy CPU usage chi tiết
     Process {
@@ -120,44 +121,48 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: theme.primary.background
-        radius: 8
+        radius: sizes.radius || 8
         border.color: theme.normal.black
-        border.width: 3
+        border.width: sizes.borderWidth || 3
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 16
-            spacing: 16
+            anchors.margins: sizes.margins || 16
+            spacing: sizes.spacing || 16
 
             // Header với nút đóng
             Components.CpuDetailHeader {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 70
+                Layout.preferredHeight: sizes.headerHeight || 70
+                sizes: detailPanel.sizes
             }
 
             // Thông tin CPU
             Components.CpuInfoSection {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: sizes.infoSectionHeight || 120
+                sizes: detailPanel.sizes
             }
 
             // Hiển thị hình ảnh lõi CPU
             Components.CpuCoresDisplay {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 120
+                Layout.preferredHeight: sizes.coresDisplayHeight || 120
                 cpuCores: detailPanel.cpuCores
                 cpuUsageList: detailPanel.cpuUsageList
                 getUsageColor: detailPanel.getUsageColor
+                sizes: detailPanel.sizes
             }
 
             // Thông tin tổng quan
             Components.CpuStatsOverview {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 60
+                Layout.preferredHeight: sizes.statsOverviewHeight || 60
                 calculateTotalUsage: detailPanel.calculateTotalUsage
                 getMaxUsage: detailPanel.getMaxUsage
                 getUsageColor: detailPanel.getUsageColor
                 cpuHistory: detailPanel.cpuHistory
+                sizes: detailPanel.sizes
             }
 
             // BIỂU ĐỒ CPU USAGE
@@ -166,6 +171,7 @@ PanelWindow {
                 Layout.fillHeight: true
                 cpuHistory: detailPanel.cpuHistory
                 getUsageColor: detailPanel.getUsageColor
+                sizes: detailPanel.sizes
             }
         }
     }
