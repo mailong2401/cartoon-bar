@@ -11,10 +11,11 @@ Item {
         anchors.fill: parent
         anchors.margins: currentSizes.generalSettings?.margin || 20
         clip: true
-        contentWidth: availableWidth
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
         ColumnLayout {
-            width: parent.width
+            width: parent.parent.width - (currentSizes.generalSettings?.margin || 20) * 2
             spacing: currentSizes.generalSettings?.spacing || 20
 
             // Header
@@ -35,15 +36,6 @@ Item {
                 color: theme.primary.dim_foreground + "40"
             }
 
-            Text {
-                text: "Main Modifier: SUPER (Windows Key)"
-                color: theme.normal.blue
-                font {
-                    family: "ComicShannsMono Nerd Font"
-                    pixelSize: 14
-                    bold: true
-                }
-            }
 
             // Basic Window Management
             ShortcutCategory {
@@ -122,79 +114,9 @@ Item {
             ShortcutCategory {
                 title: "📸 Screenshots"
                 shortcuts: [
-                    { key: "PrintScreen", action: "Fullscreen Screenshot (Save + Copy)" },
+                    { key: "PrintScreen", action: "Fullscreen Screenshot" },
                     { key: "SUPER + PrintScreen", action: "Area Screenshot (Select region)" }
                 ]
-            }
-
-            // Info Note
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: infoColumn.height + 30
-                color: theme.normal.blue + "20"
-                radius: 12
-                border.width: 2
-                border.color: theme.normal.blue
-
-                ColumnLayout {
-                    id: infoColumn
-                    anchors.fill: parent
-                    anchors.margins: 15
-                    spacing: 8
-
-                    Row {
-                        spacing: 8
-                        Text {
-                            text: "💡"
-                            font.pixelSize: 20
-                        }
-                        Text {
-                            text: "Pro Tips"
-                            color: theme.normal.blue
-                            font {
-                                family: "ComicShannsMono Nerd Font"
-                                pixelSize: 16
-                                bold: true
-                            }
-                        }
-                    }
-
-                    Text {
-                        text: "• These shortcuts are configured in your Hyprland config file"
-                        color: theme.primary.foreground
-                        font.family: "ComicShannsMono Nerd Font"
-                        font.pixelSize: 13
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
-
-                    Text {
-                        text: "• Edit at: ~/.config/hypr/hyprland.conf"
-                        color: theme.primary.foreground
-                        font.family: "ComicShannsMono Nerd Font"
-                        font.pixelSize: 13
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
-
-                    Text {
-                        text: "• After editing, save and Hyprland will auto-reload in 3 seconds"
-                        color: theme.primary.foreground
-                        font.family: "ComicShannsMono Nerd Font"
-                        font.pixelSize: 13
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
-
-                    Text {
-                        text: "• Manual reload: pkill -USR2 hyprctl"
-                        color: theme.primary.foreground
-                        font.family: "ComicShannsMono Nerd Font"
-                        font.pixelSize: 13
-                        wrapMode: Text.WordWrap
-                        Layout.fillWidth: true
-                    }
-                }
             }
 
             Item { Layout.fillHeight: true } // Spacer
@@ -212,9 +134,9 @@ Item {
         // Category Header
         Rectangle {
             Layout.fillWidth: true
-            height: 40
+            height: 50
             color: theme.primary.dim_background
-            radius: 10
+            radius: 12
             border.width: 2
             border.color: theme.normal.black
 
@@ -224,7 +146,7 @@ Item {
                 color: theme.primary.foreground
                 font {
                     family: "ComicShannsMono Nerd Font"
-                    pixelSize: 16
+                    pixelSize: 18
                     bold: true
                 }
             }
@@ -240,7 +162,7 @@ Item {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 55
+                    Layout.preferredHeight: 60
                     color: theme.button.background
                     radius: 10
                     border.width: 1
