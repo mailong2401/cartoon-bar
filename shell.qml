@@ -58,6 +58,59 @@ ShellRoot {
     property bool launcherPanelVisible: false
     property string hyprInstance: Quickshell.env("HYPRLAND_INSTANCE_SIGNATURE") || ""
 
+    // Global wallpaper setter - chạy độc lập với Settings panel
+    Process {
+        id: globalWallpaperProcess
+        command: ["true"]  // dummy command
+        running: false
+
+        stdout: StdioCollector {
+            onTextChanged: {
+                if (text) {
+                    console.log("Wallpaper script output:", text)
+                }
+            }
+        }
+
+        stderr: StdioCollector {
+            onTextChanged: {
+                if (text) {
+                    console.error("Wallpaper script error:", text)
+                }
+            }
+        }
+
+        onRunningChanged: {
+            console.log("Wallpaper process running state:", running)
+        }
+    }
+
+    // Function để set wallpaper từ bất kỳ đâu
+    function setGlobalWallpaper(filePath) {
+        console.log("setGlobalWallpaper called with:", filePath)
+
+        var configPath = Quickshell.env("HOME") + "/.config/quickshell/cartoon-bar"
+        var scriptPath = configPath + "/scripts/set-wallpaper.sh"
+
+        console.log("Script path:", scriptPath)
+        console.log("Running wallpaper script...")
+
+        // Stop old process if running
+        if (globalWallpaperProcess.running) {
+            globalWallpaperProcess.running = false
+        }
+
+        // Set new command
+        globalWallpaperProcess.command = [
+            "bash",
+            scriptPath,
+            filePath
+        ]
+
+        // Start process
+        globalWallpaperProcess.running = true
+    }
+
     Connections {
         target: languageLoader
         function onLanguageChanged() {
