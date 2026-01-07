@@ -270,10 +270,10 @@ nano configs/default.json
 ### 4. Run QuickShell
 ```bash
 # Run directly
-quickshell -c ~/.config/quickshell/cartoon-bar/shell.qml
+export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-bar
 
 # Or add to Hyprland config
-echo "exec-once = quickshell -c ~/.config/quickshell/cartoon-bar/shell.qml" \
+echo "exec-once = export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-bar" \
     >> ~/.config/hypr/hyprland.conf
 ```
 
