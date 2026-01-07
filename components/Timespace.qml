@@ -169,7 +169,17 @@ property var lang: currentLanguage
 
     function updateDateTime() {
         const now = clock.date
-        const weekdays = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+        const weekdayData = lang?.calendar?.weekdays
+        const weekdays = weekdayData ? [
+            weekdayData.sunday || "CN",
+            weekdayData.monday || "T2",
+            weekdayData.tuesday || "T3",
+            weekdayData.wednesday || "T4",
+            weekdayData.thursday || "T5",
+            weekdayData.friday || "T6",
+            weekdayData.saturday || "T7"
+        ] : ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+
         const monthData = lang?.dateFormat?.month
         const months = monthData ? [
             monthData.january || "Th1",
