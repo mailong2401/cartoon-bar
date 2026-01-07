@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Ρυθμίσεις",
+    "general": "Γενικά",
+    "appearance": "Εμφάνιση",
+    "wallpapers": "Ταπετσαρίες",
+    "network": "Δίκτυο",
+    "audio": "Ήχος",
+    "performance": "Απόδοση",
+    "shortcuts": "Συντομεύσεις",
+    "system": "Σύστημα",
+    "language": "Γλώσσα"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Δευτέρα",
+      "tuesday": "Τρίτη",
+      "wednesday": "Τετάρτη",
+      "thursday": "Πέμπτη",
+      "friday": "Παρασκευή",
+      "saturday": "Σάββατο",
+      "sunday": "Κυριακή"
+    },
+    "month": {
+      "january": "Ιανουάριος",
+      "february": "Φεβρουάριος",
+      "march": "Μάρτιος",
+      "april": "Απρίλιος",
+      "may": "Μάιος",
+      "june": "Ιούνιος",
+      "july": "Ιούλιος",
+      "august": "Αύγουστος",
+      "september": "Σεπτέμβριος",
+      "october": "Οκτώβριος",
+      "november": "Νοέμβριος",
+      "december": "Δεκέμβριος"
+    }
+  },
+  "general": {
+    "title": "Γενικές ρυθμίσεις",
+    "language_label": "Γλώσσα:",
+    "autostart_label": "Αυτόματη εκκίνηση:",
+    "notification_label": "Ειδοποιήσεις:",
+    "notification_system": "Εμφάνιση ειδοποιήσεων συστήματος",
+    "notification_sound": "Ήχοι ειδοποιήσεων",
+    "notification_performance": "Ειδοποιήσεις απόδοσης"
+  },
+  "appearance": {
+    "title": "Εμφάνιση",
+    "theme_label": "Θέμα:",
+    "theme_light": "Ανοιχτό",
+    "theme_dark": "Σκοτεινό",
+    "clock_panel_label": "Πίνακας ρολογιού:",
+    "panel_position_label": "Θέση πίνακα:",
+    "position_top": "Πάνω",
+    "position_bottom": "Κάτω",
+    "clock_position_label": "Θέση ρολογιού:",
+    "panel_height_label": "Ύψος πίνακα:"
+  },
+  "system": {
+    "application": "Εφαρμογή",
+    "sleep": "Λειτουργία ύπνου",
+    "logout": "Αποσύνδεση",
+    "shutdown": "Τερματισμός",
+    "restart": "Επανεκκίνηση",
+    "lock": "Κλείδωμα οθόνης"
+  },
+  "mixer": {
+    "title": "Μίκτης ήχου",
+    "subtitle": "Διαχείριση ροών ήχου και έντασης",
+    "output_device": "Συσκευή εξόδου",
+    "application_streams": "Ροές ήχου εφαρμογών",
+    "no_streams": "Δεν υπάρχουν ενεργές ροές",
+    "active_streams": "Ενεργές ροές: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Άγνωστη εφαρμογή",
+    "unmute": "Ενεργοποίηση ήχου",
+    "mute": "Σίγαση",
+    "volume_percent": "%{volume}%",
+    "media_name": "Όνομα πολυμέσων",
+    "volume_slider_tooltip": "Προσαρμογή έντασης",
+    "muted": "Σε σίγαση",
+    "overdrive": "Υπερφόρτωση έντασης"
+  },
+  "calendar": {
+    "title": "Ημερολόγιο",
+    "weekdays": {
+      "sunday": "Κυρ",
+      "monday": "Δευ",
+      "tuesday": "Τρι",
+      "wednesday": "Τετ",
+      "thursday": "Πεμ",
+      "friday": "Παρ",
+      "saturday": "Σαβ"
+    }
+  },
+  "wallpapers": {
+    "title": "Διαχείριση εικόνων",
+    "total_images": "Σύνολο εικόνων:",
+    "path": "Διαδρομή:",
+    "loading": "Φόρτωση...",
+    "loading_info": "Φόρτωση πληροφοριών...",
+    "no_images": "Δεν βρέθηκαν εικόνες στο ~/Pictures/Wallpapers",
+    "set_wallpaper": "Ορισμός",
+    "already_set": "Ορίστηκε",
+    "delete": "Διαγραφή",
+    "delete_confirm": "Επιβεβαίωση διαγραφής",
+    "cancel": "Ακύρωση",
+    "success_set": "Η ταπετσαρία ορίστηκε!",
+    "success_delete": "Η εικόνα διαγράφηκε!"
+  },
+  "confirm": {
+    "title": "Επιβεβαίωση",
+    "message": "Είστε σίγουροι ότι θέλετε να {action};",
+    "yes": "Ναι",
+    "no": "Όχι",
+    "sleep": "μεταβείτε σε λειτουργία ύπνου",
+    "lock": "κλειδώσετε την οθόνη",
+    "logout": "αποσυνδεθείτε",
+    "restart": "επανεκκινήσετε",
+    "shutdown": "τερματίσετε"
+  },
+  "ram": {
+    "title": "Διαχειριστής διεργασιών",
+    "panel_title": "Διαχειριστής RAM",
+    "memory_monitor": "Παρακολούθηση μνήμης",
+    "used": "Χρησιμοποιείται",
+    "free": "Ελεύθερη",
+    "available": "Διαθέσιμη",
+    "no_swap": "Δεν υπάρχει SWAP",
+    "loading_memory": "Φόρτωση δεδομένων μνήμης...",
+    "loading": {
+      "title": "⏳",
+      "message": "Φόρτωση λίστας διεργασιών..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Όνομα διεργασίας",
+      "ram_percent": "RAM %",
+      "memory": "Μνήμη"
+    },
+    "footer": {
+      "process_count_label": "Αριθμός διεργασιών",
+      "total_ram_label": "Συνολική χρήση RAM",
+      "memory_distribution_label": "Κατανομή μνήμης",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Παρακολούθηση διεργασιών",
+      "last_update": "Τελευταία ενημέρωση"
+    },
+    "status_colors": {
+      "critical": "Κρίσιμο",
+      "warning": "Προειδοποίηση",
+      "normal": "Κανονικό",
+      "low": "Χαμηλό"
+    },
+    "distribution": {
+      "na": "Δεν υπάρχουν δεδομένα",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Το σενάριο δεν επέστρεψε δεδομένα",
+      "parse_error": "Σφάλμα ανάλυσης δεδομένων εξόδου"
+    }
+  },
+  "volume": {
+    "title": "Ένταση",
+    "muted": "Σε σίγαση"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth ενεργό",
+    "disabled": "Bluetooth ανενεργό",
+    "devices_connected": "συσκευές συνδεδεμένες",
+    "pairing": "Ζεύξη...",
+    "connecting": "Σύνδεση...",
+    "connected": "Συνδεδεμένο",
+    "paired": "Ζευγαρωμένο",
+    "not_connected": "Δεν είναι συνδεδεμένο",
+    "searching": "Αναζήτηση συσκευών...",
+    "no_devices": "Δεν βρέθηκαν συσκευές",
+    "turn_on": "Ενεργοποιήστε το Bluetooth για σύνδεση συσκευών",
+    "pair_error": "Αδυναμία ζεύξης συσκευής"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi ενεργό",
+    "disabled": "WiFi ανενεργό",
+    "not_connected": "Δεν είναι συνδεδεμένο",
+    "available_networks": "Διαθέσιμα δίκτυα",
+    "searching": "Αναζήτηση δικτύων...",
+    "no_networks": "Δεν βρέθηκαν δίκτυα",
+    "turn_on": "Ενεργοποιήστε το WiFi για προβολή δικτύων",
+    "forget": "Λήθη",
+    "connect": "Σύνδεση",
+    "no_password": "Δεν απαιτείται κωδικός",
+    "enter_password": "Εισάγετε κωδικό",
+    "password_required": "Παρακαλώ εισάγετε κωδικό",
+    "wrong_password": "Λάθος κωδικός"
+  }
+}

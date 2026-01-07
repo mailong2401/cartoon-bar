@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Indstillinger",
+    "general": "Generelt",
+    "appearance": "Udseende",
+    "wallpapers": "Baggrunde",
+    "network": "Netværk",
+    "audio": "Lyd",
+    "performance": "Ydeevne",
+    "shortcuts": "Genveje",
+    "system": "System",
+    "language": "Sprog"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Mandag",
+      "tuesday": "Tirsdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lørdag",
+      "sunday": "Søndag"
+    },
+    "month": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "Marts",
+      "april": "April",
+      "may": "Maj",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "general": {
+    "title": "Generelle indstillinger",
+    "language_label": "Sprog:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Meddelelser:",
+    "notification_system": "Vis systemmeddelelser",
+    "notification_sound": "Meddelelselyde",
+    "notification_performance": "Ydeevnemeddelelser"
+  },
+  "appearance": {
+    "title": "Udseende",
+    "theme_label": "Tema:",
+    "theme_light": "Lyst",
+    "theme_dark": "Mørkt",
+    "clock_panel_label": "Urpanel:",
+    "panel_position_label": "Panelposition:",
+    "position_top": "Top",
+    "position_bottom": "Bund",
+    "clock_position_label": "Urposition:",
+    "panel_height_label": "Panelhøjde:"
+  },
+  "system": {
+    "application": "Applikation",
+    "sleep": "Dvale",
+    "logout": "Log ud",
+    "shutdown": "Luk ned",
+    "restart": "Genstart",
+    "lock": "Lås skærm"
+  },
+  "mixer": {
+    "title": "Lydmixer",
+    "subtitle": "Administrer lydstrømme og lydstyrke",
+    "output_device": "Outputenhed",
+    "application_streams": "Applikationsstrømme",
+    "no_streams": "Ingen aktive strømme",
+    "active_streams": "Aktive strømme: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Ukendt applikation",
+    "unmute": "Slå lyd til",
+    "mute": "Dæmp",
+    "volume_percent": "%{volume}%",
+    "media_name": "Medienavn",
+    "volume_slider_tooltip": "Juster lydstyrke",
+    "muted": "Dæmpet",
+    "overdrive": "Lydoverbelastning"
+  },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "Søn",
+      "monday": "Man",
+      "tuesday": "Tir",
+      "wednesday": "Ons",
+      "thursday": "Tor",
+      "friday": "Fre",
+      "saturday": "Lør"
+    }
+  },
+  "wallpapers": {
+    "title": "Billedhåndtering",
+    "total_images": "Billeder i alt:",
+    "path": "Sti:",
+    "loading": "Indlæser...",
+    "loading_info": "Indlæser information...",
+    "no_images": "Ingen billeder i ~/Pictures/Wallpapers",
+    "set_wallpaper": "Indstil",
+    "already_set": "Indstillet",
+    "delete": "Slet",
+    "delete_confirm": "Bekræft sletning",
+    "cancel": "Annuller",
+    "success_set": "Baggrund indstillet!",
+    "success_delete": "Billede slettet!"
+  },
+  "confirm": {
+    "title": "Bekræft",
+    "message": "Er du sikker på at du vil {action}?",
+    "yes": "Ja",
+    "no": "Nej",
+    "sleep": "gå i dvale",
+    "lock": "låse skærmen",
+    "logout": "logge ud",
+    "restart": "genstarte",
+    "shutdown": "lukke ned"
+  },
+  "ram": {
+    "title": "Proceshåndtering",
+    "panel_title": "RAM-håndtering",
+    "memory_monitor": "Hukommelsesmonitor",
+    "used": "Brugt",
+    "free": "Ledig",
+    "available": "Tilgængelig",
+    "no_swap": "Ingen SWAP",
+    "loading_memory": "Indlæser hukommelsesdata...",
+    "loading": {
+      "title": "⏳",
+      "message": "Indlæser procesliste..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Procesnavn",
+      "ram_percent": "RAM %",
+      "memory": "Hukommelse"
+    },
+    "footer": {
+      "process_count_label": "Antal processer",
+      "total_ram_label": "Samlet RAM-brug",
+      "memory_distribution_label": "Hukommelsesfordeling",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Procesmonitor",
+      "last_update": "Sidst opdateret"
+    },
+    "status_colors": {
+      "critical": "Kritisk",
+      "warning": "Advarsel",
+      "normal": "Normal",
+      "low": "Lav"
+    },
+    "distribution": {
+      "na": "Ingen data",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Script returnerede ingen data",
+      "parse_error": "Fejl ved parsing af output"
+    }
+  },
+  "volume": {
+    "title": "Lydstyrke",
+    "muted": "Dæmpet"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth tændt",
+    "disabled": "Bluetooth slukket",
+    "devices_connected": "enheder tilsluttet",
+    "pairing": "Parrer...",
+    "connecting": "Tilslutter...",
+    "connected": "Tilsluttet",
+    "paired": "Parret",
+    "not_connected": "Ikke tilsluttet",
+    "searching": "Søger enheder...",
+    "no_devices": "Ingen enheder",
+    "turn_on": "Tænd Bluetooth for at tilslutte enheder",
+    "pair_error": "Kan ikke parre enhed"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi tændt",
+    "disabled": "WiFi slukket",
+    "not_connected": "Ikke tilsluttet",
+    "available_networks": "Tilgængelige netværk",
+    "searching": "Søger netværk...",
+    "no_networks": "Ingen netværk",
+    "turn_on": "Tænd WiFi for at se netværk",
+    "forget": "Glem",
+    "connect": "Tilslut",
+    "no_password": "Ingen adgangskode påkrævet",
+    "enter_password": "Indtast adgangskode",
+    "password_required": "Indtast venligst adgangskode",
+    "wrong_password": "Forkert adgangskode"
+  }
+}

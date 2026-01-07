@@ -84,6 +84,21 @@ Item {
   { code: "ar", name: "العربية", flagImg: "saudi_arabia" },
   { code: "tr", name: "Türkçe", flagImg: "turkey" },
   { code: "nl", name: "Nederlands", flagImg: "netherlands" },
+  { code: "pl", name: "Polski", flagImg: "poland" },
+  { code: "sv", name: "Svenska", flagImg: "sweden" },
+  { code: "th", name: "ไทย", flagImg: "thailand" },
+  { code: "uk", name: "Українська", flagImg: "ukraine" },
+  { code: "no", name: "Norsk", flagImg: "norway" },
+  { code: "da", name: "Dansk", flagImg: "denmark" },
+  { code: "fi", name: "Suomi", flagImg: "finland" },
+  { code: "id", name: "Indonesia", flagImg: "indonesia" },
+  { code: "cs", name: "Čeština", flagImg: "czech" },
+  { code: "el", name: "Ελληνικά", flagImg: "greece" },
+  { code: "he", name: "עברית", flagImg: "israel" },
+  { code: "ro", name: "Română", flagImg: "romania" },
+  { code: "hu", name: "Magyar", flagImg: "hungary" },
+  { code: "bg", name: "Български", flagImg: "bulgaria" },
+  { code: "sk", name: "Slovenčina", flagImg: "slovakia" },
 ]
 
 

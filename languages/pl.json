@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Ustawienia",
+    "general": "Ogólne",
+    "appearance": "Wygląd",
+    "wallpapers": "Tapety",
+    "network": "Sieć",
+    "audio": "Dźwięk",
+    "performance": "Wydajność",
+    "shortcuts": "Skróty",
+    "system": "System",
+    "language": "Język"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Poniedziałek",
+      "tuesday": "Wtorek",
+      "wednesday": "Środa",
+      "thursday": "Czwartek",
+      "friday": "Piątek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
+    },
+    "month": {
+      "january": "Styczeń",
+      "february": "Luty",
+      "march": "Marzec",
+      "april": "Kwiecień",
+      "may": "Maj",
+      "june": "Czerwiec",
+      "july": "Lipiec",
+      "august": "Sierpień",
+      "september": "Wrzesień",
+      "october": "Październik",
+      "november": "Listopad",
+      "december": "Grudzień"
+    }
+  },
+  "general": {
+    "title": "Ustawienia ogólne",
+    "language_label": "Język:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Powiadomienia:",
+    "notification_system": "Pokazuj powiadomienia systemowe",
+    "notification_sound": "Dźwięki powiadomień",
+    "notification_performance": "Powiadomienia o wydajności"
+  },
+  "appearance": {
+    "title": "Wygląd",
+    "theme_label": "Motyw:",
+    "theme_light": "Jasny",
+    "theme_dark": "Ciemny",
+    "clock_panel_label": "Panel zegara:",
+    "panel_position_label": "Pozycja panelu:",
+    "position_top": "Góra",
+    "position_bottom": "Dół",
+    "clock_position_label": "Pozycja zegara:",
+    "panel_height_label": "Wysokość panelu:"
+  },
+  "system": {
+    "application": "Aplikacja",
+    "sleep": "Tryb uśpienia",
+    "logout": "Wyloguj",
+    "shutdown": "Wyłącz",
+    "restart": "Uruchom ponownie",
+    "lock": "Zablokuj ekran"
+  },
+  "mixer": {
+    "title": "Mikser audio",
+    "subtitle": "Zarządzaj strumieniami audio i głośnością",
+    "output_device": "Urządzenie wyjściowe",
+    "application_streams": "Strumienie audio aplikacji",
+    "no_streams": "Brak aktywnych strumieni audio",
+    "active_streams": "Aktywne strumienie: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Nieznana aplikacja",
+    "unmute": "Włącz dźwięk",
+    "mute": "Wycisz",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nazwa multimediów",
+    "volume_slider_tooltip": "Dostosuj głośność",
+    "muted": "Wyciszony",
+    "overdrive": "Przekroczenie głośności"
+  },
+  "calendar": {
+    "title": "Kalendarz",
+    "weekdays": {
+      "sunday": "Niedz",
+      "monday": "Pon",
+      "tuesday": "Wt",
+      "wednesday": "Śr",
+      "thursday": "Czw",
+      "friday": "Pt",
+      "saturday": "Sob"
+    }
+  },
+  "wallpapers": {
+    "title": "Zarządzanie obrazami",
+    "total_images": "Wszystkich obrazów:",
+    "path": "Ścieżka:",
+    "loading": "Ładowanie...",
+    "loading_info": "Ładowanie informacji...",
+    "no_images": "Nie znaleziono obrazów w folderze ~/Pictures/Wallpapers",
+    "set_wallpaper": "Ustaw",
+    "already_set": "Ustawiono",
+    "delete": "Usuń",
+    "delete_confirm": "Potwierdź usunięcie",
+    "cancel": "Anuluj",
+    "success_set": "Tapeta została ustawiona!",
+    "success_delete": "Obraz został usunięty!"
+  },
+  "confirm": {
+    "title": "Potwierdź",
+    "message": "Czy na pewno chcesz {action}?",
+    "yes": "Tak",
+    "no": "Nie",
+    "sleep": "przejść w tryb uśpienia",
+    "lock": "zablokować ekran",
+    "logout": "wylogować się",
+    "restart": "uruchomić ponownie",
+    "shutdown": "wyłączyć"
+  },
+  "ram": {
+    "title": "Menedżer procesów",
+    "panel_title": "Menedżer RAM",
+    "memory_monitor": "Monitor pamięci",
+    "used": "Użyte",
+    "free": "Wolne",
+    "available": "Dostępne",
+    "no_swap": "Brak SWAP",
+    "loading_memory": "Ładowanie danych pamięci...",
+    "loading": {
+      "title": "⏳",
+      "message": "Ładowanie listy procesów..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nazwa procesu",
+      "ram_percent": "RAM %",
+      "memory": "Pamięć"
+    },
+    "footer": {
+      "process_count_label": "Liczba procesów",
+      "total_ram_label": "Całkowite użycie RAM",
+      "memory_distribution_label": "Rozkład pamięci",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor procesów",
+      "last_update": "Ostatnia aktualizacja"
+    },
+    "status_colors": {
+      "critical": "Krytyczny",
+      "warning": "Ostrzeżenie",
+      "normal": "Normalny",
+      "low": "Niski"
+    },
+    "distribution": {
+      "na": "Brak danych",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skrypt nie zwrócił danych",
+      "parse_error": "Błąd parsowania danych wyjściowych"
+    }
+  },
+  "volume": {
+    "title": "Głośność",
+    "muted": "Wyciszony"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth włączony",
+    "disabled": "Bluetooth wyłączony",
+    "devices_connected": "urządzenia połączone",
+    "pairing": "Parowanie...",
+    "connecting": "Łączenie...",
+    "connected": "Połączony",
+    "paired": "Sparowany",
+    "not_connected": "Nie połączony",
+    "searching": "Wyszukiwanie urządzeń...",
+    "no_devices": "Nie znaleziono urządzeń",
+    "turn_on": "Włącz Bluetooth, aby połączyć urządzenia",
+    "pair_error": "Nie można sparować urządzenia"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi włączone",
+    "disabled": "WiFi wyłączone",
+    "not_connected": "Nie połączony",
+    "available_networks": "Dostępne sieci",
+    "searching": "Wyszukiwanie sieci...",
+    "no_networks": "Nie znaleziono sieci",
+    "turn_on": "Włącz WiFi, aby zobaczyć dostępne sieci",
+    "forget": "Zapomnij",
+    "connect": "Połącz",
+    "no_password": "Nie wymaga hasła",
+    "enter_password": "Wprowadź hasło",
+    "password_required": "Proszę wprowadzić hasło",
+    "wrong_password": "Nieprawidłowe hasło"
+  }
+}

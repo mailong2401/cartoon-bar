@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Nastavení",
+    "general": "Obecné",
+    "appearance": "Vzhled",
+    "wallpapers": "Tapety",
+    "network": "Síť",
+    "audio": "Zvuk",
+    "performance": "Výkon",
+    "shortcuts": "Zkratky",
+    "system": "Systém",
+    "language": "Jazyk"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Pondělí",
+      "tuesday": "Úterý",
+      "wednesday": "Středa",
+      "thursday": "Čtvrtek",
+      "friday": "Pátek",
+      "saturday": "Sobota",
+      "sunday": "Neděle"
+    },
+    "month": {
+      "january": "Leden",
+      "february": "Únor",
+      "march": "Březen",
+      "april": "Duben",
+      "may": "Květen",
+      "june": "Červen",
+      "july": "Červenec",
+      "august": "Srpen",
+      "september": "Září",
+      "october": "Říjen",
+      "november": "Listopad",
+      "december": "Prosinec"
+    }
+  },
+  "general": {
+    "title": "Obecná nastavení",
+    "language_label": "Jazyk:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Oznámení:",
+    "notification_system": "Zobrazit systémová oznámení",
+    "notification_sound": "Zvuky oznámení",
+    "notification_performance": "Oznámení výkonu"
+  },
+  "appearance": {
+    "title": "Vzhled",
+    "theme_label": "Motiv:",
+    "theme_light": "Světlý",
+    "theme_dark": "Tmavý",
+    "clock_panel_label": "Panel hodin:",
+    "panel_position_label": "Pozice panelu:",
+    "position_top": "Nahoře",
+    "position_bottom": "Dole",
+    "clock_position_label": "Pozice hodin:",
+    "panel_height_label": "Výška panelu:"
+  },
+  "system": {
+    "application": "Aplikace",
+    "sleep": "Režim spánku",
+    "logout": "Odhlásit",
+    "shutdown": "Vypnout",
+    "restart": "Restartovat",
+    "lock": "Zamknout obrazovku"
+  },
+  "mixer": {
+    "title": "Audio Mixer",
+    "subtitle": "Spravovat audio proudy a hlasitost",
+    "output_device": "Výstupní zařízení",
+    "application_streams": "Audio proudy aplikací",
+    "no_streams": "Žádné aktivní proudy",
+    "active_streams": "Aktivní proudy: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Neznámá aplikace",
+    "unmute": "Zapnout zvuk",
+    "mute": "Ztlumit",
+    "volume_percent": "%{volume}%",
+    "media_name": "Název média",
+    "volume_slider_tooltip": "Upravit hlasitost",
+    "muted": "Ztlumeno",
+    "overdrive": "Překročení hlasitosti"
+  },
+  "calendar": {
+    "title": "Kalendář",
+    "weekdays": {
+      "sunday": "Ne",
+      "monday": "Po",
+      "tuesday": "Út",
+      "wednesday": "St",
+      "thursday": "Čt",
+      "friday": "Pá",
+      "saturday": "So"
+    }
+  },
+  "wallpapers": {
+    "title": "Správa obrázků",
+    "total_images": "Celkem obrázků:",
+    "path": "Cesta:",
+    "loading": "Načítání...",
+    "loading_info": "Načítání informací...",
+    "no_images": "Žádné obrázky v ~/Pictures/Wallpapers",
+    "set_wallpaper": "Nastavit",
+    "already_set": "Nastaveno",
+    "delete": "Smazat",
+    "delete_confirm": "Potvrdit smazání",
+    "cancel": "Zrušit",
+    "success_set": "Tapeta nastavena!",
+    "success_delete": "Obrázek smazán!"
+  },
+  "confirm": {
+    "title": "Potvrdit",
+    "message": "Opravdu chcete {action}?",
+    "yes": "Ano",
+    "no": "Ne",
+    "sleep": "přejít do režimu spánku",
+    "lock": "zamknout obrazovku",
+    "logout": "odhlásit se",
+    "restart": "restartovat",
+    "shutdown": "vypnout"
+  },
+  "ram": {
+    "title": "Správce procesů",
+    "panel_title": "Správce RAM",
+    "memory_monitor": "Monitor paměti",
+    "used": "Použito",
+    "free": "Volné",
+    "available": "Dostupné",
+    "no_swap": "Žádný SWAP",
+    "loading_memory": "Načítání dat paměti...",
+    "loading": {
+      "title": "⏳",
+      "message": "Načítání seznamu procesů..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Název procesu",
+      "ram_percent": "RAM %",
+      "memory": "Paměť"
+    },
+    "footer": {
+      "process_count_label": "Počet procesů",
+      "total_ram_label": "Celkové využití RAM",
+      "memory_distribution_label": "Rozdělení paměti",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor procesů",
+      "last_update": "Poslední aktualizace"
+    },
+    "status_colors": {
+      "critical": "Kritický",
+      "warning": "Varování",
+      "normal": "Normální",
+      "low": "Nízký"
+    },
+    "distribution": {
+      "na": "Žádná data",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skript nevrátil data",
+      "parse_error": "Chyba parsování výstupních dat"
+    }
+  },
+  "volume": {
+    "title": "Hlasitost",
+    "muted": "Ztlumeno"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth zapnutý",
+    "disabled": "Bluetooth vypnutý",
+    "devices_connected": "zařízení připojena",
+    "pairing": "Párování...",
+    "connecting": "Připojování...",
+    "connected": "Připojeno",
+    "paired": "Spárováno",
+    "not_connected": "Nepřipojeno",
+    "searching": "Hledání zařízení...",
+    "no_devices": "Žádná zařízení",
+    "turn_on": "Zapněte Bluetooth pro připojení zařízení",
+    "pair_error": "Nelze spárovat zařízení"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi zapnutá",
+    "disabled": "WiFi vypnutá",
+    "not_connected": "Nepřipojeno",
+    "available_networks": "Dostupné sítě",
+    "searching": "Hledání sítí...",
+    "no_networks": "Žádné sítě",
+    "turn_on": "Zapněte WiFi pro zobrazení sítí",
+    "forget": "Zapomenout",
+    "connect": "Připojit",
+    "no_password": "Bez hesla",
+    "enter_password": "Zadejte heslo",
+    "password_required": "Prosím zadejte heslo",
+    "wrong_password": "Chybné heslo"
+  }
+}

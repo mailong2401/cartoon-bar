@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Настройки",
+    "general": "Общи",
+    "appearance": "Изглед",
+    "wallpapers": "Тапети",
+    "network": "Мрежа",
+    "audio": "Звук",
+    "performance": "Производителност",
+    "shortcuts": "Бързи клавиши",
+    "system": "Система",
+    "language": "Език"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Понеделник",
+      "tuesday": "Вторник",
+      "wednesday": "Сряда",
+      "thursday": "Четвъртък",
+      "friday": "Петък",
+      "saturday": "Събота",
+      "sunday": "Неделя"
+    },
+    "month": {
+      "january": "Януари",
+      "february": "Февруари",
+      "march": "Март",
+      "april": "Април",
+      "may": "Май",
+      "june": "Юни",
+      "july": "Юли",
+      "august": "Август",
+      "september": "Септември",
+      "october": "Октомври",
+      "november": "Ноември",
+      "december": "Декември"
+    }
+  },
+  "general": {
+    "title": "Общи настройки",
+    "language_label": "Език:",
+    "autostart_label": "Автоматично стартиране:",
+    "notification_label": "Известия:",
+    "notification_system": "Показване на системни известия",
+    "notification_sound": "Звуци за известия",
+    "notification_performance": "Известия за производителност"
+  },
+  "appearance": {
+    "title": "Изглед",
+    "theme_label": "Тема:",
+    "theme_light": "Светла",
+    "theme_dark": "Тъмна",
+    "clock_panel_label": "Панел на часовника:",
+    "panel_position_label": "Позиция на панела:",
+    "position_top": "Горе",
+    "position_bottom": "Долу",
+    "clock_position_label": "Позиция на часовника:",
+    "panel_height_label": "Височина на панела:"
+  },
+  "system": {
+    "application": "Приложение",
+    "sleep": "Режим на заспиване",
+    "logout": "Излизане",
+    "shutdown": "Изключване",
+    "restart": "Рестартиране",
+    "lock": "Заключване на екрана"
+  },
+  "mixer": {
+    "title": "Звуков миксер",
+    "subtitle": "Управление на звукови потоци и сила на звука",
+    "output_device": "Изходно устройство",
+    "application_streams": "Звукови потоци на приложения",
+    "no_streams": "Няма активни потоци",
+    "active_streams": "Активни потоци: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Неизвестно приложение",
+    "unmute": "Включване на звука",
+    "mute": "Заглушаване",
+    "volume_percent": "%{volume}%",
+    "media_name": "Име на медията",
+    "volume_slider_tooltip": "Регулиране на силата на звука",
+    "muted": "Заглушено",
+    "overdrive": "Превишаване на силата на звука"
+  },
+  "calendar": {
+    "title": "Календар",
+    "weekdays": {
+      "sunday": "Нд",
+      "monday": "Пн",
+      "tuesday": "Вт",
+      "wednesday": "Ср",
+      "thursday": "Чт",
+      "friday": "Пт",
+      "saturday": "Сб"
+    }
+  },
+  "wallpapers": {
+    "title": "Управление на изображения",
+    "total_images": "Общо изображения:",
+    "path": "Път:",
+    "loading": "Зареждане...",
+    "loading_info": "Зареждане на информация...",
+    "no_images": "Не са намерени изображения в ~/Pictures/Wallpapers",
+    "set_wallpaper": "Задаване",
+    "already_set": "Зададено",
+    "delete": "Изтриване",
+    "delete_confirm": "Потвърждаване на изтриване",
+    "cancel": "Отказ",
+    "success_set": "Тапетът е зададен!",
+    "success_delete": "Изображението е изтрито!"
+  },
+  "confirm": {
+    "title": "Потвърждение",
+    "message": "Сигурни ли сте, че искате да {action}?",
+    "yes": "Да",
+    "no": "Не",
+    "sleep": "преминете в режим на заспиване",
+    "lock": "заключите екрана",
+    "logout": "излезете",
+    "restart": "рестартирате",
+    "shutdown": "изключите"
+  },
+  "ram": {
+    "title": "Мениджър на процеси",
+    "panel_title": "Мениджър на RAM",
+    "memory_monitor": "Монитор на паметта",
+    "used": "Използвана",
+    "free": "Свободна",
+    "available": "Налична",
+    "no_swap": "Няма SWAP",
+    "loading_memory": "Зареждане на данни за паметта...",
+    "loading": {
+      "title": "⏳",
+      "message": "Зареждане на списък с процеси..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Име на процес",
+      "ram_percent": "RAM %",
+      "memory": "Памет"
+    },
+    "footer": {
+      "process_count_label": "Брой процеси",
+      "total_ram_label": "Обща употреба на RAM",
+      "memory_distribution_label": "Разпределение на паметта",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Монитор на процеси",
+      "last_update": "Последна актуализация"
+    },
+    "status_colors": {
+      "critical": "Критично",
+      "warning": "Предупреждение",
+      "normal": "Нормално",
+      "low": "Ниско"
+    },
+    "distribution": {
+      "na": "Няма данни",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Скриптът не върна данни",
+      "parse_error": "Грешка при анализиране на изходни данни"
+    }
+  },
+  "volume": {
+    "title": "Сила на звука",
+    "muted": "Заглушено"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth е включен",
+    "disabled": "Bluetooth е изключен",
+    "devices_connected": "устройства свързани",
+    "pairing": "Сдвояване...",
+    "connecting": "Свързване...",
+    "connected": "Свързан",
+    "paired": "Сдвоен",
+    "not_connected": "Не е свързан",
+    "searching": "Търсене на устройства...",
+    "no_devices": "Няма устройства",
+    "turn_on": "Включете Bluetooth за свързване на устройства",
+    "pair_error": "Не може да се сдвои устройство"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi е включен",
+    "disabled": "WiFi е изключен",
+    "not_connected": "Не е свързан",
+    "available_networks": "Налични мрежи",
+    "searching": "Търсене на мрежи...",
+    "no_networks": "Няма мрежи",
+    "turn_on": "Включете WiFi за преглед на мрежите",
+    "forget": "Забравяне",
+    "connect": "Свързване",
+    "no_password": "Не е необходима парола",
+    "enter_password": "Въведете парола",
+    "password_required": "Моля, въведете парола",
+    "wrong_password": "Грешна парола"
+  }
+}

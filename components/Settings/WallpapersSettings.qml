@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Qt.labs.folderlistmodel
+import QtMultimedia
 
 Item {
     id: systemSettings
@@ -15,6 +16,7 @@ Item {
     property string wallpaperPath: ""
     property string currentWallpaper: ""
     property string configPath: ""
+    property string thumbnailCachePath: ""
 
     // Process để lấy home directory
     Process {
@@ -29,7 +31,24 @@ Item {
                     systemSettings.homePath = path
                     systemSettings.wallpapersPath = "file://" + path + "/Pictures/Wallpapers/"
                     systemSettings.configPath = path + "/.config/quickshell/cartoon-bar"
+                    systemSettings.thumbnailCachePath = path + "/.cache/quickshell/thumbnails/"
+
+                    // Tạo thư mục cache nếu chưa có
+                    createCacheDir.running = true
                 }
+            }
+        }
+    }
+
+    // Process để tạo cache directory
+    Process {
+        id: createCacheDir
+        command: ["mkdir", "-p", ""]
+        running: false
+
+        onRunningChanged: {
+            if (!running && homePath) {
+                createCacheDir.command = ["mkdir", "-p", thumbnailCachePath]
             }
         }
     }
@@ -173,36 +192,57 @@ Item {
                             clip: true
                             color: "transparent"
 
+                            // Thumbnail
                             Image {
+                                id: thumbnailImage
                                 anchors.fill: parent
-                                source: isVideoFile(fileName) ? "" : filePath
+                                source: getThumbnailSource(fileName, filePath)
                                 fillMode: Image.PreserveAspectCrop
                                 asynchronous: true
-                                visible: !isVideoFile(fileName)
-                            }
+                                cache: true
 
-                            // Video Placeholder
-                            Rectangle {
-                                visible: isVideoFile(fileName)
-                                anchors.fill: parent
-                                color: theme.button.background
-
-                                Column {
-                                    anchors.centerIn: parent
-                                    spacing: 5
+                                // Loading indicator
+                                Rectangle {
+                                    visible: parent.status === Image.Loading
+                                    anchors.fill: parent
+                                    color: theme.button.background
 
                                     Text {
-                                        text: "🎥"
-                                        font.pixelSize: 40
-                                        anchors.horizontalCenter: parent.horizontalCenter
+                                        anchors.centerIn: parent
+                                        text: "⏳"
+                                        font.pixelSize: 30
                                     }
+                                }
 
-                                    Text {
-                                        text: "Video"
-                                        color: theme.primary.dim_foreground
-                                        font.pixelSize: 12
-                                        font.family: "ComicShannsMono Nerd Font"
-                                        anchors.horizontalCenter: parent.horizontalCenter
+                                // Error fallback
+                                Rectangle {
+                                    visible: parent.status === Image.Error
+                                    anchors.fill: parent
+                                    color: theme.button.background
+
+                                    Column {
+                                        anchors.centerIn: parent
+                                        spacing: 5
+
+                                        Text {
+                                            text: isVideoFile(fileName) ? "🎥" : "🖼"
+                                            font.pixelSize: 40
+                                            anchors.horizontalCenter: parent.horizontalCenter
+                                        }
+
+                                        Text {
+                                            text: isVideoFile(fileName) ? "Video" : "Image"
+                                            color: theme.primary.dim_foreground
+                                            font.pixelSize: 12
+                                            font.family: "ComicShannsMono Nerd Font"
+                                            anchors.horizontalCenter: parent.horizontalCenter
+                                        }
+                                    }
+                                }
+
+                                Component.onCompleted: {
+                                    if (isVideoFile(fileName)) {
+                                        generateThumbnail(fileName, filePath)
                                     }
                                 }
                             }
@@ -489,6 +529,41 @@ Item {
                ext.endsWith(".mkv") ||
                ext.endsWith(".webm") ||
                ext.endsWith(".gif")
+    }
+
+    function getThumbnailSource(fileName, filePath) {
+        if (!isVideoFile(fileName)) {
+            return filePath
+        }
+
+        // For video files, try to use cached thumbnail
+        var actualPath = filePath.toString().replace("file://", "")
+        var thumbName = fileName.replace(/\.[^/.]+$/, ".jpg")
+        var thumbPath = thumbnailCachePath + thumbName
+
+        return "file://" + thumbPath
+    }
+
+    function generateThumbnail(fileName, filePath) {
+        if (!thumbnailCachePath) return
+
+        var actualPath = filePath.toString().replace("file://", "")
+        var thumbName = fileName.replace(/\.[^/.]+$/, ".jpg")
+        var thumbPath = thumbnailCachePath + thumbName
+
+        // Check if thumbnail already exists
+        var checkProcess = Qt.createQmlObject(
+            'import Quickshell.Io; Process { command: ["test", "-f", "' + thumbPath + '"]; running: true }',
+            systemSettings
+        )
+
+        // Generate thumbnail if it doesn't exist
+        var genProcess = Qt.createQmlObject(
+            'import Quickshell.Io; Process { command: ["bash", "' + configPath + '/scripts/generate-video-thumbnail.sh", "' + actualPath + '", "' + thumbPath + '"]; running: false }',
+            systemSettings
+        )
+
+        genProcess.running = true
     }
 
     function deleteWallpaper(filePath) {

@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "הגדרות",
+    "general": "כללי",
+    "appearance": "מראה",
+    "wallpapers": "טפטים",
+    "network": "רשת",
+    "audio": "שמע",
+    "performance": "ביצועים",
+    "shortcuts": "קיצורי דרך",
+    "system": "מערכת",
+    "language": "שפה"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "שני",
+      "tuesday": "שלישי",
+      "wednesday": "רביעי",
+      "thursday": "חמישי",
+      "friday": "שישי",
+      "saturday": "שבת",
+      "sunday": "ראשון"
+    },
+    "month": {
+      "january": "ינואר",
+      "february": "פברואר",
+      "march": "מרץ",
+      "april": "אפריל",
+      "may": "מאי",
+      "june": "יוני",
+      "july": "יולי",
+      "august": "אוגוסט",
+      "september": "ספטמבר",
+      "october": "אוקטובר",
+      "november": "נובמבר",
+      "december": "דצמבר"
+    }
+  },
+  "general": {
+    "title": "הגדרות כלליות",
+    "language_label": "שפה:",
+    "autostart_label": "הפעלה אוטומטית:",
+    "notification_label": "התראות:",
+    "notification_system": "הצג התראות מערכת",
+    "notification_sound": "צלילי התראה",
+    "notification_performance": "התראות ביצועים"
+  },
+  "appearance": {
+    "title": "מראה",
+    "theme_label": "ערכת נושא:",
+    "theme_light": "בהיר",
+    "theme_dark": "כהה",
+    "clock_panel_label": "לוח שעון:",
+    "panel_position_label": "מיקום לוח:",
+    "position_top": "למעלה",
+    "position_bottom": "למטה",
+    "clock_position_label": "מיקום שעון:",
+    "panel_height_label": "גובה לוח:"
+  },
+  "system": {
+    "application": "יישום",
+    "sleep": "מצב שינה",
+    "logout": "התנתק",
+    "shutdown": "כיבוי",
+    "restart": "הפעלה מחדש",
+    "lock": "נעל מסך"
+  },
+  "mixer": {
+    "title": "מערבל שמע",
+    "subtitle": "נהל זרמי שמע ועוצמת קול",
+    "output_device": "התקן פלט",
+    "application_streams": "זרמי שמע של יישומים",
+    "no_streams": "אין זרמים פעילים",
+    "active_streams": "זרמים פעילים: %{count}"
+  },
+  "entry": {
+    "unknown_app": "יישום לא ידוע",
+    "unmute": "בטל השתקה",
+    "mute": "השתק",
+    "volume_percent": "%{volume}%",
+    "media_name": "שם מדיה",
+    "volume_slider_tooltip": "התאם עוצמת קול",
+    "muted": "מושתק",
+    "overdrive": "עוצמת קול יתר"
+  },
+  "calendar": {
+    "title": "לוח שנה",
+    "weekdays": {
+      "sunday": "א'",
+      "monday": "ב'",
+      "tuesday": "ג'",
+      "wednesday": "ד'",
+      "thursday": "ה'",
+      "friday": "ו'",
+      "saturday": "ש'"
+    }
+  },
+  "wallpapers": {
+    "title": "ניהול תמונות",
+    "total_images": "סה''כ תמונות:",
+    "path": "נתיב:",
+    "loading": "טוען...",
+    "loading_info": "טוען מידע...",
+    "no_images": "לא נמצאו תמונות ב-~/Pictures/Wallpapers",
+    "set_wallpaper": "הגדר",
+    "already_set": "הוגדר",
+    "delete": "מחק",
+    "delete_confirm": "אשר מחיקה",
+    "cancel": "ביטול",
+    "success_set": "הטפט הוגדר!",
+    "success_delete": "התמונה נמחקה!"
+  },
+  "confirm": {
+    "title": "אישור",
+    "message": "האם אתה בטוח שברצונך {action}?",
+    "yes": "כן",
+    "no": "לא",
+    "sleep": "לעבור למצב שינה",
+    "lock": "לנעול את המסך",
+    "logout": "להתנתק",
+    "restart": "להפעיל מחדש",
+    "shutdown": "לכבות"
+  },
+  "ram": {
+    "title": "מנהל תהליכים",
+    "panel_title": "מנהל RAM",
+    "memory_monitor": "מוניטור זיכרון",
+    "used": "בשימוש",
+    "free": "פנוי",
+    "available": "זמין",
+    "no_swap": "אין SWAP",
+    "loading_memory": "טוען נתוני זיכרון...",
+    "loading": {
+      "title": "⏳",
+      "message": "טוען רשימת תהליכים..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "שם תהליך",
+      "ram_percent": "RAM %",
+      "memory": "זיכרון"
+    },
+    "footer": {
+      "process_count_label": "מספר תהליכים",
+      "total_ram_label": "סה''כ שימוש RAM",
+      "memory_distribution_label": "חלוקת זיכרון",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "מוניטור תהליכים",
+      "last_update": "עדכון אחרון"
+    },
+    "status_colors": {
+      "critical": "קריטי",
+      "warning": "אזהרה",
+      "normal": "רגיל",
+      "low": "נמוך"
+    },
+    "distribution": {
+      "na": "אין נתונים",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "הסקריפט לא החזיר נתונים",
+      "parse_error": "שגיאה בניתוח נתוני פלט"
+    }
+  },
+  "volume": {
+    "title": "עוצמת קול",
+    "muted": "מושתק"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth מופעל",
+    "disabled": "Bluetooth כבוי",
+    "devices_connected": "התקנים מחוברים",
+    "pairing": "מזווג...",
+    "connecting": "מתחבר...",
+    "connected": "מחובר",
+    "paired": "מזווג",
+    "not_connected": "לא מחובר",
+    "searching": "מחפש התקנים...",
+    "no_devices": "לא נמצאו התקנים",
+    "turn_on": "הפעל Bluetooth לחיבור התקנים",
+    "pair_error": "לא ניתן לזווג התקן"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi מופעל",
+    "disabled": "WiFi כבוי",
+    "not_connected": "לא מחובר",
+    "available_networks": "רשתות זמינות",
+    "searching": "מחפש רשתות...",
+    "no_networks": "לא נמצאו רשתות",
+    "turn_on": "הפעל WiFi לצפייה ברשתות",
+    "forget": "שכח",
+    "connect": "התחבר",
+    "no_password": "אין צורך בסיסמה",
+    "enter_password": "הזן סיסמה",
+    "password_required": "אנא הזן סיסמה",
+    "wrong_password": "סיסמה שגויה"
+  }
+}

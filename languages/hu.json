@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Beállítások",
+    "general": "Általános",
+    "appearance": "Megjelenés",
+    "wallpapers": "Háttérképek",
+    "network": "Hálózat",
+    "audio": "Hang",
+    "performance": "Teljesítmény",
+    "shortcuts": "Gyorsbillentyűk",
+    "system": "Rendszer",
+    "language": "Nyelv"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Hétfő",
+      "tuesday": "Kedd",
+      "wednesday": "Szerda",
+      "thursday": "Csütörtök",
+      "friday": "Péntek",
+      "saturday": "Szombat",
+      "sunday": "Vasárnap"
+    },
+    "month": {
+      "january": "Január",
+      "february": "Február",
+      "march": "Március",
+      "april": "Április",
+      "may": "Május",
+      "june": "Június",
+      "july": "Július",
+      "august": "Augusztus",
+      "september": "Szeptember",
+      "october": "Október",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "general": {
+    "title": "Általános beállítások",
+    "language_label": "Nyelv:",
+    "autostart_label": "Automatikus indítás:",
+    "notification_label": "Értesítések:",
+    "notification_system": "Rendszerértesítések megjelenítése",
+    "notification_sound": "Értesítési hangok",
+    "notification_performance": "Teljesítmény értesítések"
+  },
+  "appearance": {
+    "title": "Megjelenés",
+    "theme_label": "Téma:",
+    "theme_light": "Világos",
+    "theme_dark": "Sötét",
+    "clock_panel_label": "Óra panel:",
+    "panel_position_label": "Panel pozíció:",
+    "position_top": "Fent",
+    "position_bottom": "Lent",
+    "clock_position_label": "Óra pozíció:",
+    "panel_height_label": "Panel magasság:"
+  },
+  "system": {
+    "application": "Alkalmazás",
+    "sleep": "Alvó mód",
+    "logout": "Kijelentkezés",
+    "shutdown": "Leállítás",
+    "restart": "Újraindítás",
+    "lock": "Képernyő zárolása"
+  },
+  "mixer": {
+    "title": "Hangkeverő",
+    "subtitle": "Hangfolyamok és hangerő kezelése",
+    "output_device": "Kimeneti eszköz",
+    "application_streams": "Alkalmazás hangfolyamok",
+    "no_streams": "Nincs aktív folyam",
+    "active_streams": "Aktív folyamok: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Ismeretlen alkalmazás",
+    "unmute": "Némítás feloldása",
+    "mute": "Némítás",
+    "volume_percent": "%{volume}%",
+    "media_name": "Média neve",
+    "volume_slider_tooltip": "Hangerő beállítása",
+    "muted": "Némítva",
+    "overdrive": "Hangerő túllépés"
+  },
+  "calendar": {
+    "title": "Naptár",
+    "weekdays": {
+      "sunday": "V",
+      "monday": "H",
+      "tuesday": "K",
+      "wednesday": "Sze",
+      "thursday": "Cs",
+      "friday": "P",
+      "saturday": "Szo"
+    }
+  },
+  "wallpapers": {
+    "title": "Képkezelés",
+    "total_images": "Összes kép:",
+    "path": "Útvonal:",
+    "loading": "Betöltés...",
+    "loading_info": "Információ betöltése...",
+    "no_images": "Nem található kép a ~/Pictures/Wallpapers mappában",
+    "set_wallpaper": "Beállítás",
+    "already_set": "Beállítva",
+    "delete": "Törlés",
+    "delete_confirm": "Törlés megerősítése",
+    "cancel": "Mégse",
+    "success_set": "Háttérkép beállítva!",
+    "success_delete": "Kép törölve!"
+  },
+  "confirm": {
+    "title": "Megerősítés",
+    "message": "Biztosan szeretné {action}?",
+    "yes": "Igen",
+    "no": "Nem",
+    "sleep": "alvó módba lépni",
+    "lock": "zárolni a képernyőt",
+    "logout": "kijelentkezni",
+    "restart": "újraindítani",
+    "shutdown": "leállítani"
+  },
+  "ram": {
+    "title": "Folyamatkezelő",
+    "panel_title": "RAM kezelő",
+    "memory_monitor": "Memória monitor",
+    "used": "Használt",
+    "free": "Szabad",
+    "available": "Elérhető",
+    "no_swap": "Nincs SWAP",
+    "loading_memory": "Memória adatok betöltése...",
+    "loading": {
+      "title": "⏳",
+      "message": "Folyamatlista betöltése..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Folyamat neve",
+      "ram_percent": "RAM %",
+      "memory": "Memória"
+    },
+    "footer": {
+      "process_count_label": "Folyamatok száma",
+      "total_ram_label": "Teljes RAM használat",
+      "memory_distribution_label": "Memória eloszlás",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Folyamat monitor",
+      "last_update": "Utolsó frissítés"
+    },
+    "status_colors": {
+      "critical": "Kritikus",
+      "warning": "Figyelmeztetés",
+      "normal": "Normál",
+      "low": "Alacsony"
+    },
+    "distribution": {
+      "na": "Nincs adat",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "A szkript nem adott vissza adatokat",
+      "parse_error": "Hiba a kimeneti adatok elemzésekor"
+    }
+  },
+  "volume": {
+    "title": "Hangerő",
+    "muted": "Némítva"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth bekapcsolva",
+    "disabled": "Bluetooth kikapcsolva",
+    "devices_connected": "eszköz csatlakoztatva",
+    "pairing": "Párosítás...",
+    "connecting": "Csatlakozás...",
+    "connected": "Csatlakoztatva",
+    "paired": "Párosítva",
+    "not_connected": "Nincs csatlakoztatva",
+    "searching": "Eszközök keresése...",
+    "no_devices": "Nincs eszköz",
+    "turn_on": "Kapcsolja be a Bluetoothot az eszközök csatlakoztatásához",
+    "pair_error": "Az eszköz nem párosítható"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi bekapcsolva",
+    "disabled": "WiFi kikapcsolva",
+    "not_connected": "Nincs csatlakoztatva",
+    "available_networks": "Elérhető hálózatok",
+    "searching": "Hálózatok keresése...",
+    "no_networks": "Nincs hálózat",
+    "turn_on": "Kapcsolja be a WiFi-t a hálózatok megtekintéséhez",
+    "forget": "Elfelejt",
+    "connect": "Csatlakozás",
+    "no_password": "Nincs szükség jelszóra",
+    "enter_password": "Adja meg a jelszót",
+    "password_required": "Kérjük, adja meg a jelszót",
+    "wrong_password": "Hibás jelszó"
+  }
+}

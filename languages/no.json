@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Innstillinger",
+    "general": "Generelt",
+    "appearance": "Utseende",
+    "wallpapers": "Bakgrunnsbilder",
+    "network": "Nettverk",
+    "audio": "Lyd",
+    "performance": "Ytelse",
+    "shortcuts": "Snarveier",
+    "system": "System",
+    "language": "Språk"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Mandag",
+      "tuesday": "Tirsdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lørdag",
+      "sunday": "Søndag"
+    },
+    "month": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "Mars",
+      "april": "April",
+      "may": "Mai",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Desember"
+    }
+  },
+  "general": {
+    "title": "Generelle innstillinger",
+    "language_label": "Språk:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Varsler:",
+    "notification_system": "Vis systemvarsler",
+    "notification_sound": "Varsellyder",
+    "notification_performance": "Ytelsesvarsler"
+  },
+  "appearance": {
+    "title": "Utseende",
+    "theme_label": "Tema:",
+    "theme_light": "Lyst",
+    "theme_dark": "Mørkt",
+    "clock_panel_label": "Klokkepanel:",
+    "panel_position_label": "Panelposisjon:",
+    "position_top": "Topp",
+    "position_bottom": "Bunn",
+    "clock_position_label": "Klokkeposisjon:",
+    "panel_height_label": "Panelhøyde:"
+  },
+  "system": {
+    "application": "Applikasjon",
+    "sleep": "Dvalemodus",
+    "logout": "Logg ut",
+    "shutdown": "Slå av",
+    "restart": "Omstart",
+    "lock": "Lås skjerm"
+  },
+  "mixer": {
+    "title": "Lydmikser",
+    "subtitle": "Administrer lydstrømmer og volum",
+    "output_device": "Utgangsenhet",
+    "application_streams": "Applikasjonsstrømmer",
+    "no_streams": "Ingen aktive strømmer",
+    "active_streams": "Aktive strømmer: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Ukjent applikasjon",
+    "unmute": "Slå på lyd",
+    "mute": "Demp",
+    "volume_percent": "%{volume}%",
+    "media_name": "Medianavn",
+    "volume_slider_tooltip": "Juster volum",
+    "muted": "Dempet",
+    "overdrive": "Volumoverbelastning"
+  },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "Søn",
+      "monday": "Man",
+      "tuesday": "Tir",
+      "wednesday": "Ons",
+      "thursday": "Tor",
+      "friday": "Fre",
+      "saturday": "Lør"
+    }
+  },
+  "wallpapers": {
+    "title": "Bildebehandling",
+    "total_images": "Totalt bilder:",
+    "path": "Sti:",
+    "loading": "Laster...",
+    "loading_info": "Laster informasjon...",
+    "no_images": "Ingen bilder i ~/Pictures/Wallpapers",
+    "set_wallpaper": "Sett",
+    "already_set": "Satt",
+    "delete": "Slett",
+    "delete_confirm": "Bekreft sletting",
+    "cancel": "Avbryt",
+    "success_set": "Bakgrunn satt!",
+    "success_delete": "Bilde slettet!"
+  },
+  "confirm": {
+    "title": "Bekreft",
+    "message": "Er du sikker på at du vil {action}?",
+    "yes": "Ja",
+    "no": "Nei",
+    "sleep": "gå i dvalemodus",
+    "lock": "låse skjermen",
+    "logout": "logge ut",
+    "restart": "starte på nytt",
+    "shutdown": "slå av"
+  },
+  "ram": {
+    "title": "Prosessbehandler",
+    "panel_title": "RAM-behandler",
+    "memory_monitor": "Minneovervåker",
+    "used": "Brukt",
+    "free": "Ledig",
+    "available": "Tilgjengelig",
+    "no_swap": "Ingen SWAP",
+    "loading_memory": "Laster minnedata...",
+    "loading": {
+      "title": "⏳",
+      "message": "Laster prosessliste..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Prosessnavn",
+      "ram_percent": "RAM %",
+      "memory": "Minne"
+    },
+    "footer": {
+      "process_count_label": "Antall prosesser",
+      "total_ram_label": "Total RAM-bruk",
+      "memory_distribution_label": "Minnefordeling",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Prosessovervåker",
+      "last_update": "Siste oppdatering"
+    },
+    "status_colors": {
+      "critical": "Kritisk",
+      "warning": "Advarsel",
+      "normal": "Normal",
+      "low": "Lav"
+    },
+    "distribution": {
+      "na": "Ingen data",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skript returnerte ingen data",
+      "parse_error": "Feil ved parsing av utdata"
+    }
+  },
+  "volume": {
+    "title": "Volum",
+    "muted": "Dempet"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth på",
+    "disabled": "Bluetooth av",
+    "devices_connected": "enheter tilkoblet",
+    "pairing": "Kobler...",
+    "connecting": "Tilkobler...",
+    "connected": "Tilkoblet",
+    "paired": "Paret",
+    "not_connected": "Ikke tilkoblet",
+    "searching": "Søker enheter...",
+    "no_devices": "Ingen enheter",
+    "turn_on": "Slå på Bluetooth for å koble enheter",
+    "pair_error": "Kan ikke pare enhet"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi på",
+    "disabled": "WiFi av",
+    "not_connected": "Ikke tilkoblet",
+    "available_networks": "Tilgjengelige nettverk",
+    "searching": "Søker nettverk...",
+    "no_networks": "Ingen nettverk",
+    "turn_on": "Slå på WiFi for å se nettverk",
+    "forget": "Glem",
+    "connect": "Koble til",
+    "no_password": "Ingen passord kreves",
+    "enter_password": "Skriv inn passord",
+    "password_required": "Vennligst skriv inn passord",
+    "wrong_password": "Feil passord"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Setări",
+    "general": "General",
+    "appearance": "Aspect",
+    "wallpapers": "Fundaluri",
+    "network": "Rețea",
+    "audio": "Audio",
+    "performance": "Performanță",
+    "shortcuts": "Scurtături",
+    "system": "Sistem",
+    "language": "Limbă"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Luni",
+      "tuesday": "Marți",
+      "wednesday": "Miercuri",
+      "thursday": "Joi",
+      "friday": "Vineri",
+      "saturday": "Sâmbătă",
+      "sunday": "Duminică"
+    },
+    "month": {
+      "january": "Ianuarie",
+      "february": "Februarie",
+      "march": "Martie",
+      "april": "Aprilie",
+      "may": "Mai",
+      "june": "Iunie",
+      "july": "Iulie",
+      "august": "August",
+      "september": "Septembrie",
+      "october": "Octombrie",
+      "november": "Noiembrie",
+      "december": "Decembrie"
+    }
+  },
+  "general": {
+    "title": "Setări generale",
+    "language_label": "Limbă:",
+    "autostart_label": "Pornire automată:",
+    "notification_label": "Notificări:",
+    "notification_system": "Afișează notificări de sistem",
+    "notification_sound": "Sunete notificări",
+    "notification_performance": "Notificări performanță"
+  },
+  "appearance": {
+    "title": "Aspect",
+    "theme_label": "Temă:",
+    "theme_light": "Deschis",
+    "theme_dark": "Închis",
+    "clock_panel_label": "Panou ceas:",
+    "panel_position_label": "Poziție panou:",
+    "position_top": "Sus",
+    "position_bottom": "Jos",
+    "clock_position_label": "Poziție ceas:",
+    "panel_height_label": "Înălțime panou:"
+  },
+  "system": {
+    "application": "Aplicație",
+    "sleep": "Mod somn",
+    "logout": "Deconectare",
+    "shutdown": "Oprire",
+    "restart": "Repornire",
+    "lock": "Blocare ecran"
+  },
+  "mixer": {
+    "title": "Mixer audio",
+    "subtitle": "Gestionează fluxuri audio și volum",
+    "output_device": "Dispozitiv ieșire",
+    "application_streams": "Fluxuri audio aplicații",
+    "no_streams": "Niciun flux activ",
+    "active_streams": "Fluxuri active: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Aplicație necunoscută",
+    "unmute": "Activează sunet",
+    "mute": "Dezactivează",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nume media",
+    "volume_slider_tooltip": "Ajustează volumul",
+    "muted": "Dezactivat",
+    "overdrive": "Supravolum"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "weekdays": {
+      "sunday": "Dum",
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mie",
+      "thursday": "Joi",
+      "friday": "Vin",
+      "saturday": "Sâm"
+    }
+  },
+  "wallpapers": {
+    "title": "Gestionare imagini",
+    "total_images": "Total imagini:",
+    "path": "Cale:",
+    "loading": "Se încarcă...",
+    "loading_info": "Se încarcă informații...",
+    "no_images": "Nu s-au găsit imagini în ~/Pictures/Wallpapers",
+    "set_wallpaper": "Setează",
+    "already_set": "Setat",
+    "delete": "Șterge",
+    "delete_confirm": "Confirmă ștergere",
+    "cancel": "Anulează",
+    "success_set": "Fundal setat!",
+    "success_delete": "Imagine ștearsă!"
+  },
+  "confirm": {
+    "title": "Confirmare",
+    "message": "Sigur doriți să {action}?",
+    "yes": "Da",
+    "no": "Nu",
+    "sleep": "treceți în modul somn",
+    "lock": "blocați ecranul",
+    "logout": "vă deconectați",
+    "restart": "reporniți",
+    "shutdown": "opriți"
+  },
+  "ram": {
+    "title": "Manager procese",
+    "panel_title": "Manager RAM",
+    "memory_monitor": "Monitor memorie",
+    "used": "Utilizat",
+    "free": "Liber",
+    "available": "Disponibil",
+    "no_swap": "Fără SWAP",
+    "loading_memory": "Se încarcă date memorie...",
+    "loading": {
+      "title": "⏳",
+      "message": "Se încarcă lista procese..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nume proces",
+      "ram_percent": "RAM %",
+      "memory": "Memorie"
+    },
+    "footer": {
+      "process_count_label": "Număr procese",
+      "total_ram_label": "Utilizare totală RAM",
+      "memory_distribution_label": "Distribuție memorie",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor procese",
+      "last_update": "Ultima actualizare"
+    },
+    "status_colors": {
+      "critical": "Critic",
+      "warning": "Avertisment",
+      "normal": "Normal",
+      "low": "Scăzut"
+    },
+    "distribution": {
+      "na": "Fără date",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Scriptul nu a returnat date",
+      "parse_error": "Eroare la parsarea datelor"
+    }
+  },
+  "volume": {
+    "title": "Volum",
+    "muted": "Dezactivat"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth pornit",
+    "disabled": "Bluetooth oprit",
+    "devices_connected": "dispozitive conectate",
+    "pairing": "Se conectează...",
+    "connecting": "Conectare...",
+    "connected": "Conectat",
+    "paired": "Împerecheat",
+    "not_connected": "Neconectat",
+    "searching": "Căutare dispozitive...",
+    "no_devices": "Niciun dispozitiv",
+    "turn_on": "Porniți Bluetooth pentru conectare dispozitive",
+    "pair_error": "Nu se poate împerechea dispozitivul"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi pornit",
+    "disabled": "WiFi oprit",
+    "not_connected": "Neconectat",
+    "available_networks": "Rețele disponibile",
+    "searching": "Căutare rețele...",
+    "no_networks": "Nicio rețea",
+    "turn_on": "Porniți WiFi pentru a vedea rețelele",
+    "forget": "Uită",
+    "connect": "Conectare",
+    "no_password": "Nu necesită parolă",
+    "enter_password": "Introduceți parola",
+    "password_required": "Vă rugăm introduceți parola",
+    "wrong_password": "Parolă greșită"
+  }
+}

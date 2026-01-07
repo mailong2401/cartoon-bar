@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Asetukset",
+    "general": "Yleiset",
+    "appearance": "Ulkoasu",
+    "wallpapers": "Taustakuvat",
+    "network": "Verkko",
+    "audio": "Ääni",
+    "performance": "Suorituskyky",
+    "shortcuts": "Pikanäppäimet",
+    "system": "Järjestelmä",
+    "language": "Kieli"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Maanantai",
+      "tuesday": "Tiistai",
+      "wednesday": "Keskiviikko",
+      "thursday": "Torstai",
+      "friday": "Perjantai",
+      "saturday": "Lauantai",
+      "sunday": "Sunnuntai"
+    },
+    "month": {
+      "january": "Tammikuu",
+      "february": "Helmikuu",
+      "march": "Maaliskuu",
+      "april": "Huhtikuu",
+      "may": "Toukokuu",
+      "june": "Kesäkuu",
+      "july": "Heinäkuu",
+      "august": "Elokuu",
+      "september": "Syyskuu",
+      "october": "Lokakuu",
+      "november": "Marraskuu",
+      "december": "Joulukuu"
+    }
+  },
+  "general": {
+    "title": "Yleiset asetukset",
+    "language_label": "Kieli:",
+    "autostart_label": "Automaattinen käynnistys:",
+    "notification_label": "Ilmoitukset:",
+    "notification_system": "Näytä järjestelmäilmoitukset",
+    "notification_sound": "Ilmoitusäänet",
+    "notification_performance": "Suorituskykyilmoitukset"
+  },
+  "appearance": {
+    "title": "Ulkoasu",
+    "theme_label": "Teema:",
+    "theme_light": "Vaalea",
+    "theme_dark": "Tumma",
+    "clock_panel_label": "Kellopaneeli:",
+    "panel_position_label": "Paneelin sijainti:",
+    "position_top": "Ylhäällä",
+    "position_bottom": "Alhaalla",
+    "clock_position_label": "Kellon sijainti:",
+    "panel_height_label": "Paneelin korkeus:"
+  },
+  "system": {
+    "application": "Sovellus",
+    "sleep": "Lepotila",
+    "logout": "Kirjaudu ulos",
+    "shutdown": "Sammuta",
+    "restart": "Käynnistä uudelleen",
+    "lock": "Lukitse näyttö"
+  },
+  "mixer": {
+    "title": "Äänimikseri",
+    "subtitle": "Hallitse äänivirtojen ja äänenvoimakkuuden",
+    "output_device": "Lähtölaite",
+    "application_streams": "Sovellusvirrat",
+    "no_streams": "Ei aktiivisia virtoja",
+    "active_streams": "Aktiiviset virrat: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Tuntematon sovellus",
+    "unmute": "Poista mykistys",
+    "mute": "Mykistä",
+    "volume_percent": "%{volume}%",
+    "media_name": "Median nimi",
+    "volume_slider_tooltip": "Säädä äänenvoimakkuutta",
+    "muted": "Mykistetty",
+    "overdrive": "Äänenvoimakkuuden ylitys"
+  },
+  "calendar": {
+    "title": "Kalenteri",
+    "weekdays": {
+      "sunday": "Su",
+      "monday": "Ma",
+      "tuesday": "Ti",
+      "wednesday": "Ke",
+      "thursday": "To",
+      "friday": "Pe",
+      "saturday": "La"
+    }
+  },
+  "wallpapers": {
+    "title": "Kuvien hallinta",
+    "total_images": "Kuvia yhteensä:",
+    "path": "Polku:",
+    "loading": "Ladataan...",
+    "loading_info": "Ladataan tietoja...",
+    "no_images": "Ei kuvia kansiossa ~/Pictures/Wallpapers",
+    "set_wallpaper": "Aseta",
+    "already_set": "Asetettu",
+    "delete": "Poista",
+    "delete_confirm": "Vahvista poisto",
+    "cancel": "Peruuta",
+    "success_set": "Taustakuva asetettu!",
+    "success_delete": "Kuva poistettu!"
+  },
+  "confirm": {
+    "title": "Vahvista",
+    "message": "Haluatko varmasti {action}?",
+    "yes": "Kyllä",
+    "no": "Ei",
+    "sleep": "siirtyä lepotilaan",
+    "lock": "lukita näytön",
+    "logout": "kirjautua ulos",
+    "restart": "käynnistää uudelleen",
+    "shutdown": "sammuttaa"
+  },
+  "ram": {
+    "title": "Prosessinhallinta",
+    "panel_title": "RAM-hallinta",
+    "memory_monitor": "Muistin valvonta",
+    "used": "Käytetty",
+    "free": "Vapaa",
+    "available": "Saatavilla",
+    "no_swap": "Ei SWAPia",
+    "loading_memory": "Ladataan muistitietoja...",
+    "loading": {
+      "title": "⏳",
+      "message": "Ladataan prosessiluetteloa..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Prosessin nimi",
+      "ram_percent": "RAM %",
+      "memory": "Muisti"
+    },
+    "footer": {
+      "process_count_label": "Prosessien määrä",
+      "total_ram_label": "RAM:n kokonaiskäyttö",
+      "memory_distribution_label": "Muistin jakautuminen",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Prosessivalvonta",
+      "last_update": "Viimeisin päivitys"
+    },
+    "status_colors": {
+      "critical": "Kriittinen",
+      "warning": "Varoitus",
+      "normal": "Normaali",
+      "low": "Matala"
+    },
+    "distribution": {
+      "na": "Ei tietoja",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skripti ei palauttanut tietoja",
+      "parse_error": "Virhe jäsentäessä lähtötietoja"
+    }
+  },
+  "volume": {
+    "title": "Äänenvoimakkuus",
+    "muted": "Mykistetty"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth päällä",
+    "disabled": "Bluetooth pois päältä",
+    "devices_connected": "laitetta yhdistetty",
+    "pairing": "Yhdistetään...",
+    "connecting": "Muodostetaan yhteyttä...",
+    "connected": "Yhdistetty",
+    "paired": "Paritettu",
+    "not_connected": "Ei yhteyttä",
+    "searching": "Etsitään laitteita...",
+    "no_devices": "Ei laitteita",
+    "turn_on": "Kytke Bluetooth päälle yhdistääksesi laitteet",
+    "pair_error": "Laitteen paritus epäonnistui"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi päällä",
+    "disabled": "WiFi pois päältä",
+    "not_connected": "Ei yhteyttä",
+    "available_networks": "Saatavilla olevat verkot",
+    "searching": "Etsitään verkkoja...",
+    "no_networks": "Ei verkkoja",
+    "turn_on": "Kytke WiFi päälle nähdäksesi verkot",
+    "forget": "Unohda",
+    "connect": "Yhdistä",
+    "no_password": "Ei vaadi salasanaa",
+    "enter_password": "Syötä salasana",
+    "password_required": "Ole hyvä ja syötä salasana",
+    "wrong_password": "Väärä salasana"
+  }
+}

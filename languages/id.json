@@ -1,0 +1,204 @@
+{
+  "settings": {
+    "title": "Pengaturan",
+    "general": "Umum",
+    "appearance": "Tampilan",
+    "wallpapers": "Wallpaper",
+    "network": "Jaringan",
+    "audio": "Audio",
+    "performance": "Kinerja",
+    "shortcuts": "Pintasan",
+    "system": "Sistem",
+    "language": "Bahasa"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Senin",
+      "tuesday": "Selasa",
+      "wednesday": "Rabu",
+      "thursday": "Kamis",
+      "friday": "Jumat",
+      "saturday": "Sabtu",
+      "sunday": "Minggu"
+    },
+    "month": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maret",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Agustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Desember"
+    }
+  },
+  "general": {
+    "title": "Pengaturan Umum",
+    "language_label": "Bahasa:",
+    "autostart_label": "Mulai Otomatis:",
+    "notification_label": "Notifikasi:",
+    "notification_system": "Tampilkan notifikasi sistem",
+    "notification_sound": "Suara notifikasi",
+    "notification_performance": "Notifikasi kinerja"
+  },
+  "appearance": {
+    "title": "Tampilan",
+    "theme_label": "Tema:",
+    "theme_light": "Terang",
+    "theme_dark": "Gelap",
+    "clock_panel_label": "Panel Jam:",
+    "panel_position_label": "Posisi Panel:",
+    "position_top": "Atas",
+    "position_bottom": "Bawah",
+    "clock_position_label": "Posisi Jam:",
+    "panel_height_label": "Tinggi Panel:"
+  },
+  "system": {
+    "application": "Aplikasi",
+    "sleep": "Mode Tidur",
+    "logout": "Keluar",
+    "shutdown": "Matikan",
+    "restart": "Mulai Ulang",
+    "lock": "Kunci Layar"
+  },
+  "mixer": {
+    "title": "Mixer Audio",
+    "subtitle": "Kelola stream audio dan volume",
+    "output_device": "Perangkat Output",
+    "application_streams": "Stream Audio Aplikasi",
+    "no_streams": "Tidak ada stream aktif",
+    "active_streams": "Stream Aktif: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Aplikasi Tidak Dikenal",
+    "unmute": "Nyalakan Suara",
+    "mute": "Bisukan",
+    "volume_percent": "%{volume}%",
+    "media_name": "Nama Media",
+    "volume_slider_tooltip": "Sesuaikan Volume",
+    "muted": "Dibisukan",
+    "overdrive": "Volume Berlebih"
+  },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "Min",
+      "monday": "Sen",
+      "tuesday": "Sel",
+      "wednesday": "Rab",
+      "thursday": "Kam",
+      "friday": "Jum",
+      "saturday": "Sab"
+    }
+  },
+  "wallpapers": {
+    "title": "Manajemen Gambar",
+    "total_images": "Total gambar:",
+    "path": "Jalur:",
+    "loading": "Memuat...",
+    "loading_info": "Memuat informasi...",
+    "no_images": "Tidak ada gambar di ~/Pictures/Wallpapers",
+    "set_wallpaper": "Atur",
+    "already_set": "Terpasang",
+    "delete": "Hapus",
+    "delete_confirm": "Konfirmasi hapus",
+    "cancel": "Batal",
+    "success_set": "Wallpaper berhasil diatur!",
+    "success_delete": "Gambar berhasil dihapus!"
+  },
+  "confirm": {
+    "title": "Konfirmasi",
+    "message": "Apakah Anda yakin ingin {action}?",
+    "yes": "Ya",
+    "no": "Tidak",
+    "sleep": "masuk mode tidur",
+    "lock": "kunci layar",
+    "logout": "keluar",
+    "restart": "mulai ulang",
+    "shutdown": "matikan"
+  },
+  "ram": {
+    "title": "Manajer Proses",
+    "panel_title": "Manajer RAM",
+    "memory_monitor": "Monitor Memori",
+    "used": "Digunakan",
+    "free": "Kosong",
+    "available": "Tersedia",
+    "no_swap": "Tidak Ada SWAP",
+    "loading_memory": "Memuat data memori...",
+    "loading": {
+      "title": "⏳",
+      "message": "Memuat daftar proses..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Nama Proses",
+      "ram_percent": "RAM %",
+      "memory": "Memori"
+    },
+    "footer": {
+      "process_count_label": "Jumlah Proses",
+      "total_ram_label": "Total Penggunaan RAM",
+      "memory_distribution_label": "Distribusi Memori",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Monitor Proses",
+      "last_update": "Pembaruan Terakhir"
+    },
+    "status_colors": {
+      "critical": "Kritis",
+      "warning": "Peringatan",
+      "normal": "Normal",
+      "low": "Rendah"
+    },
+    "distribution": {
+      "na": "Tidak ada data",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skrip tidak mengembalikan data",
+      "parse_error": "Kesalahan parsing data output"
+    }
+  },
+  "volume": {
+    "title": "Volume",
+    "muted": "Dibisukan"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth nyala",
+    "disabled": "Bluetooth mati",
+    "devices_connected": "perangkat terhubung",
+    "pairing": "Memasangkan...",
+    "connecting": "Menghubungkan...",
+    "connected": "Terhubung",
+    "paired": "Dipasangkan",
+    "not_connected": "Tidak terhubung",
+    "searching": "Mencari perangkat...",
+    "no_devices": "Tidak ada perangkat",
+    "turn_on": "Nyalakan Bluetooth untuk menghubungkan perangkat",
+    "pair_error": "Tidak dapat memasangkan perangkat"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi nyala",
+    "disabled": "WiFi mati",
+    "not_connected": "Tidak terhubung",
+    "available_networks": "Jaringan tersedia",
+    "searching": "Mencari jaringan...",
+    "no_networks": "Tidak ada jaringan",
+    "turn_on": "Nyalakan WiFi untuk melihat jaringan",
+    "forget": "Lupakan",
+    "connect": "Hubungkan",
+    "no_password": "Tidak perlu kata sandi",
+    "enter_password": "Masukkan kata sandi",
+    "password_required": "Silakan masukkan kata sandi",
+    "wrong_password": "Kata sandi salah"
+  }
+}
