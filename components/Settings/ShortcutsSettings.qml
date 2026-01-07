@@ -2,269 +2,292 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
 
 Item {
-    property var theme : currentTheme
-    property var shortcutModel: ListModel {
-        ListElement { name: "New File"; key: "Ctrl+N"; category: "File" }
-        ListElement { name: "Save File"; key: "Ctrl+S"; category: "File" }
-        ListElement { name: "Open File"; key: "Ctrl+O"; category: "File" }
-        ListElement { name: "Undo"; key: "Ctrl+Z"; category: "Edit" }
-        ListElement { name: "Redo"; key: "Ctrl+Y"; category: "Edit" }
-        ListElement { name: "Copy"; key: "Ctrl+C"; category: "Edit" }
-        ListElement { name: "Paste"; key: "Ctrl+V"; category: "Edit" }
-        ListElement { name: "Find"; key: "Ctrl+F"; category: "Search" }
-        ListElement { name: "Replace"; key: "Ctrl+H"; category: "Search" }
-        ListElement { name: "Build Project"; key: "Ctrl+B"; category: "Build" }
-        ListElement { name: "Run Project"; key: "Ctrl+R"; category: "Build" }
-    }
+    property var theme: currentTheme
+    property var lang: currentLanguage
 
     ScrollView {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.margins: currentSizes.generalSettings?.margin || 20
         clip: true
-        
+        contentWidth: availableWidth
+
         ColumnLayout {
-            width: 400
-            spacing: 20
-            
+            width: parent.width
+            spacing: currentSizes.generalSettings?.spacing || 20
+
             // Header
             Text {
-                text: "Keyboard Shortcuts"
+                text: "⌨️ Hyprland Shortcuts"
                 color: theme.primary.foreground
-                font.pixelSize: 28
-                font.bold: true
-                Layout.topMargin: 10
+                font {
+                    family: "ComicShannsMono Nerd Font"
+                    pixelSize: currentSizes.generalSettings?.titleFontSize || 24
+                    bold: true
+                }
+                Layout.topMargin: currentSizes.spacing?.normal || 10
             }
-            
+
             Rectangle {
                 Layout.fillWidth: true
                 height: 1
                 color: theme.primary.dim_foreground + "40"
             }
 
-            // Search Box
-            Rectangle {
-                Layout.fillWidth: true
-                height: 40
-                color: theme.primary.dim_background
-                radius: 8
-                border.width: 1
-                border.color: theme.normal.black
-
-                RowLayout {
-                    anchors.fill: parent
-                    anchors.margins: 8
-
-                    TextField {
-                        id: searchField
-                        Layout.fillWidth: true
-                        placeholderText: "Search shortcuts..."
-                        color: theme.primary.foreground
-                        background: Rectangle {
-                            color: "transparent"
-                        }
-                        placeholderTextColor: theme.primary.dim_foreground
-                    }
-                }
-            }
-
-            // Shortcuts List
-            ColumnLayout {
-                Layout.fillWidth: true
-                spacing: 15
-
-                Repeater {
-                    model: shortcutModel
-                    
-                    Rectangle {
-                        Layout.fillWidth: true
-                        height: 60
-                        color: theme.primary.dim_background
-                        radius: 8
-                        border.width: 1
-                        border.color: theme.normal.black
-
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.margins: 15
-
-                            ColumnLayout {
-                                Layout.fillWidth: true
-                                spacing: 4
-
-                                Text {
-                                    text: name
-                                    color: theme.primary.foreground
-                                    font.pixelSize: 16
-                                    font.bold: true
-                                }
-
-                                Text {
-                                    text: category
-                                    color: theme.primary.dim_foreground
-                                    font.pixelSize: 12
-                                }
-                            }
-
-                            // Current Key Binding
-                            Rectangle {
-                                Layout.preferredWidth: 100
-                                Layout.preferredHeight: 35
-                                color: theme.button.background
-                                radius: 6
-                                border.width: 1
-                                border.color: theme.button.border
-
-                                Text {
-                                    anchors.centerIn: parent
-                                    text: key
-                                    color: theme.button.text
-                                    font.pixelSize: 14
-                                }
-                            }
-
-                            // Edit Button
-                            Button {
-                                Layout.preferredWidth: 80
-                                Layout.preferredHeight: 35
-                                text: "Edit"
-                                background: Rectangle {
-                                    color: parent.pressed ? theme.button.background_select : theme.button.background
-                                    radius: 6
-                                    border.width: 1
-                                    border.color: parent.pressed ? theme.button.border_select : theme.button.border
-                                }
-                                contentItem: Text {
-                                    text: parent.text
-                                    color: theme.button.text
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                onClicked: {
-                                    editDialog.shortcutName = name
-                                    editDialog.currentKey = key
-                                    editDialog.open()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Reset Section
-            Rectangle {
-                Layout.fillWidth: true
-                height: 80
-                color: theme.primary.dim_background
-                radius: 8
-                border.width: 1
-                border.color: theme.normal.black
-
-                RowLayout {
-                    anchors.fill: parent
-                    anchors.margins: 15
-
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        spacing: 4
-
-                        Text {
-                            text: "Reset to Defaults"
-                            color: theme.primary.foreground
-                            font.pixelSize: 16
-                            font.bold: true
-                        }
-
-                        Text {
-                            text: "Restore all shortcuts to their default values"
-                            color: theme.primary.dim_foreground
-                            font.pixelSize: 12
-                        }
-                    }
-
-                    Button {
-                        Layout.preferredWidth: 120
-                        Layout.preferredHeight: 40
-                        text: "Reset All"
-                        background: Rectangle {
-                            color: parent.pressed ? theme.normal.red + "80" : theme.normal.red
-                            radius: 6
-                        }
-                        contentItem: Text {
-                            text: parent.text
-                            color: theme.primary.background
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            font.bold: true
-                        }
-
-                        onClicked: resetConfirmation.open()
-                    }
-                }
-            }
-        }
-    }
-
-    // Edit Shortcut Dialog
-    Dialog {
-        id: editDialog
-        property string shortcutName: ""
-        property string currentKey: ""
-        
-        title: "Edit Shortcut - " + shortcutName
-        modal: true
-        standardButtons: Dialog.Ok | Dialog.Cancel
-        
-        background: Rectangle {
-            color: theme.primary.background
-            radius: 12
-            border.width: 2
-            border.color: theme.normal.black
-        }
-        
-        ColumnLayout {
-            width: parent ? parent.width : 400
-            spacing: 15
-            
             Text {
-                text: "Press new key combination:"
-                color: theme.primary.foreground
-                font.pixelSize: 14
+                text: "Main Modifier: SUPER (Windows Key)"
+                color: theme.normal.blue
+                font {
+                    family: "ComicShannsMono Nerd Font"
+                    pixelSize: 14
+                    bold: true
+                }
             }
-            
+
+            // Basic Window Management
+            ShortcutCategory {
+                title: "🪟 Basic Window Management"
+                shortcuts: [
+                    { key: "SUPER + RETURN", action: "Open Terminal" },
+                    { key: "SUPER + Q", action: "Close Window" },
+                    { key: "SUPER + M", action: "Exit Hyprland" },
+                    { key: "SUPER + E", action: "File Manager" },
+                    { key: "SUPER + SPACE", action: "Toggle Launcher Panel" },
+                    { key: "SUPER + V", action: "Toggle Floating" },
+                    { key: "SUPER + F", action: "Fullscreen" },
+                    { key: "SUPER + P", action: "Pseudo Tiling" },
+                    { key: "SUPER + J", action: "Toggle Split" }
+                ]
+            }
+
+            // Window Focus
+            ShortcutCategory {
+                title: "🎯 Window Focus"
+                shortcuts: [
+                    { key: "SUPER + ←", action: "Focus Left" },
+                    { key: "SUPER + →", action: "Focus Right" },
+                    { key: "SUPER + ↑", action: "Focus Up" },
+                    { key: "SUPER + ↓", action: "Focus Down" }
+                ]
+            }
+
+            // Workspace Management
+            ShortcutCategory {
+                title: "🎨 Workspace Management"
+                shortcuts: [
+                    { key: "SUPER + 1-0", action: "Switch to Workspace 1-10" },
+                    { key: "SUPER + SHIFT + 1-0", action: "Move Window to Workspace" },
+                    { key: "SUPER + S", action: "Toggle Special Workspace" },
+                    { key: "SUPER + SHIFT + S", action: "Move to Special Workspace" }
+                ]
+            }
+
+            // Mouse Actions
+            ShortcutCategory {
+                title: "🖱️ Mouse Actions"
+                shortcuts: [
+                    { key: "SUPER + Scroll Up", action: "Previous Workspace" },
+                    { key: "SUPER + Scroll Down", action: "Next Workspace" },
+                    { key: "SUPER + Left Drag", action: "Move Window" },
+                    { key: "SUPER + Right Drag", action: "Resize Window" }
+                ]
+            }
+
+            // Media Control
+            ShortcutCategory {
+                title: "🎵 Media Control"
+                shortcuts: [
+                    { key: "XF86AudioPlay", action: "Play/Pause" },
+                    { key: "XF86AudioPause", action: "Play/Pause" },
+                    { key: "XF86AudioNext", action: "Next Track" },
+                    { key: "XF86AudioPrev", action: "Previous Track" },
+                    { key: "XF86AudioRaiseVolume", action: "Volume Up +5%" },
+                    { key: "XF86AudioLowerVolume", action: "Volume Down -5%" },
+                    { key: "XF86AudioMute", action: "Toggle Mute" },
+                    { key: "XF86AudioMicMute", action: "Toggle Mic Mute" }
+                ]
+            }
+
+            // Brightness
+            ShortcutCategory {
+                title: "💡 Display Brightness"
+                shortcuts: [
+                    { key: "XF86MonBrightnessUp", action: "Brightness Up +5%" },
+                    { key: "XF86MonBrightnessDown", action: "Brightness Down -5%" }
+                ]
+            }
+
+            // Screenshot
+            ShortcutCategory {
+                title: "📸 Screenshots"
+                shortcuts: [
+                    { key: "PrintScreen", action: "Fullscreen Screenshot (Save + Copy)" },
+                    { key: "SUPER + PrintScreen", action: "Area Screenshot (Select region)" }
+                ]
+            }
+
+            // Info Note
             Rectangle {
                 Layout.fillWidth: true
-                height: 50
-                color: theme.primary.dim_background
-                radius: 6
+                Layout.preferredHeight: infoColumn.height + 30
+                color: theme.normal.blue + "20"
+                radius: 12
                 border.width: 2
                 border.color: theme.normal.blue
-                
-                Text {
-                    anchors.centerIn: parent
-                    text: editDialog.currentKey
-                    color: theme.primary.foreground
-                    font.pixelSize: 16
-                    font.bold: true
+
+                ColumnLayout {
+                    id: infoColumn
+                    anchors.fill: parent
+                    anchors.margins: 15
+                    spacing: 8
+
+                    Row {
+                        spacing: 8
+                        Text {
+                            text: "💡"
+                            font.pixelSize: 20
+                        }
+                        Text {
+                            text: "Pro Tips"
+                            color: theme.normal.blue
+                            font {
+                                family: "ComicShannsMono Nerd Font"
+                                pixelSize: 16
+                                bold: true
+                            }
+                        }
+                    }
+
+                    Text {
+                        text: "• These shortcuts are configured in your Hyprland config file"
+                        color: theme.primary.foreground
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 13
+                        wrapMode: Text.WordWrap
+                        Layout.fillWidth: true
+                    }
+
+                    Text {
+                        text: "• Edit at: ~/.config/hypr/hyprland.conf"
+                        color: theme.primary.foreground
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 13
+                        wrapMode: Text.WordWrap
+                        Layout.fillWidth: true
+                    }
+
+                    Text {
+                        text: "• After editing, save and Hyprland will auto-reload in 3 seconds"
+                        color: theme.primary.foreground
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 13
+                        wrapMode: Text.WordWrap
+                        Layout.fillWidth: true
+                    }
+
+                    Text {
+                        text: "• Manual reload: pkill -USR2 hyprctl"
+                        color: theme.primary.foreground
+                        font.family: "ComicShannsMono Nerd Font"
+                        font.pixelSize: 13
+                        wrapMode: Text.WordWrap
+                        Layout.fillWidth: true
+                    }
                 }
             }
-            
-            Text {
-                text: "Press Esc to cancel or Backspace to clear"
-                color: theme.primary.dim_foreground
-                font.pixelSize: 12
-            }
+
+            Item { Layout.fillHeight: true } // Spacer
         }
     }
 
-    // Reset Confirmation Dialog
-    MessageDialog {
-        id: resetConfirmation
-        title: "Reset Shortcuts"
-        text: "Are you sure you want to reset all shortcuts to their default values?"
-        buttons: MessageDialog.Yes | MessageDialog.No
+    // Shortcut Category Component
+    component ShortcutCategory: ColumnLayout {
+        property string title: ""
+        property var shortcuts: []
+
+        Layout.fillWidth: true
+        spacing: 10
+
+        // Category Header
+        Rectangle {
+            Layout.fillWidth: true
+            height: 40
+            color: theme.primary.dim_background
+            radius: 10
+            border.width: 2
+            border.color: theme.normal.black
+
+            Text {
+                anchors.centerIn: parent
+                text: title
+                color: theme.primary.foreground
+                font {
+                    family: "ComicShannsMono Nerd Font"
+                    pixelSize: 16
+                    bold: true
+                }
+            }
+        }
+
+        // Shortcuts List
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 8
+
+            Repeater {
+                model: shortcuts
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 55
+                    color: theme.button.background
+                    radius: 10
+                    border.width: 1
+                    border.color: theme.button.border
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: 15
+                        spacing: 20
+
+                        // Key Badge (Left side)
+                        Rectangle {
+                            Layout.preferredWidth: Math.max(keyText.implicitWidth + 24, 220)
+                            Layout.minimumWidth: 220
+                            Layout.maximumWidth: 280
+                            Layout.preferredHeight: 35
+                            color: theme.normal.blue
+                            radius: 8
+
+                            Text {
+                                id: keyText
+                                anchors.centerIn: parent
+                                text: modelData.key
+                                color: theme.primary.background
+                                font {
+                                    family: "ComicShannsMono Nerd Font"
+                                    pixelSize: 13
+                                    bold: true
+                                }
+                            }
+                        }
+
+                        // Action Description (Right side)
+                        Text {
+                            text: modelData.action
+                            color: theme.primary.foreground
+                            font {
+                                family: "ComicShannsMono Nerd Font"
+                                pixelSize: 15
+                            }
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignVCenter
+                        }
+                    }
+                }
+            }
+        }
     }
 }
