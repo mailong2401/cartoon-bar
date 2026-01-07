@@ -37,8 +37,9 @@
 ### ✨ Highlights
 
 - 🎨 **2 Themes**: Dark (Catppuccin Mocha) and Light (Catppuccin Latte)
-- 🌍 **15 Languages**: Vietnamese, English, Chinese, Japanese, Korean, Russian, Hindi, Spanish, etc.
+- 🌍 **30 Languages**: Full multi-language support across the globe
 - 📐 **10 Size Profiles**: Support from HD (1280px) to 4K (3840px)
+- 🎥 **Video Wallpaper**: Support both image and video wallpapers (mp4, mkv, webm, gif)
 - ⚡ **Real-time Updates**: Workspace tracking, Music player, Weather, System stats
 - 🔧 **Settings Panel**: Complete configuration interface without file editing
 - 🎵 **Media Control**: Integrated playerctl for Spotify/MPD
@@ -131,9 +132,9 @@
 
 ### Settings Panel (9 Sections)
 
-1. **General** - Language selection (15 languages)
+1. **General** - Language selection (30 languages with country flags)
 2. **Appearance** - Theme, screen size, panel position
-3. **Wallpapers** - Wallpaper management
+3. **Wallpapers** - Image & Video wallpaper management with thumbnail preview
 4. **Network** - WiFi scanning, connection, password
 5. **Audio** - PipeWire mixer, volume control
 6. **Performance** - System monitor, CPU/RAM details
@@ -180,6 +181,11 @@ qt6-wayland
 # Hyprland
 hyprland
 hyprctl               # Hyprland control
+
+# Wallpaper (choose one or both)
+swww                  # Image wallpaper daemon
+mpvpaper              # Video wallpaper support
+ffmpeg                # Video thumbnail generation
 
 # Media player
 playerctl             # MPRIS media control
@@ -238,7 +244,8 @@ chmod +x setup.sh
 ```bash
 # Install main packages
 sudo pacman -S hyprland quickshell playerctl networkmanager \
-               bluez bluez-utils pipewire wireplumber curl python cava
+               bluez bluez-utils pipewire wireplumber curl python cava \
+               swww mpvpaper ffmpeg
 
 # Install Nerd Font
 yay -S ttf-comicshannsmono-nerd
@@ -329,8 +336,43 @@ left        center       right
 bottomLeft  bottom  bottomRight
 ```
 
-### Available Languages
-`vi`, `en`, `zh`, `ja`, `kr`, `ru`, `hi`, `es`, `pt`, `de`, `fr`, `it`, `nl`, `tr`, `ar`
+### Available Languages (30)
+
+**Asia-Pacific:**
+- `vi` - Tiếng Việt (Vietnamese)
+- `zh` - 中文 (Chinese)
+- `ja` - 日本語 (Japanese)
+- `kr` - 한국어 (Korean)
+- `hi` - हिन्दी (Hindi)
+- `th` - ไทย (Thai)
+- `id` - Bahasa Indonesia (Indonesian)
+
+**Europe:**
+- `en` - English
+- `de` - Deutsch (German)
+- `fr` - Français (French)
+- `es` - Español (Spanish)
+- `it` - Italiano (Italian)
+- `pt` - Português (Portuguese)
+- `ru` - Русский (Russian)
+- `uk` - Українська (Ukrainian)
+- `pl` - Polski (Polish)
+- `nl` - Nederlands (Dutch)
+- `sv` - Svenska (Swedish)
+- `no` - Norsk (Norwegian)
+- `da` - Dansk (Danish)
+- `fi` - Suomi (Finnish)
+- `cs` - Čeština (Czech)
+- `sk` - Slovenčina (Slovak)
+- `hu` - Magyar (Hungarian)
+- `ro` - Română (Romanian)
+- `bg` - Български (Bulgarian)
+- `el` - Ελληνικά (Greek)
+
+**Middle East:**
+- `ar` - العربية (Arabic)
+- `tr` - Türkçe (Turkish)
+- `he` - עברית (Hebrew)
 
 ### Available Display Sizes
 - **1280** - HD (1280×720)
@@ -459,10 +501,36 @@ bottomLeft  bottom  bottomRight
 }
 ```
 
+### Wallpaper Management
+
+The wallpaper settings support both **images** and **videos**:
+
+#### Supported Formats
+- **Images**: `.jpg`, `.jpeg`, `.png`, `.bmp`, `.webp`
+- **Videos**: `.mp4`, `.mkv`, `.webm`, `.gif`
+
+#### Features
+- 🖼️ **Thumbnail Preview**: Automatic thumbnail generation for videos using ffmpeg
+- 📁 **Auto-scan**: Automatically scans `~/Pictures/Wallpapers/` folder
+- 🎬 **Video Playback**: Smooth video wallpaper with mpvpaper
+- 🌊 **Transition Effects**:
+  - Videos: Fade-in with hardware acceleration
+  - Images: Grow transition with swww
+- 💾 **Smart Switching**: Automatically stops video when switching to image (and vice versa)
+- 🗂️ **Thumbnail Cache**: Video thumbnails cached at `~/.cache/quickshell/thumbnails/`
+
+#### Usage
+1. Place your wallpapers in `~/Pictures/Wallpapers/`
+2. Open Settings → Wallpapers
+3. Click on any image/video to set as wallpaper
+4. Video files show ▶ badge, images show 🖼️
+5. Current wallpaper shows ✓ badge
+
 ### Adding new language
 1. Copy `languages/en.json` → `languages/xx.json`
 2. Translate all strings
-3. Add to Settings UI if needed
+3. Add to `components/Settings/GeneralSettings.qml` language list with country flag
+4. Add corresponding flag image to `assets/flags/`
 
 ---
 
