@@ -1,46 +1,0 @@
-Script started on 2026-01-08 02:12:02+07:00 [TERM="xterm-kitty" TTY="/dev/pts/2" COLUMNS="75" LINES="36"]
-]0;long@long:~/.config/quickshell/cartoon-bar[?2004h[long@long cartoon-bar]$ ls
-[?2004l[0m[01;34massets[0m      [01;34mconfigs[0m    LICENSE    [01;34mscreenshot[0m  shell.qml  typescript
-[01;34mcomponents[0m  [01;34mlanguages[0m  README.md  [01;34mscripts[0m     [01;34mthemes[0m
-]0;long@long:~/.config/quickshell/cartoon-bar[?2004h[long@long cartoon-bar]$ scri[K[K[K[Kcd scripts/
-[?2004l]0;long@long:~/.config/quickshell/cartoon-bar/scripts[?2004h[long@long scripts]$ ./set-wallpaper.sh ~/Pictures/
-Display all 137 possibilities? (y or n)
-[long@long scripts]$ ./set-wallpaper.sh ~/Pictures/wal[K[K[KWallpapers/
-1354305.jpeg
-2b-in-the-field-of-blue-lilies-nier-automata-moewalls-com.mp4
-slide_10.jpg
-slide_2.jpg
-slide_4.jpg
-slide_6.jpg
-slide_8.jpg
-wall_1.jpg
-[long@long scripts]$ ./set-wallpaper.sh ~/Pictures/Wallpapers/2b-in-the-field-of-blue-lilies-nier-automata-moewalls-com.mp4 
-[?2004l🎥 Video wallpaper → dùng mpvpaper
-]0;long@long:~/.config/quickshell/cartoon-bar/scripts[?2004h[long@long scripts]$ Cannot load libcuda.so.1
-[0m● Video  --vid=1  --vlang=eng  (h264 3840x2160 60 fps) [default]
-[0m[0m○ Audio  --aid=1  --alang=eng  (aac 2ch 44100 Hz 320 kbps) [default]
-[0m[0mVO: [libmpv] 3840x2160 yuv420p
-[0m^C[?2004l[?2004h[?2004l
-]0;long@long:~/.config/quickshell/cartoon-bar/scripts[?2004h[long@long scripts]$ ./set-wallpaper.sh ~/Pictures/Wallpapers/2b-in-the-field-of-blue-lilies-nier-automata-moewalls-com.mp4 [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
-[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K
-1354305.jpeg
-2b-in-the-field-of-blue-lilies-nier-automata-moewalls-com.mp4
-slide_10.jpg
-slide_2.jpg
-slide_4.jpg
-slide_6.jpg
-slide_8.jpg
-wall_1.jpg
-[long@long scripts]$ ./set-wallpaper.sh ~/Pictures/Wallpapers/slide_10.jpg  [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K 
-[?2004l🖼 Ảnh wallpaper → dùng swww
-       238ms [32m[INFO][0m  BumpPool with: 1 buffers. Size: 8100Kb
-       276ms [33m[WARN][0m  We failed to find wayland buffer with id: 16. This should be impossible.
-       358ms [32m[INFO][0m  BumpPool with: 1 buffers. Size: 8100Kb
-]0;long@long:~/.config/quickshell/cartoon-bar/scripts[?2004h[long@long scripts]$        392ms [32m[INFO][0m  BumpPool with: 2 buffers. Size: 16200Kb
-      1634ms [33m[WARN][0m  We failed to find wayland buffer with id: 10. This should be impossible.
-      1634ms [33m[WARN][0m  We failed to find wayland buffer with id: 16. This should be impossible.
-^C[?2004l[?2004h[?2004l
-]0;long@long:~/.config/quickshell/cartoon-bar/scripts[?2004h[long@long scripts]$ [K[long@long scripts]$      15315ms [32m[INFO][0m  Removed socket at "/run/user/1000/wayland-1-swww-daemon..sock"
-     15315ms [32m[INFO][0m  Goodbye!
-
-Script done on 2026-01-08 02:13:14+07:00 [COMMAND_EXIT_CODE="0"]
