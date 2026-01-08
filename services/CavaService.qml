@@ -59,7 +59,6 @@ bit_format=8bit' | cava -p /dev/stdin`
                             root.values = newValues.slice(0, root.barCount)
                         }
                     } catch (error) {
-                        console.error("Error parsing CAVA data:", error)
                     }
                 }
             }

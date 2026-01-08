@@ -60,7 +60,10 @@ Item {
         onTriggered: {
             currentWallpaper = wallpaperPath
             showNotification(lang?.wallpapers?.success_set || "Đã đặt hình nền thành công!")
-            folderModel.update()
+            // Reload folder model
+            var tempPath = folderModel.folder
+            folderModel.folder = ""
+            folderModel.folder = tempPath
         }
     }
 
@@ -76,7 +79,10 @@ Item {
         onRunningChanged: {
             if (!running) {
                 showNotification(lang?.wallpapers?.success_delete || "Đã xóa ảnh thành công!")
-                folderModel.update()
+                // Reload folder model
+                var tempPath = folderModel.folder
+                folderModel.folder = ""
+                folderModel.folder = tempPath
             }
         }
     }
@@ -510,16 +516,13 @@ Item {
     function setWallpaper(filePath) {
         wallpaperPath = filePath.toString().replace("file://", "")
 
-        console.log("WallpapersSettings: Setting wallpaper to:", wallpaperPath)
 
         // Gọi global wallpaper setter từ shell.qml
         // Điều này đảm bảo video wallpaper không bị dừng khi đóng Settings
         if (typeof setGlobalWallpaper !== 'undefined') {
-            console.log("WallpapersSettings: Calling setGlobalWallpaper")
             setGlobalWallpaper(wallpaperPath)
             wallpaperSetTimer.start()
         } else {
-            console.error("WallpapersSettings: setGlobalWallpaper function not found in root context")
         }
     }
 

@@ -69,7 +69,6 @@ ShellRoot {
         stdout: StdioCollector {
             onTextChanged: {
                 if (text) {
-                    console.log("Wallpaper script output:", text)
                 }
             }
         }
@@ -77,25 +76,20 @@ ShellRoot {
         stderr: StdioCollector {
             onTextChanged: {
                 if (text) {
-                    console.error("Wallpaper script error:", text)
                 }
             }
         }
 
         onRunningChanged: {
-            console.log("Wallpaper process running state:", running)
         }
     }
 
     // Function để set wallpaper từ bất kỳ đâu
     function setGlobalWallpaper(filePath) {
-        console.log("setGlobalWallpaper called with:", filePath)
 
         var configPath = Quickshell.env("HOME") + "/.config/quickshell/cartoon-bar"
         var scriptPath = configPath + "/scripts/set-wallpaper.sh"
 
-        console.log("Script path:", scriptPath)
-        console.log("Running wallpaper script...")
 
         // Stop old process if running
         if (globalWallpaperProcess.running) {
@@ -133,7 +127,6 @@ ShellRoot {
             currentConfig = configLoader.config
             // Update size profile when config changes or on first load
             if (currentConfig.displaySize && sizesLoader.currentSizeProfile !== currentConfig.displaySize) {
-                console.log("Config reloaded, updating size profile to:", currentConfig.displaySize)
                 sizesLoader.changeSizeProfile(currentConfig.displaySize)
             }
         }

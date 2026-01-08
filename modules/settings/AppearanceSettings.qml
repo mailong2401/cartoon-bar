@@ -18,13 +18,10 @@ Item {
 
     // Hàm helper để set display size
     function setDisplaySize(size) {
-        console.log("Setting display size to:", size)
         // Save to config first
         panelConfig.set("displaySize", size)
-        console.log("Config saved, now changing size profile...")
         // Then change the size profile
         sizesLoader.changeSizeProfile(size)
-        console.log("Size profile changed to:", size)
     }
 
     // Data model cho các kích thước màn hình
@@ -224,7 +221,7 @@ Item {
                             Rectangle {
                                 width: currentSizes.panelWidth?.appIcons || 60
                                 height: currentSizes.appearanceSettings?.rowSpacing || 10
-                                radius: currentSizes.appearanceSettings.themeCardSelectedBorderWidth || 3
+                                radius: currentSizes.appearanceSettings?.themeCardSelectedBorderWidth || 3
                                 color: "#b0a89e"
                             }
                         }
@@ -296,7 +293,7 @@ Item {
                             Rectangle {
                                 width: currentSizes.panelWidth?.appIcons || 60
                                 height: currentSizes.appearanceSettings?.rowSpacing || 10
-                                radius: currentSizes.appearanceSettings.themeCardSelectedBorderWidth || 3
+                                radius: currentSizes.appearanceSettings?.themeCardSelectedBorderWidth || 3
                                 color: "#494d64"
                             }
                         }
@@ -614,6 +611,5 @@ Item {
     }
 
     Component.onCompleted: {
-        console.log("AppearanceSettings loaded with profile:", currentConfigProfile)
     }
 }

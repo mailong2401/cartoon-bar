@@ -35,7 +35,6 @@ QtObject {
     }
 
     Component.onCompleted: {
-        console.log("SizesLoader initialized with default profile:", currentSizeProfile)
         loadSizes()
     }
 }
