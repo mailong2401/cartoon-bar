@@ -22,6 +22,7 @@
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Configuration](#-configuration)
+- [Project Architecture](#-project-architecture)
 - [Components](#-components)
 - [Theme & Language](#-theme--language)
 - [Shortcuts](#-shortcuts)
@@ -385,6 +386,25 @@ bottomLeft  bottom  bottomRight
 - **2880** - 3K (2880×1620)
 - **3440** - UW-QHD (3440×1440)
 - **3840** - 4K/UHD (3840×2160)
+
+---
+
+## 🏗️ Project Architecture
+
+The project follows a modular architecture with clear separation of concerns:
+
+```
+cartoon-bar/
+├── config/         # Configuration and settings (themes, languages, sizes)
+├── modules/        # Feature modules (panels, dialogs, settings)
+├── services/       # Background services (audio, JSON editor)
+├── utils/          # Utility components and helpers
+├── assets/         # Static assets (images, icons)
+├── scripts/        # Shell scripts and Python utilities
+└── shell.qml       # Main entry point
+```
+
+For detailed information about the project structure, import patterns, and conventions, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ---
 

@@ -5,18 +5,20 @@ import Quickshell
 import Quickshell.Io
 import QtQuick.Effects
 
-import "./components" as Components
+import "./config" as Config
+import "./modules/dialogs" as Dialogs
+import "./modules/panels" as Panels
 
 ShellRoot {
     id: root
 
-    Components.ThemeLoader { id: themeLoader }
-    Components.LanguageLoader { id: languageLoader }
-    Components.ConfigLoader { id: configLoader }
-    Components.SizesLoader { id: sizesLoader }
-    Components.VolumeOsd { }
-    Components.NotificationPopup{}
-    Components.ConfirmDialog { id: confirmDialog }
+    Config.ThemeLoader { id: themeLoader }
+    Config.LanguageLoader { id: languageLoader }
+    Config.ConfigLoader { id: configLoader }
+    Config.SizesLoader { id: sizesLoader }
+    Dialogs.VolumeOsd { }
+    Dialogs.NotificationPopup{}
+    Dialogs.ConfirmDialog { id: confirmDialog }
 
     // Function để hiển thị confirm dialog từ bất kỳ đâu
     function showConfirmDialog(action, actionLabel) {
@@ -31,12 +33,12 @@ ShellRoot {
     property bool anchorsRight: currentConfig.clockPanelPosition === "right" || currentConfig.clockPanelPosition === "topRight" || currentConfig.clockPanelPosition === "bottomRight"
     property bool anchorsLeft: currentConfig.clockPanelPosition === "left" || currentConfig.clockPanelPosition === "topLeft" || currentConfig.clockPanelPosition === "bottomLeft"
 
-    Components.ClockPanel {
+    Panels.ClockPanel {
         id: clockPanel
         visible: clockPanelVisible
         anchors {
         top: anchorsTop
-        bottom: anchorsBottom 
+        bottom: anchorsBottom
         left: anchorsLeft
         right: anchorsRight
     }
@@ -168,34 +170,34 @@ ShellRoot {
             anchors.fill: parent
             spacing: currentConfig.spacingPanel
 
-            Components.AppIcons {
+            Panels.AppIcons {
                 id: appIcons
                 Layout.preferredWidth: currentSizes.panelWidth?.appIcons || 60
                 Layout.fillHeight: true
             }
 
-            Components.WorkspacePanel {
+            Panels.WorkspacePanel {
                 Layout.preferredWidth: currentSizes.panelWidth?.workspace || 380
                 Layout.fillHeight: true
                 hyprInstance: root.hyprInstance
             }
 
-            Components.MusicPlayer {
+            Panels.MusicPlayer {
                 Layout.preferredWidth: currentSizes.panelWidth?.musicPlayer || 340
                 Layout.fillHeight: true
             }
 
-            Components.Timespace {
+            Panels.Timespace {
                 Layout.preferredWidth: currentSizes.panelWidth?.timespace || 400
                 Layout.fillHeight: true
             }
 
-            Components.CpuPanel {
+            Panels.CpuPanel {
                 Layout.preferredWidth: currentSizes.panelWidth?.cpuPanel || 200
                 Layout.fillHeight: true
             }
-            
-            Components.StatusArea {
+
+            Panels.StatusArea {
                 Layout.preferredWidth: currentSizes.panelWidth?.statusArea || 430
                 Layout.fillHeight: true
             }
