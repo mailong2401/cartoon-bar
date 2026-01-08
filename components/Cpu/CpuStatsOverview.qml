@@ -7,6 +7,7 @@ Rectangle {
     property var cpuHistory: []
     property var theme: currentTheme
     property var sizes: currentSizes.cpuDetailPanel
+    property var lang: currentLanguage
 
     color: theme.primary.dim_background
     border.color: "#4f4f5b"
@@ -26,7 +27,7 @@ Rectangle {
             Column {
                 spacing: sizes.statsColumnSpacing || 2
                 Text {
-                    text: "Tổng Usage"
+                    text: lang.cpuStats.totalUsage
                     color: "#4f4f5b"
                     font.pixelSize: sizes.statsLabelFontSize || 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -50,7 +51,7 @@ Rectangle {
             Column {
                 spacing: sizes.statsColumnSpacing || 2
                 Text {
-                    text: "Core Cao Nhất"
+                    text: lang.cpuStats.maxCore
                     color: "#4f4f5b"
                     font.pixelSize: sizes.statsLabelFontSize || 16
                     font.family: "ComicShannsMono Nerd Font"
@@ -68,13 +69,13 @@ Rectangle {
         Column {
             spacing: sizes.statsColumnSpacing || 2
             Text {
-                text: "⏱️ Thời Gian"
+                text: lang.cpuStats.timeLabel
                 color: "#4f4f5b"
                 font.pixelSize: sizes.statsTimeLabelFontSize || 14
                 font.family: "ComicShannsMono Nerd Font"
             }
             Text {
-                text: cpuHistory.length + " điểm"
+                text: cpuHistory.length + " " + lang.cpuStats.dataPoints
                 color: "#4f4f5b"
                 font.pixelSize: sizes.statsValueFontSize || 18
                 font.bold: true

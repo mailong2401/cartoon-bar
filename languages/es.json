@@ -11,29 +11,29 @@
     "system": "Sistema",
     "language": "Idioma"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Lunes",
-      "tuesday" : "Martes",
-      "wednesday" : "Miércoles",
-      "thursday" : "Jueves",
-      "friday" : "Viernes",
-      "saturday" : "Sábado",
-      "sunday" : "Domingo"
+  "dateFormat": {
+    "day": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
     },
-    "month" : {
-      "january" : "Enero",
-      "february" : "Febrero",
-      "march" : "Marzo",
-      "april" : "Abril",
-      "may" : "Mayo",
-      "june" : "Junio",
-      "july" : "Julio",
-      "august" : "Agosto",
-      "september" : "Septiembre",
-      "october" : "Octubre",
-      "november" : "Noviembre",
-      "december" : "Diciembre"
+    "month": {
+      "january": "Enero",
+      "february": "Febrero",
+      "march": "Marzo",
+      "april": "Abril",
+      "may": "Mayo",
+      "june": "Junio",
+      "july": "Julio",
+      "august": "Agosto",
+      "september": "Septiembre",
+      "october": "Octubre",
+      "november": "Noviembre",
+      "december": "Diciembre"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Ingresa contraseña",
     "password_required": "Por favor ingresa la contraseña",
     "wrong_password": "Contraseña incorrecta"
+  },
+  "infoSection": {
+    "name": "Nombre del CPU",
+    "vendor": "Fabricante",
+    "architecture": "Arquitectura",
+    "socket": "Socket",
+    "loading": "Cargando...",
+    "undefined": "No definido"
+  },
+  "CpuPane": {
+    "title": "Información del CPU"
+  },
+  "cpuStats": {
+    "totalUsage": "Uso Total",
+    "maxCore": "Núcleo Más Alto",
+    "timeLabel": "⏱️ Tiempo",
+    "dataPoints": "puntos"
   }
 }

@@ -200,5 +200,22 @@
     "enter_password": "输入密码",
     "password_required": "请输入密码",
     "wrong_password": "密码错误"
+  },
+  "infoSection": {
+    "name": "CPU名称",
+    "vendor": "制造商",
+    "architecture": "架构",
+    "socket": "插槽",
+    "loading": "加载中...",
+    "undefined": "未定义"
+  },
+  "CpuPane": {
+    "title": "CPU信息"
+  },
+  "cpuStats": {
+    "totalUsage": "总使用率",
+    "maxCore": "最高核心",
+    "timeLabel": "⏱️ 时间",
+    "dataPoints": "点"
   }
 }

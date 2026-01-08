@@ -200,5 +200,22 @@
     "enter_password": "Syötä salasana",
     "password_required": "Ole hyvä ja syötä salasana",
     "wrong_password": "Väärä salasana"
+  },
+  "infoSection": {
+    "name": "Prosessorin nimi",
+    "vendor": "Valmistaja",
+    "architecture": "Arkkitehtuuri",
+    "socket": "Kanta",
+    "loading": "Ladataan...",
+    "undefined": "Määrittelemätön"
+  },
+  "CpuPane": {
+    "title": "Prosessorin tiedot"
+  },
+  "cpuStats": {
+    "totalUsage": "Kokonaiskäyttö",
+    "maxCore": "Korkein Ydin",
+    "timeLabel": "⏱️ Aika",
+    "dataPoints": "pistettä"
   }
 }

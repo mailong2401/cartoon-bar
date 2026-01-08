@@ -200,5 +200,22 @@
     "enter_password": "Indtast adgangskode",
     "password_required": "Indtast venligst adgangskode",
     "wrong_password": "Forkert adgangskode"
+  },
+  "infoSection": {
+    "name": "CPU-navn",
+    "vendor": "Producent",
+    "architecture": "Arkitektur",
+    "socket": "Sokkel",
+    "loading": "Indlæser...",
+    "undefined": "Udefineret"
+  },
+  "CpuPane": {
+    "title": "CPU-information"
+  },
+  "cpuStats": {
+    "totalUsage": "Samlet Forbrug",
+    "maxCore": "Højeste Kerne",
+    "timeLabel": "⏱️ Tid",
+    "dataPoints": "punkter"
   }
 }

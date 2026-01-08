@@ -200,5 +200,22 @@
     "enter_password": "Wprowadź hasło",
     "password_required": "Proszę wprowadzić hasło",
     "wrong_password": "Nieprawidłowe hasło"
+  },
+  "infoSection": {
+    "name": "Nazwa procesora",
+    "vendor": "Producent",
+    "architecture": "Architektura",
+    "socket": "Gniazdo",
+    "loading": "Ładowanie...",
+    "undefined": "Niezdefiniowane"
+  },
+  "CpuPane": {
+    "title": "Informacje o procesorze"
+  },
+  "cpuStats": {
+    "totalUsage": "Całkowite Użycie",
+    "maxCore": "Najwyższy Rdzeń",
+    "timeLabel": "⏱️ Czas",
+    "dataPoints": "punktów"
   }
 }

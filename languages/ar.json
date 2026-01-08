@@ -11,29 +11,29 @@
     "system": "النظام",
     "language": "اللغة"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "الإثنين",
-      "tuesday" : "الثلاثاء",
-      "wednesday" : "الأربعاء",
-      "thursday" : "الخميس",
-      "friday" : "الجمعة",
-      "saturday" : "السبت",
-      "sunday" : "الأحد"
+  "dateFormat": {
+    "day": {
+      "monday": "الإثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء",
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت",
+      "sunday": "الأحد"
     },
-    "month" : {
-      "january" : "يناير",
-      "february" : "فبراير",
-      "march" : "مارس",
-      "april" : "أبريل",
-      "may" : "مايو",
-      "june" : "يونيو",
-      "july" : "يوليو",
-      "august" : "أغسطس",
-      "september" : "سبتمبر",
-      "october" : "أكتوبر",
-      "november" : "نوفمبر",
-      "december" : "ديسمبر"
+    "month": {
+      "january": "يناير",
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو",
+      "july": "يوليو",
+      "august": "أغسطس",
+      "september": "سبتمبر",
+      "october": "أكتوبر",
+      "november": "نوفمبر",
+      "december": "ديسمبر"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "أدخل كلمة المرور",
     "password_required": "الرجاء إدخال كلمة المرور",
     "wrong_password": "كلمة المرور خاطئة"
+  },
+  "infoSection": {
+    "name": "اسم المعالج",
+    "vendor": "الشركة المصنعة",
+    "architecture": "البنية",
+    "socket": "المقبس",
+    "loading": "جاري التحميل...",
+    "undefined": "غير معرف"
+  },
+  "CpuPane": {
+    "title": "معلومات المعالج"
+  },
+  "cpuStats": {
+    "totalUsage": "الاستخدام الإجمالي",
+    "maxCore": "أعلى نواة",
+    "timeLabel": "⏱️ الوقت",
+    "dataPoints": "نقاط"
   }
 }

@@ -1,16 +1,221 @@
 {
-  "settings": {"title": "Inställningar", "general": "Allmänt", "appearance": "Utseende", "wallpapers": "Bakgrundsbilder", "network": "Nätverk", "audio": "Ljud", "performance": "Prestanda", "shortcuts": "Genvägar", "system": "System", "language": "Språk"},
-  "dateFormat": {"day": {"monday": "Måndag", "tuesday": "Tisdag", "wednesday": "Onsdag", "thursday": "Torsdag", "friday": "Fredag", "saturday": "Lördag", "sunday": "Söndag"}, "month": {"january": "Januari", "february": "Februari", "march": "Mars", "april": "April", "may": "Maj", "june": "Juni", "july": "Juli", "august": "Augusti", "september": "September", "october": "Oktober", "november": "November", "december": "December"}},
-  "general": {"title": "Allmänna inställningar", "language_label": "Språk:", "autostart_label": "Autostart:", "notification_label": "Aviseringar:", "notification_system": "Visa systemaviseringar", "notification_sound": "Aviseringsljud", "notification_performance": "Prestandaaviseringar"},
-  "appearance": {"title": "Utseende", "theme_label": "Tema:", "theme_light": "Ljust", "theme_dark": "Mörkt", "clock_panel_label": "Klockpanel:", "panel_position_label": "Panelposition:", "position_top": "Topp", "position_bottom": "Botten", "clock_position_label": "Klockposition:", "panel_height_label": "Panelhöjd:"},
-  "system": {"application": "Applikation", "sleep": "Viloläge", "logout": "Logga ut", "shutdown": "Stäng av", "restart": "Starta om", "lock": "Lås skärm"},
-  "mixer": {"title": "Ljudmixer", "subtitle": "Hantera ljudströmmar och volym", "output_device": "Utgångsenhet", "application_streams": "Applikationsströmmar", "no_streams": "Inga aktiva strömmar", "active_streams": "Aktiva strömmar: %{count}"},
-  "entry": {"unknown_app": "Okänd applikation", "unmute": "Slå på ljud", "mute": "Tysta", "volume_percent": "%{volume}%", "media_name": "Medianamn", "volume_slider_tooltip": "Justera volym", "muted": "Tystad", "overdrive": "Volymöverdrift"},
-  "calendar": {"title": "Kalender", "weekdays": {"sunday": "Sön", "monday": "Mån", "tuesday": "Tis", "wednesday": "Ons", "thursday": "Tor", "friday": "Fre", "saturday": "Lör"}},
-  "wallpapers": {"title": "Bildhantering", "total_images": "Totalt bilder:", "path": "Sökväg:", "loading": "Laddar...", "loading_info": "Laddar information...", "no_images": "Inga bilder hittades i ~/Pictures/Wallpapers", "set_wallpaper": "Ställ in", "already_set": "Inställd", "delete": "Ta bort", "delete_confirm": "Bekräfta borttagning", "cancel": "Avbryt", "success_set": "Bakgrund inställd!", "success_delete": "Bild borttagen!"},
-  "confirm": {"title": "Bekräfta", "message": "Är du säker på att du vill {action}?", "yes": "Ja", "no": "Nej", "sleep": "försätta i viloläge", "lock": "låsa skärmen", "logout": "logga ut", "restart": "starta om", "shutdown": "stänga av"},
-  "ram": {"title": "Processhanterare", "panel_title": "RAM-hanterare", "memory_monitor": "Minnesmonitor", "used": "Använt", "free": "Ledigt", "available": "Tillgängligt", "no_swap": "Ingen SWAP", "loading_memory": "Laddar minnesdata...", "loading": {"title": "⏳", "message": "Laddar processlista..."}, "headers": {"pid": "PID", "name": "Processnamn", "ram_percent": "RAM %", "memory": "Minne"}, "footer": {"process_count_label": "Antal processer", "total_ram_label": "Totalt RAM-användning", "memory_distribution_label": "Minnesfördelning", "process_count_unit": "", "total_ram_unit": "MB"}, "header_bar": {"main_title": "Processmonitor", "last_update": "Senaste uppdatering"}, "status_colors": {"critical": "Kritisk", "warning": "Varning", "normal": "Normal", "low": "Låg"}, "distribution": {"na": "Ingen data", "format": "{process} ({percent}%)"}, "debug": {"empty_output": "Skript returnerade ingen data", "parse_error": "Fel vid parsning av utdata"}},
-  "volume": {"title": "Volym", "muted": "Tystad"},
-  "bluetooth": {"title": "Bluetooth", "enabled": "Bluetooth på", "disabled": "Bluetooth av", "devices_connected": "enheter anslutna", "pairing": "Parar...", "connecting": "Ansluter...", "connected": "Ansluten", "paired": "Parad", "not_connected": "Ej ansluten", "searching": "Söker enheter...", "no_devices": "Inga enheter hittades", "turn_on": "Slå på Bluetooth för att ansluta enheter", "pair_error": "Kan inte para enhet"},
-  "wifi": {"title": "WiFi", "enabled": "WiFi på", "disabled": "WiFi av", "not_connected": "Ej ansluten", "available_networks": "Tillgängliga nätverk", "searching": "Söker nätverk...", "no_networks": "Inga nätverk hittades", "turn_on": "Slå på WiFi för att se nätverk", "forget": "Glöm", "connect": "Anslut", "no_password": "Inget lösenord krävs", "enter_password": "Ange lösenord", "password_required": "Vänligen ange lösenord", "wrong_password": "Fel lösenord"}
+  "settings": {
+    "title": "Inställningar",
+    "general": "Allmänt",
+    "appearance": "Utseende",
+    "wallpapers": "Bakgrundsbilder",
+    "network": "Nätverk",
+    "audio": "Ljud",
+    "performance": "Prestanda",
+    "shortcuts": "Genvägar",
+    "system": "System",
+    "language": "Språk"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "Måndag",
+      "tuesday": "Tisdag",
+      "wednesday": "Onsdag",
+      "thursday": "Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lördag",
+      "sunday": "Söndag"
+    },
+    "month": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Mars",
+      "april": "April",
+      "may": "Maj",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augusti",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "general": {
+    "title": "Allmänna inställningar",
+    "language_label": "Språk:",
+    "autostart_label": "Autostart:",
+    "notification_label": "Aviseringar:",
+    "notification_system": "Visa systemaviseringar",
+    "notification_sound": "Aviseringsljud",
+    "notification_performance": "Prestandaaviseringar"
+  },
+  "appearance": {
+    "title": "Utseende",
+    "theme_label": "Tema:",
+    "theme_light": "Ljust",
+    "theme_dark": "Mörkt",
+    "clock_panel_label": "Klockpanel:",
+    "panel_position_label": "Panelposition:",
+    "position_top": "Topp",
+    "position_bottom": "Botten",
+    "clock_position_label": "Klockposition:",
+    "panel_height_label": "Panelhöjd:"
+  },
+  "system": {
+    "application": "Applikation",
+    "sleep": "Viloläge",
+    "logout": "Logga ut",
+    "shutdown": "Stäng av",
+    "restart": "Starta om",
+    "lock": "Lås skärm"
+  },
+  "mixer": {
+    "title": "Ljudmixer",
+    "subtitle": "Hantera ljudströmmar och volym",
+    "output_device": "Utgångsenhet",
+    "application_streams": "Applikationsströmmar",
+    "no_streams": "Inga aktiva strömmar",
+    "active_streams": "Aktiva strömmar: %{count}"
+  },
+  "entry": {
+    "unknown_app": "Okänd applikation",
+    "unmute": "Slå på ljud",
+    "mute": "Tysta",
+    "volume_percent": "%{volume}%",
+    "media_name": "Medianamn",
+    "volume_slider_tooltip": "Justera volym",
+    "muted": "Tystad",
+    "overdrive": "Volymöverdrift"
+  },
+  "calendar": {
+    "title": "Kalender",
+    "weekdays": {
+      "sunday": "Sön",
+      "monday": "Mån",
+      "tuesday": "Tis",
+      "wednesday": "Ons",
+      "thursday": "Tor",
+      "friday": "Fre",
+      "saturday": "Lör"
+    }
+  },
+  "wallpapers": {
+    "title": "Bildhantering",
+    "total_images": "Totalt bilder:",
+    "path": "Sökväg:",
+    "loading": "Laddar...",
+    "loading_info": "Laddar information...",
+    "no_images": "Inga bilder hittades i ~/Pictures/Wallpapers",
+    "set_wallpaper": "Ställ in",
+    "already_set": "Inställd",
+    "delete": "Ta bort",
+    "delete_confirm": "Bekräfta borttagning",
+    "cancel": "Avbryt",
+    "success_set": "Bakgrund inställd!",
+    "success_delete": "Bild borttagen!"
+  },
+  "confirm": {
+    "title": "Bekräfta",
+    "message": "Är du säker på att du vill {action}?",
+    "yes": "Ja",
+    "no": "Nej",
+    "sleep": "försätta i viloläge",
+    "lock": "låsa skärmen",
+    "logout": "logga ut",
+    "restart": "starta om",
+    "shutdown": "stänga av"
+  },
+  "ram": {
+    "title": "Processhanterare",
+    "panel_title": "RAM-hanterare",
+    "memory_monitor": "Minnesmonitor",
+    "used": "Använt",
+    "free": "Ledigt",
+    "available": "Tillgängligt",
+    "no_swap": "Ingen SWAP",
+    "loading_memory": "Laddar minnesdata...",
+    "loading": {
+      "title": "⏳",
+      "message": "Laddar processlista..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "Processnamn",
+      "ram_percent": "RAM %",
+      "memory": "Minne"
+    },
+    "footer": {
+      "process_count_label": "Antal processer",
+      "total_ram_label": "Totalt RAM-användning",
+      "memory_distribution_label": "Minnesfördelning",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "Processmonitor",
+      "last_update": "Senaste uppdatering"
+    },
+    "status_colors": {
+      "critical": "Kritisk",
+      "warning": "Varning",
+      "normal": "Normal",
+      "low": "Låg"
+    },
+    "distribution": {
+      "na": "Ingen data",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "Skript returnerade ingen data",
+      "parse_error": "Fel vid parsning av utdata"
+    }
+  },
+  "volume": {
+    "title": "Volym",
+    "muted": "Tystad"
+  },
+  "bluetooth": {
+    "title": "Bluetooth",
+    "enabled": "Bluetooth på",
+    "disabled": "Bluetooth av",
+    "devices_connected": "enheter anslutna",
+    "pairing": "Parar...",
+    "connecting": "Ansluter...",
+    "connected": "Ansluten",
+    "paired": "Parad",
+    "not_connected": "Ej ansluten",
+    "searching": "Söker enheter...",
+    "no_devices": "Inga enheter hittades",
+    "turn_on": "Slå på Bluetooth för att ansluta enheter",
+    "pair_error": "Kan inte para enhet"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi på",
+    "disabled": "WiFi av",
+    "not_connected": "Ej ansluten",
+    "available_networks": "Tillgängliga nätverk",
+    "searching": "Söker nätverk...",
+    "no_networks": "Inga nätverk hittades",
+    "turn_on": "Slå på WiFi för att se nätverk",
+    "forget": "Glöm",
+    "connect": "Anslut",
+    "no_password": "Inget lösenord krävs",
+    "enter_password": "Ange lösenord",
+    "password_required": "Vänligen ange lösenord",
+    "wrong_password": "Fel lösenord"
+  },
+  "infoSection": {
+    "name": "CPU-namn",
+    "vendor": "Tillverkare",
+    "architecture": "Arkitektur",
+    "socket": "Sockel",
+    "loading": "Laddar...",
+    "undefined": "Odefinierad"
+  },
+  "CpuPane": {
+    "title": "CPU-information"
+  },
+  "cpuStats": {
+    "totalUsage": "Total Användning",
+    "maxCore": "Högsta Kärna",
+    "timeLabel": "⏱️ Tid",
+    "dataPoints": "punkter"
+  }
 }

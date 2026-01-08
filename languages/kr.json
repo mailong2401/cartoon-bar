@@ -11,7 +11,7 @@
     "system": "시스템",
     "language": "언어"
   },
-   "dateFormat": {
+  "dateFormat": {
     "day": {
       "monday": "월요일",
       "tuesday": "화요일",
@@ -204,5 +204,22 @@
     "enter_password": "비밀번호 입력",
     "password_required": "비밀번호를 입력하세요",
     "wrong_password": "비밀번호가 틀렸습니다"
+  },
+  "infoSection": {
+    "name": "CPU 이름",
+    "vendor": "제조사",
+    "architecture": "아키텍처",
+    "socket": "소켓",
+    "loading": "로딩 중...",
+    "undefined": "정의되지 않음"
+  },
+  "CpuPane": {
+    "title": "CPU 정보"
+  },
+  "cpuStats": {
+    "totalUsage": "총 사용량",
+    "maxCore": "최고 코어",
+    "timeLabel": "⏱️ 시간",
+    "dataPoints": "포인트"
   }
 }

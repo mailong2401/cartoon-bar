@@ -11,29 +11,29 @@
     "system": "Sistem",
     "language": "Dil"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Pazartesi",
-      "tuesday" : "Salı",
-      "wednesday" : "Çarşamba",
-      "thursday" : "Perşembe",
-      "friday" : "Cuma",
-      "saturday" : "Cumartesi",
-      "sunday" : "Pazar"
+  "dateFormat": {
+    "day": {
+      "monday": "Pazartesi",
+      "tuesday": "Salı",
+      "wednesday": "Çarşamba",
+      "thursday": "Perşembe",
+      "friday": "Cuma",
+      "saturday": "Cumartesi",
+      "sunday": "Pazar"
     },
-    "month" : {
-      "january" : "Ocak",
-      "february" : "Şubat",
-      "march" : "Mart",
-      "april" : "Nisan",
-      "may" : "Mayıs",
-      "june" : "Haziran",
-      "july" : "Temmuz",
-      "august" : "Ağustos",
-      "september" : "Eylül",
-      "october" : "Ekim",
-      "november" : "Kasım",
-      "december" : "Aralık"
+    "month": {
+      "january": "Ocak",
+      "february": "Şubat",
+      "march": "Mart",
+      "april": "Nisan",
+      "may": "Mayıs",
+      "june": "Haziran",
+      "july": "Temmuz",
+      "august": "Ağustos",
+      "september": "Eylül",
+      "october": "Ekim",
+      "november": "Kasım",
+      "december": "Aralık"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Şifre girin",
     "password_required": "Lütfen şifre girin",
     "wrong_password": "Yanlış şifre"
+  },
+  "infoSection": {
+    "name": "İşlemci Adı",
+    "vendor": "Üretici",
+    "architecture": "Mimari",
+    "socket": "Soket",
+    "loading": "Yükleniyor...",
+    "undefined": "Tanımsız"
+  },
+  "CpuPane": {
+    "title": "İşlemci Bilgileri"
+  },
+  "cpuStats": {
+    "totalUsage": "Toplam Kullanım",
+    "maxCore": "En Yüksek Çekirdek",
+    "timeLabel": "⏱️ Zaman",
+    "dataPoints": "nokta"
   }
 }

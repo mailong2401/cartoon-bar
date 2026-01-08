@@ -11,29 +11,29 @@
     "system": "सिस्टम",
     "language": "भाषा"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "सोमवार",
-      "tuesday" : "मंगलवार",
-      "wednesday" : "बुधवार",
-      "thursday" : "गुरुवार",
-      "friday" : "शुक्रवार",
-      "saturday" : "शनिवार",
-      "sunday" : "रविवार"
+  "dateFormat": {
+    "day": {
+      "monday": "सोमवार",
+      "tuesday": "मंगलवार",
+      "wednesday": "बुधवार",
+      "thursday": "गुरुवार",
+      "friday": "शुक्रवार",
+      "saturday": "शनिवार",
+      "sunday": "रविवार"
     },
-    "month" : {
-      "january" : "जनवरी",
-      "february" : "फरवरी",
-      "march" : "मार्च",
-      "april" : "अप्रैल",
-      "may" : "मई",
-      "june" : "जून",
-      "july" : "जुलाई",
-      "august" : "अगस्त",
-      "september" : "सितंबर",
-      "october" : "अक्टूबर",
-      "november" : "नवंबर",
-      "december" : "दिसंबर"
+    "month": {
+      "january": "जनवरी",
+      "february": "फरवरी",
+      "march": "मार्च",
+      "april": "अप्रैल",
+      "may": "मई",
+      "june": "जून",
+      "july": "जुलाई",
+      "august": "अगस्त",
+      "september": "सितंबर",
+      "october": "अक्टूबर",
+      "november": "नवंबर",
+      "december": "दिसंबर"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "पासवर्ड दर्ज करें",
     "password_required": "कृपया पासवर्ड दर्ज करें",
     "wrong_password": "गलत पासवर्ड"
+  },
+  "infoSection": {
+    "name": "CPU का नाम",
+    "vendor": "निर्माता",
+    "architecture": "वास्तुकला",
+    "socket": "सॉकेट",
+    "loading": "लोड हो रहा है...",
+    "undefined": "अपरिभाषित"
+  },
+  "CpuPane": {
+    "title": "CPU जानकारी"
+  },
+  "cpuStats": {
+    "totalUsage": "कुल उपयोग",
+    "maxCore": "उच्चतम कोर",
+    "timeLabel": "⏱️ समय",
+    "dataPoints": "अंक"
   }
 }

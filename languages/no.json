@@ -200,5 +200,22 @@
     "enter_password": "Skriv inn passord",
     "password_required": "Vennligst skriv inn passord",
     "wrong_password": "Feil passord"
+  },
+  "infoSection": {
+    "name": "CPU-navn",
+    "vendor": "Produsent",
+    "architecture": "Arkitektur",
+    "socket": "Sokkel",
+    "loading": "Laster...",
+    "undefined": "Udefinert"
+  },
+  "CpuPane": {
+    "title": "CPU-informasjon"
+  },
+  "cpuStats": {
+    "totalUsage": "Total Bruk",
+    "maxCore": "Høyeste Kjerne",
+    "timeLabel": "⏱️ Tid",
+    "dataPoints": "punkter"
   }
 }

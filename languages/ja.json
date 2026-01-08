@@ -204,5 +204,22 @@
     "enter_password": "パスワードを入力",
     "password_required": "パスワードを入力してください",
     "wrong_password": "パスワードが間違っています"
+  },
+  "infoSection": {
+    "name": "CPU名",
+    "vendor": "ベンダー",
+    "architecture": "アーキテクチャ",
+    "socket": "ソケット",
+    "loading": "読み込み中...",
+    "undefined": "未定義"
+  },
+  "CpuPane": {
+    "title": "CPU情報"
+  },
+  "cpuStats": {
+    "totalUsage": "合計使用率",
+    "maxCore": "最高コア",
+    "timeLabel": "⏱️ 時間",
+    "dataPoints": "ポイント"
   }
 }

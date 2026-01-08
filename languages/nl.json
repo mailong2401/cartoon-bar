@@ -11,29 +11,29 @@
     "system": "Systeem",
     "language": "Taal"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Maandag",
-      "tuesday" : "Dinsdag",
-      "wednesday" : "Woensdag",
-      "thursday" : "Donderdag",
-      "friday" : "Vrijdag",
-      "saturday" : "Zaterdag",
-      "sunday" : "Zondag"
+  "dateFormat": {
+    "day": {
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag",
+      "sunday": "Zondag"
     },
-    "month" : {
-      "january" : "Januari",
-      "february" : "Februari",
-      "march" : "Maart",
-      "april" : "April",
-      "may" : "Mei",
-      "june" : "Juni",
-      "july" : "Juli",
-      "august" : "Augustus",
-      "september" : "September",
-      "october" : "Oktober",
-      "november" : "November",
-      "december" : "December"
+    "month": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maart",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Wachtwoord invoeren",
     "password_required": "Voer een wachtwoord in",
     "wrong_password": "Onjuist wachtwoord"
+  },
+  "infoSection": {
+    "name": "CPU-naam",
+    "vendor": "Fabrikant",
+    "architecture": "Architectuur",
+    "socket": "Socket",
+    "loading": "Laden...",
+    "undefined": "Ongedefinieerd"
+  },
+  "CpuPane": {
+    "title": "CPU-informatie"
+  },
+  "cpuStats": {
+    "totalUsage": "Totaal Gebruik",
+    "maxCore": "Hoogste Core",
+    "timeLabel": "⏱️ Tijd",
+    "dataPoints": "punten"
   }
 }

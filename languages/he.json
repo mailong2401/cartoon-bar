@@ -200,5 +200,22 @@
     "enter_password": "הזן סיסמה",
     "password_required": "אנא הזן סיסמה",
     "wrong_password": "סיסמה שגויה"
+  },
+  "infoSection": {
+    "name": "שם המעבד",
+    "vendor": "יצרן",
+    "architecture": "ארכיטקטורה",
+    "socket": "שקע",
+    "loading": "טוען...",
+    "undefined": "לא מוגדר"
+  },
+  "CpuPane": {
+    "title": "מידע על המעבד"
+  },
+  "cpuStats": {
+    "totalUsage": "שימוש כולל",
+    "maxCore": "ליבה הגבוהה ביותר",
+    "timeLabel": "⏱️ זמן",
+    "dataPoints": "נקודות"
   }
 }

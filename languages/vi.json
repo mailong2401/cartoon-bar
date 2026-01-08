@@ -211,6 +211,12 @@
   },
   "CpuPane": {
     "title": "Thông tin CPU"
+  },
+  "cpuStats": {
+    "totalUsage": "Tổng Usage",
+    "maxCore": "Core Cao Nhất",
+    "timeLabel": "⏱️ Thời Gian",
+    "dataPoints": "điểm"
   }
 }
 

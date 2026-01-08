@@ -11,29 +11,29 @@
     "system": "Sistema",
     "language": "Lingua"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Lunedì",
-      "tuesday" : "Martedì",
-      "wednesday" : "Mercoledì",
-      "thursday" : "Giovedì",
-      "friday" : "Venerdì",
-      "saturday" : "Sabato",
-      "sunday" : "Domenica"
+  "dateFormat": {
+    "day": {
+      "monday": "Lunedì",
+      "tuesday": "Martedì",
+      "wednesday": "Mercoledì",
+      "thursday": "Giovedì",
+      "friday": "Venerdì",
+      "saturday": "Sabato",
+      "sunday": "Domenica"
     },
-    "month" : {
-      "january" : "Gennaio",
-      "february" : "Febbraio",
-      "march" : "Marzo",
-      "april" : "Aprile",
-      "may" : "Maggio",
-      "june" : "Giugno",
-      "july" : "Luglio",
-      "august" : "Agosto",
-      "september" : "Settembre",
-      "october" : "Ottobre",
-      "november" : "Novembre",
-      "december" : "Dicembre"
+    "month": {
+      "january": "Gennaio",
+      "february": "Febbraio",
+      "march": "Marzo",
+      "april": "Aprile",
+      "may": "Maggio",
+      "june": "Giugno",
+      "july": "Luglio",
+      "august": "Agosto",
+      "september": "Settembre",
+      "october": "Ottobre",
+      "november": "Novembre",
+      "december": "Dicembre"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Inserisci password",
     "password_required": "Inserisci la password",
     "wrong_password": "Password errata"
+  },
+  "infoSection": {
+    "name": "Nome CPU",
+    "vendor": "Produttore",
+    "architecture": "Architettura",
+    "socket": "Socket",
+    "loading": "Caricamento...",
+    "undefined": "Non definito"
+  },
+  "CpuPane": {
+    "title": "Informazioni CPU"
+  },
+  "cpuStats": {
+    "totalUsage": "Utilizzo Totale",
+    "maxCore": "Core Più Alto",
+    "timeLabel": "⏱️ Tempo",
+    "dataPoints": "punti"
   }
 }

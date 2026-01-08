@@ -11,29 +11,29 @@
     "system": "Система",
     "language": "Язык"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Понедельник",
-      "tuesday" : "Вторник",
-      "wednesday" : "Среда",
-      "thursday" : "Четверг",
-      "friday" : "Пятница",
-      "saturday" : "Суббота",
-      "sunday" : "Воскресенье"
+  "dateFormat": {
+    "day": {
+      "monday": "Понедельник",
+      "tuesday": "Вторник",
+      "wednesday": "Среда",
+      "thursday": "Четверг",
+      "friday": "Пятница",
+      "saturday": "Суббота",
+      "sunday": "Воскресенье"
     },
-    "month" : {
-      "january" : "Январь",
-      "february" : "Февраль",
-      "march" : "Март",
-      "april" : "Апрель",
-      "may" : "Май",
-      "june" : "Июнь",
-      "july" : "Июль",
-      "august" : "Август",
-      "september" : "Сентябрь",
-      "october" : "Октябрь",
-      "november" : "Ноябрь",
-      "december" : "Декабрь"
+    "month": {
+      "january": "Январь",
+      "february": "Февраль",
+      "march": "Март",
+      "april": "Апрель",
+      "may": "Май",
+      "june": "Июнь",
+      "july": "Июль",
+      "august": "Август",
+      "september": "Сентябрь",
+      "october": "Октябрь",
+      "november": "Ноябрь",
+      "december": "Декабрь"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Введите пароль",
     "password_required": "Пожалуйста, введите пароль",
     "wrong_password": "Неверный пароль"
+  },
+  "infoSection": {
+    "name": "Название процессора",
+    "vendor": "Производитель",
+    "architecture": "Архитектура",
+    "socket": "Сокет",
+    "loading": "Загрузка...",
+    "undefined": "Не определено"
+  },
+  "CpuPane": {
+    "title": "Информация о процессоре"
+  },
+  "cpuStats": {
+    "totalUsage": "Общее использование",
+    "maxCore": "Наибольшее ядро",
+    "timeLabel": "⏱️ Время",
+    "dataPoints": "точек"
   }
 }

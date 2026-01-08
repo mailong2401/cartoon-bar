@@ -11,29 +11,29 @@
     "system": "Système",
     "language": "Langue"
   },
-  "dateFormat" : {
-    "day" : {
-      "monday" : "Lundi",
-      "tuesday" : "Mardi",
-      "wednesday" : "Mercredi",
-      "thursday" : "Jeudi",
-      "friday" : "Vendredi",
-      "saturday" : "Samedi",
-      "sunday" : "Dimanche"
+  "dateFormat": {
+    "day": {
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi",
+      "sunday": "Dimanche"
     },
-    "month" : {
-      "january" : "Janvier",
-      "february" : "Février",
-      "march" : "Mars",
-      "april" : "Avril",
-      "may" : "Mai",
-      "june" : "Juin",
-      "july" : "Juillet",
-      "august" : "Août",
-      "september" : "Septembre",
-      "october" : "Octobre",
-      "november" : "Novembre",
-      "december" : "Décembre"
+    "month": {
+      "january": "Janvier",
+      "february": "Février",
+      "march": "Mars",
+      "april": "Avril",
+      "may": "Mai",
+      "june": "Juin",
+      "july": "Juillet",
+      "august": "Août",
+      "september": "Septembre",
+      "october": "Octobre",
+      "november": "Novembre",
+      "december": "Décembre"
     }
   },
   "general": {
@@ -204,5 +204,22 @@
     "enter_password": "Entrer le mot de passe",
     "password_required": "Veuillez entrer le mot de passe",
     "wrong_password": "Mot de passe incorrect"
+  },
+  "infoSection": {
+    "name": "Nom du processeur",
+    "vendor": "Fabricant",
+    "architecture": "Architecture",
+    "socket": "Socket",
+    "loading": "Chargement...",
+    "undefined": "Non défini"
+  },
+  "CpuPane": {
+    "title": "Informations du processeur"
+  },
+  "cpuStats": {
+    "totalUsage": "Utilisation Totale",
+    "maxCore": "Cœur Le Plus Élevé",
+    "timeLabel": "⏱️ Temps",
+    "dataPoints": "points"
   }
 }

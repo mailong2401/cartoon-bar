@@ -200,5 +200,22 @@
     "enter_password": "Zadajte heslo",
     "password_required": "Prosím zadajte heslo",
     "wrong_password": "Nesprávne heslo"
+  },
+  "infoSection": {
+    "name": "Názov procesora",
+    "vendor": "Výrobca",
+    "architecture": "Architektúra",
+    "socket": "Soket",
+    "loading": "Načítava sa...",
+    "undefined": "Nedefinované"
+  },
+  "CpuPane": {
+    "title": "Informácie o procesore"
+  },
+  "cpuStats": {
+    "totalUsage": "Celkové Využitie",
+    "maxCore": "Najvyššie Jadro",
+    "timeLabel": "⏱️ Čas",
+    "dataPoints": "bodov"
   }
 }

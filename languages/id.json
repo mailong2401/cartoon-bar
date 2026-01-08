@@ -200,5 +200,22 @@
     "enter_password": "Masukkan kata sandi",
     "password_required": "Silakan masukkan kata sandi",
     "wrong_password": "Kata sandi salah"
+  },
+  "infoSection": {
+    "name": "Nama CPU",
+    "vendor": "Vendor",
+    "architecture": "Arsitektur",
+    "socket": "Soket",
+    "loading": "Memuat...",
+    "undefined": "Tidak terdefinisi"
+  },
+  "CpuPane": {
+    "title": "Informasi CPU"
+  },
+  "cpuStats": {
+    "totalUsage": "Penggunaan Total",
+    "maxCore": "Core Tertinggi",
+    "timeLabel": "⏱️ Waktu",
+    "dataPoints": "titik"
   }
 }

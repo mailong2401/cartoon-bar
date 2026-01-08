@@ -200,5 +200,22 @@
     "enter_password": "Introduceți parola",
     "password_required": "Vă rugăm introduceți parola",
     "wrong_password": "Parolă greșită"
+  },
+  "infoSection": {
+    "name": "Nume procesor",
+    "vendor": "Producător",
+    "architecture": "Arhitectură",
+    "socket": "Soclu",
+    "loading": "Se încarcă...",
+    "undefined": "Nedefinit"
+  },
+  "CpuPane": {
+    "title": "Informații procesor"
+  },
+  "cpuStats": {
+    "totalUsage": "Utilizare Totală",
+    "maxCore": "Nucleul Cel Mai Înalt",
+    "timeLabel": "⏱️ Timp",
+    "dataPoints": "puncte"
   }
 }

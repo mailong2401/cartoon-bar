@@ -1,16 +1,221 @@
 {
-  "settings": {"title": "การตั้งค่า", "general": "ทั่วไป", "appearance": "รูปลักษณ์", "wallpapers": "ภาพพื้นหลัง", "network": "เครือข่าย", "audio": "เสียง", "performance": "ประสิทธิภาพ", "shortcuts": "ทางลัด", "system": "ระบบ", "language": "ภาษา"},
-  "dateFormat": {"day": {"monday": "จันทร์", "tuesday": "อังคาร", "wednesday": "พุธ", "thursday": "พฤหัสบดี", "friday": "ศุกร์", "saturday": "เสาร์", "sunday": "อาทิตย์"}, "month": {"january": "มกราคม", "february": "กุมภาพันธ์", "march": "มีนาคม", "april": "เมษายน", "may": "พฤษภาคม", "june": "มิถุนายน", "july": "กรกฎาคม", "august": "สิงหาคม", "september": "กันยายน", "october": "ตุลาคม", "november": "พฤศจิกายน", "december": "ธันวาคม"}},
-  "general": {"title": "การตั้งค่าทั่วไป", "language_label": "ภาษา:", "autostart_label": "เริ่มอัตโนมัติ:", "notification_label": "การแจ้งเตือน:", "notification_system": "แสดงการแจ้งเตือนระบบ", "notification_sound": "เสียงแจ้งเตือน", "notification_performance": "การแจ้งเตือนประสิทธิภาพ"},
-  "appearance": {"title": "รูปลักษณ์", "theme_label": "ธีม:", "theme_light": "สว่าง", "theme_dark": "มืด", "clock_panel_label": "แผงนาฬิกา:", "panel_position_label": "ตำแหน่งแผง:", "position_top": "บน", "position_bottom": "ล่าง", "clock_position_label": "ตำแหน่งนาฬิกา:", "panel_height_label": "ความสูงแผง:"},
-  "system": {"application": "แอปพลิเคชัน", "sleep": "โหมดสลีป", "logout": "ออกจากระบบ", "shutdown": "ปิดเครื่อง", "restart": "เริ่มใหม่", "lock": "ล็อคหน้าจอ"},
-  "mixer": {"title": "มิกเซอร์เสียง", "subtitle": "จัดการสตรีมเสียงและระดับเสียง", "output_device": "อุปกรณ์เอาต์พุต", "application_streams": "สตรีมเสียงแอป", "no_streams": "ไม่มีสตรีมที่ใช้งาน", "active_streams": "สตรีมที่ใช้งาน: %{count}"},
-  "entry": {"unknown_app": "แอปไม่ทราบชื่อ", "unmute": "เปิดเสียง", "mute": "ปิดเสียง", "volume_percent": "%{volume}%", "media_name": "ชื่อสื่อ", "volume_slider_tooltip": "ปรับระดับเสียง", "muted": "ปิดเสียงแล้ว", "overdrive": "เสียงเกินขีด"},
-  "calendar": {"title": "ปฏิทิน", "weekdays": {"sunday": "อา", "monday": "จ", "tuesday": "อ", "wednesday": "พ", "thursday": "พฤ", "friday": "ศ", "saturday": "ส"}},
-  "wallpapers": {"title": "จัดการรูปภาพ", "total_images": "รูปภาพทั้งหมด:", "path": "เส้นทาง:", "loading": "กำลังโหลด...", "loading_info": "กำลังโหลดข้อมูล...", "no_images": "ไม่พบรูปภาพใน ~/Pictures/Wallpapers", "set_wallpaper": "ตั้งค่า", "already_set": "ตั้งแล้ว", "delete": "ลบ", "delete_confirm": "ยืนยันการลบ", "cancel": "ยกเลิก", "success_set": "ตั้งภาพพื้นหลังสำเร็จ!", "success_delete": "ลบรูปภาพสำเร็จ!"},
-  "confirm": {"title": "ยืนยัน", "message": "คุณแน่ใจหรือไม่ว่าต้องการ{action}?", "yes": "ใช่", "no": "ไม่", "sleep": "เข้าสู่โหมดสลีป", "lock": "ล็อคหน้าจอ", "logout": "ออกจากระบบ", "restart": "เริ่มใหม่", "shutdown": "ปิดเครื่อง"},
-  "ram": {"title": "ตัวจัดการกระบวนการ", "panel_title": "ตัวจัดการ RAM", "memory_monitor": "มอนิเตอร์หน่วยความจำ", "used": "ใช้แล้ว", "free": "ว่าง", "available": "พร้อมใช้", "no_swap": "ไม่มี SWAP", "loading_memory": "กำลังโหลดข้อมูลหน่วยความจำ...", "loading": {"title": "⏳", "message": "กำลังโหลดรายการกระบวนการ..."}, "headers": {"pid": "PID", "name": "ชื่อกระบวนการ", "ram_percent": "RAM %", "memory": "หน่วยความจำ"}, "footer": {"process_count_label": "จำนวนกระบวนการ", "total_ram_label": "การใช้ RAM ทั้งหมด", "memory_distribution_label": "การกระจายหน่วยความจำ", "process_count_unit": "", "total_ram_unit": "MB"}, "header_bar": {"main_title": "มอนิเตอร์กระบวนการ", "last_update": "อัปเดตล่าสุด"}, "status_colors": {"critical": "วิกฤต", "warning": "เตือน", "normal": "ปกติ", "low": "ต่ำ"}, "distribution": {"na": "ไม่มีข้อมูล", "format": "{process} ({percent}%)"}, "debug": {"empty_output": "สคริปต์ไม่ส่งคืนข้อมูล", "parse_error": "ข้อผิดพลาดในการแยกวิเคราะห์ข้อมูล"}},
-  "volume": {"title": "ระดับเสียง", "muted": "ปิดเสียงแล้ว"},
-  "bluetooth": {"title": "บลูทูธ", "enabled": "บลูทูธเปิด", "disabled": "บลูทูธปิด", "devices_connected": "อุปกรณ์ที่เชื่อมต่อ", "pairing": "กำลังจับคู่...", "connecting": "กำลังเชื่อมต่อ...", "connected": "เชื่อมต่อแล้ว", "paired": "จับคู่แล้ว", "not_connected": "ไม่ได้เชื่อมต่อ", "searching": "กำลังค้นหาอุปกรณ์...", "no_devices": "ไม่พบอุปกรณ์", "turn_on": "เปิดบลูทูธเพื่อเชื่อมต่ออุปกรณ์", "pair_error": "ไม่สามารถจับคู่อุปกรณ์"},
-  "wifi": {"title": "WiFi", "enabled": "WiFi เปิด", "disabled": "WiFi ปิด", "not_connected": "ไม่ได้เชื่อมต่อ", "available_networks": "เครือข่ายที่พร้อมใช้", "searching": "กำลังค้นหาเครือข่าย...", "no_networks": "ไม่พบเครือข่าย", "turn_on": "เปิด WiFi เพื่อดูเครือข่าย", "forget": "ลืม", "connect": "เชื่อมต่อ", "no_password": "ไม่ต้องใช้รหัสผ่าน", "enter_password": "ใส่รหัสผ่าน", "password_required": "กรุณาใส่รหัสผ่าน", "wrong_password": "รหัสผ่านผิด"}
+  "settings": {
+    "title": "การตั้งค่า",
+    "general": "ทั่วไป",
+    "appearance": "รูปลักษณ์",
+    "wallpapers": "ภาพพื้นหลัง",
+    "network": "เครือข่าย",
+    "audio": "เสียง",
+    "performance": "ประสิทธิภาพ",
+    "shortcuts": "ทางลัด",
+    "system": "ระบบ",
+    "language": "ภาษา"
+  },
+  "dateFormat": {
+    "day": {
+      "monday": "จันทร์",
+      "tuesday": "อังคาร",
+      "wednesday": "พุธ",
+      "thursday": "พฤหัสบดี",
+      "friday": "ศุกร์",
+      "saturday": "เสาร์",
+      "sunday": "อาทิตย์"
+    },
+    "month": {
+      "january": "มกราคม",
+      "february": "กุมภาพันธ์",
+      "march": "มีนาคม",
+      "april": "เมษายน",
+      "may": "พฤษภาคม",
+      "june": "มิถุนายน",
+      "july": "กรกฎาคม",
+      "august": "สิงหาคม",
+      "september": "กันยายน",
+      "october": "ตุลาคม",
+      "november": "พฤศจิกายน",
+      "december": "ธันวาคม"
+    }
+  },
+  "general": {
+    "title": "การตั้งค่าทั่วไป",
+    "language_label": "ภาษา:",
+    "autostart_label": "เริ่มอัตโนมัติ:",
+    "notification_label": "การแจ้งเตือน:",
+    "notification_system": "แสดงการแจ้งเตือนระบบ",
+    "notification_sound": "เสียงแจ้งเตือน",
+    "notification_performance": "การแจ้งเตือนประสิทธิภาพ"
+  },
+  "appearance": {
+    "title": "รูปลักษณ์",
+    "theme_label": "ธีม:",
+    "theme_light": "สว่าง",
+    "theme_dark": "มืด",
+    "clock_panel_label": "แผงนาฬิกา:",
+    "panel_position_label": "ตำแหน่งแผง:",
+    "position_top": "บน",
+    "position_bottom": "ล่าง",
+    "clock_position_label": "ตำแหน่งนาฬิกา:",
+    "panel_height_label": "ความสูงแผง:"
+  },
+  "system": {
+    "application": "แอปพลิเคชัน",
+    "sleep": "โหมดสลีป",
+    "logout": "ออกจากระบบ",
+    "shutdown": "ปิดเครื่อง",
+    "restart": "เริ่มใหม่",
+    "lock": "ล็อคหน้าจอ"
+  },
+  "mixer": {
+    "title": "มิกเซอร์เสียง",
+    "subtitle": "จัดการสตรีมเสียงและระดับเสียง",
+    "output_device": "อุปกรณ์เอาต์พุต",
+    "application_streams": "สตรีมเสียงแอป",
+    "no_streams": "ไม่มีสตรีมที่ใช้งาน",
+    "active_streams": "สตรีมที่ใช้งาน: %{count}"
+  },
+  "entry": {
+    "unknown_app": "แอปไม่ทราบชื่อ",
+    "unmute": "เปิดเสียง",
+    "mute": "ปิดเสียง",
+    "volume_percent": "%{volume}%",
+    "media_name": "ชื่อสื่อ",
+    "volume_slider_tooltip": "ปรับระดับเสียง",
+    "muted": "ปิดเสียงแล้ว",
+    "overdrive": "เสียงเกินขีด"
+  },
+  "calendar": {
+    "title": "ปฏิทิน",
+    "weekdays": {
+      "sunday": "อา",
+      "monday": "จ",
+      "tuesday": "อ",
+      "wednesday": "พ",
+      "thursday": "พฤ",
+      "friday": "ศ",
+      "saturday": "ส"
+    }
+  },
+  "wallpapers": {
+    "title": "จัดการรูปภาพ",
+    "total_images": "รูปภาพทั้งหมด:",
+    "path": "เส้นทาง:",
+    "loading": "กำลังโหลด...",
+    "loading_info": "กำลังโหลดข้อมูล...",
+    "no_images": "ไม่พบรูปภาพใน ~/Pictures/Wallpapers",
+    "set_wallpaper": "ตั้งค่า",
+    "already_set": "ตั้งแล้ว",
+    "delete": "ลบ",
+    "delete_confirm": "ยืนยันการลบ",
+    "cancel": "ยกเลิก",
+    "success_set": "ตั้งภาพพื้นหลังสำเร็จ!",
+    "success_delete": "ลบรูปภาพสำเร็จ!"
+  },
+  "confirm": {
+    "title": "ยืนยัน",
+    "message": "คุณแน่ใจหรือไม่ว่าต้องการ{action}?",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "sleep": "เข้าสู่โหมดสลีป",
+    "lock": "ล็อคหน้าจอ",
+    "logout": "ออกจากระบบ",
+    "restart": "เริ่มใหม่",
+    "shutdown": "ปิดเครื่อง"
+  },
+  "ram": {
+    "title": "ตัวจัดการกระบวนการ",
+    "panel_title": "ตัวจัดการ RAM",
+    "memory_monitor": "มอนิเตอร์หน่วยความจำ",
+    "used": "ใช้แล้ว",
+    "free": "ว่าง",
+    "available": "พร้อมใช้",
+    "no_swap": "ไม่มี SWAP",
+    "loading_memory": "กำลังโหลดข้อมูลหน่วยความจำ...",
+    "loading": {
+      "title": "⏳",
+      "message": "กำลังโหลดรายการกระบวนการ..."
+    },
+    "headers": {
+      "pid": "PID",
+      "name": "ชื่อกระบวนการ",
+      "ram_percent": "RAM %",
+      "memory": "หน่วยความจำ"
+    },
+    "footer": {
+      "process_count_label": "จำนวนกระบวนการ",
+      "total_ram_label": "การใช้ RAM ทั้งหมด",
+      "memory_distribution_label": "การกระจายหน่วยความจำ",
+      "process_count_unit": "",
+      "total_ram_unit": "MB"
+    },
+    "header_bar": {
+      "main_title": "มอนิเตอร์กระบวนการ",
+      "last_update": "อัปเดตล่าสุด"
+    },
+    "status_colors": {
+      "critical": "วิกฤต",
+      "warning": "เตือน",
+      "normal": "ปกติ",
+      "low": "ต่ำ"
+    },
+    "distribution": {
+      "na": "ไม่มีข้อมูล",
+      "format": "{process} ({percent}%)"
+    },
+    "debug": {
+      "empty_output": "สคริปต์ไม่ส่งคืนข้อมูล",
+      "parse_error": "ข้อผิดพลาดในการแยกวิเคราะห์ข้อมูล"
+    }
+  },
+  "volume": {
+    "title": "ระดับเสียง",
+    "muted": "ปิดเสียงแล้ว"
+  },
+  "bluetooth": {
+    "title": "บลูทูธ",
+    "enabled": "บลูทูธเปิด",
+    "disabled": "บลูทูธปิด",
+    "devices_connected": "อุปกรณ์ที่เชื่อมต่อ",
+    "pairing": "กำลังจับคู่...",
+    "connecting": "กำลังเชื่อมต่อ...",
+    "connected": "เชื่อมต่อแล้ว",
+    "paired": "จับคู่แล้ว",
+    "not_connected": "ไม่ได้เชื่อมต่อ",
+    "searching": "กำลังค้นหาอุปกรณ์...",
+    "no_devices": "ไม่พบอุปกรณ์",
+    "turn_on": "เปิดบลูทูธเพื่อเชื่อมต่ออุปกรณ์",
+    "pair_error": "ไม่สามารถจับคู่อุปกรณ์"
+  },
+  "wifi": {
+    "title": "WiFi",
+    "enabled": "WiFi เปิด",
+    "disabled": "WiFi ปิด",
+    "not_connected": "ไม่ได้เชื่อมต่อ",
+    "available_networks": "เครือข่ายที่พร้อมใช้",
+    "searching": "กำลังค้นหาเครือข่าย...",
+    "no_networks": "ไม่พบเครือข่าย",
+    "turn_on": "เปิด WiFi เพื่อดูเครือข่าย",
+    "forget": "ลืม",
+    "connect": "เชื่อมต่อ",
+    "no_password": "ไม่ต้องใช้รหัสผ่าน",
+    "enter_password": "ใส่รหัสผ่าน",
+    "password_required": "กรุณาใส่รหัสผ่าน",
+    "wrong_password": "รหัสผ่านผิด"
+  },
+  "infoSection": {
+    "name": "ชื่อ CPU",
+    "vendor": "ผู้ผลิต",
+    "architecture": "สถาปัตยกรรม",
+    "socket": "ซ็อกเก็ต",
+    "loading": "กำลังโหลด...",
+    "undefined": "ไม่ได้กำหนด"
+  },
+  "CpuPane": {
+    "title": "ข้อมูล CPU"
+  },
+  "cpuStats": {
+    "totalUsage": "การใช้งานทั้งหมด",
+    "maxCore": "คอร์สูงสุด",
+    "timeLabel": "⏱️ เวลา",
+    "dataPoints": "จุด"
+  }
 }

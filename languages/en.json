@@ -12,30 +12,30 @@
     "language": "Language"
   },
   "dateFormat": {
-      "day": {
-        "monday": "Monday",
-        "tuesday": "Tuesday",
-        "wednesday": "Wednesday",
-        "thursday": "Thursday",
-        "friday": "Friday",
-        "saturday": "Saturday",
-        "sunday": "Sunday"
-      },
-      "month": {
-        "january": "January",
-        "february": "February",
-        "march": "March",
-        "april": "April",
-        "may": "May",
-        "june": "June",
-        "july": "July",
-        "august": "August",
-        "september": "September",
-        "october": "October",
-        "november": "November",
-        "december": "December"
-      }
+    "day": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
     },
+    "month": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  },
   "general": {
     "title": "General Settings",
     "language_label": "Language:",
@@ -200,5 +200,22 @@
     "enter_password": "Enter password",
     "password_required": "Please enter password",
     "wrong_password": "Wrong password"
+  },
+  "infoSection": {
+    "name": "CPU Name",
+    "vendor": "Vendor",
+    "architecture": "Architecture",
+    "socket": "Socket",
+    "loading": "Loading...",
+    "undefined": "Undefined"
+  },
+  "CpuPane": {
+    "title": "CPU Information"
+  },
+  "cpuStats": {
+    "totalUsage": "Total Usage",
+    "maxCore": "Highest Core",
+    "timeLabel": "⏱️ Time",
+    "dataPoints": "points"
   }
 }

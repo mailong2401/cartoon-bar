@@ -200,5 +200,22 @@
     "enter_password": "Въведете парола",
     "password_required": "Моля, въведете парола",
     "wrong_password": "Грешна парола"
+  },
+  "infoSection": {
+    "name": "Име на процесора",
+    "vendor": "Производител",
+    "architecture": "Архитектура",
+    "socket": "Сокет",
+    "loading": "Зареждане...",
+    "undefined": "Недефинирано"
+  },
+  "CpuPane": {
+    "title": "Информация за процесора"
+  },
+  "cpuStats": {
+    "totalUsage": "Общо Използване",
+    "maxCore": "Най-високо Ядро",
+    "timeLabel": "⏱️ Време",
+    "dataPoints": "точки"
   }
 }

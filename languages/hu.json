@@ -200,5 +200,22 @@
     "enter_password": "Adja meg a jelszót",
     "password_required": "Kérjük, adja meg a jelszót",
     "wrong_password": "Hibás jelszó"
+  },
+  "infoSection": {
+    "name": "Processzor neve",
+    "vendor": "Gyártó",
+    "architecture": "Architektúra",
+    "socket": "Foglalat",
+    "loading": "Betöltés...",
+    "undefined": "Nincs meghatározva"
+  },
+  "CpuPane": {
+    "title": "Processzor információk"
+  },
+  "cpuStats": {
+    "totalUsage": "Teljes Használat",
+    "maxCore": "Legmagasabb Mag",
+    "timeLabel": "⏱️ Idő",
+    "dataPoints": "pont"
   }
 }

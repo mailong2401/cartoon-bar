@@ -200,5 +200,22 @@
     "enter_password": "Εισάγετε κωδικό",
     "password_required": "Παρακαλώ εισάγετε κωδικό",
     "wrong_password": "Λάθος κωδικός"
+  },
+  "infoSection": {
+    "name": "Όνομα επεξεργαστή",
+    "vendor": "Κατασκευαστής",
+    "architecture": "Αρχιτεκτονική",
+    "socket": "Υποδοχή",
+    "loading": "Φόρτωση...",
+    "undefined": "Απροσδιόριστο"
+  },
+  "CpuPane": {
+    "title": "Πληροφορίες επεξεργαστή"
+  },
+  "cpuStats": {
+    "totalUsage": "Συνολική Χρήση",
+    "maxCore": "Υψηλότερος Πυρήνας",
+    "timeLabel": "⏱️ Χρόνος",
+    "dataPoints": "σημεία"
   }
 }
