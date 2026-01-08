@@ -200,6 +200,17 @@
     "enter_password": "Nhập mật khẩu",
     "password_required": "Vui lòng nhập mật khẩu",
     "wrong_password": "Mật khẩu không đúng"
+  },
+  "infoSection": {
+    "name": "Tên CPU",
+    "vendor": "Nhà sản xuất",
+    "architecture": "Kiến trúc",
+    "socket": "Socket",
+    "loading": "Đang tải...",
+    "undefined": "Không xác định"
+  },
+  "CpuPane": {
+    "title": "Thông tin CPU"
   }
 }
 
