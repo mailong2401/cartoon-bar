@@ -22,9 +22,6 @@
 - [System Requirements](#-system-requirements)
 - [Installation](#-installation)
 - [Configuration](#-configuration)
-- [Project Architecture](#-project-architecture)
-- [Components](#-components)
-- [Theme & Language](#-theme--language)
 - [Shortcuts](#-shortcuts)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -266,7 +263,7 @@ cd ~/.config/quickshell/cartoon-bar
 ### 3. Configure Weather API (Optional)
 ```bash
 # Edit config file
-nano configs/default.json
+nano config/configs/default.json
 
 # Change:
 {
@@ -285,57 +282,6 @@ echo "exec-once = export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.confi
     >> ~/.config/hypr/hyprland.conf
 ```
 
-### 5. Grant permissions to scripts
-```bash
-cd ~/.config/quickshell/cartoon-bar/scripts
-chmod +x *.sh *.py music-controller check-playing
-```
-
----
-
-## ⚙️ Configuration
-
-### Main configuration file: `configs/default.json`
-
-```json
-{
-  "mainPanelPos": "top",              // Panel position: "top" | "bottom"
-  "clockPanelPosition": "bottomRight", // Clock position: 9 options
-  "clockPanelVisible": true,          // Show clock panel
-  "spacingPanel": 12,                 // Spacing between components (px)
-
-  "lang": "vi",                       // Language: vi, en, zh, ja, kr, etc.
-  "theme": "dark",                    // Theme: "dark" | "light"
-  "displaySize": "1920",              // Size: 1280-3840
-
-  "countryFlag": "korea",             // Flag to display
-  "weatherApiKey": "...",             // Weather API key
-  "weatherLocation": "Ho Chi Minh City,Vietnam"
-}
-```
-
-### Changing config
-
-#### Method 1: Via Settings Panel (Recommended)
-1. Click on **App Icons** (left corner of panel)
-2. Click **Settings** button (⚙️)
-3. Select corresponding tab and make changes
-4. Config auto-saves and reloads
-
-#### Method 2: Edit file directly
-```bash
-# Edit config
-nano ~/.config/quickshell/cartoon-bar/configs/default.json
-
-# QuickShell will auto-reload (if running)
-```
-
-### Clock Panel positions
-```
-topLeft      top      topRight
-left        center       right
-bottomLeft  bottom  bottomRight
-```
 
 ### Available Languages (30)
 
@@ -389,137 +335,6 @@ bottomLeft  bottom  bottomRight
 
 ---
 
-## 🏗️ Project Architecture
-
-The project follows a modular architecture with clear separation of concerns:
-
-```
-cartoon-bar/
-├── config/         # Configuration and settings (themes, languages, sizes)
-├── modules/        # Feature modules (panels, dialogs, settings)
-├── services/       # Background services (audio, JSON editor)
-├── utils/          # Utility components and helpers
-├── assets/         # Static assets (images, icons)
-├── scripts/        # Shell scripts and Python utilities
-└── shell.qml       # Main entry point
-```
-
-For detailed information about the project structure, import patterns, and conventions, see [ARCHITECTURE.md](ARCHITECTURE.md).
-
----
-
-## 🧩 Components
-
-### WorkspacePanel
-- Display workspace 1-10 from Hyprland
-- **Icons**:
-  - 🟡 Pac-Man - Current workspace
-  - 👻 Ghost - Created but empty workspace
-  - ⚪ Empty - Not yet created workspace
-- Click to switch workspace
-- Real-time tracking via Hyprland socket
-
-### MusicPlayer
-- Support: Spotify, MPD, VLC, Firefox, etc. (MPRIS compatible)
-- Display: Artist - Song title (marquee scrolling)
-- Controls: Previous, Play/Pause, Next
-- Updates every 1 second
-- Scripts: `music-controller`, `check-playing`
-- **Music Panel** (click on song info):
-  - Album art display
-  - Song title & artist
-  - Progress bar with time
-  - Playback controls
-  - **Cava audio visualizer** with theme colors
-
-### Timespace Widget
-- **⏰ Clock**: Display HH:MM
-- **🌦️ Weather**:
-  - Current temperature
-  - Humidity, feels like
-  - Weather icon
-  - Requires Weather API key
-- **🏳️ Country Flag**: Select from list
-
-### Status Area
-- **📶 WiFi**: Signal, connection, network scanning
-- **🔵 Bluetooth**: Devices, connection
-- **🎛️ Mixer**: Volume, audio devices
-- **🔋 Battery**: %, charging/discharging status
-
-### CPU & RAM Panel
-- **CPU**: % usage from `top`
-- **RAM**: % usage from `free`
-- Click to open detail panel:
-  - CPU cores usage
-  - Temperature (if available)
-  - RAM: used/total
-  - Swap usage
-
-### LauncherPanel
-- Search installed applications
-- List from `/usr/share/applications/`
-- Sidebar categories
-- Script: `listapps.py`
-
----
-
-## 🎨 Theme & Language
-
-### Theme Structure
-
-#### Dark Theme (Catppuccin Mocha)
-```json
-{
-  "type": "dark",
-  "primary": {
-    "background": "#24273a",      // Main background
-    "dim_background": "#1e2030",  // Darker background
-    "foreground": "#cad3f5",      // Main text
-    "dim_foreground": "#8087a2"   // Dimmed text
-  },
-  "button": {
-    "background": "#363a4f",
-    "background_select": "#494d64",
-    "border": "#5b6078",
-    "border_select": "#8aadf4"
-  },
-  "normal": {
-    "black": "#24273a",
-    "red": "#ed8796",
-    "green": "#a6da95",
-    "yellow": "#eed49f",
-    "blue": "#8aadf4",
-    "magenta": "#f5bde6",
-    "cyan": "#8bd5ca",
-    "white": "#cad3f5"
-  }
-}
-```
-
-#### Light Theme (Catppuccin Latte)
-- Light background: `#f5eee6`
-- Text: `#2b2530`
-- Similar structure with inverted colors
-
-### Language Structure
-```json
-{
-  "settings": {
-    "title": "Settings",
-    "general": "General",
-    "appearance": "Appearance",
-    // ...
-  },
-  "dateFormat": {
-    "day": { "0": "Sun", "1": "Mon", ... },
-    "month": { "1": "Jan", "2": "Feb", ... }
-  },
-  "general": { ... },
-  "appearance": { ... },
-  "system": { ... }
-}
-```
 
 ### Wallpaper Management
 
@@ -529,28 +344,6 @@ The wallpaper settings support both **images** and **videos**:
 - **Images**: `.jpg`, `.jpeg`, `.png`, `.bmp`, `.webp`
 - **Videos**: `.mp4`, `.mkv`, `.webm`, `.gif`
 
-#### Features
-- 🖼️ **Thumbnail Preview**: Automatic thumbnail generation for videos using ffmpeg
-- 📁 **Auto-scan**: Automatically scans `~/Pictures/Wallpapers/` folder
-- 🎬 **Video Playback**: Smooth video wallpaper with mpvpaper
-- 🌊 **Transition Effects**:
-  - Videos: Fade-in with hardware acceleration
-  - Images: Grow transition with swww
-- 💾 **Smart Switching**: Automatically stops video when switching to image (and vice versa)
-- 🗂️ **Thumbnail Cache**: Video thumbnails cached at `~/.cache/quickshell/thumbnails/`
-
-#### Usage
-1. Place your wallpapers in `~/Pictures/Wallpapers/`
-2. Open Settings → Wallpapers
-3. Click on any image/video to set as wallpaper
-4. Video files show ▶ badge, images show 🖼️
-5. Current wallpaper shows ✓ badge
-
-### Adding new language
-1. Copy `languages/en.json` → `languages/xx.json`
-2. Translate all strings
-3. Add to `components/Settings/GeneralSettings.qml` language list with country flag
-4. Add corresponding flag image to `assets/flags/`
 
 ---
 
@@ -592,49 +385,6 @@ The wallpaper settings support both **images** and **videos**:
 
 ---
 
-## 🔍 Troubleshooting
-
-### Panel not displaying
-```bash
-# Check if QuickShell is running
-ps aux | grep quickshell
-
-# View logs
-quickshell -c ~/.config/quickshell/cartoon-bar/shell.qml
-
-# Check Hyprland socket
-ls -la /tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock
-```
-
-### Music Player not working
-```bash
-# Check playerctl
-playerctl status
-
-# Check MPRIS players
-playerctl -l
-
-# Test script
-~/.config/quickshell/cartoon-bar/scripts/check-playing
-```
-
-### Weather not loading
-```bash
-# Test API key
-curl "https://api.weatherapi.com/v1/current.json?key=YOUR_KEY&q=London"
-
-# Check config
-cat ~/.config/quickshell/cartoon-bar/configs/default.json | grep weather
-```
-
-### WiFi Panel not scanning
-```bash
-# Check NetworkManager
-systemctl status NetworkManager
-
-# Test nmcli
-nmcli device wifi list
-```
 
 ### Font icons not displaying
 ```bash
@@ -648,53 +398,6 @@ fc-cache -fv
 fc-list | grep -i comic
 ```
 
----
-
-## 🤝 Contributing
-
-We welcome all contributions! Please:
-
-1. **Fork** this repository
-2. Create a **feature branch**:
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit** changes:
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push** to branch:
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. Open a **Pull Request**
-
-### Development Guidelines
-- Code according to QML standards (4 spaces indent)
-- Clear comments (English or Vietnamese)
-- Test on at least 2 size profiles
-- Update README if adding new features
-
----
-
-## 🙏 Credits
-
-- **QuickShell** - [outfoxxed/quickshell](https://github.com/outfoxxed/quickshell)
-- **Hyprland** - [hyprwm/Hyprland](https://github.com/hyprwm/Hyprland)
-- **Catppuccin Theme** - [catppuccin/catppuccin](https://github.com/catppuccin/catppuccin)
-- **Weather API** - [weatherapi.com](https://www.weatherapi.com/)
-- **Nerd Fonts** - [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
-
----
-
-## 📞 Contact
-
-- **Author**: Mai Long
-- **GitHub**: [@mailong2401](https://github.com/mailong2401)
-- **Repository**: [cartoon-bar](https://github.com/mailong2401/cartoon-bar)
-- **Dotfiles**: [dotfiles-hyprland](https://github.com/mailong2401/dotfiles-hyprland)
-
----
 
 <div align="center">
 
