@@ -108,52 +108,6 @@
 
 ---
 
-## 🚀 Features
-
-### Main Panel Components
-
-| Component | Function | Technology |
-|-----------|----------|------------|
-| **🎯 App Icons** | Quick launcher (dashboard) | Click to open LauncherPanel |
-| **🖥️ Workspace Panel** | Display workspace 1-10 | Hyprland socket real-time |
-| **🎵 Music Player** | Media control | playerctl (Spotify/MPD) |
-| **⏰ Timespace** | Time, weather, country flag | weatherapi.com |
-| **📊 CPU Panel** | CPU & RAM usage | top/free commands |
-| **📡 Status Area** | WiFi, Bluetooth, Audio, Battery | NetworkManager, PipeWire |
-
-### Clock Panel (Floating)
-
-- ⏰ Large clock displaying hours, minutes, date, month
-- 📍 9 positions: top, bottom, left, right, topLeft, topRight, bottomLeft, bottomRight, center
-- 🎨 Font: ComicShannsMono Nerd Font
-- ⚙️ Can be toggled from Settings
-
-### Settings Panel (9 Sections)
-
-1. **General** - Language selection (30 languages with country flags)
-2. **Appearance** - Theme, screen size, panel position
-3. **Wallpapers** - Image & Video wallpaper management with thumbnail preview
-4. **Network** - WiFi scanning, connection, password
-5. **Audio** - PipeWire mixer, volume control
-6. **Performance** - System monitor, CPU/RAM details
-7. **Shortcuts** - System shortcuts
-8. **System** - Power management (sleep, lock, logout, restart, shutdown)
-9. **About** - Project information
-
-### Additional Features
-
-- 🔔 **Notification Popup**: System notifications
-- 🔊 **Volume OSD**: Volume change display
-- ✅ **Confirm Dialog**: Important action confirmation
-- 🔍 **App Launcher**: Search and launch applications
-- 📶 **WiFi Panel**: Scan and connect to WiFi networks
-- 🔵 **Bluetooth Panel**: Manage Bluetooth devices
-- 🎛️ **Mixer Panel**: Detailed audio management (PipeWire)
-- 🔋 **Battery Panel**: Detailed battery information
-- 🌡️ **Weather Detail**: Extended weather panel
-
----
-
 ## 💻 System Requirements
 
 ### Operating System
