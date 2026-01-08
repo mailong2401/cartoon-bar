@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
@@ -25,19 +26,34 @@ PanelWindow {
 
     property var flagList: [
         { name: "britain", displayName: "Britain" },
+        { name: "bulgaria", displayName: "Bulgaria" },
         { name: "china", displayName: "China" },
+        { name: "czech", displayName: "Czech" },
+        { name: "denmark", displayName: "Denmark" },
+        { name: "finland", displayName: "Finland" },
         { name: "france", displayName: "France" },
         { name: "german", displayName: "Germany" },
+        { name: "greece", displayName: "Greece" },
+        { name: "hungary", displayName: "Hungary" },
         { name: "india", displayName: "India" },
+        { name: "indonesia", displayName: "Indonesia" },
+        { name: "israel", displayName: "Israel" },
         { name: "italy", displayName: "Italy" },
         { name: "japan", displayName: "Japan" },
         { name: "korea", displayName: "Korea" },
         { name: "netherlands", displayName: "Netherlands" },
+        { name: "norway", displayName: "Norway" },
+        { name: "poland", displayName: "Poland" },
         { name: "portugal", displayName: "Portugal" },
+        { name: "romania", displayName: "Romania" },
         { name: "russia", displayName: "Russia" },
         { name: "saudi_arabia", displayName: "Saudi Arabia" },
+        { name: "slovakia", displayName: "Slovakia" },
         { name: "spain", displayName: "Spain" },
+        { name: "sweden", displayName: "Sweden" },
+        { name: "thailand", displayName: "Thailand" },
         { name: "turkey", displayName: "Turkey" },
+        { name: "ukraine", displayName: "Ukraine" },
         { name: "vietnam", displayName: "Vietnam" }
     ]
 
@@ -98,78 +114,78 @@ PanelWindow {
             }
 
             // Divider
-            Rectangle {
-                Layout.fillWidth: true
-                height: sizes.dividerHeight || 2
-                color: theme.normal.black
-                radius: 1
-            }
 
-            // Flag Grid
-            Grid {
+
+            // Flag Grid with Scroll
+            ScrollView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                columns: sizes.gridColumns || 5
-                columnSpacing: sizes.gridColumnSpacing || 12
-                rowSpacing: sizes.gridRowSpacing || 12
+                clip: true
+                ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                ScrollBar.horizontal.policy: ScrollBar.AlwaysOn
 
-                Repeater {
-                    model: flagSelectionPanel.flagList
+                Flow {
+                    height: 3 * (sizes.flagItemHeight || 70) + 2 * (sizes.gridColumnSpacing || 12)
+                    spacing: sizes.gridColumnSpacing || 12
+                    flow: Flow.TopToBottom
 
-                    Rectangle {
-                        width: sizes.flagItemWidth || 105
-                        height: sizes.flagItemHeight || 70
-                        color: flagSelectionPanel.selectedFlag === modelData.name ? theme.primary.dim_background : theme.primary.background
-                        border.color: flagSelectionPanel.selectedFlag === modelData.name ? theme.normal.green : theme.normal.black
-                        border.width: flagSelectionPanel.selectedFlag === modelData.name ? (sizes.flagItemSelectedBorderWidth || 3) : (sizes.flagItemBorderWidth || 2)
-                        radius: sizes.flagItemRadius || 10
+                    Repeater {
+                        model: flagSelectionPanel.flagList
 
-                        Column {
-                            anchors.centerIn: parent
-                            spacing: sizes.flagItemSpacing || 4
+                        Rectangle {
+                            width: sizes.flagItemWidth || 105
+                            height: sizes.flagItemHeight || 70
+                            color: flagSelectionPanel.selectedFlag === modelData.name ? theme.primary.dim_background : theme.primary.background
+                            border.color: flagSelectionPanel.selectedFlag === modelData.name ? theme.normal.green : theme.normal.black
+                            border.width: flagSelectionPanel.selectedFlag === modelData.name ? (sizes.flagItemSelectedBorderWidth || 3) : (sizes.flagItemBorderWidth || 2)
+                            radius: sizes.flagItemRadius || 10
 
-                            Image {
-                                source: `../assets/flags/${modelData.name}.png`
-                                width: sizes.flagImageWidth || 64
-                                height: sizes.flagImageHeight || 45
-                                fillMode: Image.PreserveAspectFit
-                                smooth: true
-                                anchors.horizontalCenter: parent.horizontalCenter
-                            }
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: sizes.flagItemSpacing || 4
 
-                            Text {
-                                text: modelData.displayName
-                                color: theme.primary.foreground
-                                font {
-                                    pixelSize: sizes.flagNameFontSize || 12
-                                    family: "ComicShannsMono Nerd Font"
-                                    bold: flagSelectionPanel.selectedFlag === modelData.name
+                                Image {
+                                    source: `../assets/flags/${modelData.name}.png`
+                                    width: sizes.flagImageWidth || 64
+                                    height: sizes.flagImageHeight || 45
+                                    fillMode: Image.PreserveAspectFit
+                                    smooth: true
+                                    anchors.horizontalCenter: parent.horizontalCenter
                                 }
-                                anchors.horizontalCenter: parent.horizontalCenter
+
+                                Text {
+                                    text: modelData.displayName
+                                    color: theme.primary.foreground
+                                    font {
+                                        pixelSize: sizes.flagNameFontSize || 12
+                                        family: "ComicShannsMono Nerd Font"
+                                        bold: flagSelectionPanel.selectedFlag === modelData.name
+                                    }
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
                             }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+
+                                onClicked: {
+                                    setFlag(modelData.name)
+                                }
+
+                                onEntered: {
+                                    parent.scale = 1.05
+                                }
+
+                                onExited: {
+                                    parent.scale = 1.0
+                                }
+                            }
+
+                            Behavior on scale { NumberAnimation { duration: 150 } }
+                            Behavior on border.width { NumberAnimation { duration: 150 } }
                         }
-
-                        MouseArea {
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-
-                            onClicked: {
-                                setFlag(modelData.name)
-
-                            }
-
-                            onEntered: {
-                                parent.scale = 1.05
-                            }
-
-                            onExited: {
-                                parent.scale = 1.0
-                            }
-                        }
-
-                        Behavior on scale { NumberAnimation { duration: 150 } }
-                        Behavior on border.width { NumberAnimation { duration: 150 } }
                     }
                 }
             }
