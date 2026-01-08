@@ -14,19 +14,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-- [Introduction](#-introduction)
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [System Requirements](#-system-requirements)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Shortcuts](#-shortcuts)
-- [Contributing](#-contributing)
-- [License](#-license)
-
----
 
 ## 🎯 Introduction
 
