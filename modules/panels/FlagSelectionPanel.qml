@@ -145,7 +145,7 @@ PanelWindow {
                                 spacing: sizes.flagItemSpacing || 4
 
                                 Image {
-                                    source: `../assets/flags/${modelData.name}.png`
+                                    source: `../../assets/flags/${modelData.name}.png`
                                     width: sizes.flagImageWidth || 64
                                     height: sizes.flagImageHeight || 45
                                     fillMode: Image.PreserveAspectFit
