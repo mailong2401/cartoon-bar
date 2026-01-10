@@ -49,6 +49,11 @@
 |:----------------------:|
 | ![Confirm Dialog 2](screenshot/menu/screenshot_ConfirmDialog2.png) |
 
+
+### Weather Panel
+| Weather Panel |
+| ![Weather Panel](screenshot/weather/screenshot_weather_panel.png)|
+
 ### System Status Panels
 
 | CPU Panel | RAM Panel |
