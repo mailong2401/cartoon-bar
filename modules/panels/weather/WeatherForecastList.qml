@@ -5,7 +5,7 @@ Rectangle {
     id: forecastSection
 
     required property var theme
-    required property var sizes
+    property var sizes : currentSizes
     required property var forecastDays
 
     visible: forecastDays.length > 0

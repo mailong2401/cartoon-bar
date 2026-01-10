@@ -6,7 +6,7 @@ RowLayout {
     id: currentDisplay
 
     required property var theme
-    required property var sizes
+    property var sizes: currentSizes.weatherPanel || {}
     required property string temperature
     required property string condition
     required property string icon
@@ -23,9 +23,9 @@ RowLayout {
     // Main weather card - LEFT
     Rectangle {
         visible: currentDisplay.hasData
-        Layout.preferredWidth: sizes.weatherPanel?.weatherCardWidth || 200
+        Layout.preferredWidth: sizes.weatherCardWidth || 200
         Layout.fillHeight: true
-        radius: sizes.weatherPanel?.weatherCardRadius || 16
+        radius: sizes.weatherCardRadius || 16
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: Qt.rgba(theme.normal.blue.r, theme.normal.blue.g, theme.normal.blue.b, 0.15) }
@@ -39,11 +39,11 @@ RowLayout {
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20
-            spacing: sizes.weatherPanel?.weatherInfoSpacing || 15
+            spacing: sizes.weatherInfoSpacing || 15
 
             Text {
                 text: currentDisplay.icon
-                font.pixelSize: sizes.weatherPanel?.weatherIconSize || 40
+                font.pixelSize: sizes.weatherIconSize || 40
                 Layout.alignment: Qt.AlignHCenter
             }
 
@@ -51,7 +51,7 @@ RowLayout {
                 text: currentDisplay.temperature
                 color: theme.primary.foreground
                 font {
-                    pixelSize: sizes.weatherPanel?.temperatureFontSize || 48
+                    pixelSize: sizes.temperatureFontSize || 48
                     bold: true
                     family: "ComicShannsMono Nerd Font"
                 }
@@ -62,7 +62,7 @@ RowLayout {
                 text: currentDisplay.condition
                 color: theme.primary.foreground
                 font {
-                    pixelSize: sizes.weatherPanel?.conditionFontSize || 18
+                    pixelSize: sizes.conditionFontSize || 18
                     family: "ComicShannsMono Nerd Font"
                 }
                 Layout.alignment: Qt.AlignHCenter
@@ -79,8 +79,8 @@ RowLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         columns: 3
-        columnSpacing: sizes.weatherPanel?.detailGridColumnSpacing || 5
-        rowSpacing: sizes.weatherPanel?.detailGridRowSpacing || 5
+        columnSpacing: sizes.detailGridColumnSpacing || 5
+        rowSpacing: sizes.detailGridRowSpacing || 5
 
         // Humidity
         Com.WeatherDetailCard {

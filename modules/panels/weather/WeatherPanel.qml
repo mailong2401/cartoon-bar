@@ -27,8 +27,8 @@ PanelWindow {
         }
     }
 
-    implicitWidth: sizes.weatherPanel?.width || 1000
-    implicitHeight: sizes.weatherPanel?.height || 550
+    implicitWidth: sizes.width || 1000
+    implicitHeight: sizes.height || 550
     focusable: true
 
     property string apiKey: ""
@@ -89,9 +89,9 @@ PanelWindow {
     }
 
     margins {
-        top: currentConfig.mainPanelPos === "top" ? (sizes.weatherPanel?.marginTop || 10) : 0
-        bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.weatherPanel?.marginBottom || 10) : 0
-        left: sizes.weatherPanel?.marginLeft || 400
+        top: currentConfig.mainPanelPos === "top" ? (sizes.marginTop || 10) : 0
+        bottom: currentConfig.mainPanelPos === "bottom" ? (sizes.marginBottom || 10) : 0
+        left: sizes.marginLeft || 400
     }
 
     exclusiveZone: 0
@@ -257,9 +257,9 @@ PanelWindow {
     // Main UI
     Rectangle {
         anchors.fill: parent
-        radius: sizes.weatherPanel?.radius || 20
+        radius: sizes.radius || 20
         border.color: theme.normal.black
-        border.width: sizes.weatherPanel?.borderWidth || 3
+        border.width: sizes.borderWidth || 3
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: theme.primary.background }
@@ -268,8 +268,8 @@ PanelWindow {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: sizes.weatherPanel?.margins || 20
-            spacing: sizes.weatherPanel?.spacing || 20
+            anchors.margins: sizes.margins || 20
+            spacing: sizes.spacing || 20
 
             // Header
             Com.WeatherHeader {
@@ -354,9 +354,8 @@ PanelWindow {
                             Com.WeatherCurrentDisplay {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                Layout.preferredHeight: 200
+                                Layout.preferredHeight: sizes.weatherCardWidth
                                 theme: weatherPanel.theme
-                                sizes: weatherPanel.sizes
                                 temperature: weatherPanel.temperature
                                 condition: weatherPanel.condition
                                 icon: weatherPanel.icon
@@ -373,7 +372,6 @@ PanelWindow {
                             Com.WeatherForecastList {
                                 Layout.preferredHeight: 200
                                 theme: weatherPanel.theme
-                                sizes: weatherPanel.sizes
                                 forecastDays: weatherPanel.forecastDays
                             }
                         }
