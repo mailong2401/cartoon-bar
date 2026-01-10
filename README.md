@@ -52,6 +52,7 @@
 
 ### Weather Panel
 | Weather Panel |
+|:-----------:|
 | ![Weather Panel](screenshot/weather/screenshot_weather_panel.png)|
 
 ### System Status Panels
