@@ -279,9 +279,6 @@ PanelWindow {
 
                 // Left: Config
                 Com.WeatherConfigSection {
-                    theme: weatherPanel.theme
-                    sizes: weatherPanel.sizes
-                    lang: weatherPanel.lang
                     apiKey: weatherPanel.apiKey
                     location: weatherPanel.location
                     isSearchingLocation: weatherPanel.isSearchingLocation
@@ -339,9 +336,7 @@ PanelWindow {
                         // Current weather
                         Com.WeatherCurrentDisplay {
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            Layout.preferredHeight: sizes.weatherCardWidth
-                            theme: weatherPanel.theme
+                            Layout.preferredHeight: parent.height/2
                             temperature: weatherPanel.temperature
                             condition: weatherPanel.condition
                             icon: weatherPanel.icon
@@ -356,7 +351,7 @@ PanelWindow {
 
                         // 7-day forecast
                         Com.WeatherForecastList {
-                            Layout.preferredHeight: 200
+                            Layout.preferredHeight: parent.height/2
                             theme: weatherPanel.theme
                             forecastDays: weatherPanel.forecastDays
                         }

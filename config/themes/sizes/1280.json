@@ -520,9 +520,9 @@
     "weatherCardWidth": 123,
     "weatherCardRadius": 11,
     "weatherIconSize": 27,
-    "weatherInfoSpacing": 10,
+    "weatherInfoSpacing": 6,
     "temperatureFontSize": 32,
-    "conditionFontSize": 12,
+    "conditionFontSize": 16,
     "detailGridColumnSpacing": 4,
     "detailGridRowSpacing": 4,
     "detailCardRadius": 8,
@@ -542,7 +542,8 @@
     "forecastCardIconSize": 21,
     "forecastCardTempFontSize": 10,
     "forecastCardMinTempFontSize": 10,
-    "forecastCardRainFontSize": 10
+    "forecastCardRainFontSize": 10,
+    "weatherCardMargins": 13
   },
   "volumeOsd": {
     "width": 187,

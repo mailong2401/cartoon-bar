@@ -5,9 +5,9 @@ import QtQuick.Layouts
 Rectangle {
     id: configSection
 
-    required property var theme
-    required property var sizes
-    required property var lang
+    property var sizes: currentSizes.weatherPanel || {}
+    property var theme: currentTheme
+    property var lang: currentLanguage
     required property string apiKey
     required property string location
     required property bool isSearchingLocation
@@ -25,6 +25,7 @@ Rectangle {
     Layout.fillWidth: true
     Layout.fillHeight: true
     Layout.preferredWidth: parent.width * 0.4
+    
     radius: sizes.sectionRadius || 16
     color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
     border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
@@ -32,7 +33,7 @@ Rectangle {
 
     ScrollView {
         anchors.fill: parent
-        anchors.margins: 1
+        anchors.margins: sizes.weatherCardMargins || 20
         clip: true
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 

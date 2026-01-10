@@ -2,10 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 import "." as Com
 
-RowLayout {
+ RowLayout {
     id: currentDisplay
 
-    required property var theme
+    property var theme: currentTheme
     property var sizes: currentSizes.weatherPanel || {}
     required property string temperature
     required property string condition
@@ -23,7 +23,7 @@ RowLayout {
     // Main weather card - LEFT
     Rectangle {
         visible: currentDisplay.hasData
-        Layout.preferredWidth: sizes.weatherCardWidth || 200
+        Layout.preferredWidth: sizes.forecastHeight || 200
         Layout.fillHeight: true
         radius: sizes.weatherCardRadius || 16
 
@@ -35,7 +35,7 @@ RowLayout {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 20
+            anchors.margins: sizes.weatherCardMargins || 20
             spacing: sizes.weatherInfoSpacing || 15
 
             Text {

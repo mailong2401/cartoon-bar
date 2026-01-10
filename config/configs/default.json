@@ -1,6 +1,6 @@
 {
   "mainPanelPos": "top",
-  "clockPanelPosition": "bottomRight",
+  "clockPanelPosition": "bottomLeft",
   "clockPanelVisible": true,
   "spacingPanel": 12,
   "lang": "en",

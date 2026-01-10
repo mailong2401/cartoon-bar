@@ -4,7 +4,6 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Qt.labs.folderlistmodel
-import QtMultimedia
 
 Item {
     id: systemSettings
@@ -15,8 +14,6 @@ Item {
     property string wallpapersPath: ""
     property string wallpaperPath: ""
     property string currentWallpaper: ""
-    property string configPath: ""
-    property string thumbnailCachePath: ""
 
     // Process để lấy home directory
     Process {
@@ -30,40 +27,26 @@ Item {
                     var path = text.trim()
                     systemSettings.homePath = path
                     systemSettings.wallpapersPath = "file://" + path + "/Pictures/Wallpapers/"
-                    systemSettings.configPath = path + "/.config/quickshell/cartoon-bar"
-                    systemSettings.thumbnailCachePath = path + "/.cache/quickshell/thumbnails/"
-
-                    // Tạo thư mục cache nếu chưa có
-                    createCacheDir.running = true
                 }
             }
         }
     }
 
-    // Process để tạo cache directory
+    // Process để set wallpaper
     Process {
-        id: createCacheDir
-        command: ["mkdir", "-p", ""]
-        running: false
+        id: wallpaperProcess
+        command: ["swww", "img", "", "--transition-type", "grow", "--transition-duration", "1"]
+
+        stdout: StdioCollector {
+            onTextChanged: { }
+        }
 
         onRunningChanged: {
-            if (!running && homePath) {
-                createCacheDir.command = ["mkdir", "-p", thumbnailCachePath]
+            if (!running) {
+                currentWallpaper = wallpaperPath
+                showNotification(lang?.wallpapers?.success_set || "Đã đặt hình nền thành công!")
+                folderModel.update()
             }
-        }
-    }
-
-    // Timer để delay notification sau khi set wallpaper
-    Timer {
-        id: wallpaperSetTimer
-        interval: 500
-        onTriggered: {
-            currentWallpaper = wallpaperPath
-            showNotification(lang?.wallpapers?.success_set || "Đã đặt hình nền thành công!")
-            // Reload folder model
-            var tempPath = folderModel.folder
-            folderModel.folder = ""
-            folderModel.folder = tempPath
         }
     }
 
@@ -79,10 +62,7 @@ Item {
         onRunningChanged: {
             if (!running) {
                 showNotification(lang?.wallpapers?.success_delete || "Đã xóa ảnh thành công!")
-                // Reload folder model
-                var tempPath = folderModel.folder
-                folderModel.folder = ""
-                folderModel.folder = tempPath
+                folderModel.update()
             }
         }
     }
@@ -172,7 +152,7 @@ Item {
                 model: FolderListModel {
                     id: folderModel
                     folder: wallpapersPath
-                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp","*.mp4","*.mkv","*.webm","*.gif"]
+                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp"]
                     showDirs: false
                     sortField: FolderListModel.Name
                 }
@@ -198,59 +178,11 @@ Item {
                             clip: true
                             color: "transparent"
 
-                            // Thumbnail
                             Image {
-                                id: thumbnailImage
                                 anchors.fill: parent
-                                source: getThumbnailSource(fileName, filePath)
+                                source: filePath
                                 fillMode: Image.PreserveAspectCrop
                                 asynchronous: true
-                                cache: true
-
-                                // Loading indicator
-                                Rectangle {
-                                    visible: parent.status === Image.Loading
-                                    anchors.fill: parent
-                                    color: theme.button.background
-
-                                    Text {
-                                        anchors.centerIn: parent
-                                        text: "⏳"
-                                        font.pixelSize: 30
-                                    }
-                                }
-
-                                // Error fallback
-                                Rectangle {
-                                    visible: parent.status === Image.Error
-                                    anchors.fill: parent
-                                    color: theme.button.background
-
-                                    Column {
-                                        anchors.centerIn: parent
-                                        spacing: 5
-
-                                        Text {
-                                            text: isVideoFile(fileName) ? "🎥" : "🖼"
-                                            font.pixelSize: 40
-                                            anchors.horizontalCenter: parent.horizontalCenter
-                                        }
-
-                                        Text {
-                                            text: isVideoFile(fileName) ? "Video" : "Image"
-                                            color: theme.primary.dim_foreground
-                                            font.pixelSize: 12
-                                            font.family: "ComicShannsMono Nerd Font"
-                                            anchors.horizontalCenter: parent.horizontalCenter
-                                        }
-                                    }
-                                }
-
-                                Component.onCompleted: {
-                                    if (isVideoFile(fileName)) {
-                                        generateThumbnail(fileName, filePath)
-                                    }
-                                }
                             }
 
                             // Current Wallpaper Indicator
@@ -268,26 +200,6 @@ Item {
                                     text: "✓"
                                     color: theme.primary.background
                                     font.pixelSize: currentSizes.wallpaperSettings?.currentIndicatorFontSize || 12
-                                    font.bold: true
-                                    anchors.centerIn: parent
-                                }
-                            }
-
-                            // Video Type Indicator
-                            Rectangle {
-                                visible: isVideoFile(fileName)
-                                anchors.top: parent.top
-                                anchors.left: parent.left
-                                anchors.margins: currentSizes.wallpaperSettings?.currentIndicatorMargin || 5
-                                width: currentSizes.wallpaperSettings?.currentIndicatorSize || 24
-                                height: currentSizes.wallpaperSettings?.currentIndicatorSize || 24
-                                radius: currentSizes.wallpaperSettings?.currentIndicatorRadius || 12
-                                color: theme.normal.magenta
-
-                                Text {
-                                    text: "▶"
-                                    color: theme.primary.background
-                                    font.pixelSize: currentSizes.wallpaperSettings?.currentIndicatorFontSize || 10
                                     font.bold: true
                                     anchors.centerIn: parent
                                 }
@@ -378,7 +290,7 @@ Item {
             // No images message
             Text {
                 visible: folderModel.count === 0 && homePath
-                text: lang?.wallpapers?.no_images || "Không tìm thấy file nào trong thư mục ~/Pictures/Wallpapers"
+                text: lang?.wallpapers?.no_images || "Không tìm thấy ảnh nào trong thư mục ~/Pictures/Wallpapers"
                 color: theme.primary.dim_foreground
                 font.pixelSize: currentSizes.fontSize?.normal || 14
                 Layout.alignment: Qt.AlignCenter
@@ -516,57 +428,12 @@ Item {
     function setWallpaper(filePath) {
         wallpaperPath = filePath.toString().replace("file://", "")
 
-
-        // Gọi global wallpaper setter từ shell.qml
-        // Điều này đảm bảo video wallpaper không bị dừng khi đóng Settings
-        if (typeof setGlobalWallpaper !== 'undefined') {
-            setGlobalWallpaper(wallpaperPath)
-            wallpaperSetTimer.start()
-        } else {
-        }
-    }
-
-    function isVideoFile(fileName) {
-        var ext = fileName.toLowerCase()
-        return ext.endsWith(".mp4") ||
-               ext.endsWith(".mkv") ||
-               ext.endsWith(".webm") ||
-               ext.endsWith(".gif")
-    }
-
-    function getThumbnailSource(fileName, filePath) {
-        if (!isVideoFile(fileName)) {
-            return filePath
-        }
-
-        // For video files, try to use cached thumbnail
-        var actualPath = filePath.toString().replace("file://", "")
-        var thumbName = fileName.replace(/\.[^/.]+$/, ".jpg")
-        var thumbPath = thumbnailCachePath + thumbName
-
-        return "file://" + thumbPath
-    }
-
-    function generateThumbnail(fileName, filePath) {
-        if (!thumbnailCachePath) return
-
-        var actualPath = filePath.toString().replace("file://", "")
-        var thumbName = fileName.replace(/\.[^/.]+$/, ".jpg")
-        var thumbPath = thumbnailCachePath + thumbName
-
-        // Check if thumbnail already exists
-        var checkProcess = Qt.createQmlObject(
-            'import Quickshell.Io; Process { command: ["test", "-f", "' + thumbPath + '"]; running: true }',
-            systemSettings
-        )
-
-        // Generate thumbnail if it doesn't exist
-        var genProcess = Qt.createQmlObject(
-            'import Quickshell.Io; Process { command: ["bash", "' + configPath + '/scripts/generate-video-thumbnail.sh", "' + actualPath + '", "' + thumbPath + '"]; running: false }',
-            systemSettings
-        )
-
-        genProcess.running = true
+        wallpaperProcess.command = [
+            "swww", "img", wallpaperPath,
+            "--transition-type", "grow",
+            "--transition-duration", "2"
+        ]
+        wallpaperProcess.running = true
     }
 
     function deleteWallpaper(filePath) {
