@@ -23,9 +23,9 @@ RowLayout {
     // Main weather card - LEFT
     Rectangle {
         visible: currentDisplay.hasData
-        Layout.preferredWidth: 200
+        Layout.preferredWidth: sizes.weatherPanel?.weatherCardWidth || 200
         Layout.fillHeight: true
-        radius: sizes.weatherCardRadius || 16
+        radius: sizes.weatherPanel?.weatherCardRadius || 16
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: Qt.rgba(theme.normal.blue.r, theme.normal.blue.g, theme.normal.blue.b, 0.15) }
@@ -39,11 +39,11 @@ RowLayout {
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20
-            spacing: sizes.weatherInfoSpacing || 15
+            spacing: sizes.weatherPanel?.weatherInfoSpacing || 15
 
             Text {
                 text: currentDisplay.icon
-                font.pixelSize: 40
+                font.pixelSize: sizes.weatherPanel?.weatherIconSize || 40
                 Layout.alignment: Qt.AlignHCenter
             }
 
@@ -51,7 +51,7 @@ RowLayout {
                 text: currentDisplay.temperature
                 color: theme.primary.foreground
                 font {
-                    pixelSize: sizes.temperatureFontSize || 48
+                    pixelSize: sizes.weatherPanel?.temperatureFontSize || 48
                     bold: true
                     family: "ComicShannsMono Nerd Font"
                 }
@@ -62,7 +62,7 @@ RowLayout {
                 text: currentDisplay.condition
                 color: theme.primary.foreground
                 font {
-                    pixelSize: sizes.conditionFontSize || 18
+                    pixelSize: sizes.weatherPanel?.conditionFontSize || 18
                     family: "ComicShannsMono Nerd Font"
                 }
                 Layout.alignment: Qt.AlignHCenter
@@ -79,13 +79,14 @@ RowLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         columns: 3
-        columnSpacing: 5
-        rowSpacing: 5
+        columnSpacing: sizes.weatherPanel?.detailGridColumnSpacing || 5
+        rowSpacing: sizes.weatherPanel?.detailGridRowSpacing || 5
 
         // Humidity
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "💧"
             value: currentDisplay.humidity
         }
@@ -94,6 +95,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "🌬️"
             value: currentDisplay.windSpeed
         }
@@ -102,6 +104,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "📊"
             value: currentDisplay.pressure
         }
@@ -110,6 +113,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "👁️"
             value: currentDisplay.visibility
         }
@@ -118,6 +122,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "☀️"
             value: currentDisplay.uvIndex
         }
@@ -126,6 +131,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            sizes: currentDisplay.sizes
             icon: "🌡️"
             value: currentDisplay.feelsLike
         }

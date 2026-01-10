@@ -1,5 +1,5 @@
 {
-  "name" : 1680,
+  "name": 1680,
   "panelHeight": 44,
   "panelWidth": {
     "appIcons": 53,
@@ -225,13 +225,11 @@
     "panelMargins": 14,
     "spacing": 14,
     "marginLeft": 700,
-
     "header": {
       "height": 61,
       "fontSize": 35,
       "spacing": 18
     },
-
     "calendar": {
       "width": 350,
       "height": 350,
@@ -258,15 +256,12 @@
     "spacing": 14,
     "marginTop": 9,
     "marginBottom": 9,
-
     "headerHeight": 61,
     "headerSpacing": 18,
     "headerTitleFontSize": 35,
-
     "infoSectionHeight": 105,
     "infoSpacing": 5,
     "infoFontSize": 16,
-
     "coresDisplayHeight": 105,
     "coresBorderWidth": 2,
     "coresRadius": 7,
@@ -277,7 +272,6 @@
     "coreLabelFontSize": 12,
     "coreImageSize": 53,
     "coreUsageFontSize": 14,
-
     "statsOverviewHeight": 53,
     "statsBorderWidth": 2,
     "statsRadius": 4,
@@ -287,7 +281,6 @@
     "statsLabelFontSize": 14,
     "statsValueFontSize": 16,
     "statsTimeLabelFontSize": 12,
-
     "chartBorderWidth": 2,
     "chartRadius": 5,
     "chartMargins": 7,
@@ -308,13 +301,11 @@
     "panelBorderWidth": 3,
     "panelMargins": 14,
     "spacing": 26,
-
     "header": {
       "height": 35,
       "fontSize": 35,
       "spacing": 18
     },
-
     "ramDisplay": {
       "height": 280,
       "radius": 11,
@@ -330,7 +321,6 @@
       "gridSpacing": 4,
       "separatorHeight": 1
     },
-
     "ramTaskManager": {
       "height": 438,
       "radius": 11,
@@ -485,7 +475,7 @@
   },
   "weatherPanel": {
     "width": 875,
-    "height": 613,
+    "height": 481,
     "radius": 18,
     "borderWidth": 3,
     "margins": 18,
@@ -527,23 +517,32 @@
     "errorMargins": 11,
     "errorIconSize": 16,
     "errorFontSize": 11,
-    "weatherCardHeight": 158,
+    "weatherCardWidth": 175,
     "weatherCardRadius": 14,
-    "weatherCardSpacing": 21,
-    "weatherIconSize": 70,
-    "weatherInfoSpacing": 9,
+    "weatherIconSize": 35,
+    "weatherInfoSpacing": 13,
     "temperatureFontSize": 42,
     "conditionFontSize": 16,
-    "feelsLikeFontSize": 13,
-    "detailGridColumnSpacing": 26,
-    "detailGridRowSpacing": 13,
-    "detailCardWidth": 131,
-    "detailCardHeight": 88,
-    "forecastHeight": 105,
+    "detailGridColumnSpacing": 4,
+    "detailGridRowSpacing": 4,
+    "detailCardRadius": 11,
+    "detailCardMargins": 13,
+    "detailCardSpacing": 9,
+    "detailCardIconSize": 28,
+    "detailCardValueFontSize": 14,
+    "forecastHeight": 175,
     "forecastMargins": 14,
-    "forecastSpacing": 7,
-    "forecastTitleFontSize": 14,
-    "forecastTextFontSize": 11
+    "forecastSpacing": 11,
+    "forecastTitleFontSize": 16,
+    "forecastCardSpacing": 9,
+    "forecastCardRadius": 11,
+    "forecastCardMargins": 9,
+    "forecastCardDayFontSize": 11,
+    "forecastCardDateFontSize": 10,
+    "forecastCardIconSize": 28,
+    "forecastCardTempFontSize": 12,
+    "forecastCardMinTempFontSize": 11,
+    "forecastCardRainFontSize": 10
   },
   "volumeOsd": {
     "width": 245,

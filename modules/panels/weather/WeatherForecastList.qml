@@ -10,22 +10,22 @@ Rectangle {
 
     visible: forecastDays.length > 0
     Layout.fillWidth: true
-    Layout.preferredHeight: sizes.forecastHeight || 200
-    radius: sizes.sectionRadius || 16
+    Layout.preferredHeight: sizes.weatherPanel?.forecastHeight || 200
+    radius: sizes.weatherPanel?.sectionRadius || 16
     color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
     border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
     border.width: 1
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: sizes.forecastMargins || 16
-        spacing: sizes.forecastSpacing || 12
+        anchors.margins: sizes.weatherPanel?.forecastMargins || 16
+        spacing: sizes.weatherPanel?.forecastSpacing || 12
 
         // Forecast row - horizontal layout
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 10
+            spacing: sizes.weatherPanel?.forecastCardSpacing || 10
 
             Repeater {
                 model: forecastSection.forecastDays
@@ -33,14 +33,14 @@ Rectangle {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    radius: 12
+                    radius: sizes.weatherPanel?.forecastCardRadius || 12
                     color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
                     border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
                     border.width: 1
 
                     ColumnLayout {
                         anchors.fill: parent
-                        anchors.margins: 10
+                        anchors.margins: sizes.weatherPanel?.forecastCardMargins || 10
                         spacing: 8
 
                         // Day name
@@ -48,7 +48,7 @@ Rectangle {
                             text: modelData.dayName
                             color: theme.primary.foreground
                             font {
-                                pixelSize: 24
+                                pixelSize: sizes.fontSize?.xlarge || 24
                                 bold: index === 0
                                 family: "ComicShannsMono Nerd Font"
                             }
@@ -61,7 +61,7 @@ Rectangle {
                             text: modelData.dateText
                             color: theme.primary.dim_foreground
                             font {
-                                pixelSize: 24
+                                pixelSize: sizes.fontSize?.large || 20
                                 family: "ComicShannsMono Nerd Font"
                             }
                             Layout.alignment: Qt.AlignHCenter
@@ -70,7 +70,7 @@ Rectangle {
                         // Weather icon
                         Text {
                             text: modelData.icon
-                            font.pixelSize: 32
+                            font.pixelSize: sizes.weatherPanel?.forecastCardIconSize || 32
                             Layout.alignment: Qt.AlignHCenter
                         }
 
@@ -80,10 +80,10 @@ Rectangle {
                             spacing: 4
 
                             Text {
-                                text: `${modelData.maxTemp}°`
-                                color: theme.normal.red
+                                text: `${modelData.minTemp}°`
+                                color: theme.normal.cyan
                                 font {
-                                    pixelSize: 24
+                                    pixelSize: sizes.fontSize?.xlarge || 24
                                     bold: true
                                     family: "ComicShannsMono Nerd Font"
                                 }
@@ -92,14 +92,14 @@ Rectangle {
                             Text {
                                 text: "/"
                                 color: theme.primary.dim_foreground
-                                font.pixelSize: 24
+                                font.pixelSize: sizes.fontSize?.xlarge || 24
                             }
 
                             Text {
-                                text: `${modelData.minTemp}°`
-                                color: theme.normal.cyan
+                                text: `${modelData.maxTemp}°`
+                                color: theme.normal.red
                                 font {
-                                    pixelSize: 24
+                                    pixelSize: sizes.fontSize?.xlarge || 24
                                     family: "ComicShannsMono Nerd Font"
                                 }
                             }
@@ -120,7 +120,7 @@ Rectangle {
                                 text: `${modelData.rainChance}%`
                                 color: theme.normal.blue
                                 font {
-                                    pixelSize: 11
+                                    pixelSize: sizes.weatherPanel?.forecastCardRainFontSize || 11
                                     family: "ComicShannsMono Nerd Font"
                                 }
                             }

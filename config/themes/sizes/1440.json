@@ -1,5 +1,5 @@
 {
-  "name" : 1440,
+  "name": 1440,
   "panelHeight": 38,
   "panelWidth": {
     "appIcons": 45,
@@ -225,13 +225,11 @@
     "panelMargins": 12,
     "spacing": 12,
     "marginLeft": 600,
-
     "header": {
       "height": 53,
       "fontSize": 30,
       "spacing": 15
     },
-
     "calendar": {
       "width": 300,
       "height": 300,
@@ -258,15 +256,12 @@
     "spacing": 12,
     "marginTop": 8,
     "marginBottom": 8,
-
     "headerHeight": 53,
     "headerSpacing": 15,
     "headerTitleFontSize": 30,
-
     "infoSectionHeight": 90,
     "infoSpacing": 5,
     "infoFontSize": 14,
-
     "coresDisplayHeight": 90,
     "coresBorderWidth": 2,
     "coresRadius": 6,
@@ -277,7 +272,6 @@
     "coreLabelFontSize": 11,
     "coreImageSize": 45,
     "coreUsageFontSize": 12,
-
     "statsOverviewHeight": 45,
     "statsBorderWidth": 2,
     "statsRadius": 3,
@@ -287,7 +281,6 @@
     "statsLabelFontSize": 12,
     "statsValueFontSize": 14,
     "statsTimeLabelFontSize": 11,
-
     "chartBorderWidth": 2,
     "chartRadius": 5,
     "chartMargins": 6,
@@ -308,13 +301,11 @@
     "panelBorderWidth": 2,
     "panelMargins": 12,
     "spacing": 23,
-
     "header": {
       "height": 30,
       "fontSize": 30,
       "spacing": 15
     },
-
     "ramDisplay": {
       "height": 240,
       "radius": 9,
@@ -330,7 +321,6 @@
       "gridSpacing": 3,
       "separatorHeight": 1
     },
-
     "ramTaskManager": {
       "height": 375,
       "radius": 9,
@@ -485,7 +475,7 @@
   },
   "weatherPanel": {
     "width": 750,
-    "height": 525,
+    "height": 413,
     "radius": 15,
     "borderWidth": 2,
     "margins": 15,
@@ -513,37 +503,46 @@
     "buttonWidth": 75,
     "buttonRadius": 8,
     "buttonFontSize": 11,
-    "hintFontSize": 9,
+    "hintFontSize": 10,
     "searchResultItemHeight": 38,
     "searchResultMaxHeight": 156,
-    "searchResultSpacing": 3,
+    "searchResultSpacing": 4,
     "searchResultRadius": 8,
     "searchResultMargins": 9,
     "searchResultIconSize": 14,
     "searchResultNameFontSize": 11,
-    "searchResultDetailFontSize": 9,
+    "searchResultDetailFontSize": 10,
     "errorHeight": 45,
     "errorRadius": 9,
     "errorMargins": 9,
     "errorIconSize": 14,
     "errorFontSize": 10,
-    "weatherCardHeight": 135,
+    "weatherCardWidth": 150,
     "weatherCardRadius": 12,
-    "weatherCardSpacing": 18,
-    "weatherIconSize": 60,
-    "weatherInfoSpacing": 8,
+    "weatherIconSize": 30,
+    "weatherInfoSpacing": 11,
     "temperatureFontSize": 36,
     "conditionFontSize": 14,
-    "feelsLikeFontSize": 11,
-    "detailGridColumnSpacing": 23,
-    "detailGridRowSpacing": 11,
-    "detailCardWidth": 113,
-    "detailCardHeight": 75,
-    "forecastHeight": 90,
+    "detailGridColumnSpacing": 4,
+    "detailGridRowSpacing": 4,
+    "detailCardRadius": 9,
+    "detailCardMargins": 11,
+    "detailCardSpacing": 8,
+    "detailCardIconSize": 24,
+    "detailCardValueFontSize": 12,
+    "forecastHeight": 150,
     "forecastMargins": 12,
-    "forecastSpacing": 6,
-    "forecastTitleFontSize": 12,
-    "forecastTextFontSize": 10
+    "forecastSpacing": 9,
+    "forecastTitleFontSize": 14,
+    "forecastCardSpacing": 8,
+    "forecastCardRadius": 9,
+    "forecastCardMargins": 8,
+    "forecastCardDayFontSize": 10,
+    "forecastCardDateFontSize": 10,
+    "forecastCardIconSize": 24,
+    "forecastCardTempFontSize": 11,
+    "forecastCardMinTempFontSize": 10,
+    "forecastCardRainFontSize": 10
   },
   "volumeOsd": {
     "width": 210,
