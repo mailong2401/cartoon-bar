@@ -4,8 +4,8 @@
   "clockPanelVisible": true,
   "spacingPanel": 12,
   "lang": "vi",
-  "theme": "light",
-  "countryFlag": "indonesia",
+  "theme": "dark",
+  "countryFlag": "japan",
   "weatherApiKey": "21e0f911c7de4308916165005251210",
   "weatherLocation": "Ho Chi Minh City,Vietnam",
   "displaySize": "1920"

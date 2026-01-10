@@ -1,0 +1,135 @@
+import QtQuick
+import QtQuick.Layouts
+
+Rectangle {
+    id: forecastSection
+
+    required property var theme
+    required property var sizes
+    required property var forecastDays
+
+    visible: forecastDays.length > 0
+    Layout.fillWidth: true
+    Layout.preferredHeight: sizes.forecastHeight || 200
+    radius: sizes.sectionRadius || 16
+    color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
+    border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
+    border.width: 1
+
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: sizes.forecastMargins || 16
+        spacing: sizes.forecastSpacing || 12
+
+        // Forecast row - horizontal layout
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            spacing: 10
+
+            Repeater {
+                model: forecastSection.forecastDays
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    radius: 12
+                    color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
+                    border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
+                    border.width: 1
+
+                    ColumnLayout {
+                        anchors.fill: parent
+                        anchors.margins: 10
+                        spacing: 8
+
+                        // Day name
+                        Text {
+                            text: modelData.dayName
+                            color: theme.primary.foreground
+                            font {
+                                pixelSize: 24
+                                bold: index === 0
+                                family: "ComicShannsMono Nerd Font"
+                            }
+                            Layout.alignment: Qt.AlignHCenter
+                            elide: Text.ElideRight
+                        }
+
+                        // Date
+                        Text {
+                            text: modelData.dateText
+                            color: theme.primary.dim_foreground
+                            font {
+                                pixelSize: 24
+                                family: "ComicShannsMono Nerd Font"
+                            }
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        // Weather icon
+                        Text {
+                            text: modelData.icon
+                            font.pixelSize: 32
+                            Layout.alignment: Qt.AlignHCenter
+                        }
+
+                        // Temperature range
+                        RowLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 4
+
+                            Text {
+                                text: `${modelData.maxTemp}°`
+                                color: theme.normal.red
+                                font {
+                                    pixelSize: 24
+                                    bold: true
+                                    family: "ComicShannsMono Nerd Font"
+                                }
+                            }
+
+                            Text {
+                                text: "/"
+                                color: theme.primary.dim_foreground
+                                font.pixelSize: 24
+                            }
+
+                            Text {
+                                text: `${modelData.minTemp}°`
+                                color: theme.normal.cyan
+                                font {
+                                    pixelSize: 24
+                                    family: "ComicShannsMono Nerd Font"
+                                }
+                            }
+                        }
+
+                        // Rain chance (if > 0)
+                        RowLayout {
+                            Layout.alignment: Qt.AlignHCenter
+                            spacing: 4
+                            visible: modelData.rainChance > 0
+
+                            Text {
+                                text: "💧"
+                                font.pixelSize: 12
+                            }
+
+                            Text {
+                                text: `${modelData.rainChance}%`
+                                color: theme.normal.blue
+                                font {
+                                    pixelSize: 11
+                                    family: "ComicShannsMono Nerd Font"
+                                }
+                            }
+                        }
+
+                        Item { Layout.fillHeight: true }
+                    }
+                }
+            }
+        }
+    }
+}

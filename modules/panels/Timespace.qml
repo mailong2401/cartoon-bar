@@ -62,7 +62,7 @@ property var lang: currentLanguage
     // Weather Panel
     Loader {
         id: weatherPanelLoader
-        source: "./WeatherPanel.qml"
+        source: "./weather/WeatherPanel.qml"
         active: weatherPanelVisible
         onLoaded: {
             item.visible = Qt.binding(function() { return weatherPanelVisible })
