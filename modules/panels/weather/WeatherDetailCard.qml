@@ -4,9 +4,9 @@ import QtQuick.Layouts
 Rectangle {
     id: root
 
-    required property var sizes
+    property var sizes: currentSizes
 
-    property string icon: "💧"
+    property string image: ""
     property string value: "Value"
 
     radius: sizes.weatherPanel?.detailCardRadius || 12
@@ -19,9 +19,14 @@ Rectangle {
         anchors.margins: sizes.weatherPanel?.detailCardMargins || 15
         spacing: sizes.weatherPanel?.detailCardSpacing || 10
 
-        Text {
-            text: root.icon
-            font.pixelSize: sizes.weatherPanel?.detailCardIconSize || 32
+        // Thay Text bằng Image
+        Image {
+            source: root.image
+            sourceSize.width: sizes.weatherPanel?.detailCardIconSize || 32
+            sourceSize.height: sizes.weatherPanel?.detailCardIconSize || 32
+            fillMode: Image.PreserveAspectFit
+            Layout.preferredWidth: sizes.weatherPanel?.detailCardIconSize || 32
+            Layout.preferredHeight: sizes.weatherPanel?.detailCardIconSize || 32
             Layout.alignment: Qt.AlignHCenter
         }
 
@@ -29,7 +34,7 @@ Rectangle {
             text: root.value
             color: theme.primary.foreground
             font {
-                pixelSize: sizes.weatherPanel?.detailCardValueFontSize || 16
+                pixelSize: sizes.fontSize?.large || 20
                 bold: true
                 family: "ComicShannsMono Nerd Font"
             }

@@ -86,8 +86,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "💧"
+            image: "../../../assets/weather/humidity.png"
             value: currentDisplay.humidity
         }
 
@@ -95,8 +94,9 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "🌬️"
+            image: currentConfig.theme === "light"
+        ? "../../../assets/weather/wind_light.png"
+        : "../../../assets/weather/wind_dark.png"
             value: currentDisplay.windSpeed
         }
 
@@ -104,8 +104,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "📊"
+            image: "../../../assets/weather/pressure.png"
             value: currentDisplay.pressure
         }
 
@@ -113,8 +112,7 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "👁️"
+            image: "../../../assets/weather/visibility.png"
             value: currentDisplay.visibility
         }
 
@@ -122,8 +120,9 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "☀️"
+            image: currentConfig.theme === "light"
+        ? "../../../assets/weather/uv_light.png"
+        : "../../../assets/weather/uv_dark.png"
             value: currentDisplay.uvIndex
         }
 
@@ -131,8 +130,9 @@ RowLayout {
         Com.WeatherDetailCard {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            sizes: currentDisplay.sizes
-            icon: "🌡️"
+            image: currentConfig.theme === "light"
+        ? "../../../assets/weather/feels_like_light.png"
+        : "../../../assets/weather/feels_like_dark.png"
             value: currentDisplay.feelsLike
         }
     }
