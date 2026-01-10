@@ -7,6 +7,7 @@ Rectangle {
 
     required property var theme
     required property var sizes
+    required property var lang
     required property string apiKey
     required property string location
     required property bool isSearchingLocation
@@ -45,7 +46,7 @@ Rectangle {
                 spacing: sizes.sectionSpacing || 12
 
                 Text {
-                    text: "🔑 API Key (weatherapi.com)"
+                    text: lang?.weather?.apiKeyLabel || "API Key (weatherapi.com)"
                     color: theme.primary.foreground
                     font {
                         pixelSize: sizes.labelFontSize || 16
@@ -78,7 +79,7 @@ Rectangle {
                         verticalAlignment: TextInput.AlignVCenter
                         selectByMouse: true
                         clip: true
-                        placeholderText: "Nhập API key của bạn..."
+                        placeholderText: lang?.weather?.apiKeyPlaceholder || "Nhập API key của bạn..."
                         palette.placeholderText: theme.primary.dim_foreground
 
                         onTextChanged: {
@@ -88,7 +89,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "📝 Nhận API key miễn phí tại: weatherapi.com\n💡 API key sẽ tự động lưu và kiểm tra khi bạn nhập"
+                    text: lang?.weather?.apiKeyHint || "Nhận API key miễn phí tại: weatherapi.com\nAPI key sẽ tự động lưu và kiểm tra khi bạn nhập"
                     color: theme.primary.dim_foreground
                     font {
                         pixelSize: sizes.hintFontSize || 11
@@ -106,7 +107,7 @@ Rectangle {
                 spacing: sizes.sectionSpacing || 12
 
                 Text {
-                    text: "📍 Địa điểm"
+                    text: lang?.weather?.locationLabel || "Địa điểm"
                     color: theme.primary.foreground
                     font {
                         pixelSize: sizes.labelFontSize || 16
@@ -144,7 +145,7 @@ Rectangle {
                             verticalAlignment: TextInput.AlignVCenter
                             selectByMouse: true
                             clip: true
-                            placeholderText: "Tìm kiếm thành phố..."
+                            placeholderText: lang?.weather?.locationPlaceholder || "Tìm kiếm thành phố..."
                             palette.placeholderText: theme.primary.dim_foreground
 
                             onActiveFocusChanged: {
@@ -173,7 +174,9 @@ Rectangle {
                         border.width: 1
 
                         Text {
-                            text: configSection.isSearchingLocation ? "⏳" : "🔍"
+                            text: configSection.isSearchingLocation ?
+                                  (lang?.weather?.searchingButton || "⏳") :
+                                  (lang?.weather?.searchButton || "🔍")
                             color: theme.primary.background
                             font {
                                 pixelSize: sizes.buttonFontSize || 14
@@ -235,12 +238,6 @@ Rectangle {
                             anchors.margins: sizes.searchResultMargins || 12
                             spacing: sizes.searchResultMargins || 12
 
-                            Text {
-                                text: "📍"
-                                font.pixelSize: sizes.searchResultIconSize || 18
-                                color: theme.normal.blue
-                                Layout.alignment: Qt.AlignVCenter
-                            }
 
                             Column {
                                 Layout.fillWidth: true

@@ -12,6 +12,8 @@
     "language": "Språk"
   },
   "dateFormat": {
+    "today": "Idag",
+    "tomorrow": "Imorgon",
     "day": {
       "monday": "Måndag",
       "tuesday": "Tisdag",
@@ -217,5 +219,15 @@
     "maxCore": "Högsta Kärna",
     "timeLabel": "⏱️ Tid",
     "dataPoints": "punkter"
+  },
+  "weather": {
+    "title": "Väder",
+    "apiKeyLabel": "API-nyckel (weatherapi.com)",
+    "apiKeyPlaceholder": "Ange din API-nyckel...",
+    "apiKeyHint": "Få en gratis API-nyckel på: weatherapi.com\nAPI-nyckeln sparas och valideras automatiskt",
+    "locationLabel": "Plats",
+    "locationPlaceholder": "Sök stad...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

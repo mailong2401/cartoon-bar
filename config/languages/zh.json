@@ -12,6 +12,8 @@
     "language": "语言"
   },
   "dateFormat": {
+    "today": "今天",
+    "tomorrow": "明天",
     "day": {
       "monday": "星期一",
       "tuesday": "星期二",
@@ -217,5 +219,15 @@
     "maxCore": "最高核心",
     "timeLabel": "⏱️ 时间",
     "dataPoints": "点"
+  },
+  "weather": {
+    "title": "天气",
+    "apiKeyLabel": "API密钥 (weatherapi.com)",
+    "apiKeyPlaceholder": "输入您的API密钥...",
+    "apiKeyHint": "在此获取免费API密钥：weatherapi.com\nAPI密钥将自动保存和验证",
+    "locationLabel": "位置",
+    "locationPlaceholder": "搜索城市...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

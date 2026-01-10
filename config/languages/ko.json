@@ -12,6 +12,8 @@
     "language": "언어"
   },
   "dateFormat": {
+    "today": "오늘",
+    "tomorrow": "내일",
     "day": {
       "monday": "월요일",
       "tuesday": "화요일",
@@ -221,5 +223,15 @@
     "maxCore": "최고 코어",
     "timeLabel": "⏱️ 시간",
     "dataPoints": "포인트"
+  },
+  "weather": {
+    "title": "날씨",
+    "apiKeyLabel": "API 키 (weatherapi.com)",
+    "apiKeyPlaceholder": "API 키를 입력하세요...",
+    "apiKeyHint": "무료 API 키 받기: weatherapi.com\nAPI 키는 자동으로 저장되고 검증됩니다",
+    "locationLabel": "위치",
+    "locationPlaceholder": "도시 검색...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

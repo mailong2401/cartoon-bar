@@ -12,6 +12,8 @@
     "language": "Idioma"
   },
   "dateFormat": {
+    "today": "Hoje",
+    "tomorrow": "Amanhã",
     "day": {
       "monday": "Segunda",
       "tuesday": "Terça",
@@ -221,5 +223,15 @@
     "maxCore": "Núcleo Mais Alto",
     "timeLabel": "⏱️ Tempo",
     "dataPoints": "pontos"
+  },
+  "weather": {
+    "title": "Clima",
+    "apiKeyLabel": "Chave API (weatherapi.com)",
+    "apiKeyPlaceholder": "Digite sua chave API...",
+    "apiKeyHint": "Obtenha uma chave API gratuita em: weatherapi.com\nA chave API será automaticamente salva e validada",
+    "locationLabel": "Localização",
+    "locationPlaceholder": "Pesquisar cidade...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

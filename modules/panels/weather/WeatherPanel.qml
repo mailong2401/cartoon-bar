@@ -189,10 +189,10 @@ PanelWindow {
         const tomorrow = new Date(today)
         tomorrow.setDate(tomorrow.getDate() + 1)
 
-        if (date.toDateString() === today.toDateString()) return "Hôm nay"
-        if (date.toDateString() === tomorrow.toDateString()) return "Ngày mai"
+        if (date.toDateString() === today.toDateString()) return lang?.dateFormat?.today || "Hôm nay"
+        if (date.toDateString() === tomorrow.toDateString()) return lang?.dateFormat?.tomorrow || "Ngày mai"
 
-        const weekdays = lang?.calendar?.weekdays
+        const weekdays = lang?.dateFormat?.day
         const days = weekdays ? [
             weekdays.sunday || "CN", weekdays.monday || "T2", weekdays.tuesday || "T3",
             weekdays.wednesday || "T4", weekdays.thursday || "T5",
@@ -249,7 +249,7 @@ PanelWindow {
         }
         isLoading = true
         errorMessage = ""
-        const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(location)}&days=3&lang=vi`
+        const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(location)}&days=3&lang=${currentConfig.lang}`
         weatherProcess.command = ["curl", "-s", url]
         weatherProcess.running = true
     }
@@ -261,10 +261,7 @@ PanelWindow {
         border.color: theme.normal.black
         border.width: sizes.borderWidth || 3
 
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: theme.primary.background }
-            GradientStop { position: 1.0; color: Qt.darker(theme.primary.background, 1.1) }
-        }
+        color: theme.primary.background
 
         ColumnLayout {
             anchors.fill: parent
@@ -272,12 +269,7 @@ PanelWindow {
             spacing: sizes.spacing || 20
 
             // Header
-            Com.WeatherHeader {
-                theme: weatherPanel.theme
-                sizes: weatherPanel.sizes
-                isLoading: weatherPanel.isLoading
-                onRefreshClicked: weatherPanel.updateWeather()
-            }
+            Com.WeatherHeader {}
 
             // Main content - 2 columns
             RowLayout {
@@ -289,6 +281,7 @@ PanelWindow {
                 Com.WeatherConfigSection {
                     theme: weatherPanel.theme
                     sizes: weatherPanel.sizes
+                    lang: weatherPanel.lang
                     apiKey: weatherPanel.apiKey
                     location: weatherPanel.location
                     isSearchingLocation: weatherPanel.isSearchingLocation
@@ -336,44 +329,36 @@ PanelWindow {
                     Layout.fillHeight: true
                     Layout.preferredWidth: parent.width * 0.6
                     radius: sizes.sectionRadius || 16
-                    color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.05)
-                    border.color: Qt.rgba(theme.normal.black.r, theme.normal.black.g, theme.normal.black.b, 0.1)
-                    border.width: 1
+                    color: theme.primary.background
 
-                    ScrollView {
+                    ColumnLayout {
                         anchors.fill: parent
                         anchors.margins: 1
-                        clip: true
-                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                        spacing: 20
 
-                        ColumnLayout {
-                            width: parent.parent.width - 2
-                            spacing: 20
+                        // Current weather
+                        Com.WeatherCurrentDisplay {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            Layout.preferredHeight: sizes.weatherCardWidth
+                            theme: weatherPanel.theme
+                            temperature: weatherPanel.temperature
+                            condition: weatherPanel.condition
+                            icon: weatherPanel.icon
+                            feelsLike: weatherPanel.feelsLike
+                            humidity: weatherPanel.humidity
+                            windSpeed: weatherPanel.windSpeed
+                            pressure: weatherPanel.pressure
+                            visibility: weatherPanel.visibility
+                            uvIndex: weatherPanel.uvIndex
+                            hasData: weatherPanel.temperature !== "" && weatherPanel.errorMessage === ""
+                        }
 
-                            // Current weather
-                            Com.WeatherCurrentDisplay {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                Layout.preferredHeight: sizes.weatherCardWidth
-                                theme: weatherPanel.theme
-                                temperature: weatherPanel.temperature
-                                condition: weatherPanel.condition
-                                icon: weatherPanel.icon
-                                feelsLike: weatherPanel.feelsLike
-                                humidity: weatherPanel.humidity
-                                windSpeed: weatherPanel.windSpeed
-                                pressure: weatherPanel.pressure
-                                visibility: weatherPanel.visibility
-                                uvIndex: weatherPanel.uvIndex
-                                hasData: weatherPanel.temperature !== "" && weatherPanel.errorMessage === ""
-                            }
-
-                            // 7-day forecast
-                            Com.WeatherForecastList {
-                                Layout.preferredHeight: 200
-                                theme: weatherPanel.theme
-                                forecastDays: weatherPanel.forecastDays
-                            }
+                        // 7-day forecast
+                        Com.WeatherForecastList {
+                            Layout.preferredHeight: 200
+                            theme: weatherPanel.theme
+                            forecastDays: weatherPanel.forecastDays
                         }
                     }
                 }

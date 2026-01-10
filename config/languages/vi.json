@@ -12,6 +12,8 @@
     "language": "Ngôn ngữ"
   },
   "dateFormat" : {
+    "today": "Hôm nay",
+    "tomorrow": "Ngày mai",
     "day" : {
       "monday" : "Thứ 2",
       "tuesday" : "Thứ 3",
@@ -217,6 +219,16 @@
     "maxCore": "Core Cao Nhất",
     "timeLabel": "⏱️ Thời Gian",
     "dataPoints": "điểm"
+  },
+  "weather": {
+    "title": "Thời Tiết",
+    "apiKeyLabel": "API Key (weatherapi.com)",
+    "apiKeyPlaceholder": "Nhập API key của bạn...",
+    "apiKeyHint": "Nhận API key miễn phí tại: weatherapi.com\nAPI key sẽ tự động lưu và kiểm tra khi bạn nhập",
+    "locationLabel": "Địa điểm",
+    "locationPlaceholder": "Tìm kiếm thành phố...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }
 

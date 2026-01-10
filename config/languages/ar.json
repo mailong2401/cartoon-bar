@@ -12,6 +12,8 @@
     "language": "اللغة"
   },
   "dateFormat": {
+    "today": "اليوم",
+    "tomorrow": "غداً",
     "day": {
       "monday": "الإثنين",
       "tuesday": "الثلاثاء",
@@ -221,5 +223,15 @@
     "maxCore": "أعلى نواة",
     "timeLabel": "⏱️ الوقت",
     "dataPoints": "نقاط"
+  },
+  "weather": {
+    "title": "الطقس",
+    "apiKeyLabel": "مفتاح API (weatherapi.com)",
+    "apiKeyPlaceholder": "أدخل مفتاح API الخاص بك...",
+    "apiKeyHint": "احصل على مفتاح API مجاني من: weatherapi.com\nسيتم حفظ والتحقق من مفتاح API تلقائياً",
+    "locationLabel": "الموقع",
+    "locationPlaceholder": "البحث عن مدينة...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

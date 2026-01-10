@@ -12,6 +12,8 @@
     "language": "Jazyk"
   },
   "dateFormat": {
+    "today": "Dnes",
+    "tomorrow": "Zajtra",
     "day": {
       "monday": "Pondelok",
       "tuesday": "Utorok",
@@ -217,5 +219,15 @@
     "maxCore": "Najvyššie Jadro",
     "timeLabel": "⏱️ Čas",
     "dataPoints": "bodov"
+  },
+  "weather": {
+    "title": "Počasie",
+    "apiKeyLabel": "API kľúč (weatherapi.com)",
+    "apiKeyPlaceholder": "Zadajte svoj API kľúč...",
+    "apiKeyHint": "Získajte bezplatný API kľúč na: weatherapi.com\nAPI kľúč bude automaticky uložený a overený",
+    "locationLabel": "Umiestnenie",
+    "locationPlaceholder": "Hľadať mesto...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

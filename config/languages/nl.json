@@ -12,6 +12,8 @@
     "language": "Taal"
   },
   "dateFormat": {
+    "today": "Vandaag",
+    "tomorrow": "Morgen",
     "day": {
       "monday": "Maandag",
       "tuesday": "Dinsdag",
@@ -221,5 +223,15 @@
     "maxCore": "Hoogste Core",
     "timeLabel": "⏱️ Tijd",
     "dataPoints": "punten"
+  },
+  "weather": {
+    "title": "Weer",
+    "apiKeyLabel": "API-sleutel (weatherapi.com)",
+    "apiKeyPlaceholder": "Voer uw API-sleutel in...",
+    "apiKeyHint": "Verkrijg een gratis API-sleutel op: weatherapi.com\nAPI-sleutel wordt automatisch opgeslagen en gevalideerd",
+    "locationLabel": "Locatie",
+    "locationPlaceholder": "Zoek stad...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

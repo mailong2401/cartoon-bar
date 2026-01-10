@@ -12,6 +12,8 @@
     "language": "言語"
   },
   "dateFormat": {
+    "today": "今日",
+    "tomorrow": "明日",
     "day": {
       "monday": "月曜日",
       "tuesday": "火曜日",
@@ -221,5 +223,15 @@
     "maxCore": "最高コア",
     "timeLabel": "⏱️ 時間",
     "dataPoints": "ポイント"
+  },
+  "weather": {
+    "title": "天気",
+    "apiKeyLabel": "APIキー (weatherapi.com)",
+    "apiKeyPlaceholder": "APIキーを入力...",
+    "apiKeyHint": "無料APIキーを取得：weatherapi.com\nAPIキーは自動的に保存され検証されます",
+    "locationLabel": "場所",
+    "locationPlaceholder": "都市を検索...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

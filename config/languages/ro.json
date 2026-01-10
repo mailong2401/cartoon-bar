@@ -12,6 +12,8 @@
     "language": "Limbă"
   },
   "dateFormat": {
+    "today": "Astăzi",
+    "tomorrow": "Mâine",
     "day": {
       "monday": "Luni",
       "tuesday": "Marți",
@@ -217,5 +219,15 @@
     "maxCore": "Nucleul Cel Mai Înalt",
     "timeLabel": "⏱️ Timp",
     "dataPoints": "puncte"
+  },
+  "weather": {
+    "title": "Vremea",
+    "apiKeyLabel": "Cheie API (weatherapi.com)",
+    "apiKeyPlaceholder": "Introduceți cheia API...",
+    "apiKeyHint": "Obțineți o cheie API gratuită la: weatherapi.com\nCheia API va fi salvată și validată automat",
+    "locationLabel": "Locație",
+    "locationPlaceholder": "Căutați oraș...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

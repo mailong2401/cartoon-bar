@@ -33,9 +33,6 @@ RowLayout {
             GradientStop { position: 1.0; color: Qt.rgba(theme.normal.blue.r, theme.normal.blue.g, theme.normal.blue.b, 0.15) }
         }
 
-        border.color: Qt.rgba(theme.normal.blue.r, theme.normal.blue.g, theme.normal.blue.b, 0.4)
-        border.width: 1
-
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 20

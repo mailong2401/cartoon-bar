@@ -12,6 +12,8 @@
     "language": "Bahasa"
   },
   "dateFormat": {
+    "today": "Hari ini",
+    "tomorrow": "Besok",
     "day": {
       "monday": "Senin",
       "tuesday": "Selasa",
@@ -217,5 +219,15 @@
     "maxCore": "Core Tertinggi",
     "timeLabel": "⏱️ Waktu",
     "dataPoints": "titik"
+  },
+  "weather": {
+    "title": "Cuaca",
+    "apiKeyLabel": "Kunci API (weatherapi.com)",
+    "apiKeyPlaceholder": "Masukkan kunci API Anda...",
+    "apiKeyHint": "Dapatkan kunci API gratis di: weatherapi.com\nKunci API akan disimpan dan divalidasi secara otomatis",
+    "locationLabel": "Lokasi",
+    "locationPlaceholder": "Cari kota...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

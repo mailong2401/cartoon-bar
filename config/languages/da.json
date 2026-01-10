@@ -12,6 +12,8 @@
     "language": "Sprog"
   },
   "dateFormat": {
+    "today": "I dag",
+    "tomorrow": "I morgen",
     "day": {
       "monday": "Mandag",
       "tuesday": "Tirsdag",
@@ -217,5 +219,15 @@
     "maxCore": "Højeste Kerne",
     "timeLabel": "⏱️ Tid",
     "dataPoints": "punkter"
+  },
+  "weather": {
+    "title": "Vejr",
+    "apiKeyLabel": "API-nøgle (weatherapi.com)",
+    "apiKeyPlaceholder": "Indtast din API-nøgle...",
+    "apiKeyHint": "Få en gratis API-nøgle på: weatherapi.com\nAPI-nøglen gemmes og valideres automatisk",
+    "locationLabel": "Placering",
+    "locationPlaceholder": "Søg efter by...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

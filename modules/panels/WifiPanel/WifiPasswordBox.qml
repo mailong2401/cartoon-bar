@@ -42,13 +42,6 @@ Rectangle {
         anchors.margins: sizes.passwordBoxMargins || 12
         spacing: sizes.passwordBoxSpacing || 8
 
-        Text {
-            text: "🔒 " + networkData.ssid
-            font.pixelSize: sizes.passwordLabelFontSize || 14
-            color: theme.primary.foreground
-            font.family: "ComicShannsMono Nerd Font"
-        }
-
         Rectangle {
             Layout.fillWidth: true
             height: 30

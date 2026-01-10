@@ -12,6 +12,8 @@
     "language": "Kieli"
   },
   "dateFormat": {
+    "today": "Tänään",
+    "tomorrow": "Huomenna",
     "day": {
       "monday": "Maanantai",
       "tuesday": "Tiistai",
@@ -217,5 +219,15 @@
     "maxCore": "Korkein Ydin",
     "timeLabel": "⏱️ Aika",
     "dataPoints": "pistettä"
+  },
+  "weather": {
+    "title": "Sää",
+    "apiKeyLabel": "API-avain (weatherapi.com)",
+    "apiKeyPlaceholder": "Syötä API-avaimesi...",
+    "apiKeyHint": "Hanki ilmainen API-avain osoitteesta: weatherapi.com\nAPI-avain tallennetaan ja vahvistetaan automaattisesti",
+    "locationLabel": "Sijainti",
+    "locationPlaceholder": "Etsi kaupunkia...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

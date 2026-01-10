@@ -12,6 +12,8 @@
     "language": "שפה"
   },
   "dateFormat": {
+    "today": "היום",
+    "tomorrow": "מחר",
     "day": {
       "monday": "שני",
       "tuesday": "שלישי",
@@ -217,5 +219,15 @@
     "maxCore": "ליבה הגבוהה ביותר",
     "timeLabel": "⏱️ זמן",
     "dataPoints": "נקודות"
+  },
+  "weather": {
+    "title": "מזג אויר",
+    "apiKeyLabel": "מפתח API (weatherapi.com)",
+    "apiKeyPlaceholder": "הזן את מפתח ה-API שלך...",
+    "apiKeyHint": "קבל מפתח API חינם ב: weatherapi.com\nמפתח ה-API יישמר ויאומת אוטומטית",
+    "locationLabel": "מיקום",
+    "locationPlaceholder": "חפש עיר...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

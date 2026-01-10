@@ -12,6 +12,8 @@
     "language": "Language"
   },
   "dateFormat": {
+    "today": "Today",
+    "tomorrow": "Tomorrow",
     "day": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -217,5 +219,15 @@
     "maxCore": "Highest Core",
     "timeLabel": "⏱️ Time",
     "dataPoints": "points"
+  },
+  "weather": {
+    "title": "Weather",
+    "apiKeyLabel": "API Key (weatherapi.com)",
+    "apiKeyPlaceholder": "Enter your API key...",
+    "apiKeyHint": "Get a free API key at: weatherapi.com\nAPI key will be automatically saved and validated when you enter it",
+    "locationLabel": "Location",
+    "locationPlaceholder": "Search for a city...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

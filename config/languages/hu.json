@@ -12,6 +12,8 @@
     "language": "Nyelv"
   },
   "dateFormat": {
+    "today": "Ma",
+    "tomorrow": "Holnap",
     "day": {
       "monday": "Hétfő",
       "tuesday": "Kedd",
@@ -217,5 +219,15 @@
     "maxCore": "Legmagasabb Mag",
     "timeLabel": "⏱️ Idő",
     "dataPoints": "pont"
+  },
+  "weather": {
+    "title": "Időjárás",
+    "apiKeyLabel": "API kulcs (weatherapi.com)",
+    "apiKeyPlaceholder": "Adja meg az API kulcsot...",
+    "apiKeyHint": "Szerezzen ingyenes API kulcsot: weatherapi.com\nAz API kulcs automatikusan mentésre és ellenőrzésre kerül",
+    "locationLabel": "Helyszín",
+    "locationPlaceholder": "Város keresése...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

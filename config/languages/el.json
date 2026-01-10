@@ -12,6 +12,8 @@
     "language": "Γλώσσα"
   },
   "dateFormat": {
+    "today": "Σήμερα",
+    "tomorrow": "Αύριο",
     "day": {
       "monday": "Δευτέρα",
       "tuesday": "Τρίτη",
@@ -217,5 +219,15 @@
     "maxCore": "Υψηλότερος Πυρήνας",
     "timeLabel": "⏱️ Χρόνος",
     "dataPoints": "σημεία"
+  },
+  "weather": {
+    "title": "Καιρός",
+    "apiKeyLabel": "Κλειδί API (weatherapi.com)",
+    "apiKeyPlaceholder": "Εισάγετε το κλειδί API σας...",
+    "apiKeyHint": "Λάβετε δωρεάν κλειδί API στο: weatherapi.com\nΤο κλειδί API θα αποθηκευτεί και επικυρωθεί αυτόματα",
+    "locationLabel": "Τοποθεσία",
+    "locationPlaceholder": "Αναζήτηση πόλης...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

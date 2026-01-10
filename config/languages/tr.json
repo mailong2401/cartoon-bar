@@ -12,6 +12,8 @@
     "language": "Dil"
   },
   "dateFormat": {
+    "today": "Bugün",
+    "tomorrow": "Yarın",
     "day": {
       "monday": "Pazartesi",
       "tuesday": "Salı",
@@ -221,5 +223,15 @@
     "maxCore": "En Yüksek Çekirdek",
     "timeLabel": "⏱️ Zaman",
     "dataPoints": "nokta"
+  },
+  "weather": {
+    "title": "Hava Durumu",
+    "apiKeyLabel": "API Anahtarı (weatherapi.com)",
+    "apiKeyPlaceholder": "API anahtarınızı girin...",
+    "apiKeyHint": "Ücretsiz API anahtarı edinin: weatherapi.com\nAPI anahtarı otomatik olarak kaydedilecek ve doğrulanacak",
+    "locationLabel": "Konum",
+    "locationPlaceholder": "Şehir ara...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

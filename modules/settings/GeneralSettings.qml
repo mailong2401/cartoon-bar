@@ -73,7 +73,7 @@ Item {
   { code: "en", name: "English", flagImg: "britain" },
   { code: "zh", name: "中文", flagImg: "china" },
   { code: "ja", name: "日本語", flagImg: "japan" },
-  { code: "kr", name: "한국어", flagImg: "korea" },
+  { code: "ko", name: "한국어", flagImg: "korea" },
   { code: "ru", name: "Русский", flagImg: "russia" },
   { code: "hi", name: "हिन्दी", flagImg: "india" },
   { code: "es", name: "Español", flagImg: "spain" },

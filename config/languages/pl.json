@@ -12,6 +12,8 @@
     "language": "Język"
   },
   "dateFormat": {
+    "today": "Dziś",
+    "tomorrow": "Jutro",
     "day": {
       "monday": "Poniedziałek",
       "tuesday": "Wtorek",
@@ -217,5 +219,15 @@
     "maxCore": "Najwyższy Rdzeń",
     "timeLabel": "⏱️ Czas",
     "dataPoints": "punktów"
+  },
+  "weather": {
+    "title": "Pogoda",
+    "apiKeyLabel": "Klucz API (weatherapi.com)",
+    "apiKeyPlaceholder": "Wprowadź swój klucz API...",
+    "apiKeyHint": "Otrzymaj darmowy klucz API na: weatherapi.com\nKlucz API zostanie automatycznie zapisany i zweryfikowany",
+    "locationLabel": "Lokalizacja",
+    "locationPlaceholder": "Szukaj miasta...",
+    "searchButton": "🔍",
+    "searchingButton": "⏳"
   }
 }

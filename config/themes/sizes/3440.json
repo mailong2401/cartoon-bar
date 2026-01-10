@@ -238,7 +238,7 @@
     "errorMargins": 22,
     "errorIconSize": 32,
     "errorFontSize": 23,
-    "weatherCardWidth": 358,
+    "weatherCardWidth": 348,
     "weatherCardRadius": 29,
     "weatherIconSize": 72,
     "weatherInfoSpacing": 27,
