@@ -32,7 +32,7 @@ PanelWindow {
     focusable: true
 
     property string apiKey: ""
-    property string location: "Ho Chi Minh,VN"
+    property string location: currentConfig.weatherLocation
     property string temperature: ""
     property string condition: ""
     property string icon: "⛅"

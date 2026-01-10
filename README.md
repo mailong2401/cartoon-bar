@@ -201,10 +201,10 @@ sudo pacman -S ttf-nerd-fonts-symbols-mono
 ### 2. Clone Cartoon Bar
 ```bash
 # Clone to QuickShell config directory
-git clone git@github.com:mailong2401/cartoon-bar.git \
-    ~/.config/quickshell/cartoon-bar
+git clone git@github.com:mailong2401/cartoon-shell.git \
+    ~/.config/quickshell/cartoon-shell
 
-cd ~/.config/quickshell/cartoon-bar
+cd ~/.config/quickshell/cartoon-shell
 ```
 
 ### 3. Configure Weather API (Optional)
@@ -222,10 +222,10 @@ nano config/configs/default.json
 ### 4. Run QuickShell
 ```bash
 # Run directly
-export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-bar
+export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-shell
 
 # Or add to Hyprland config
-echo "exec-once = export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-bar" \
+echo "exec-once = export QML_XHR_ALLOW_FILE_READ=1 && quickshell --path ~/.config/quickshell/cartoon-shell" \
     >> ~/.config/hypr/hyprland.conf
 ```
 
