@@ -152,7 +152,7 @@ Item {
                 model: FolderListModel {
                     id: folderModel
                     folder: wallpapersPath
-                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp"]
+                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp","*.mp4"]
                     showDirs: false
                     sortField: FolderListModel.Name
                 }
@@ -429,9 +429,7 @@ Item {
         wallpaperPath = filePath.toString().replace("file://", "")
 
         wallpaperProcess.command = [
-            "swww", "img", wallpaperPath,
-            "--transition-type", "grow",
-            "--transition-duration", "2"
+            Qt.resolvedUrl("../../scripts/select_wall"), wallpaperPath
         ]
         wallpaperProcess.running = true
     }
