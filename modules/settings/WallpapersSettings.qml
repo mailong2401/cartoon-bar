@@ -62,7 +62,24 @@ Item {
         onRunningChanged: {
             if (!running) {
                 showNotification(lang?.wallpapers?.success_delete || "Đã xóa ảnh thành công!")
-                folderModel.update()
+            }
+        }
+    }
+
+    // Process để tạo thumbnail cho video
+    Process {
+        id: thumbnailProcess
+        command: ["bash", ""]
+
+        stdout: StdioCollector {
+            onTextChanged: {
+                console.log("Thumbnail generation:", text)
+            }
+        }
+
+        stderr: StdioCollector {
+            onTextChanged: {
+                if (text) console.log("Thumbnail error:", text)
             }
         }
     }
@@ -152,7 +169,7 @@ Item {
                 model: FolderListModel {
                     id: folderModel
                     folder: wallpapersPath
-                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp","*.mp4"]
+                    nameFilters: ["*.jpg","*.jpeg","*.png","*.bmp","*.webp","*.gif","*.mp4","*.webm","*.mkv","*.avi","*.mov","*.flv","*.wmv","*.m4v","*.mpg","*.mpeg"]
                     showDirs: false
                     sortField: FolderListModel.Name
                 }
@@ -178,11 +195,47 @@ Item {
                             clip: true
                             color: "transparent"
 
+                            Component.onCompleted: {
+                                if (isVideoFile(fileName)) {
+                                    generateThumbnail(filePath)
+                                }
+                            }
+
                             Image {
+                                id: thumbnailImage
                                 anchors.fill: parent
-                                source: filePath
+                                source: isVideoFile(fileName) ? getThumbnailPath(filePath) : filePath
                                 fillMode: Image.PreserveAspectCrop
                                 asynchronous: true
+                                cache: false
+
+                                onStatusChanged: {
+                                    if (status === Image.Error && isVideoFile(fileName)) {
+                                        // Nếu thumbnail chưa có, thử tạo lại
+                                        thumbnailImage.source = ""
+                                        generateThumbnail(filePath)
+                                    }
+                                }
+                            }
+
+                            // Video indicator
+                            Rectangle {
+                                visible: isVideoFile(fileName)
+                                anchors.bottom: parent.bottom
+                                anchors.left: parent.left
+                                anchors.margins: currentSizes.wallpaperSettings?.currentIndicatorMargin || 5
+                                width: currentSizes.wallpaperSettings?.currentIndicatorSize || 24
+                                height: currentSizes.wallpaperSettings?.currentIndicatorSize || 24
+                                radius: currentSizes.wallpaperSettings?.currentIndicatorRadius || 12
+                                color: theme.normal.purple
+
+                                Text {
+                                    text: "▶"
+                                    color: theme.primary.background
+                                    font.pixelSize: currentSizes.wallpaperSettings?.currentIndicatorFontSize || 12
+                                    font.bold: true
+                                    anchors.centerIn: parent
+                                }
                             }
 
                             // Current Wallpaper Indicator
@@ -432,6 +485,37 @@ Item {
             Qt.resolvedUrl("../../scripts/select_wall"), wallpaperPath
         ]
         wallpaperProcess.running = true
+    }
+
+    function generateThumbnail(filePath) {
+        var actualPath = filePath.toString().replace("file://", "")
+        var thumbnailDir = homePath + "/.config/hypr/custom/scripts/mpvpaper_thumbnails"
+        var fileName = actualPath.split('/').pop()
+        var thumbnailPath = thumbnailDir + "/" + fileName + ".jpg"
+        var scriptPath = homePath + "/.config/quickshell/cartoon-bar/scripts/generate-video-thumbnail.sh"
+
+        console.log("Generating thumbnail for:", actualPath)
+        console.log("Output path:", thumbnailPath)
+
+        thumbnailProcess.command = [
+            "bash",
+            scriptPath,
+            actualPath,
+            thumbnailPath
+        ]
+        thumbnailProcess.running = true
+    }
+
+    function isVideoFile(fileName) {
+        var ext = fileName.toLowerCase().split('.').pop()
+        return ["mp4", "webm", "mkv", "avi", "mov", "flv", "wmv", "m4v", "mpg", "mpeg"].includes(ext)
+    }
+
+    function getThumbnailPath(filePath) {
+        var actualPath = filePath.toString().replace("file://", "")
+        var thumbnailDir = homePath + "/.config/hypr/custom/scripts/mpvpaper_thumbnails"
+        var fileName = actualPath.split('/').pop()
+        return "file://" + thumbnailDir + "/" + fileName + ".jpg"
     }
 
     function deleteWallpaper(filePath) {

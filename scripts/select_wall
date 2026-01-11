@@ -22,7 +22,14 @@ mkdir -p "$THUMBNAIL_DIR"
 
 is_video() {
   local extension="${1##*.}"
-  [[ "$extension" == "mp4" || "$extension" == "webm" || "$extension" == "mkv" || "$extension" == "avi" || "$extension" == "mov" ]] && return 0 || return 1
+  case "${extension,,}" in
+    mp4|webm|mkv|avi|mov|flv|wmv|m4v|mpg|mpeg)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
 }
 
 kill_existing_mpvpaper() {
