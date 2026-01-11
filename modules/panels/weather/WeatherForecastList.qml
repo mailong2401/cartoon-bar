@@ -105,26 +105,7 @@ Rectangle {
                             }
                         }
 
-                        // Rain chance (if > 0)
-                        RowLayout {
-                            Layout.alignment: Qt.AlignHCenter
-                            spacing: 4
-                            visible: modelData.rainChance > 0
 
-                            Text {
-                                text: "💧"
-                                font.pixelSize: 12
-                            }
-
-                            Text {
-                                text: `${modelData.rainChance}%`
-                                color: theme.normal.blue
-                                font {
-                                    pixelSize: sizes.weatherPanel?.forecastCardRainFontSize || 11
-                                    family: "ComicShannsMono Nerd Font"
-                                }
-                            }
-                        }
 
                         Item { Layout.fillHeight: true }
                     }
